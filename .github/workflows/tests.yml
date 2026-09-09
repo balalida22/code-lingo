@@ -1,0 +1,30 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          python-version: "3.12"
+      - name: Create the environment
+        run: uv sync --locked
+      - name: Run regression tests
+        run: uv run --locked python -m unittest discover -s tests -v
+      - name: Check the command-line entry point
+        run: uv run --locked python -m codelingo --version
+      - name: Check reproducible course generation
+        run: |
+          uv run --locked python tools/curricula/build.py
+          git diff --exit-code -- codelingo/courses

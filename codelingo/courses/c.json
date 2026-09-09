@@ -1,0 +1,4020 @@
+{
+  "schema_version": 2,
+  "id": "c",
+  "title": "C",
+  "language": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used",
+  "version": "1.0",
+  "sources": [
+    {
+      "id": "cs50c",
+      "title": "CS50x C lectures",
+      "url": "https://cs50.harvard.edu/x/weeks/1/",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "gnu-c",
+      "title": "GNU C language manual (portable C subset here)",
+      "url": "https://www.gnu.org/software/c-intro-and-ref/manual/html_node/",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "values",
+      "title": "Values and assignment",
+      "section": "Basics",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. A variable names a value. Assignment updates that variable; an earlier copied number does not follow later assignments. Read statements from top to bottom.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-read-1",
+          "kind": "mcq",
+          "code": "int x = ${n};\nprintf(\"%d\", x);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-choose-1",
+          "kind": "mcq",
+          "code": "int x = ____;\nprintf(\"%d\", x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-read-2",
+          "kind": "mcq",
+          "code": "int x = ${n};\nx = ${m};\nprintf(\"%d\", x);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-choose-2",
+          "kind": "mcq",
+          "code": "int x = ${n};\nx = ____;\nprintf(\"%d\", x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal.",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "values-read-3",
+          "kind": "mcq",
+          "code": "int x = ${n};\nprintf(\"%d\", x + ${m});",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-choose-3",
+          "kind": "mcq",
+          "code": "int x = ${n};\nprintf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable.",
+          "answer": "x + ${m}",
+          "options": [
+            "x + ${m}",
+            "x * ${m}",
+            "x"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "prev": "n-1"
+          },
+          "id": "values-read-4",
+          "kind": "mcq",
+          "code": "int x = ${n};\nx = x + 1;\nprintf(\"%d\", x);",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "${prev}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-choose-4",
+          "kind": "mcq",
+          "code": "int x = ${n};\nx = x + ____;\nprintf(\"%d\", x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "values-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x = ____;\nprintf(\"%d\", x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "values-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x = ${n};\nx = ____;\nprintf(\"%d\", x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x = ${n};\nprintf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x + ${m}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x = ${n};\nx = x + ____;\nprintf(\"%d\", x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arithmetic",
+      "title": "Arithmetic and precedence",
+      "section": "Basics",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Multiplication binds more tightly than addition. Parentheses group expressions. Integer quotient and remainder answer different questions; all operands here are positive.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "values"
+      ],
+      "questions": [
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mul": "n*m",
+            "n_plus_twom": "n+m*2",
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-read-1",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ${n} + ${m} * 2);",
+          "prompt": "What is the result?",
+          "answer": "${n_plus_twom}",
+          "options": [
+            "${n_plus_twom}",
+            "${doubleadd}",
+            "${mul}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "n_plus_twom": "n+m*2"
+          },
+          "id": "arithmetic-choose-1",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added.",
+          "answer": "${n} + ${m} * 2",
+          "options": [
+            "${n} + ${m} * 2",
+            "(${n} + ${m}) * 2",
+            "${n} * ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "n_plus_twom": "n+m*2",
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-read-2",
+          "kind": "mcq",
+          "code": "printf(\"%d\", (${n} + ${m}) * 2);",
+          "prompt": "What is the result?",
+          "answer": "${doubleadd}",
+          "options": [
+            "${doubleadd}",
+            "${n_plus_twom}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-choose-2",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling.",
+          "answer": "(${n} + ${m}) * 2",
+          "options": [
+            "(${n} + ${m}) * 2",
+            "${n} + ${m} * 2",
+            "${n} + ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mul": "n*m",
+            "rem": "n%m",
+            "div": "n//m"
+          },
+          "id": "arithmetic-read-3",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ${n} / ${m});",
+          "prompt": "What is the result?",
+          "answer": "${div}",
+          "options": [
+            "${div}",
+            "${rem}",
+            "${mul}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "arithmetic-choose-3",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part.",
+          "answer": "${n} / ${m}",
+          "options": [
+            "${n} / ${m}",
+            "${n} % ${m}",
+            "${n} * ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m",
+            "rem": "n%m"
+          },
+          "id": "arithmetic-read-4",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ${n} % ${m});",
+          "prompt": "What is the result?",
+          "answer": "${rem}",
+          "options": [
+            "${rem}",
+            "${mul}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "rem": "n%m"
+          },
+          "id": "arithmetic-choose-4",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}.",
+          "answer": "${n} % ${m}",
+          "options": [
+            "${n} % ${m}",
+            "${n} * ${m}",
+            "${n} + ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "n_plus_twom": "n+m*2"
+          },
+          "id": "arithmetic-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} + ${m} * 2"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "(${n} + ${m}) * 2"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "arithmetic-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} / ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "rem": "n%m"
+          },
+          "id": "arithmetic-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} % ${m}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strings",
+      "title": "Characters and C strings",
+      "section": "Basics",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. A char stores one character. A C string is a character array terminated by a zero byte. strlen excludes that terminator; sizeof an array includes all its storage.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "arithmetic"
+      ],
+      "questions": [
+        {
+          "concept": "Characters and C strings",
+          "explanation": "strlen counts bytes before the zero terminator.",
+          "hint": "strlen counts bytes before the zero terminator.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)",
+            "length1": "len(word)+1"
+          },
+          "id": "strings-read-1",
+          "kind": "mcq",
+          "code": "char s[]=\"${word}\";\nprintf(\"%zu\", strlen(s));",
+          "prompt": "What is the result?",
+          "answer": "${length}",
+          "options": [
+            "${length}",
+            "${length1}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "strlen counts bytes before the zero terminator.",
+          "hint": "strlen counts bytes before the zero terminator.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "strings-choose-1",
+          "kind": "mcq",
+          "code": "char s[]=\"${word}\";\nprintf(\"%zu\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. strlen counts bytes before the zero terminator.",
+          "answer": "strlen(s)",
+          "options": [
+            "strlen(s)",
+            "sizeof(s)",
+            "0UL"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "Array index zero selects the first character.",
+          "hint": "Array index zero selects the first character.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "strings-read-2",
+          "kind": "mcq",
+          "code": "char s[]=\"${word}\";\nprintf(\"%c\", s[0]);",
+          "prompt": "What is the result?",
+          "answer": "${first}",
+          "options": [
+            "${first}",
+            "${word}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "Array index zero selects the first character.",
+          "hint": "Array index zero selects the first character.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "strings-choose-2",
+          "kind": "mcq",
+          "code": "char s[]=\"${word}\";\nprintf(\"%c\", s[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. Array index zero selects the first character.",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "The array has one extra byte for its terminating zero.",
+          "hint": "The array has one extra byte for its terminating zero.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)",
+            "length1": "len(word)+1"
+          },
+          "id": "strings-read-3",
+          "kind": "mcq",
+          "code": "char s[]=\"${word}\";\nprintf(\"%zu\", sizeof(s));",
+          "prompt": "What is the result?",
+          "answer": "${length1}",
+          "options": [
+            "${length1}",
+            "${length}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "The array has one extra byte for its terminating zero.",
+          "hint": "The array has one extra byte for its terminating zero.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length1": "len(word)+1"
+          },
+          "id": "strings-choose-3",
+          "kind": "mcq",
+          "code": "char s[]=\"${word}\";\nprintf(\"%zu\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length1}. The array has one extra byte for its terminating zero.",
+          "answer": "sizeof(s)",
+          "options": [
+            "sizeof(s)",
+            "strlen(s)",
+            "0UL"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "A writable array permits replacing its first character.",
+          "hint": "A writable array permits replacing its first character.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "tail": "word[1:]"
+          },
+          "id": "strings-read-4",
+          "kind": "mcq",
+          "code": "char s[]=\"${word}\";\ns[0]='X';\nprintf(\"%s\", s);",
+          "prompt": "What is the result?",
+          "answer": "X${tail}",
+          "options": [
+            "X${tail}",
+            "${word}",
+            "X"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "A writable array permits replacing its first character.",
+          "hint": "A writable array permits replacing its first character.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "tail": "word[1:]"
+          },
+          "id": "strings-choose-4",
+          "kind": "mcq",
+          "code": "char s[]=\"${word}\";\ns[0]=____;\nprintf(\"%s\", s);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: X${tail}. A writable array permits replacing its first character. Use 'X' as the replacement literal.",
+          "answer": "'X'",
+          "options": [
+            "'X'",
+            "'Y'",
+            "'\\0'"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "strlen counts bytes before the zero terminator.",
+          "hint": "strlen counts bytes before the zero terminator.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "strings-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "char s[]=\"${word}\";\nprintf(\"%zu\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. strlen counts bytes before the zero terminator. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "strlen(s)"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "Array index zero selects the first character.",
+          "hint": "Array index zero selects the first character.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "strings-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "char s[]=\"${word}\";\nprintf(\"%c\", s[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. Array index zero selects the first character. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "The array has one extra byte for its terminating zero.",
+          "hint": "The array has one extra byte for its terminating zero.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length1": "len(word)+1"
+          },
+          "id": "strings-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "char s[]=\"${word}\";\nprintf(\"%zu\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length1}. The array has one extra byte for its terminating zero. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "sizeof(s)"
+          ]
+        },
+        {
+          "concept": "Characters and C strings",
+          "explanation": "A writable array permits replacing its first character.",
+          "hint": "A writable array permits replacing its first character.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "tail": "word[1:]"
+          },
+          "id": "strings-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "char s[]=\"${word}\";\ns[0]=____;\nprintf(\"%s\", s);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: X${tail}. A writable array permits replacing its first character. Use 'X' as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "'X'"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conditions",
+      "title": "Conditions and boolean operators",
+      "section": "Basics",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Zero is false; nonzero is true. Comparisons yield int zero or one. && and || short-circuit, which can protect a pointer dereference.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "strings"
+      ],
+      "questions": [
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Equality of the identical integers yields one.",
+          "hint": "Equality of the identical integers yields one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-1",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ${n} == ${n});",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Equality of the identical integers yields one.",
+          "hint": "Equality of the identical integers yields one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-1",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ${n} ____ ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Equality of the identical integers yields one.",
+          "answer": "==",
+          "options": [
+            "==",
+            "!=",
+            "<"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "A nonzero condition enters the branch.",
+          "hint": "A nonzero condition enters the branch.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-2",
+          "kind": "mcq",
+          "code": "int x=0;\nif (${n}) x=1;\nprintf(\"%d\", x);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "A nonzero condition enters the branch.",
+          "hint": "A nonzero condition enters the branch.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-2",
+          "kind": "mcq",
+          "code": "int x=0;\nif (____) x=1;\nprintf(\"%d\", x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A nonzero condition enters the branch. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "!1"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "&& skips the dereference when p is null.",
+          "hint": "&& skips the dereference when p is null.",
+          "id": "conditions-read-3",
+          "kind": "mcq",
+          "code": "int *p=NULL;\nif (p && *p > 0) puts(\"yes\"); else puts(\"no\");",
+          "prompt": "What is the result?",
+          "answer": "no",
+          "options": [
+            "no",
+            "yes",
+            "Undefined behavior"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "&& skips the dereference when p is null.",
+          "hint": "&& skips the dereference when p is null.",
+          "id": "conditions-choose-3",
+          "kind": "mcq",
+          "code": "int *p=NULL;\nif (p ____ *p > 0) puts(\"yes\"); else puts(\"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. && skips the dereference when p is null.",
+          "answer": "&&",
+          "options": [
+            "&&",
+            "&",
+            "||"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Logical negation of zero yields one.",
+          "hint": "Logical negation of zero yields one.",
+          "id": "conditions-read-4",
+          "kind": "mcq",
+          "code": "printf(\"%d\", !0);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Logical negation of zero yields one.",
+          "hint": "Logical negation of zero yields one.",
+          "id": "conditions-choose-4",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ____0);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Logical negation of zero yields one.",
+          "answer": "!",
+          "options": [
+            "!",
+            "-",
+            "+"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Equality of the identical integers yields one.",
+          "hint": "Equality of the identical integers yields one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%d\", ${n} ____ ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Equality of the identical integers yields one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "A nonzero condition enters the branch.",
+          "hint": "A nonzero condition enters the branch.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0;\nif (____) x=1;\nprintf(\"%d\", x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A nonzero condition enters the branch. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "&& skips the dereference when p is null.",
+          "hint": "&& skips the dereference when p is null.",
+          "id": "conditions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *p=NULL;\nif (p ____ *p > 0) puts(\"yes\"); else puts(\"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. && skips the dereference when p is null. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&&"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Logical negation of zero yields one.",
+          "hint": "Logical negation of zero yields one.",
+          "id": "conditions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%d\", ____0);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Logical negation of zero yields one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "!"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loops",
+      "title": "Loop bounds and control flow",
+      "section": "Basics",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. for separates initialization, test, and update. < gives an exclusive upper bound. continue skips the body remainder; break exits the loop.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "conditions"
+      ],
+      "questions": [
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "hint": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "loops-read-1",
+          "kind": "mcq",
+          "code": "int x=0; for(int i=0;i<${n};i++) x++; printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "hint": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-choose-1",
+          "kind": "mcq",
+          "code": "int x=0; for(int i=0;i____${n};i++) x++; printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Starting at zero with an exclusive limit gives ${n} iterations.",
+          "answer": "<",
+          "options": [
+            "<",
+            "<=",
+            ">"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "continue skips the middle increment.",
+          "hint": "continue skips the middle increment.",
+          "id": "loops-read-2",
+          "kind": "mcq",
+          "code": "int x=0; for(int i=0;i<3;i++) { if(i==1) continue; x++; } printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "continue skips the middle increment.",
+          "hint": "continue skips the middle increment.",
+          "id": "loops-choose-2",
+          "kind": "mcq",
+          "code": "int x=0; for(int i=0;i<3;i++) { if(i==1) ____; x++; } printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips the middle increment.",
+          "answer": "continue",
+          "options": [
+            "continue",
+            "break",
+            "return"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "break exits after one increment.",
+          "hint": "break exits after one increment.",
+          "id": "loops-read-3",
+          "kind": "mcq",
+          "code": "int x=0; while(1) { x++; break; } printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Never terminates"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "break exits after one increment.",
+          "hint": "break exits after one increment.",
+          "id": "loops-choose-3",
+          "kind": "mcq",
+          "code": "int x=0; while(1) { x++; ____; } printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. break exits after one increment.",
+          "answer": "break",
+          "options": [
+            "break",
+            "continue",
+            "return"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "A do loop runs its body before testing its condition.",
+          "hint": "A do loop runs its body before testing its condition.",
+          "id": "loops-read-4",
+          "kind": "mcq",
+          "code": "int x=0; do { x++; } while(0); printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Never terminates"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "A do loop runs its body before testing its condition.",
+          "hint": "A do loop runs its body before testing its condition.",
+          "id": "loops-choose-4",
+          "kind": "mcq",
+          "code": "int x=0; ____ { x++; } while(0); printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A do loop runs its body before testing its condition.",
+          "answer": "do",
+          "options": [
+            "do",
+            "if",
+            "for"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "hint": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0; for(int i=0;i____${n};i++) x++; printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Starting at zero with an exclusive limit gives ${n} iterations. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "<"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "continue skips the middle increment.",
+          "hint": "continue skips the middle increment.",
+          "id": "loops-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0; for(int i=0;i<3;i++) { if(i==1) ____; x++; } printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips the middle increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "continue"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "break exits after one increment.",
+          "hint": "break exits after one increment.",
+          "id": "loops-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0; while(1) { x++; ____; } printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. break exits after one increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "break"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "A do loop runs its body before testing its condition.",
+          "hint": "A do loop runs its body before testing its condition.",
+          "id": "loops-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0; ____ { x++; } while(0); printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A do loop runs its body before testing its condition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "do"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "functions",
+      "title": "Functions and value parameters",
+      "section": "Intermediate",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Function declarations specify return and parameter types. C passes arguments by value; use a pointer when a function should update caller storage.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "loops"
+      ],
+      "questions": [
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "The function returns its computed expression.",
+          "hint": "The function returns its computed expression.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-read-1",
+          "kind": "mcq",
+          "code": "int bump(int x) { return x+1; }\n/* in main */ printf(\"%d\",bump(${n}));",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "The function returns its computed expression.",
+          "hint": "The function returns its computed expression.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-choose-1",
+          "kind": "mcq",
+          "code": "int bump(int x) { return ____; }\n/* in main */ printf(\"%d\",bump(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The function returns its computed expression.",
+          "answer": "x+1",
+          "options": [
+            "x+1",
+            "x",
+            "0"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "Changing the value parameter does not update the caller variable.",
+          "hint": "Changing the value parameter does not update the caller variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-read-2",
+          "kind": "mcq",
+          "code": "void change(int x) { x=${m}; }\n/* in main */ int x=${n}; change(x); printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "Changing the value parameter does not update the caller variable.",
+          "hint": "Changing the value parameter does not update the caller variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-choose-2",
+          "kind": "mcq",
+          "code": "void change(int x) { x=${m}; }\n/* in main */ int x=${n}; ____; printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Changing the value parameter does not update the caller variable.",
+          "answer": "change(x)",
+          "options": [
+            "change(x)",
+            "x=${m}",
+            "x=0"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "Passing the address lets the function modify x through the pointer.",
+          "hint": "Passing the address lets the function modify x through the pointer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-read-3",
+          "kind": "mcq",
+          "code": "void change(int *p) { *p=${m}; }\n/* in main */ int x=${n}; change(&x); printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "Passing the address lets the function modify x through the pointer.",
+          "hint": "Passing the address lets the function modify x through the pointer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-choose-3",
+          "kind": "mcq",
+          "code": "void change(int *p) { *p=${m}; }\n/* in main */ int x=${n}; change(____); printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Passing the address lets the function modify x through the pointer.",
+          "answer": "&x",
+          "options": [
+            "&x",
+            "x",
+            "NULL"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "return exits before the later statement.",
+          "hint": "return exits before the later statement.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-read-4",
+          "kind": "mcq",
+          "code": "int stop(void) { return ${n}; return ${m}; }\n/* in main */ printf(\"%d\",stop());",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "return exits before the later statement.",
+          "hint": "return exits before the later statement.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-choose-4",
+          "kind": "mcq",
+          "code": "int stop(void) { ____ ${n}; return ${m}; }\n/* in main */ printf(\"%d\",stop());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. return exits before the later statement.",
+          "answer": "return",
+          "options": [
+            "return",
+            "goto",
+            "break"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "The function returns its computed expression.",
+          "hint": "The function returns its computed expression.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int bump(int x) { return ____; }\n/* in main */ printf(\"%d\",bump(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The function returns its computed expression. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x+1"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "Changing the value parameter does not update the caller variable.",
+          "hint": "Changing the value parameter does not update the caller variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "void change(int x) { x=${m}; }\n/* in main */ int x=${n}; ____; printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Changing the value parameter does not update the caller variable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "change(x)"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "Passing the address lets the function modify x through the pointer.",
+          "hint": "Passing the address lets the function modify x through the pointer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "void change(int *p) { *p=${m}; }\n/* in main */ int x=${n}; change(____); printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Passing the address lets the function modify x through the pointer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&x"
+          ]
+        },
+        {
+          "concept": "Functions and value parameters",
+          "explanation": "return exits before the later statement.",
+          "hint": "return exits before the later statement.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int stop(void) { ____ ${n}; return ${m}; }\n/* in main */ printf(\"%d\",stop());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. return exits before the later statement. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "return"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arrays",
+      "title": "Arrays, sizes, and bounds",
+      "section": "Intermediate",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Arrays use zero-based indexes. sizeof can compute an array element count only while the expression is an actual array; a parameter declared as an array is adjusted to a pointer.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "functions"
+      ],
+      "questions": [
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Index one selects the second element.",
+          "hint": "Index one selects the second element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-1",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",a[1]);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Index one selects the second element.",
+          "hint": "Index one selects the second element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-1",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",a[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Index one selects the second element.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Total array bytes divided by element bytes gives the count.",
+          "hint": "Total array bytes divided by element bytes gives the count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-2",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; printf(\"%zu\",sizeof(a)/sizeof(a[0]));",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Total array bytes divided by element bytes gives the count.",
+          "hint": "Total array bytes divided by element bytes gives the count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-2",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; printf(\"%zu\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Total array bytes divided by element bytes gives the count.",
+          "answer": "sizeof(a)/sizeof(a[0])",
+          "options": [
+            "sizeof(a)/sizeof(a[0])",
+            "sizeof(a[0])/sizeof(a)",
+            "0UL"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Unspecified entries in this initializer are zero-initialized.",
+          "hint": "Unspecified entries in this initializer are zero-initialized.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-3",
+          "kind": "mcq",
+          "code": "int a[3]={${n}}; printf(\"%d\",a[2]);",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "${n}",
+            "Indeterminate"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Unspecified entries in this initializer are zero-initialized.",
+          "hint": "Unspecified entries in this initializer are zero-initialized.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-3",
+          "kind": "mcq",
+          "code": "int a[3]={${n}}; printf(\"%d\",a[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Unspecified entries in this initializer are zero-initialized.",
+          "answer": "2",
+          "options": [
+            "2",
+            "0",
+            "3"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Index two is past the end of this two-element array.",
+          "hint": "Index two is past the end of this two-element array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-4",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",a[2]);",
+          "prompt": "What does the out-of-bounds access imply?",
+          "answer": "Undefined behavior",
+          "options": [
+            "Undefined behavior",
+            "Always zero",
+            "Always ${m}"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Index two is past the end of this two-element array.",
+          "hint": "Index two is past the end of this two-element array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-4",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Undefined behavior. Index two is past the end of this two-element array.",
+          "answer": "a[2]",
+          "options": [
+            "a[2]",
+            "a[0]",
+            "a[1]"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Index one selects the second element.",
+          "hint": "Index one selects the second element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",a[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Index one selects the second element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Total array bytes divided by element bytes gives the count.",
+          "hint": "Total array bytes divided by element bytes gives the count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a[]={${n},${m}}; printf(\"%zu\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Total array bytes divided by element bytes gives the count. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "sizeof(a)/sizeof(a[0])"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Unspecified entries in this initializer are zero-initialized.",
+          "hint": "Unspecified entries in this initializer are zero-initialized.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a[3]={${n}}; printf(\"%d\",a[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Unspecified entries in this initializer are zero-initialized. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "2"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Index two is past the end of this two-element array.",
+          "hint": "Index two is past the end of this two-element array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Undefined behavior. Index two is past the end of this two-element array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "a[2]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io",
+      "title": "Formatted I/O and return values",
+      "section": "Intermediate",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Use a format that matches the argument type. scanf needs a destination address and returns the number of successful assignments. fgets reads at most size minus one bytes.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "arrays"
+      ],
+      "questions": [
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "For input ${n}, scanf stores one integer at the supplied address.",
+          "hint": "For input ${n}, scanf stores one integer at the supplied address.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "io-read-1",
+          "kind": "mcq",
+          "code": "int x; if(scanf(\"%d\", &x)==1) printf(\"%d\",x);",
+          "prompt": "Given input ${n}, what is printed?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "The address of x"
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "For input ${n}, scanf stores one integer at the supplied address.",
+          "hint": "For input ${n}, scanf stores one integer at the supplied address.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "io-choose-1",
+          "kind": "mcq",
+          "code": "int x; if(scanf(\"%d\", ____)==1) printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. For input ${n}, scanf stores one integer at the supplied address.",
+          "answer": "&x",
+          "options": [
+            "&x",
+            "x",
+            "NULL"
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "%s formats a zero-terminated character string.",
+          "hint": "%s formats a zero-terminated character string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-2",
+          "kind": "mcq",
+          "code": "printf(\"%s\", \"${word}\");",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "An address",
+            "0"
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "%s formats a zero-terminated character string.",
+          "hint": "%s formats a zero-terminated character string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-2",
+          "kind": "mcq",
+          "code": "printf(____, \"${word}\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. %s formats a zero-terminated character string. Use \"%s\" as the replacement literal.",
+          "answer": "\"%s\"",
+          "options": [
+            "\"%s\"",
+            "\"%d\"",
+            "\"%p\""
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "On success fgets reserves one byte for a zero terminator.",
+          "hint": "On success fgets reserves one byte for a zero terminator.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "prev": "n-1"
+          },
+          "id": "io-read-3",
+          "kind": "mcq",
+          "code": "char b[${n}]; fgets(b,sizeof b,stdin);",
+          "prompt": "What bound applies to a successful read?",
+          "answer": "At most ${prev} input bytes plus a terminator",
+          "options": [
+            "At most ${prev} input bytes plus a terminator",
+            "Exactly ${n} input bytes",
+            "Unlimited bytes"
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "On success fgets reserves one byte for a zero terminator.",
+          "hint": "On success fgets reserves one byte for a zero terminator.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "prev": "n-1"
+          },
+          "id": "io-choose-3",
+          "kind": "mcq",
+          "code": "char b[${n}]; ____(b,sizeof b,stdin);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: At most ${prev} input bytes plus a terminator. On success fgets reserves one byte for a zero terminator.",
+          "answer": "fgets",
+          "options": [
+            "fgets",
+            "gets",
+            "scanf"
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "fclose releases the file resource after writing.",
+          "hint": "fclose releases the file resource after writing.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-4",
+          "kind": "mcq",
+          "code": "FILE *f=fopen(\"notes.txt\",\"w\"); if(f) { fputs(\"${word}\",f); fclose(f); }",
+          "prompt": "What does this code do?",
+          "answer": "Writes and closes when open succeeds",
+          "options": [
+            "Writes and closes when open succeeds",
+            "Always reads",
+            "Leaves the handle open"
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "fclose releases the file resource after writing.",
+          "hint": "fclose releases the file resource after writing.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-4",
+          "kind": "mcq",
+          "code": "FILE *f=fopen(\"notes.txt\",\"w\"); if(f) { fputs(\"${word}\",f); ____(f); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes and closes when open succeeds. fclose releases the file resource after writing.",
+          "answer": "fclose",
+          "options": [
+            "fclose",
+            "fflush",
+            "rewind"
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "For input ${n}, scanf stores one integer at the supplied address.",
+          "hint": "For input ${n}, scanf stores one integer at the supplied address.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "io-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x; if(scanf(\"%d\", ____)==1) printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. For input ${n}, scanf stores one integer at the supplied address. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&x"
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "%s formats a zero-terminated character string.",
+          "hint": "%s formats a zero-terminated character string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(____, \"${word}\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. %s formats a zero-terminated character string. Use \"%s\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"%s\""
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "On success fgets reserves one byte for a zero terminator.",
+          "hint": "On success fgets reserves one byte for a zero terminator.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "prev": "n-1"
+          },
+          "id": "io-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "char b[${n}]; ____(b,sizeof b,stdin);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: At most ${prev} input bytes plus a terminator. On success fgets reserves one byte for a zero terminator. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "fgets"
+          ]
+        },
+        {
+          "concept": "Formatted I/O and return values",
+          "explanation": "fclose releases the file resource after writing.",
+          "hint": "fclose releases the file resource after writing.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "FILE *f=fopen(\"notes.txt\",\"w\"); if(f) { fputs(\"${word}\",f); ____(f); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes and closes when open succeeds. fclose releases the file resource after writing. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "fclose"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "units",
+      "title": "Headers, linkage, and macros",
+      "section": "Intermediate",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Headers declare interfaces shared by translation units. File-scope static gives internal linkage. Parenthesize macro parameters and expressions; macros substitute tokens.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "io"
+      ],
+      "questions": [
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "The macro adds its parenthesized argument twice.",
+          "hint": "The macro adds its parenthesized argument twice.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "units-read-1",
+          "kind": "mcq",
+          "code": "#define DOUBLE(x) ((x)+(x))\n/* in main */ printf(\"%d\",DOUBLE(${n}));",
+          "prompt": "What is the result?",
+          "answer": "${double}",
+          "options": [
+            "${double}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "The macro adds its parenthesized argument twice.",
+          "hint": "The macro adds its parenthesized argument twice.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "units-choose-1",
+          "kind": "mcq",
+          "code": "#define DOUBLE(x) (____)\n/* in main */ printf(\"%d\",DOUBLE(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. The macro adds its parenthesized argument twice.",
+          "answer": "(x)+(x)",
+          "options": [
+            "(x)+(x)",
+            "x",
+            "0"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "File-scope static restricts this name to its translation unit.",
+          "hint": "File-scope static restricts this name to its translation unit.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "units-read-2",
+          "kind": "mcq",
+          "code": "static int size=${n};",
+          "prompt": "What linkage does size have?",
+          "answer": "Internal linkage within this translation unit",
+          "options": [
+            "Internal linkage within this translation unit",
+            "External linkage across the program",
+            "Automatic block storage"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "File-scope static restricts this name to its translation unit.",
+          "hint": "File-scope static restricts this name to its translation unit.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "units-choose-2",
+          "kind": "mcq",
+          "code": "____ int size=${n};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Internal linkage within this translation unit. File-scope static restricts this name to its translation unit.",
+          "answer": "static",
+          "options": [
+            "static",
+            "extern",
+            "const"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "The conditional header guard skips repeated contents.",
+          "hint": "The conditional header guard skips repeated contents.",
+          "id": "units-read-3",
+          "kind": "mcq",
+          "code": "#ifndef CONFIG_H\n#define CONFIG_H\nint size(void);\n#endif",
+          "prompt": "What purpose does this structure serve?",
+          "answer": "Prevents duplicate inclusion of declarations",
+          "options": [
+            "Prevents duplicate inclusion of declarations",
+            "Executes the function",
+            "Allocates an integer array"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "The conditional header guard skips repeated contents.",
+          "hint": "The conditional header guard skips repeated contents.",
+          "id": "units-choose-3",
+          "kind": "mcq",
+          "code": "#ifndef CONFIG_H\n#define CONFIG_H\nint size(void);\n____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Prevents duplicate inclusion of declarations. The conditional header guard skips repeated contents.",
+          "answer": "#endif",
+          "options": [
+            "#endif",
+            "#else",
+            "#undef"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "An extern declaration without an initializer refers to an external definition.",
+          "hint": "An extern declaration without an initializer refers to an external definition.",
+          "id": "units-read-4",
+          "kind": "mcq",
+          "code": "extern int shared;",
+          "prompt": "What does this declaration communicate?",
+          "answer": "Declares an object defined elsewhere",
+          "options": [
+            "Declares an object defined elsewhere",
+            "Defines a local automatic variable",
+            "Defines a constant expression"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "An extern declaration without an initializer refers to an external definition.",
+          "hint": "An extern declaration without an initializer refers to an external definition.",
+          "id": "units-choose-4",
+          "kind": "mcq",
+          "code": "____ int shared;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Declares an object defined elsewhere. An extern declaration without an initializer refers to an external definition.",
+          "answer": "extern",
+          "options": [
+            "extern",
+            "static",
+            "const"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "The macro adds its parenthesized argument twice.",
+          "hint": "The macro adds its parenthesized argument twice.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "units-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "#define DOUBLE(x) (____)\n/* in main */ printf(\"%d\",DOUBLE(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. The macro adds its parenthesized argument twice. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "(x)+(x)"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "File-scope static restricts this name to its translation unit.",
+          "hint": "File-scope static restricts this name to its translation unit.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "units-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ int size=${n};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Internal linkage within this translation unit. File-scope static restricts this name to its translation unit. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "static"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "The conditional header guard skips repeated contents.",
+          "hint": "The conditional header guard skips repeated contents.",
+          "id": "units-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "#ifndef CONFIG_H\n#define CONFIG_H\nint size(void);\n____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Prevents duplicate inclusion of declarations. The conditional header guard skips repeated contents. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "#endif"
+          ]
+        },
+        {
+          "concept": "Headers, linkage, and macros",
+          "explanation": "An extern declaration without an initializer refers to an external definition.",
+          "hint": "An extern declaration without an initializer refers to an external definition.",
+          "id": "units-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ int shared;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Declares an object defined elsewhere. An extern declaration without an initializer refers to an external definition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "extern"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "errors",
+      "title": "Failure reporting and cleanup",
+      "section": "Intermediate",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. C APIs often report failure with sentinel return values, not exceptions. Check allocation and file results before use. errno is meaningful only when the API documents it on failure.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "units"
+      ],
+      "questions": [
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "A failed fopen returns NULL, so this comparison detects failure.",
+          "hint": "A failed fopen returns NULL, so this comparison detects failure.",
+          "id": "errors-read-1",
+          "kind": "mcq",
+          "code": "FILE *f=fopen(\"missing.txt\",\"r\"); if(f == NULL) puts(\"failed\");",
+          "prompt": "Assuming fopen fails, what is printed?",
+          "answer": "failed",
+          "options": [
+            "failed",
+            "Nothing",
+            "Undefined behavior"
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "A failed fopen returns NULL, so this comparison detects failure.",
+          "hint": "A failed fopen returns NULL, so this comparison detects failure.",
+          "id": "errors-choose-1",
+          "kind": "mcq",
+          "code": "FILE *f=fopen(\"missing.txt\",\"r\"); if(f ____ NULL) puts(\"failed\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: failed. A failed fopen returns NULL, so this comparison detects failure.",
+          "answer": "==",
+          "options": [
+            "==",
+            "!=",
+            ">"
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "On successful allocation, the value is used and storage is released.",
+          "hint": "On successful allocation, the value is used and storage is released.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-read-2",
+          "kind": "mcq",
+          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; printf(\"%d\",*p); free(p); }",
+          "prompt": "Assuming allocation succeeds, what is printed?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "An address"
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "On successful allocation, the value is used and storage is released.",
+          "hint": "On successful allocation, the value is used and storage is released.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-2",
+          "kind": "mcq",
+          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; printf(\"%d\",*p); ____(p); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. On successful allocation, the value is used and storage is released.",
+          "answer": "free",
+          "options": [
+            "free",
+            "realloc",
+            "malloc"
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "A documented negative sentinel can be tested explicitly.",
+          "hint": "A documented negative sentinel can be tested explicitly.",
+          "id": "errors-read-3",
+          "kind": "mcq",
+          "code": "int rc=-1; if(rc < 0) puts(\"failed\");",
+          "prompt": "What is the result?",
+          "answer": "failed",
+          "options": [
+            "failed",
+            "Nothing",
+            "0"
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "A documented negative sentinel can be tested explicitly.",
+          "hint": "A documented negative sentinel can be tested explicitly.",
+          "id": "errors-choose-3",
+          "kind": "mcq",
+          "code": "int rc=-1; if(rc ____ 0) puts(\"failed\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: failed. A documented negative sentinel can be tested explicitly.",
+          "answer": "<",
+          "options": [
+            "<",
+            ">",
+            "=="
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "perror reports the current error description with the supplied prefix.",
+          "hint": "perror reports the current error description with the supplied prefix.",
+          "id": "errors-read-4",
+          "kind": "mcq",
+          "code": "if(fopen(\"missing.txt\",\"r\")==NULL) perror(\"open\");",
+          "prompt": "Assuming failure, what is the diagnostic operation?",
+          "answer": "Writes an errno-based diagnostic to stderr",
+          "options": [
+            "Writes an errno-based diagnostic to stderr",
+            "Throws an exception",
+            "Retries the open"
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "perror reports the current error description with the supplied prefix.",
+          "hint": "perror reports the current error description with the supplied prefix.",
+          "id": "errors-choose-4",
+          "kind": "mcq",
+          "code": "if(fopen(\"missing.txt\",\"r\")==NULL) ____(\"open\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes an errno-based diagnostic to stderr. perror reports the current error description with the supplied prefix.",
+          "answer": "perror",
+          "options": [
+            "perror",
+            "puts",
+            "printf"
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "A failed fopen returns NULL, so this comparison detects failure.",
+          "hint": "A failed fopen returns NULL, so this comparison detects failure.",
+          "id": "errors-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "FILE *f=fopen(\"missing.txt\",\"r\"); if(f ____ NULL) puts(\"failed\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: failed. A failed fopen returns NULL, so this comparison detects failure. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "On successful allocation, the value is used and storage is released.",
+          "hint": "On successful allocation, the value is used and storage is released.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; printf(\"%d\",*p); ____(p); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. On successful allocation, the value is used and storage is released. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "free"
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "A documented negative sentinel can be tested explicitly.",
+          "hint": "A documented negative sentinel can be tested explicitly.",
+          "id": "errors-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int rc=-1; if(rc ____ 0) puts(\"failed\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: failed. A documented negative sentinel can be tested explicitly. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "<"
+          ]
+        },
+        {
+          "concept": "Failure reporting and cleanup",
+          "explanation": "perror reports the current error description with the supplied prefix.",
+          "hint": "perror reports the current error description with the supplied prefix.",
+          "id": "errors-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "if(fopen(\"missing.txt\",\"r\")==NULL) ____(\"open\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes an errno-based diagnostic to stderr. perror reports the current error description with the supplied prefix. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "perror"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pointers",
+      "title": "Pointers, const, and lifetime",
+      "section": "Advanced",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. & takes an address; * dereferences. A pointer is usable only while its target is alive. const on the pointed-to type prevents writes through that pointer.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "errors"
+      ],
+      "questions": [
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "p points to x, so dereferencing p updates x.",
+          "hint": "p points to x, so dereferencing p updates x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-read-1",
+          "kind": "mcq",
+          "code": "int x=${n}; int *p=&x; *p=${m}; printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "p points to x, so dereferencing p updates x.",
+          "hint": "p points to x, so dereferencing p updates x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-choose-1",
+          "kind": "mcq",
+          "code": "int x=${n}; int *p=____; *p=${m}; printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. p points to x, so dereferencing p updates x.",
+          "answer": "&x",
+          "options": [
+            "&x",
+            "NULL",
+            "0"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "Pointer arithmetic advances by one int element.",
+          "hint": "Pointer arithmetic advances by one int element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-read-2",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; int *p=a; printf(\"%d\",*(p+1));",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "An address"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "Pointer arithmetic advances by one int element.",
+          "hint": "Pointer arithmetic advances by one int element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-choose-2",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; int *p=a; printf(\"%d\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Pointer arithmetic advances by one int element.",
+          "answer": "*(p+1)",
+          "options": [
+            "*(p+1)",
+            "*p",
+            "a[0]"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "The pointed-to type is const; the pointer itself is not const.",
+          "hint": "The pointed-to type is const; the pointer itself is not const.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-read-3",
+          "kind": "mcq",
+          "code": "int x=${n}; const int *p=&x;",
+          "prompt": "Which restriction follows from this declaration?",
+          "answer": "Cannot assign through *p",
+          "options": [
+            "Cannot assign through *p",
+            "Cannot reassign p",
+            "x becomes globally immutable"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "The pointed-to type is const; the pointer itself is not const.",
+          "hint": "The pointed-to type is const; the pointer itself is not const.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-choose-3",
+          "kind": "mcq",
+          "code": "int x=${n}; ____p=&x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Cannot assign through *p. The pointed-to type is const; the pointer itself is not const.",
+          "answer": "const int *",
+          "options": [
+            "const int *",
+            "int *const ",
+            "int *"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "The automatic local lifetime ends when the function returns.",
+          "hint": "The automatic local lifetime ends when the function returns.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-read-4",
+          "kind": "mcq",
+          "code": "int *bad(void) { int x=${n}; return &x; }",
+          "prompt": "Why is dereferencing the returned non-null pointer invalid?",
+          "answer": "Returns a pointer to an expired local object",
+          "options": [
+            "Returns a pointer to an expired local object",
+            "Returns owned heap storage",
+            "Returns an integer copy"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "The automatic local lifetime ends when the function returns.",
+          "hint": "The automatic local lifetime ends when the function returns.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-choose-4",
+          "kind": "mcq",
+          "code": "int *bad(void) { int x=${n}; return ____; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Returns a pointer to an expired local object. The automatic local lifetime ends when the function returns.",
+          "answer": "&x",
+          "options": [
+            "&x",
+            "NULL",
+            "0"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "p points to x, so dereferencing p updates x.",
+          "hint": "p points to x, so dereferencing p updates x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=${n}; int *p=____; *p=${m}; printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. p points to x, so dereferencing p updates x. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&x"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "Pointer arithmetic advances by one int element.",
+          "hint": "Pointer arithmetic advances by one int element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a[]={${n},${m}}; int *p=a; printf(\"%d\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Pointer arithmetic advances by one int element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "*(p+1)"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "The pointed-to type is const; the pointer itself is not const.",
+          "hint": "The pointed-to type is const; the pointer itself is not const.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=${n}; ____p=&x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Cannot assign through *p. The pointed-to type is const; the pointer itself is not const. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "const int *"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "The automatic local lifetime ends when the function returns.",
+          "hint": "The automatic local lifetime ends when the function returns.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *bad(void) { int x=${n}; return ____; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Returns a pointer to an expired local object. The automatic local lifetime ends when the function returns. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&x"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "records",
+      "title": "Structures, enums, and typedef",
+      "section": "Advanced",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Structures group named fields. . accesses a value and -> accesses through a pointer. typedef introduces an alias; enums define named integer constants.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "pointers"
+      ],
+      "questions": [
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Dot selects a field from the structure value.",
+          "hint": "Dot selects a field from the structure value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-read-1",
+          "kind": "mcq",
+          "code": "struct Box { int size; }; struct Box b={${n}}; printf(\"%d\",b.size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "An address"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Dot selects a field from the structure value.",
+          "hint": "Dot selects a field from the structure value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-choose-1",
+          "kind": "mcq",
+          "code": "struct Box { int size; }; struct Box b={${n}}; printf(\"%d\",b____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Dot selects a field from the structure value.",
+          "answer": ".size",
+          "options": [
+            ".size",
+            "->size",
+            ".other"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Arrow selects a field through a structure pointer.",
+          "hint": "Arrow selects a field through a structure pointer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-read-2",
+          "kind": "mcq",
+          "code": "struct Box { int size; }; struct Box b={${n}}; struct Box *p=&b; printf(\"%d\",p->size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "An address"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Arrow selects a field through a structure pointer.",
+          "hint": "Arrow selects a field through a structure pointer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-choose-2",
+          "kind": "mcq",
+          "code": "struct Box { int size; }; struct Box b={${n}}; struct Box *p=&b; printf(\"%d\",p____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Arrow selects a field through a structure pointer.",
+          "answer": "->size",
+          "options": [
+            "->size",
+            ".size",
+            "->other"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Implicit enum values start at zero and increment.",
+          "hint": "Implicit enum values start at zero and increment.",
+          "id": "records-read-3",
+          "kind": "mcq",
+          "code": "enum State { OFF, ON }; printf(\"%d\",ON);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Implicit enum values start at zero and increment.",
+          "hint": "Implicit enum values start at zero and increment.",
+          "id": "records-choose-3",
+          "kind": "mcq",
+          "code": "enum State { OFF, ON }; printf(\"%d\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Implicit enum values start at zero and increment.",
+          "answer": "ON",
+          "options": [
+            "ON",
+            "OFF",
+            "0"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "typedef gives this structure type the alias Box.",
+          "hint": "typedef gives this structure type the alias Box.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-read-4",
+          "kind": "mcq",
+          "code": "typedef struct { int size; } Box; Box b={${n}}; printf(\"%d\",b.size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "typedef gives this structure type the alias Box.",
+          "hint": "typedef gives this structure type the alias Box.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-choose-4",
+          "kind": "mcq",
+          "code": "____ struct { int size; } Box; Box b={${n}}; printf(\"%d\",b.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. typedef gives this structure type the alias Box.",
+          "answer": "typedef",
+          "options": [
+            "typedef",
+            "static",
+            "extern"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Dot selects a field from the structure value.",
+          "hint": "Dot selects a field from the structure value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "struct Box { int size; }; struct Box b={${n}}; printf(\"%d\",b____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Dot selects a field from the structure value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            ".size"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Arrow selects a field through a structure pointer.",
+          "hint": "Arrow selects a field through a structure pointer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "struct Box { int size; }; struct Box b={${n}}; struct Box *p=&b; printf(\"%d\",p____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Arrow selects a field through a structure pointer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "->size"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Implicit enum values start at zero and increment.",
+          "hint": "Implicit enum values start at zero and increment.",
+          "id": "records-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "enum State { OFF, ON }; printf(\"%d\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Implicit enum values start at zero and increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ON"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "typedef gives this structure type the alias Box.",
+          "hint": "typedef gives this structure type the alias Box.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ struct { int size; } Box; Box b={${n}}; printf(\"%d\",b.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. typedef gives this structure type the alias Box. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "typedef"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "title": "Dynamic memory and ownership",
+      "section": "Advanced",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. malloc gives uninitialized storage; calloc zero-initializes. free ends its lifetime. Keep the original pointer until realloc succeeds, and free exactly once.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "records"
+      ],
+      "questions": [
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "calloc zero-initializes the allocated integer storage.",
+          "hint": "calloc zero-initializes the allocated integer storage.",
+          "id": "memory-read-1",
+          "kind": "mcq",
+          "code": "int *p=calloc(1,sizeof *p); if(p) { printf(\"%d\",*p); free(p); }",
+          "prompt": "Assuming allocation succeeds, what is printed?",
+          "answer": "0",
+          "options": [
+            "0",
+            "Indeterminate",
+            "1"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "calloc zero-initializes the allocated integer storage.",
+          "hint": "calloc zero-initializes the allocated integer storage.",
+          "id": "memory-choose-1",
+          "kind": "mcq",
+          "code": "int *p=____(1,sizeof *p); if(p) { printf(\"%d\",*p); free(p); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. calloc zero-initializes the allocated integer storage.",
+          "answer": "calloc",
+          "options": [
+            "calloc",
+            "malloc",
+            "realloc"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "The pointer no longer refers to a live allocated object after free.",
+          "hint": "The pointer no longer refers to a live allocated object after free.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "memory-read-2",
+          "kind": "mcq",
+          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; free(p); printf(\"%d\",*p); }",
+          "prompt": "Assuming allocation succeeds, what follows from the final access?",
+          "answer": "Undefined behavior",
+          "options": [
+            "Undefined behavior",
+            "Always ${n}",
+            "Always zero"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "The pointer no longer refers to a live allocated object after free.",
+          "hint": "The pointer no longer refers to a live allocated object after free.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "memory-choose-2",
+          "kind": "mcq",
+          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; free(p); printf(\"%d\",____); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Undefined behavior. The pointer no longer refers to a live allocated object after free.",
+          "answer": "*p",
+          "options": [
+            "*p",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "hint": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "id": "memory-read-3",
+          "kind": "mcq",
+          "code": "int *tmp=realloc(p,new_bytes); if(tmp) p=tmp;",
+          "prompt": "Assume p is a live allocation: why use tmp?",
+          "answer": "Preserves the old allocation if resizing fails",
+          "options": [
+            "Preserves the old allocation if resizing fails",
+            "Always frees p on failure",
+            "Always keeps the same address"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "hint": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "id": "memory-choose-3",
+          "kind": "mcq",
+          "code": "int *tmp=____(p,new_bytes); if(tmp) p=tmp;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Preserves the old allocation if resizing fails. Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "answer": "realloc",
+          "options": [
+            "realloc",
+            "malloc",
+            "calloc"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "free accepts a null pointer and does nothing.",
+          "hint": "free accepts a null pointer and does nothing.",
+          "id": "memory-read-4",
+          "kind": "mcq",
+          "code": "int *p=NULL; free(p);",
+          "prompt": "What happens?",
+          "answer": "No effect",
+          "options": [
+            "No effect",
+            "Undefined behavior",
+            "Allocates memory"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "free accepts a null pointer and does nothing.",
+          "hint": "free accepts a null pointer and does nothing.",
+          "id": "memory-choose-4",
+          "kind": "mcq",
+          "code": "int *p=NULL; ____(p);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: No effect. free accepts a null pointer and does nothing.",
+          "answer": "free",
+          "options": [
+            "free",
+            "malloc",
+            "realloc"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "calloc zero-initializes the allocated integer storage.",
+          "hint": "calloc zero-initializes the allocated integer storage.",
+          "id": "memory-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *p=____(1,sizeof *p); if(p) { printf(\"%d\",*p); free(p); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. calloc zero-initializes the allocated integer storage. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "calloc"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "The pointer no longer refers to a live allocated object after free.",
+          "hint": "The pointer no longer refers to a live allocated object after free.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "memory-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; free(p); printf(\"%d\",____); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Undefined behavior. The pointer no longer refers to a live allocated object after free. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "*p"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "hint": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "id": "memory-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *tmp=____(p,new_bytes); if(tmp) p=tmp;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Preserves the old allocation if resizing fails. Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "realloc"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "free accepts a null pointer and does nothing.",
+          "hint": "free accepts a null pointer and does nothing.",
+          "id": "memory-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *p=NULL; ____(p);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: No effect. free accepts a null pointer and does nothing. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "callbacks",
+      "title": "Function pointers and low-level qualifiers",
+      "section": "Advanced",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Function pointers describe callable signatures. unsigned arithmetic wraps modulo the type range. volatile does not provide thread synchronization.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c"
+      ],
+      "requires": [
+        "memory"
+      ],
+      "questions": [
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "f stores a pointer to a function with the matching signature.",
+          "hint": "f stores a pointer to a function with the matching signature.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "callbacks-read-1",
+          "kind": "mcq",
+          "code": "int bump(int x) { return x+1; }\n/* in main */ int (*f)(int)=bump; printf(\"%d\",f(${n}));",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "f stores a pointer to a function with the matching signature.",
+          "hint": "f stores a pointer to a function with the matching signature.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "callbacks-choose-1",
+          "kind": "mcq",
+          "code": "int bump(int x) { return x+1; }\n/* in main */ int (*f)(int)=____; printf(\"%d\",f(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. f stores a pointer to a function with the matching signature.",
+          "answer": "bump",
+          "options": [
+            "bump",
+            "NULL",
+            "0"
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "Unsigned subtraction wraps to the maximum representable unsigned value.",
+          "hint": "Unsigned subtraction wraps to the maximum representable unsigned value.",
+          "id": "callbacks-read-2",
+          "kind": "mcq",
+          "code": "unsigned int x=0; printf(\"%d\", (x-1) == UINT_MAX);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Undefined behavior"
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "Unsigned subtraction wraps to the maximum representable unsigned value.",
+          "hint": "Unsigned subtraction wraps to the maximum representable unsigned value.",
+          "id": "callbacks-choose-2",
+          "kind": "mcq",
+          "code": "unsigned int x=0; printf(\"%d\", (x-1) ____ UINT_MAX);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Unsigned subtraction wraps to the maximum representable unsigned value.",
+          "answer": "==",
+          "options": [
+            "==",
+            "!=",
+            "<"
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "volatile preserves observable accesses; it is not an atomic synchronization mechanism.",
+          "hint": "volatile preserves observable accesses; it is not an atomic synchronization mechanism.",
+          "id": "callbacks-read-3",
+          "kind": "mcq",
+          "code": "volatile int flag;",
+          "prompt": "What does the qualifier promise?",
+          "answer": "Accesses must follow volatile access rules",
+          "options": [
+            "Accesses must follow volatile access rules",
+            "Makes increments atomic",
+            "Creates a mutex"
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "volatile preserves observable accesses; it is not an atomic synchronization mechanism.",
+          "hint": "volatile preserves observable accesses; it is not an atomic synchronization mechanism.",
+          "id": "callbacks-choose-3",
+          "kind": "mcq",
+          "code": "____ int flag;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Accesses must follow volatile access rules. volatile preserves observable accesses; it is not an atomic synchronization mechanism.",
+          "answer": "volatile",
+          "options": [
+            "volatile",
+            "_Atomic",
+            "static"
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "Reassigning a pointer changes its target, not either integer value.",
+          "hint": "Reassigning a pointer changes its target, not either integer value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "callbacks-read-4",
+          "kind": "mcq",
+          "code": "int a=${n}; int b=${m}; int *p=&a; p=&b; printf(\"%d\",*p);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "Reassigning a pointer changes its target, not either integer value.",
+          "hint": "Reassigning a pointer changes its target, not either integer value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "callbacks-choose-4",
+          "kind": "mcq",
+          "code": "int a=${n}; int b=${m}; int *p=&a; p=____; printf(\"%d\",*p);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Reassigning a pointer changes its target, not either integer value.",
+          "answer": "&b",
+          "options": [
+            "&b",
+            "&a",
+            "NULL"
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "f stores a pointer to a function with the matching signature.",
+          "hint": "f stores a pointer to a function with the matching signature.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "callbacks-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int bump(int x) { return x+1; }\n/* in main */ int (*f)(int)=____; printf(\"%d\",f(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. f stores a pointer to a function with the matching signature. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "bump"
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "Unsigned subtraction wraps to the maximum representable unsigned value.",
+          "hint": "Unsigned subtraction wraps to the maximum representable unsigned value.",
+          "id": "callbacks-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "unsigned int x=0; printf(\"%d\", (x-1) ____ UINT_MAX);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Unsigned subtraction wraps to the maximum representable unsigned value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "volatile preserves observable accesses; it is not an atomic synchronization mechanism.",
+          "hint": "volatile preserves observable accesses; it is not an atomic synchronization mechanism.",
+          "id": "callbacks-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ int flag;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Accesses must follow volatile access rules. volatile preserves observable accesses; it is not an atomic synchronization mechanism. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "volatile"
+          ]
+        },
+        {
+          "concept": "Function pointers and low-level qualifiers",
+          "explanation": "Reassigning a pointer changes its target, not either integer value.",
+          "hint": "Reassigning a pointer changes its target, not either integer value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "callbacks-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a=${n}; int b=${m}; int *p=&a; p=____; printf(\"%d\",*p);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Reassigning a pointer changes its target, not either integer value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&b"
+          ]
+        }
+      ]
+    }
+  ]
+}

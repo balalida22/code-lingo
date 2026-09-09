@@ -1,0 +1,4315 @@
+{
+  "schema_version": 2,
+  "id": "typescript",
+  "title": "TypeScript",
+  "language": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise",
+  "version": "1.0",
+  "sources": [
+    {
+      "id": "ts",
+      "title": "TypeScript Handbook",
+      "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "values",
+      "title": "Bindings and primitive types",
+      "section": "Basics",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Use let for reassignment and const for a binding that cannot be reassigned. Type annotations constrain assignments; they do not convert values at runtime. Assume strict mode throughout.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "The numeric initializer is stored in x.",
+          "hint": "The numeric initializer is stored in x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "values-read-1",
+          "kind": "mcq",
+          "code": "let x: number=${n}; console.log(x);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "The numeric initializer is stored in x.",
+          "hint": "The numeric initializer is stored in x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "values-choose-1",
+          "kind": "mcq",
+          "code": "let x: number=____; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The numeric initializer is stored in x. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "\"${n}\"",
+            "true"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "let permits reassignment to another value of the inferred number type.",
+          "hint": "let permits reassignment to another value of the inferred number type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "values-read-2",
+          "kind": "mcq",
+          "code": "let x=${n}; x=${m}; console.log(x);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "let permits reassignment to another value of the inferred number type.",
+          "hint": "let permits reassignment to another value of the inferred number type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "values-choose-2",
+          "kind": "mcq",
+          "code": "let x=${n}; x=____; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. let permits reassignment to another value of the inferred number type. Use ${m} as the replacement literal.",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "\"${m}\"",
+            "true"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "const prevents reassignment of this binding.",
+          "hint": "const prevents reassignment of this binding.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "values-read-3",
+          "kind": "mcq",
+          "code": "const x=${n}; x=${m};",
+          "prompt": "What does the checker report?",
+          "answer": "Type error: cannot reassign const",
+          "options": [
+            "Type error: cannot reassign const",
+            "Prints ${m}",
+            "Changes the binding"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "const prevents reassignment of this binding.",
+          "hint": "const prevents reassignment of this binding.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "values-choose-3",
+          "kind": "mcq",
+          "code": "____ x=${n}; x=${m};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: cannot reassign const. const prevents reassignment of this binding.",
+          "answer": "const",
+          "options": [
+            "const",
+            "let",
+            "var"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "The annotation agrees with the numeric runtime value.",
+          "hint": "The annotation agrees with the numeric runtime value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "values-read-4",
+          "kind": "mcq",
+          "code": "let x:number=${n}; console.log(typeof x);",
+          "prompt": "What is the result?",
+          "answer": "number",
+          "options": [
+            "number",
+            "string",
+            "object"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "The annotation agrees with the numeric runtime value.",
+          "hint": "The annotation agrees with the numeric runtime value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "values-choose-4",
+          "kind": "mcq",
+          "code": "let x:____=${n}; console.log(typeof x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: number. The annotation agrees with the numeric runtime value.",
+          "answer": "number",
+          "options": [
+            "number",
+            "string",
+            "boolean"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "The numeric initializer is stored in x.",
+          "hint": "The numeric initializer is stored in x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "values-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x: number=____; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The numeric initializer is stored in x. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "let permits reassignment to another value of the inferred number type.",
+          "hint": "let permits reassignment to another value of the inferred number type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "values-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x=${n}; x=____; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. let permits reassignment to another value of the inferred number type. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "const prevents reassignment of this binding.",
+          "hint": "const prevents reassignment of this binding.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "values-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ x=${n}; x=${m};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: cannot reassign const. const prevents reassignment of this binding. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "const"
+          ]
+        },
+        {
+          "concept": "Bindings and primitive types",
+          "explanation": "The annotation agrees with the numeric runtime value.",
+          "hint": "The annotation agrees with the numeric runtime value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "values-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x:____=${n}; console.log(typeof x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: number. The annotation agrees with the numeric runtime value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "number"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "expressions",
+      "title": "Numbers and string expressions",
+      "section": "Basics",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. JavaScript number division keeps fractions. + concatenates when an operand is a string. === compares without numeric coercion. TypeScript follows JavaScript runtime arithmetic.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "values"
+      ],
+      "questions": [
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "Two numeric operands are added.",
+          "hint": "Two numeric operands are added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "expressions-read-1",
+          "kind": "mcq",
+          "code": "console.log(${n}+${m});",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "${n}${m}"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "Two numeric operands are added.",
+          "hint": "Two numeric operands are added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "expressions-choose-1",
+          "kind": "mcq",
+          "code": "console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Two numeric operands are added.",
+          "answer": "${n}+${m}",
+          "options": [
+            "${n}+${m}",
+            "${n}*${m}",
+            "\"${n}\"+${m}"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "A string operand makes + concatenate text.",
+          "hint": "A string operand makes + concatenate text.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "expressions-read-2",
+          "kind": "mcq",
+          "code": "console.log(\"${n}\"+${m});",
+          "prompt": "What is the result?",
+          "answer": "${n}${m}",
+          "options": [
+            "${n}${m}",
+            "${add}",
+            "NaN"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "A string operand makes + concatenate text.",
+          "hint": "A string operand makes + concatenate text.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "expressions-choose-2",
+          "kind": "mcq",
+          "code": "console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}${m}. A string operand makes + concatenate text.",
+          "answer": "\"${n}\"+${m}",
+          "options": [
+            "\"${n}\"+${m}",
+            "${n}+${m}",
+            "${n}*${m}"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "Math.floor rounds the positive quotient down.",
+          "hint": "Math.floor rounds the positive quotient down.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mul": "n*m",
+            "rem": "n%m",
+            "div": "n//m"
+          },
+          "id": "expressions-read-3",
+          "kind": "mcq",
+          "code": "console.log(Math.floor(${n}/${m}));",
+          "prompt": "What is the result?",
+          "answer": "${div}",
+          "options": [
+            "${div}",
+            "${rem}",
+            "${mul}"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "Math.floor rounds the positive quotient down.",
+          "hint": "Math.floor rounds the positive quotient down.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "expressions-choose-3",
+          "kind": "mcq",
+          "code": "console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. Math.floor rounds the positive quotient down.",
+          "answer": "Math.floor(${n}/${m})",
+          "options": [
+            "Math.floor(${n}/${m})",
+            "${n}%${m}",
+            "${n}*${m}"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "toUpperCase returns uppercase text.",
+          "hint": "toUpperCase returns uppercase text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "expressions-read-4",
+          "kind": "mcq",
+          "code": "console.log(\"${word}\".toUpperCase());",
+          "prompt": "What is the result?",
+          "answer": "${upper}",
+          "options": [
+            "${upper}",
+            "${word}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "toUpperCase returns uppercase text.",
+          "hint": "toUpperCase returns uppercase text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "expressions-choose-4",
+          "kind": "mcq",
+          "code": "console.log(\"${word}\".____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${upper}. toUpperCase returns uppercase text.",
+          "answer": "toUpperCase()",
+          "options": [
+            "toUpperCase()",
+            "toLowerCase()",
+            "length"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "Two numeric operands are added.",
+          "hint": "Two numeric operands are added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "expressions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Two numeric operands are added. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}+${m}"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "A string operand makes + concatenate text.",
+          "hint": "A string operand makes + concatenate text.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "expressions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}${m}. A string operand makes + concatenate text. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"${n}\"+${m}"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "Math.floor rounds the positive quotient down.",
+          "hint": "Math.floor rounds the positive quotient down.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "expressions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. Math.floor rounds the positive quotient down. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Math.floor(${n}/${m})"
+          ]
+        },
+        {
+          "concept": "Numbers and string expressions",
+          "explanation": "toUpperCase returns uppercase text.",
+          "hint": "toUpperCase returns uppercase text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "expressions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "console.log(\"${word}\".____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${upper}. toUpperCase returns uppercase text. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "toUpperCase()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "branches",
+      "title": "Branches and narrowing",
+      "section": "Basics",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Control-flow analysis narrows union types after checks such as typeof. Nullish coalescing falls back for null or undefined, while || also falls back for other falsey values.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "expressions"
+      ],
+      "questions": [
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "The typeof check narrows x to string in the branch.",
+          "hint": "The typeof check narrows x to string in the branch.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "branches-read-1",
+          "kind": "mcq",
+          "code": "function f(x:string|number){if(typeof x===\"string\") return x.length; return x;} console.log(f(\"${word}\"));",
+          "prompt": "What is the result?",
+          "answer": "${length}",
+          "options": [
+            "${length}",
+            "${word}",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "The typeof check narrows x to string in the branch.",
+          "hint": "The typeof check narrows x to string in the branch.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "branches-choose-1",
+          "kind": "mcq",
+          "code": "function f(x:string|number){if(typeof x____\"string\") return x.length; return x;} console.log(f(\"${word}\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. The typeof check narrows x to string in the branch.",
+          "answer": "===",
+          "options": [
+            "===",
+            "!==",
+            "<"
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "Nullish coalescing supplies a fallback for null.",
+          "hint": "Nullish coalescing supplies a fallback for null.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "branches-read-2",
+          "kind": "mcq",
+          "code": "let x:number|null=null; console.log(x ?? ${n});",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "null",
+            "0"
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "Nullish coalescing supplies a fallback for null.",
+          "hint": "Nullish coalescing supplies a fallback for null.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "branches-choose-2",
+          "kind": "mcq",
+          "code": "let x:number|null=null; console.log(x ____ ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Nullish coalescing supplies a fallback for null.",
+          "answer": "??",
+          "options": [
+            "??",
+            "&&",
+            "==="
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "Nullish coalescing preserves zero.",
+          "hint": "Nullish coalescing preserves zero.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "branches-read-3",
+          "kind": "mcq",
+          "code": "const x=0; console.log(x ?? ${n});",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "${n}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "Nullish coalescing preserves zero.",
+          "hint": "Nullish coalescing preserves zero.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "branches-choose-3",
+          "kind": "mcq",
+          "code": "const x=0; console.log(x ____ ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Nullish coalescing preserves zero.",
+          "answer": "??",
+          "options": [
+            "??",
+            "||",
+            "+"
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "The false branch supplies the value after the colon.",
+          "hint": "The false branch supplies the value after the colon.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "branches-read-4",
+          "kind": "mcq",
+          "code": "console.log(false ? ${n} : ${m});",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "The false branch supplies the value after the colon.",
+          "hint": "The false branch supplies the value after the colon.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "branches-choose-4",
+          "kind": "mcq",
+          "code": "console.log(____ ? ${n} : ${m});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The false branch supplies the value after the colon.",
+          "answer": "false",
+          "options": [
+            "false",
+            "true",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "The typeof check narrows x to string in the branch.",
+          "hint": "The typeof check narrows x to string in the branch.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "branches-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function f(x:string|number){if(typeof x____\"string\") return x.length; return x;} console.log(f(\"${word}\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. The typeof check narrows x to string in the branch. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "==="
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "Nullish coalescing supplies a fallback for null.",
+          "hint": "Nullish coalescing supplies a fallback for null.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "branches-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x:number|null=null; console.log(x ____ ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Nullish coalescing supplies a fallback for null. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "??"
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "Nullish coalescing preserves zero.",
+          "hint": "Nullish coalescing preserves zero.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "branches-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const x=0; console.log(x ____ ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Nullish coalescing preserves zero. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "??"
+          ]
+        },
+        {
+          "concept": "Branches and narrowing",
+          "explanation": "The false branch supplies the value after the colon.",
+          "hint": "The false branch supplies the value after the colon.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "branches-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "console.log(____ ? ${n} : ${m});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The false branch supplies the value after the colon. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "false"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loops",
+      "title": "Loops and iteration",
+      "section": "Basics",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. for...of iterates values; for...in enumerates keys. A strict upper bound excludes the endpoint. continue skips the rest of the current iteration.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "branches"
+      ],
+      "questions": [
+        {
+          "concept": "Loops and iteration",
+          "explanation": "The exclusive upper bound gives ${n} iterations.",
+          "hint": "The exclusive upper bound gives ${n} iterations.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "loops-read-1",
+          "kind": "mcq",
+          "code": "let x=0; for(let i=0;i<${n};i++) x++; console.log(x);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "The exclusive upper bound gives ${n} iterations.",
+          "hint": "The exclusive upper bound gives ${n} iterations.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-choose-1",
+          "kind": "mcq",
+          "code": "let x=0; for(let i=0;i____${n};i++) x++; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The exclusive upper bound gives ${n} iterations.",
+          "answer": "<",
+          "options": [
+            "<",
+            "<=",
+            ">"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "for...of supplies each numeric value.",
+          "hint": "for...of supplies each numeric value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "loops-read-2",
+          "kind": "mcq",
+          "code": "let x=0; for(const v of [${n},${m}]) x+=v; console.log(x);",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "for...of supplies each numeric value.",
+          "hint": "for...of supplies each numeric value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "loops-choose-2",
+          "kind": "mcq",
+          "code": "let x=0; for(const v ____ [${n},${m}]) x+=v; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. for...of supplies each numeric value.",
+          "answer": "of",
+          "options": [
+            "of",
+            "in",
+            "as"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "continue skips the middle increment.",
+          "hint": "continue skips the middle increment.",
+          "id": "loops-read-3",
+          "kind": "mcq",
+          "code": "let x=0; for(let i=0;i<3;i++){if(i===1) continue; x++;} console.log(x);",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "continue skips the middle increment.",
+          "hint": "continue skips the middle increment.",
+          "id": "loops-choose-3",
+          "kind": "mcq",
+          "code": "let x=0; for(let i=0;i<3;i++){if(i===1) ____; x++;} console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips the middle increment.",
+          "answer": "continue",
+          "options": [
+            "continue",
+            "break",
+            "return"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "for...in enumerates the property key.",
+          "hint": "for...in enumerates the property key.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "loops-read-4",
+          "kind": "mcq",
+          "code": "for(const k in {name:\"${word}\"}) console.log(k);",
+          "prompt": "What is the result?",
+          "answer": "name",
+          "options": [
+            "name",
+            "${word}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "for...in enumerates the property key.",
+          "hint": "for...in enumerates the property key.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "loops-choose-4",
+          "kind": "mcq",
+          "code": "for(const k ____ {name:\"${word}\"}) console.log(k);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: name. for...in enumerates the property key.",
+          "answer": "in",
+          "options": [
+            "in",
+            "of",
+            "as"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "The exclusive upper bound gives ${n} iterations.",
+          "hint": "The exclusive upper bound gives ${n} iterations.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x=0; for(let i=0;i____${n};i++) x++; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The exclusive upper bound gives ${n} iterations. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "<"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "for...of supplies each numeric value.",
+          "hint": "for...of supplies each numeric value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "loops-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x=0; for(const v ____ [${n},${m}]) x+=v; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. for...of supplies each numeric value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "of"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "continue skips the middle increment.",
+          "hint": "continue skips the middle increment.",
+          "id": "loops-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x=0; for(let i=0;i<3;i++){if(i===1) ____; x++;} console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips the middle increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "continue"
+          ]
+        },
+        {
+          "concept": "Loops and iteration",
+          "explanation": "for...in enumerates the property key.",
+          "hint": "for...in enumerates the property key.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "loops-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "for(const k ____ {name:\"${word}\"}) console.log(k);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: name. for...in enumerates the property key. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "in"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "functions",
+      "title": "Functions and parameter contracts",
+      "section": "Basics",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Parameter and return annotations describe a function contract. Defaults handle omitted or undefined arguments. Rest parameters gather trailing arguments into an array.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "loops"
+      ],
+      "questions": [
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The return expression adds one.",
+          "hint": "The return expression adds one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-read-1",
+          "kind": "mcq",
+          "code": "function bump(x:number):number{return x+1;} console.log(bump(${n}));",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The return expression adds one.",
+          "hint": "The return expression adds one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-choose-1",
+          "kind": "mcq",
+          "code": "function bump(x:number):number{return ____;} console.log(bump(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The return expression adds one.",
+          "answer": "x+1",
+          "options": [
+            "x+1",
+            "x",
+            "0"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The omitted argument uses the default.",
+          "hint": "The omitted argument uses the default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "functions-read-2",
+          "kind": "mcq",
+          "code": "function size(x=${n}){return x;} console.log(size());",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "0"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The omitted argument uses the default.",
+          "hint": "The omitted argument uses the default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-choose-2",
+          "kind": "mcq",
+          "code": "function size(x=${n}){return x;} console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The omitted argument uses the default.",
+          "answer": "size()",
+          "options": [
+            "size()",
+            "size(0)",
+            "size(${m})"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The rest parameter gathers both arguments.",
+          "hint": "The rest parameter gathers both arguments.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-read-3",
+          "kind": "mcq",
+          "code": "function count(...xs:number[]){return xs.length;} console.log(count(${n},${m}));",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The rest parameter gathers both arguments.",
+          "hint": "The rest parameter gathers both arguments.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-choose-3",
+          "kind": "mcq",
+          "code": "function count(____:number[]){return xs.length;} console.log(count(${n},${m}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The rest parameter gathers both arguments.",
+          "answer": "...xs",
+          "options": [
+            "...xs",
+            "xs",
+            "..xs"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The arrow expression implicitly returns its result.",
+          "hint": "The arrow expression implicitly returns its result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "functions-read-4",
+          "kind": "mcq",
+          "code": "const f=(x:number)=>x*2; console.log(f(${n}));",
+          "prompt": "What is the result?",
+          "answer": "${double}",
+          "options": [
+            "${double}",
+            "${n}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The arrow expression implicitly returns its result.",
+          "hint": "The arrow expression implicitly returns its result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "functions-choose-4",
+          "kind": "mcq",
+          "code": "const f=(x:number)____x*2; console.log(f(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. The arrow expression implicitly returns its result.",
+          "answer": "=>",
+          "options": [
+            "=>",
+            "=",
+            "->"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The return expression adds one.",
+          "hint": "The return expression adds one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function bump(x:number):number{return ____;} console.log(bump(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The return expression adds one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x+1"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The omitted argument uses the default.",
+          "hint": "The omitted argument uses the default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "functions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function size(x=${n}){return x;} console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The omitted argument uses the default. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "size()"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The rest parameter gathers both arguments.",
+          "hint": "The rest parameter gathers both arguments.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function count(____:number[]){return xs.length;} console.log(count(${n},${m}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The rest parameter gathers both arguments. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "...xs"
+          ]
+        },
+        {
+          "concept": "Functions and parameter contracts",
+          "explanation": "The arrow expression implicitly returns its result.",
+          "hint": "The arrow expression implicitly returns its result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "functions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const f=(x:number)____x*2; console.log(f(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. The arrow expression implicitly returns its result. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "objects",
+      "title": "Object types and interfaces",
+      "section": "Intermediate",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Object types describe required properties structurally. Optional properties may be absent. readonly restricts writes through a type but does not freeze the runtime object.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "functions"
+      ],
+      "questions": [
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "The interface requires a numeric size property.",
+          "hint": "The interface requires a numeric size property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-read-1",
+          "kind": "mcq",
+          "code": "interface Box {size:number} const b:Box={size:${n}}; console.log(b.size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "The interface requires a numeric size property.",
+          "hint": "The interface requires a numeric size property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-1",
+          "kind": "mcq",
+          "code": "interface Box {size:number} const b:Box={size:${n}}; console.log(b.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The interface requires a numeric size property.",
+          "answer": "size",
+          "options": [
+            "size",
+            "value",
+            "length"
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "The optional property may be absent.",
+          "hint": "The optional property may be absent.",
+          "id": "objects-read-2",
+          "kind": "mcq",
+          "code": "interface Box {name?:string} const b:Box={}; console.log(b.name);",
+          "prompt": "What is the result?",
+          "answer": "undefined",
+          "options": [
+            "undefined",
+            "null",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "The optional property may be absent.",
+          "hint": "The optional property may be absent.",
+          "id": "objects-choose-2",
+          "kind": "mcq",
+          "code": "interface Box {name____:string} const b:Box={}; console.log(b.name);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: undefined. The optional property may be absent.",
+          "answer": "?",
+          "options": [
+            "?",
+            "!",
+            "="
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "readonly prevents this assignment through the declared type.",
+          "hint": "readonly prevents this assignment through the declared type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "objects-read-3",
+          "kind": "mcq",
+          "code": "interface Box {readonly size:number} const b:Box={size:${n}}; b.size=${m};",
+          "prompt": "What does the type checker report?",
+          "answer": "Type error: readonly property",
+          "options": [
+            "Type error: readonly property",
+            "Updates with no type error",
+            "Freezes every object"
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "readonly prevents this assignment through the declared type.",
+          "hint": "readonly prevents this assignment through the declared type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-3",
+          "kind": "mcq",
+          "code": "interface Box {____ size:number} const b:Box={size:${n}}; b.size=${m};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: readonly property. readonly prevents this assignment through the declared type.",
+          "answer": "readonly",
+          "options": [
+            "readonly",
+            "public",
+            "mutable"
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "Structural compatibility permits this existing object with the required property.",
+          "hint": "Structural compatibility permits this existing object with the required property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "objects-read-4",
+          "kind": "mcq",
+          "code": "type Box={size:number}; const item={size:${n},name:\"${word}\"}; const b:Box=item; console.log(b.size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "Type error",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "Structural compatibility permits this existing object with the required property.",
+          "hint": "Structural compatibility permits this existing object with the required property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-4",
+          "kind": "mcq",
+          "code": "type Box={size:number}; const item={size:${n},name:\"${word}\"}; const b:Box=____; console.log(b.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Structural compatibility permits this existing object with the required property.",
+          "answer": "item",
+          "options": [
+            "item",
+            "{}",
+            "{name:\"${word}\"}"
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "The interface requires a numeric size property.",
+          "hint": "The interface requires a numeric size property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "interface Box {size:number} const b:Box={size:${n}}; console.log(b.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The interface requires a numeric size property. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "size"
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "The optional property may be absent.",
+          "hint": "The optional property may be absent.",
+          "id": "objects-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "interface Box {name____:string} const b:Box={}; console.log(b.name);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: undefined. The optional property may be absent. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "?"
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "readonly prevents this assignment through the declared type.",
+          "hint": "readonly prevents this assignment through the declared type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "objects-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "interface Box {____ size:number} const b:Box={size:${n}}; b.size=${m};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: readonly property. readonly prevents this assignment through the declared type. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "readonly"
+          ]
+        },
+        {
+          "concept": "Object types and interfaces",
+          "explanation": "Structural compatibility permits this existing object with the required property.",
+          "hint": "Structural compatibility permits this existing object with the required property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "objects-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Box={size:number}; const item={size:${n},name:\"${word}\"}; const b:Box=____; console.log(b.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Structural compatibility permits this existing object with the required property. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "item"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arrays",
+      "title": "Arrays, tuples, and destructuring",
+      "section": "Intermediate",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Arrays contain a chosen element type; tuples describe fixed positions. Destructuring extracts values; spread constructs shallow copies. No data-structure implementation is taught here.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "objects"
+      ],
+      "questions": [
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "Index zero selects the first element.",
+          "hint": "Index zero selects the first element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-1",
+          "kind": "mcq",
+          "code": "const a:number[]=[${n},${m}]; console.log(a[0]);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "Index zero selects the first element.",
+          "hint": "Index zero selects the first element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-1",
+          "kind": "mcq",
+          "code": "const a:number[]=[${n},${m}]; console.log(a[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Index zero selects the first element.",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "The tuple second position is a string.",
+          "hint": "The tuple second position is a string.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-2",
+          "kind": "mcq",
+          "code": "const t:[number,string]=[${n},\"${word}\"]; console.log(t[1]);",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "${n}",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "The tuple second position is a string.",
+          "hint": "The tuple second position is a string.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-2",
+          "kind": "mcq",
+          "code": "const t:[number,string]=[${n},\"${word}\"]; console.log(t[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The tuple second position is a string.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "Spread creates a separate outer array.",
+          "hint": "Spread creates a separate outer array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-3",
+          "kind": "mcq",
+          "code": "const a=[${n}]; const b=[...a]; b[0]=${m}; console.log(a[0]);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "Spread creates a separate outer array.",
+          "hint": "Spread creates a separate outer array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-3",
+          "kind": "mcq",
+          "code": "const a=[${n}]; const b=____; b[0]=${m}; console.log(a[0]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Spread creates a separate outer array.",
+          "answer": "[...a]",
+          "options": [
+            "[...a]",
+            "a",
+            "[]"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "The destructuring alias binds the property value to label.",
+          "hint": "The destructuring alias binds the property value to label.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-4",
+          "kind": "mcq",
+          "code": "const {name:label}={name:\"${word}\"}; console.log(label);",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "The destructuring alias binds the property value to label.",
+          "hint": "The destructuring alias binds the property value to label.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-4",
+          "kind": "mcq",
+          "code": "const {name:____}={name:\"${word}\"}; console.log(label);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The destructuring alias binds the property value to label.",
+          "answer": "label",
+          "options": [
+            "label",
+            "name",
+            "text"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "Index zero selects the first element.",
+          "hint": "Index zero selects the first element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const a:number[]=[${n},${m}]; console.log(a[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Index zero selects the first element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "The tuple second position is a string.",
+          "hint": "The tuple second position is a string.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const t:[number,string]=[${n},\"${word}\"]; console.log(t[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The tuple second position is a string. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "Spread creates a separate outer array.",
+          "hint": "Spread creates a separate outer array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const a=[${n}]; const b=____; b[0]=${m}; console.log(a[0]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Spread creates a separate outer array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "[...a]"
+          ]
+        },
+        {
+          "concept": "Arrays, tuples, and destructuring",
+          "explanation": "The destructuring alias binds the property value to label.",
+          "hint": "The destructuring alias binds the property value to label.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const {name:____}={name:\"${word}\"}; console.log(label);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The destructuring alias binds the property value to label. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "label"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modules",
+      "title": "Modules and type-only imports",
+      "section": "Intermediate",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. export exposes module members. import brings them into another module. import type is erased and cannot supply a runtime value. File boundaries are stated in each snippet.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "arrays"
+      ],
+      "questions": [
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "A named export can be imported with braces.",
+          "hint": "A named export can be imported with braces.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-read-1",
+          "kind": "mcq",
+          "code": "// config.ts\nexport const size=${n};\n// app.ts\nimport {size} from \"./config\"; console.log(size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "Type error",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "A named export can be imported with braces.",
+          "hint": "A named export can be imported with braces.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-1",
+          "kind": "mcq",
+          "code": "// config.ts\n____ const size=${n};\n// app.ts\nimport {size} from \"./config\"; console.log(size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A named export can be imported with braces.",
+          "answer": "export",
+          "options": [
+            "export",
+            "default",
+            "declare"
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "A default import chooses a local name without braces.",
+          "hint": "A default import chooses a local name without braces.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-read-2",
+          "kind": "mcq",
+          "code": "// config.ts\nexport default ${n};\n// app.ts\nimport size from \"./config\"; console.log(size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "Type error",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "A default import chooses a local name without braces.",
+          "hint": "A default import chooses a local name without braces.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-2",
+          "kind": "mcq",
+          "code": "// config.ts\nexport default ${n};\n// app.ts\nimport ____ from \"./config\"; console.log(size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A default import chooses a local name without braces.",
+          "answer": "size",
+          "options": [
+            "size",
+            "{size}",
+            "* size"
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "A type-only import is erased during compilation.",
+          "hint": "A type-only import is erased during compilation.",
+          "id": "modules-read-3",
+          "kind": "mcq",
+          "code": "// types.ts exports interface Box {size:number}\nimport type {Box} from \"./types\";",
+          "prompt": "What happens to this import at runtime?",
+          "answer": "Removed from emitted JavaScript",
+          "options": [
+            "Removed from emitted JavaScript",
+            "Loads a runtime Box constructor",
+            "Freezes all Box objects"
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "A type-only import is erased during compilation.",
+          "hint": "A type-only import is erased during compilation.",
+          "id": "modules-choose-3",
+          "kind": "mcq",
+          "code": "// types.ts exports interface Box {size:number}\nimport ____ {Box} from \"./types\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Removed from emitted JavaScript. A type-only import is erased during compilation.",
+          "answer": "type",
+          "options": [
+            "type",
+            "value",
+            "class"
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "as renames an imported binding locally.",
+          "hint": "as renames an imported binding locally.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-read-4",
+          "kind": "mcq",
+          "code": "// config.ts exports const size=${n}\nimport {size as amount} from \"./config\"; console.log(amount);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "as renames an imported binding locally.",
+          "hint": "as renames an imported binding locally.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-4",
+          "kind": "mcq",
+          "code": "// config.ts exports const size=${n}\nimport {size ____ amount} from \"./config\"; console.log(amount);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. as renames an imported binding locally.",
+          "answer": "as",
+          "options": [
+            "as",
+            "to",
+            "="
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "A named export can be imported with braces.",
+          "hint": "A named export can be imported with braces.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "// config.ts\n____ const size=${n};\n// app.ts\nimport {size} from \"./config\"; console.log(size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A named export can be imported with braces. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "export"
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "A default import chooses a local name without braces.",
+          "hint": "A default import chooses a local name without braces.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "// config.ts\nexport default ${n};\n// app.ts\nimport ____ from \"./config\"; console.log(size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A default import chooses a local name without braces. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "size"
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "A type-only import is erased during compilation.",
+          "hint": "A type-only import is erased during compilation.",
+          "id": "modules-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "// types.ts exports interface Box {size:number}\nimport ____ {Box} from \"./types\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Removed from emitted JavaScript. A type-only import is erased during compilation. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "type"
+          ]
+        },
+        {
+          "concept": "Modules and type-only imports",
+          "explanation": "as renames an imported binding locally.",
+          "hint": "as renames an imported binding locally.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "// config.ts exports const size=${n}\nimport {size ____ amount} from \"./config\"; console.log(amount);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. as renames an imported binding locally. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "as"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "errors",
+      "title": "Unknown errors and safe handling",
+      "section": "Intermediate",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. With strict checking, catch variables are unknown. Narrow them before reading properties. Throwing and catching follow JavaScript runtime rules; annotations do not validate external data.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "modules"
+      ],
+      "questions": [
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "instanceof narrows e to Error before accessing message.",
+          "hint": "instanceof narrows e to Error before accessing message.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-1",
+          "kind": "mcq",
+          "code": "try {throw new Error(\"${word}\");} catch(e){if(e instanceof Error) console.log(e.message);}",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "instanceof narrows e to Error before accessing message.",
+          "hint": "instanceof narrows e to Error before accessing message.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-1",
+          "kind": "mcq",
+          "code": "try {throw new Error(\"${word}\");} catch(e){if(e ____ Error) console.log(e.message);}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. instanceof narrows e to Error before accessing message.",
+          "answer": "instanceof",
+          "options": [
+            "instanceof",
+            "typeof",
+            "==="
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "finally executes after the try block.",
+          "hint": "finally executes after the try block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "errors-read-2",
+          "kind": "mcq",
+          "code": "try {console.log(${n});} finally {console.log(${m});}",
+          "prompt": "What is the result?",
+          "answer": "${n}\n${m}",
+          "options": [
+            "${n}\n${m}",
+            "${n}",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "finally executes after the try block.",
+          "hint": "finally executes after the try block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-2",
+          "kind": "mcq",
+          "code": "try {console.log(${n});} ____ {console.log(${m});}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}\n${m}. finally executes after the try block.",
+          "answer": "finally",
+          "options": [
+            "finally",
+            "else",
+            "catch"
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "typeof narrows unknown to string before the property access.",
+          "hint": "typeof narrows unknown to string before the property access.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "errors-read-3",
+          "kind": "mcq",
+          "code": "let x:unknown=\"${word}\"; if(typeof x===\"string\") console.log(x.length);",
+          "prompt": "What is the result?",
+          "answer": "${length}",
+          "options": [
+            "${length}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "typeof narrows unknown to string before the property access.",
+          "hint": "typeof narrows unknown to string before the property access.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "errors-choose-3",
+          "kind": "mcq",
+          "code": "let x:unknown=\"${word}\"; if(____) console.log(x.length);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. typeof narrows unknown to string before the property access.",
+          "answer": "typeof x===\"string\"",
+          "options": [
+            "typeof x===\"string\"",
+            "x!==null",
+            "true"
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "Type assertions do not convert the runtime string into a number.",
+          "hint": "Type assertions do not convert the runtime string into a number.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-4",
+          "kind": "mcq",
+          "code": "const x=\"${word}\" as unknown as number; console.log(typeof x);",
+          "prompt": "What is the runtime type after this assertion?",
+          "answer": "string",
+          "options": [
+            "string",
+            "number",
+            "Throws"
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "Type assertions do not convert the runtime string into a number.",
+          "hint": "Type assertions do not convert the runtime string into a number.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-4",
+          "kind": "mcq",
+          "code": "const x=\"${word}\" as ____; console.log(typeof x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: string. Type assertions do not convert the runtime string into a number.",
+          "answer": "unknown as number",
+          "options": [
+            "unknown as number",
+            "string",
+            "never"
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "instanceof narrows e to Error before accessing message.",
+          "hint": "instanceof narrows e to Error before accessing message.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "try {throw new Error(\"${word}\");} catch(e){if(e ____ Error) console.log(e.message);}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. instanceof narrows e to Error before accessing message. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "instanceof"
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "finally executes after the try block.",
+          "hint": "finally executes after the try block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "errors-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "try {console.log(${n});} ____ {console.log(${m});}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}\n${m}. finally executes after the try block. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "finally"
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "typeof narrows unknown to string before the property access.",
+          "hint": "typeof narrows unknown to string before the property access.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "errors-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x:unknown=\"${word}\"; if(____) console.log(x.length);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. typeof narrows unknown to string before the property access. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "typeof x===\"string\""
+          ]
+        },
+        {
+          "concept": "Unknown errors and safe handling",
+          "explanation": "Type assertions do not convert the runtime string into a number.",
+          "hint": "Type assertions do not convert the runtime string into a number.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const x=\"${word}\" as ____; console.log(typeof x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: string. Type assertions do not convert the runtime string into a number. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "unknown as number"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "classes",
+      "title": "Classes and access control",
+      "section": "Intermediate",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Classes define instance state and methods. TypeScript private is checked statically; JavaScript # fields enforce runtime privacy. extends inherits implementation.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "errors"
+      ],
+      "questions": [
+        {
+          "concept": "Classes and access control",
+          "explanation": "A public parameter property initializes an instance field.",
+          "hint": "A public parameter property initializes an instance field.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-read-1",
+          "kind": "mcq",
+          "code": "class Box {constructor(public size:number){}} console.log(new Box(${n}).size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "A public parameter property initializes an instance field.",
+          "hint": "A public parameter property initializes an instance field.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-choose-1",
+          "kind": "mcq",
+          "code": "class Box {constructor(public size:number){}} console.log(new Box(${n}).____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A public parameter property initializes an instance field.",
+          "answer": "size",
+          "options": [
+            "size",
+            "value",
+            "length"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "A class method can access its own private property.",
+          "hint": "A class method can access its own private property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-read-2",
+          "kind": "mcq",
+          "code": "class Box {private size=${n}; get(){return this.size;}} console.log(new Box().get());",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "A class method can access its own private property.",
+          "hint": "A class method can access its own private property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-choose-2",
+          "kind": "mcq",
+          "code": "class Box {private size=${n}; get(){return ____;}} console.log(new Box().get());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A class method can access its own private property.",
+          "answer": "this.size",
+          "options": [
+            "this.size",
+            "size",
+            "Box.size"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "extends inherits the base method.",
+          "hint": "extends inherits the base method.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-read-3",
+          "kind": "mcq",
+          "code": "class Base {get(){return ${n};}} class Child extends Base {} console.log(new Child().get());",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "extends inherits the base method.",
+          "hint": "extends inherits the base method.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-choose-3",
+          "kind": "mcq",
+          "code": "class Base {get(){return ${n};}} class Child ____ Base {} console.log(new Child().get());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. extends inherits the base method.",
+          "answer": "extends",
+          "options": [
+            "extends",
+            "implements",
+            "as"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "A # field is accessed with its private identifier inside the class.",
+          "hint": "A # field is accessed with its private identifier inside the class.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-read-4",
+          "kind": "mcq",
+          "code": "class Box {#size=${n}; get(){return this.#size;}} console.log(new Box().get());",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "A # field is accessed with its private identifier inside the class.",
+          "hint": "A # field is accessed with its private identifier inside the class.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-choose-4",
+          "kind": "mcq",
+          "code": "class Box {#size=${n}; get(){return this.____;}} console.log(new Box().get());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A # field is accessed with its private identifier inside the class.",
+          "answer": "#size",
+          "options": [
+            "#size",
+            "size",
+            "value"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "A public parameter property initializes an instance field.",
+          "hint": "A public parameter property initializes an instance field.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Box {constructor(public size:number){}} console.log(new Box(${n}).____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A public parameter property initializes an instance field. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "size"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "A class method can access its own private property.",
+          "hint": "A class method can access its own private property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Box {private size=${n}; get(){return ____;}} console.log(new Box().get());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A class method can access its own private property. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "this.size"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "extends inherits the base method.",
+          "hint": "extends inherits the base method.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Base {get(){return ${n};}} class Child ____ Base {} console.log(new Child().get());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. extends inherits the base method. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "extends"
+          ]
+        },
+        {
+          "concept": "Classes and access control",
+          "explanation": "A # field is accessed with its private identifier inside the class.",
+          "hint": "A # field is accessed with its private identifier inside the class.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "classes-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Box {#size=${n}; get(){return this.____;}} console.log(new Box().get());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A # field is accessed with its private identifier inside the class. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "#size"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "generics",
+      "title": "Generics and constraints",
+      "section": "Advanced",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Generics connect types across a function without discarding information. Constraints require available operations. keyof forms a union of property names.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "classes"
+      ],
+      "questions": [
+        {
+          "concept": "Generics and constraints",
+          "explanation": "The generic preserves the argument type and value.",
+          "hint": "The generic preserves the argument type and value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "generics-read-1",
+          "kind": "mcq",
+          "code": "function id<T>(x:T):T{return x;} console.log(id(${n}));",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "The generic preserves the argument type and value.",
+          "hint": "The generic preserves the argument type and value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "generics-choose-1",
+          "kind": "mcq",
+          "code": "function id<T>(x:T):T{return ____;} console.log(id(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The generic preserves the argument type and value.",
+          "answer": "x",
+          "options": [
+            "x",
+            "0",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "The constraint guarantees a numeric length property.",
+          "hint": "The constraint guarantees a numeric length property.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "generics-read-2",
+          "kind": "mcq",
+          "code": "function size<T extends {length:number}>(x:T){return x.length;} console.log(size(\"${word}\"));",
+          "prompt": "What is the result?",
+          "answer": "${length}",
+          "options": [
+            "${length}",
+            "Type error",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "The constraint guarantees a numeric length property.",
+          "hint": "The constraint guarantees a numeric length property.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "generics-choose-2",
+          "kind": "mcq",
+          "code": "function size<T ____ {length:number}>(x:T){return x.length;} console.log(size(\"${word}\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. The constraint guarantees a numeric length property.",
+          "answer": "extends",
+          "options": [
+            "extends",
+            "implements",
+            "as"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "keyof produces the property-name union for the object type.",
+          "hint": "keyof produces the property-name union for the object type.",
+          "id": "generics-read-3",
+          "kind": "mcq",
+          "code": "type Box={size:number}; type Key=keyof Box;",
+          "prompt": "What type does Key represent?",
+          "answer": "\"size\"",
+          "options": [
+            "\"size\"",
+            "number",
+            "Box"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "keyof produces the property-name union for the object type.",
+          "hint": "keyof produces the property-name union for the object type.",
+          "id": "generics-choose-3",
+          "kind": "mcq",
+          "code": "type Box={size:number}; type Key=____ Box;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: \"size\". keyof produces the property-name union for the object type.",
+          "answer": "keyof",
+          "options": [
+            "keyof",
+            "typeof",
+            "readonly"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "The constrained key safely indexes the corresponding property type.",
+          "hint": "The constrained key safely indexes the corresponding property type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "generics-read-4",
+          "kind": "mcq",
+          "code": "function get<T,K extends keyof T>(x:T,k:K):T[K]{return x[k];} console.log(get({size:${n}},\"size\"));",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "The constrained key safely indexes the corresponding property type.",
+          "hint": "The constrained key safely indexes the corresponding property type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "generics-choose-4",
+          "kind": "mcq",
+          "code": "function get<T,K extends keyof T>(x:T,k:K):T[K]{return ____;} console.log(get({size:${n}},\"size\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The constrained key safely indexes the corresponding property type.",
+          "answer": "x[k]",
+          "options": [
+            "x[k]",
+            "x",
+            "k"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "The generic preserves the argument type and value.",
+          "hint": "The generic preserves the argument type and value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "generics-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function id<T>(x:T):T{return ____;} console.log(id(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The generic preserves the argument type and value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "The constraint guarantees a numeric length property.",
+          "hint": "The constraint guarantees a numeric length property.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "generics-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function size<T ____ {length:number}>(x:T){return x.length;} console.log(size(\"${word}\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. The constraint guarantees a numeric length property. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "extends"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "keyof produces the property-name union for the object type.",
+          "hint": "keyof produces the property-name union for the object type.",
+          "id": "generics-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Box={size:number}; type Key=____ Box;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: \"size\". keyof produces the property-name union for the object type. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "keyof"
+          ]
+        },
+        {
+          "concept": "Generics and constraints",
+          "explanation": "The constrained key safely indexes the corresponding property type.",
+          "hint": "The constrained key safely indexes the corresponding property type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "generics-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function get<T,K extends keyof T>(x:T,k:K):T[K]{return ____;} console.log(get({size:${n}},\"size\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The constrained key safely indexes the corresponding property type. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x[k]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unions",
+      "title": "Discriminated unions and exhaustiveness",
+      "section": "Advanced",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. A common literal tag distinguishes union members. Checking the tag narrows available fields. never represents an impossible remaining case in an exhaustive switch.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "generics"
+      ],
+      "questions": [
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "The literal tag narrows value to string in the first branch.",
+          "hint": "The literal tag narrows value to string in the first branch.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "unions-read-1",
+          "kind": "mcq",
+          "code": "type Item={kind:\"text\",value:string}|{kind:\"count\",value:number}; function read(x:Item){return x.kind===\"text\" ? x.value.length : x.value;} console.log(read({kind:\"text\",value:\"${word}\"}));",
+          "prompt": "What is the result?",
+          "answer": "${length}",
+          "options": [
+            "${length}",
+            "${word}",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "The literal tag narrows value to string in the first branch.",
+          "hint": "The literal tag narrows value to string in the first branch.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "unions-choose-1",
+          "kind": "mcq",
+          "code": "type Item={kind:\"text\",value:string}|{kind:\"count\",value:number}; function read(x:Item){return x.kind===____ ? x.value.length : x.value;} console.log(read({kind:\"text\",value:\"${word}\"}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. The literal tag narrows value to string in the first branch. Use \"text\" as the replacement literal.",
+          "answer": "\"text\"",
+          "options": [
+            "\"text\"",
+            "\"count\"",
+            "\"other\""
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "Only declared string literals are assignable to this union.",
+          "hint": "Only declared string literals are assignable to this union.",
+          "id": "unions-read-2",
+          "kind": "mcq",
+          "code": "type Mode=\"read\"|\"write\"; const mode:Mode=\"read\"; console.log(mode);",
+          "prompt": "What is the result?",
+          "answer": "read",
+          "options": [
+            "read",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "Only declared string literals are assignable to this union.",
+          "hint": "Only declared string literals are assignable to this union.",
+          "id": "unions-choose-2",
+          "kind": "mcq",
+          "code": "type Mode=\"read\"|\"write\"; const mode:Mode=____; console.log(mode);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: read. Only declared string literals are assignable to this union. Use \"read\" as the replacement literal.",
+          "answer": "\"read\"",
+          "options": [
+            "\"read\"",
+            "\"run\"",
+            "\"other\""
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "never can verify that an exhaustively handled union has no remaining case.",
+          "hint": "never can verify that an exhaustively handled union has no remaining case.",
+          "id": "unions-read-3",
+          "kind": "mcq",
+          "code": "function impossible(x:never):never{throw new Error(String(x));}",
+          "prompt": "What does this parameter type express?",
+          "answer": "Accepts no ordinary reachable value",
+          "options": [
+            "Accepts no ordinary reachable value",
+            "Accepts every value",
+            "Converts values to strings"
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "never can verify that an exhaustively handled union has no remaining case.",
+          "hint": "never can verify that an exhaustively handled union has no remaining case.",
+          "id": "unions-choose-3",
+          "kind": "mcq",
+          "code": "function impossible(x:____):never{throw new Error(String(x));}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Accepts no ordinary reachable value. never can verify that an exhaustively handled union has no remaining case.",
+          "answer": "never",
+          "options": [
+            "never",
+            "unknown",
+            "any"
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "as const preserves literal types and readonly properties in the type system.",
+          "hint": "as const preserves literal types and readonly properties in the type system.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "unions-read-4",
+          "kind": "mcq",
+          "code": "const x={kind:\"text\",value:\"${word}\"} as const;",
+          "prompt": "What inference is requested?",
+          "answer": "Properties inferred readonly with literal types",
+          "options": [
+            "Properties inferred readonly with literal types",
+            "Object is frozen at runtime",
+            "Values become any"
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "as const preserves literal types and readonly properties in the type system.",
+          "hint": "as const preserves literal types and readonly properties in the type system.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "unions-choose-4",
+          "kind": "mcq",
+          "code": "const x={kind:\"text\",value:\"${word}\"} ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Properties inferred readonly with literal types. as const preserves literal types and readonly properties in the type system.",
+          "answer": "as const",
+          "options": [
+            "as const",
+            "as any",
+            "as unknown"
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "The literal tag narrows value to string in the first branch.",
+          "hint": "The literal tag narrows value to string in the first branch.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "unions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Item={kind:\"text\",value:string}|{kind:\"count\",value:number}; function read(x:Item){return x.kind===____ ? x.value.length : x.value;} console.log(read({kind:\"text\",value:\"${word}\"}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. The literal tag narrows value to string in the first branch. Use \"text\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"text\""
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "Only declared string literals are assignable to this union.",
+          "hint": "Only declared string literals are assignable to this union.",
+          "id": "unions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Mode=\"read\"|\"write\"; const mode:Mode=____; console.log(mode);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: read. Only declared string literals are assignable to this union. Use \"read\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"read\""
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "never can verify that an exhaustively handled union has no remaining case.",
+          "hint": "never can verify that an exhaustively handled union has no remaining case.",
+          "id": "unions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function impossible(x:____):never{throw new Error(String(x));}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Accepts no ordinary reachable value. never can verify that an exhaustively handled union has no remaining case. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "never"
+          ]
+        },
+        {
+          "concept": "Discriminated unions and exhaustiveness",
+          "explanation": "as const preserves literal types and readonly properties in the type system.",
+          "hint": "as const preserves literal types and readonly properties in the type system.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "unions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const x={kind:\"text\",value:\"${word}\"} ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Properties inferred readonly with literal types. as const preserves literal types and readonly properties in the type system. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "as const"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utilities",
+      "title": "Mapped types and type operators",
+      "section": "Advanced",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Utility types transform existing contracts. Partial makes properties optional; Pick selects properties; Readonly restricts assignment. satisfies checks compatibility while retaining useful inference.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "unions"
+      ],
+      "questions": [
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "Partial makes every property optional, allowing name to be omitted.",
+          "hint": "Partial makes every property optional, allowing name to be omitted.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "utilities-read-1",
+          "kind": "mcq",
+          "code": "type Box={size:number,name:string}; const b:Partial<Box>={size:${n}}; console.log(b.size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "Type error",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "Partial makes every property optional, allowing name to be omitted.",
+          "hint": "Partial makes every property optional, allowing name to be omitted.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "utilities-choose-1",
+          "kind": "mcq",
+          "code": "type Box={size:number,name:string}; const b:____={size:${n}}; console.log(b.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Partial makes every property optional, allowing name to be omitted.",
+          "answer": "Partial<Box>",
+          "options": [
+            "Partial<Box>",
+            "Box",
+            "Required<Box>"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "Pick selects the named properties and their existing types.",
+          "hint": "Pick selects the named properties and their existing types.",
+          "id": "utilities-read-2",
+          "kind": "mcq",
+          "code": "type Box={size:number,name:string}; type Size=Pick<Box,\"size\">;",
+          "prompt": "What type is Size?",
+          "answer": "An object type with only size:number",
+          "options": [
+            "An object type with only size:number",
+            "Only the string literal size",
+            "A number primitive"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "Pick selects the named properties and their existing types.",
+          "hint": "Pick selects the named properties and their existing types.",
+          "id": "utilities-choose-2",
+          "kind": "mcq",
+          "code": "type Box={size:number,name:string}; type Size=____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: An object type with only size:number. Pick selects the named properties and their existing types.",
+          "answer": "Pick<Box,\"size\">",
+          "options": [
+            "Pick<Box,\"size\">",
+            "Omit<Box,\"size\">",
+            "keyof Box"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "Readonly transforms the property contract to prohibit assignment through b.",
+          "hint": "Readonly transforms the property contract to prohibit assignment through b.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "utilities-read-3",
+          "kind": "mcq",
+          "code": "type Box={size:number}; const b:Readonly<Box>={size:${n}}; b.size=${m};",
+          "prompt": "What does the checker report?",
+          "answer": "Type error: readonly property",
+          "options": [
+            "Type error: readonly property",
+            "Updates with no type error",
+            "Freezes the object at runtime"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "Readonly transforms the property contract to prohibit assignment through b.",
+          "hint": "Readonly transforms the property contract to prohibit assignment through b.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "utilities-choose-3",
+          "kind": "mcq",
+          "code": "type Box={size:number}; const b:____={size:${n}}; b.size=${m};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: readonly property. Readonly transforms the property contract to prohibit assignment through b.",
+          "answer": "Readonly<Box>",
+          "options": [
+            "Readonly<Box>",
+            "Box",
+            "Partial<Box>"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "satisfies checks the shape without replacing the inferred object type.",
+          "hint": "satisfies checks the shape without replacing the inferred object type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "utilities-read-4",
+          "kind": "mcq",
+          "code": "const b={size:${n}} satisfies {size:number}; console.log(b.size+1);",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "satisfies checks the shape without replacing the inferred object type.",
+          "hint": "satisfies checks the shape without replacing the inferred object type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "utilities-choose-4",
+          "kind": "mcq",
+          "code": "const b={size:${n}} ____ {size:number}; console.log(b.size+1);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. satisfies checks the shape without replacing the inferred object type.",
+          "answer": "satisfies",
+          "options": [
+            "satisfies",
+            "extends",
+            "implements"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "Partial makes every property optional, allowing name to be omitted.",
+          "hint": "Partial makes every property optional, allowing name to be omitted.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "utilities-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Box={size:number,name:string}; const b:____={size:${n}}; console.log(b.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Partial makes every property optional, allowing name to be omitted. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Partial<Box>"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "Pick selects the named properties and their existing types.",
+          "hint": "Pick selects the named properties and their existing types.",
+          "id": "utilities-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Box={size:number,name:string}; type Size=____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: An object type with only size:number. Pick selects the named properties and their existing types. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Pick<Box,\"size\">"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "Readonly transforms the property contract to prohibit assignment through b.",
+          "hint": "Readonly transforms the property contract to prohibit assignment through b.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "utilities-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Box={size:number}; const b:____={size:${n}}; b.size=${m};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: readonly property. Readonly transforms the property contract to prohibit assignment through b. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Readonly<Box>"
+          ]
+        },
+        {
+          "concept": "Mapped types and type operators",
+          "explanation": "satisfies checks the shape without replacing the inferred object type.",
+          "hint": "satisfies checks the shape without replacing the inferred object type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "utilities-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const b={size:${n}} ____ {size:number}; console.log(b.size+1);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. satisfies checks the shape without replacing the inferred object type. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "satisfies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "async",
+      "title": "Promises, async, and type erasure",
+      "section": "Advanced",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. async returns a Promise. await unwraps fulfillment inside an async function. Rejections use exception handling. Types are erased; runtime input still requires validation.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts"
+      ],
+      "requires": [
+        "utilities"
+      ],
+      "questions": [
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "then runs with the fulfilled number.",
+          "hint": "then runs with the fulfilled number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "async-read-1",
+          "kind": "mcq",
+          "code": "async function value(){return ${n};} value().then(x=>console.log(x));",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "Promise object",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "then runs with the fulfilled number.",
+          "hint": "then runs with the fulfilled number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "async-choose-1",
+          "kind": "mcq",
+          "code": "async function value(){return ${n};} value().____(x=>console.log(x));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. then runs with the fulfilled number.",
+          "answer": "then",
+          "options": [
+            "then",
+            "catch",
+            "finally"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "await obtains the fulfilled value before addition.",
+          "hint": "await obtains the fulfilled value before addition.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "async-read-2",
+          "kind": "mcq",
+          "code": "async function run(){const x=await Promise.resolve(${n}); console.log(x+1);} run();",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "await obtains the fulfilled value before addition.",
+          "hint": "await obtains the fulfilled value before addition.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "async-choose-2",
+          "kind": "mcq",
+          "code": "async function run(){const x=____ Promise.resolve(${n}); console.log(x+1);} run();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. await obtains the fulfilled value before addition.",
+          "answer": "await",
+          "options": [
+            "await",
+            "void",
+            "typeof"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "catch handles the rejected promise.",
+          "hint": "catch handles the rejected promise.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-read-3",
+          "kind": "mcq",
+          "code": "Promise.reject(new Error(\"${word}\")).catch((e:Error)=>console.log(e.message));",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "undefined",
+            "Uncaught rejection"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "catch handles the rejected promise.",
+          "hint": "catch handles the rejected promise.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-choose-3",
+          "kind": "mcq",
+          "code": "Promise.reject(new Error(\"${word}\")).____((e:Error)=>console.log(e.message));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. catch handles the rejected promise.",
+          "answer": "catch",
+          "options": [
+            "catch",
+            "then",
+            "finally"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "An assertion performs no runtime validation or conversion.",
+          "hint": "An assertion performs no runtime validation or conversion.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-read-4",
+          "kind": "mcq",
+          "code": "type Box={size:number}; const raw:unknown=JSON.parse(\"{\"size\":\"${word}\"}\"); const b=raw as Box; console.log(typeof b.size);",
+          "prompt": "What is printed at runtime?",
+          "answer": "string",
+          "options": [
+            "string",
+            "number",
+            "Type assertion throws"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "An assertion performs no runtime validation or conversion.",
+          "hint": "An assertion performs no runtime validation or conversion.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-choose-4",
+          "kind": "mcq",
+          "code": "type Box={size:number}; const raw:unknown=JSON.parse(\"{\"size\":\"${word}\"}\"); const b=raw ____; console.log(typeof b.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: string. An assertion performs no runtime validation or conversion.",
+          "answer": "as Box",
+          "options": [
+            "as Box",
+            "as any",
+            "as never"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "then runs with the fulfilled number.",
+          "hint": "then runs with the fulfilled number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "async-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "async function value(){return ${n};} value().____(x=>console.log(x));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. then runs with the fulfilled number. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "then"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "await obtains the fulfilled value before addition.",
+          "hint": "await obtains the fulfilled value before addition.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "async-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "async function run(){const x=____ Promise.resolve(${n}); console.log(x+1);} run();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. await obtains the fulfilled value before addition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "await"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "catch handles the rejected promise.",
+          "hint": "catch handles the rejected promise.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "Promise.reject(new Error(\"${word}\")).____((e:Error)=>console.log(e.message));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. catch handles the rejected promise. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "catch"
+          ]
+        },
+        {
+          "concept": "Promises, async, and type erasure",
+          "explanation": "An assertion performs no runtime validation or conversion.",
+          "hint": "An assertion performs no runtime validation or conversion.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Box={size:number}; const raw:unknown=JSON.parse(\"{\"size\":\"${word}\"}\"); const b=raw ____; console.log(typeof b.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: string. An assertion performs no runtime validation or conversion. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "as Box"
+          ]
+        }
+      ]
+    }
+  ]
+}

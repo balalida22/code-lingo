@@ -1,0 +1,5382 @@
+{
+  "schema_version": 2,
+  "id": "python",
+  "title": "Python: read first, write next",
+  "language": "Python",
+  "version": "0.2.0",
+  "sources": [
+    {
+      "id": "helsinki",
+      "title": "University of Helsinki — Python Programming MOOC 2026",
+      "url": "https://programming-26.mooc.fi/part-1/1-getting-started/",
+      "usage": "Curriculum sequence reference only; no exercise text copied."
+    },
+    {
+      "id": "carpentries",
+      "title": "The Carpentries — Plotting and Programming in Python",
+      "url": "https://swcarpentry.github.io/python-novice-gapminder/",
+      "usage": "Topic progression and practical-reading inspiration; original exercises. Instructional material CC BY 4.0; example software MIT.",
+      "license_url": "https://swcarpentry.github.io/python-novice-gapminder/LICENSE.html"
+    },
+    {
+      "id": "python",
+      "title": "Python Software Foundation — The Python Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "usage": "Language semantics and topic coverage reference; original exercises."
+    },
+    {
+      "id": "numpy",
+      "title": "NumPy — Absolute basics for beginners",
+      "url": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+      "usage": "API concepts and topic sequence reference; original exercises."
+    },
+    {
+      "id": "matplotlib",
+      "title": "Matplotlib — Quick start guide",
+      "url": "https://matplotlib.org/stable/users/explain/quick_start.html",
+      "usage": "Figure/Axes API reference; original exercises."
+    },
+    {
+      "id": "pytorch",
+      "title": "PyTorch — Learn the Basics",
+      "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html",
+      "usage": "Tensor and inference API reference; original exercises."
+    },
+    {
+      "id": "huggingface",
+      "title": "Hugging Face — LLM Course",
+      "url": "https://huggingface.co/learn/llm-course/en/chapter2/2",
+      "usage": "Tokenizer-to-model workflow reference; original exercises."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "variables",
+      "section": "Basics",
+      "title": "Names, values, and output",
+      "intro": "Read statements from top to bottom. A name refers to its current value; assignment with = binds or rebinds it. Quoted text is a string, while an unquoted name looks up a value. print(...) displays values; multiple arguments are separated by spaces. Text after # is a comment, not an instruction.",
+      "sources": [
+        "helsinki",
+        "carpentries"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "id": "variables-v1",
+          "kind": "mcq",
+          "concept": "variables",
+          "code": "count = ${a}\ncopy = count\ncount = ${b}\nprint(copy)",
+          "prompt": "What is printed?",
+          "explanation": "copy keeps ${a}; rebinding count to ${b} does not change it.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 2,
+              "max": 30
+            },
+            "b": {
+              "type": "int",
+              "min": 40,
+              "max": 80
+            }
+          },
+          "derived": {
+            "total": "a+b"
+          },
+          "answer": "${a}",
+          "options": [
+            "${a}",
+            "${b}",
+            "${total}",
+            "NameError"
+          ]
+        },
+        {
+          "id": "variables-v2",
+          "kind": "mcq",
+          "concept": "variables",
+          "code": "label = ${word_py}\nprint(label)",
+          "prompt": "What is printed?",
+          "explanation": "The name label refers to the string ${word}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "queue",
+                "worker",
+                "socket",
+                "buffer",
+                "cache"
+              ]
+            },
+            "other": {
+              "type": "choice",
+              "values": [
+                "offline",
+                "active",
+                "idle"
+              ]
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)"
+          },
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "label",
+            "${other}",
+            "NameError"
+          ]
+        },
+        {
+          "id": "variables-v3",
+          "kind": "mcq",
+          "concept": "variables",
+          "code": "first = ${a}\nsecond = ${b}\nfirst = second\nprint(first)",
+          "prompt": "What is printed?",
+          "explanation": "first now refers to the current value of second, ${b}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 30
+            },
+            "b": {
+              "type": "int",
+              "min": 40,
+              "max": 99
+            }
+          },
+          "derived": {
+            "total": "a+b"
+          },
+          "answer": "${b}",
+          "options": [
+            "${b}",
+            "${a}",
+            "${total}",
+            "second"
+          ]
+        },
+        {
+          "id": "variables-v6",
+          "kind": "mcq",
+          "concept": "variables",
+          "code": "name = ${word_py}\nprint(\"name\")",
+          "prompt": "What is printed?",
+          "explanation": "Quotes make name literal text instead of a variable lookup.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "queue",
+                "cache",
+                "worker"
+              ]
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)"
+          },
+          "answer": "name",
+          "options": [
+            "name",
+            "${word}",
+            "NameError",
+            "None"
+          ]
+        },
+        {
+          "id": "variables-1",
+          "kind": "mcq",
+          "code": "score = 4\nscore = 9\nprint(score)",
+          "prompt": "What is printed?",
+          "answer": "9",
+          "options": [
+            "9",
+            "4",
+            "score",
+            "4 9"
+          ],
+          "explanation": "The second assignment rebinds score to 9 before print looks it up.",
+          "hint": "Track the most recent assignment.",
+          "concept": "variables"
+        },
+        {
+          "id": "variables-2",
+          "kind": "mcq",
+          "code": "city = \"Ely\"\nprint(\"city\")",
+          "prompt": "What is printed?",
+          "answer": "city",
+          "options": [
+            "city",
+            "Ely",
+            "\"Ely\"",
+            "NameError"
+          ],
+          "explanation": "Quotation marks make city literal text instead of a name lookup.",
+          "hint": "Look for quotation marks.",
+          "concept": "variables"
+        },
+        {
+          "id": "variables-3",
+          "kind": "mcq",
+          "code": "first = 6\nsecond = first\nfirst = 8\nprint(second)",
+          "prompt": "What is printed?",
+          "answer": "6",
+          "options": [
+            "6",
+            "8",
+            "14",
+            "NameError"
+          ],
+          "explanation": "second keeps the integer value 6; rebinding first does not change second.",
+          "hint": "Assignment is not a live spreadsheet formula.",
+          "concept": "variables"
+        },
+        {
+          "id": "variables-4",
+          "kind": "mcq",
+          "code": "count = 3  # pending jobs\nprint(\"jobs\", count)",
+          "prompt": "Which reading is correct?",
+          "answer": "Displays jobs 3",
+          "options": [
+            "Displays jobs 3",
+            "Displays pending jobs",
+            "The comment changes count",
+            "Displays jobs count"
+          ],
+          "explanation": "The comment is ignored and print separates its two arguments with a space.",
+          "hint": "A comment ends at the end of its line.",
+          "concept": "variables"
+        },
+        {
+          "id": "variables-5",
+          "kind": "write",
+          "code": "name = \"Nia\"\n____",
+          "prompt": "Write one print call that displays the value of name.",
+          "accepted": [
+            "print(name)"
+          ],
+          "explanation": "print(name) looks up the value; print(\"name\") would display the literal word.",
+          "hint": "Pass the variable without quotes.",
+          "concept": "variables"
+        },
+        {
+          "id": "variables-v4",
+          "kind": "write",
+          "concept": "variables",
+          "code": "____",
+          "prompt": "Assign the integer ${n} to a variable named ${name}.",
+          "explanation": "Assignment binds ${name} to ${n}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            },
+            "name": {
+              "type": "choice",
+              "values": [
+                "count",
+                "retries",
+                "limit",
+                "score"
+              ]
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "${name} = ${n}"
+          ]
+        },
+        {
+          "id": "variables-v5",
+          "kind": "write",
+          "concept": "variables",
+          "code": "____",
+          "prompt": "Print the literal string ${word_py}.",
+          "explanation": "A quoted literal prints its text, without the quotation marks.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "build ready",
+                "tests passed",
+                "cache warm",
+                "server online"
+              ]
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)"
+          },
+          "accepted": [
+            "print(${word_py})"
+          ]
+        },
+        {
+          "id": "variables-v7",
+          "kind": "write",
+          "concept": "variables",
+          "code": "${name} = ${n}\n____",
+          "prompt": "Print the value of ${name}, using its variable name.",
+          "explanation": "The variable is unquoted in the print call.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "limit",
+                "count",
+                "retries"
+              ]
+            },
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "print(${name})"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arithmetic",
+      "section": "Basics",
+      "title": "Read expressions precisely",
+      "intro": "Python evaluates multiplication before addition; parentheses group expressions. / is true division, // is floor division, % is the remainder, and ** is exponentiation. For integers, // rounds the quotient down, including for negative results.",
+      "sources": [
+        "helsinki",
+        "python"
+      ],
+      "requires": [
+        "variables"
+      ],
+      "questions": [
+        {
+          "id": "arithmetic-v1",
+          "kind": "mcq",
+          "concept": "arithmetic",
+          "code": "print(${a} + ${b} * ${c})",
+          "prompt": "What is printed?",
+          "explanation": "Multiply ${b} by ${c} first, then add ${a}, giving ${out}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 2,
+              "max": 15
+            },
+            "b": {
+              "type": "int",
+              "min": 2,
+              "max": 12
+            },
+            "c": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            }
+          },
+          "derived": {
+            "out": "a+b*c",
+            "grouped": "(a+b)*c",
+            "sum": "a+b+c",
+            "product": "a*b*c"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${grouped}",
+            "${sum}",
+            "${product}"
+          ]
+        },
+        {
+          "id": "arithmetic-v2",
+          "kind": "mcq",
+          "concept": "arithmetic",
+          "code": "print(${a} // ${b})",
+          "prompt": "What is printed?",
+          "explanation": "Floor division gives ${out}; the remainder is ${remainder}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 20,
+              "max": 99
+            },
+            "b": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            }
+          },
+          "derived": {
+            "out": "a//b",
+            "remainder": "a%b",
+            "above": "a//b+1"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${remainder}",
+            "${above}",
+            "${a}"
+          ]
+        },
+        {
+          "id": "arithmetic-v3",
+          "kind": "mcq",
+          "concept": "arithmetic",
+          "code": "print(${a} % ${b})",
+          "prompt": "What is printed?",
+          "explanation": "After groups of ${b}, ${out} remains.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 20,
+              "max": 99
+            },
+            "b": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            }
+          },
+          "derived": {
+            "out": "a%b",
+            "quotient": "a//b"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${quotient}",
+            "${b}",
+            "${a}"
+          ]
+        },
+        {
+          "id": "arithmetic-v6",
+          "kind": "mcq",
+          "concept": "arithmetic",
+          "code": "print((${a} + ${b}) * ${c})",
+          "prompt": "What is printed?",
+          "explanation": "Parentheses force the addition before multiplication.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            },
+            "b": {
+              "type": "int",
+              "min": 10,
+              "max": 20
+            },
+            "c": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            }
+          },
+          "derived": {
+            "out": "(a+b)*c",
+            "ungrouped": "a+b*c",
+            "sum": "a+b+c",
+            "product": "a*b*c"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${ungrouped}",
+            "${sum}",
+            "${product}"
+          ]
+        },
+        {
+          "id": "arithmetic-1",
+          "kind": "mcq",
+          "code": "print(2 + 3 * 4)",
+          "prompt": "What is printed?",
+          "answer": "14",
+          "options": [
+            "14",
+            "20",
+            "24",
+            "9"
+          ],
+          "explanation": "Multiplication gives 12 first, then addition gives 14.",
+          "hint": "Multiplication has higher precedence.",
+          "concept": "arithmetic"
+        },
+        {
+          "id": "arithmetic-2",
+          "kind": "mcq",
+          "code": "print(9 // 4, 9 % 4)",
+          "prompt": "What is printed?",
+          "answer": "2 1",
+          "options": [
+            "2 1",
+            "2.25 0",
+            "2 2",
+            "3 1"
+          ],
+          "explanation": "Two groups of four fit into nine, leaving one.",
+          "hint": "Read the quotient and remainder separately.",
+          "concept": "arithmetic"
+        },
+        {
+          "id": "arithmetic-3",
+          "kind": "mcq",
+          "code": "print(8 / 2)",
+          "prompt": "What is printed?",
+          "answer": "4.0",
+          "options": [
+            "4.0",
+            "4",
+            "2",
+            "TypeError"
+          ],
+          "explanation": "True division returns a float even when the result is a whole number.",
+          "hint": "A slash and a double slash are different operators.",
+          "concept": "arithmetic"
+        },
+        {
+          "id": "arithmetic-4",
+          "kind": "mcq",
+          "code": "print(-7 // 3)",
+          "prompt": "What is printed?",
+          "answer": "-3",
+          "options": [
+            "-3",
+            "-2",
+            "2",
+            "-2.333"
+          ],
+          "explanation": "Floor division rounds -2.333... down to -3, not toward zero.",
+          "hint": "Down on the number line means more negative.",
+          "concept": "arithmetic"
+        },
+        {
+          "id": "arithmetic-5",
+          "kind": "write",
+          "code": "price = 7\nquantity = 3\ntotal = ____",
+          "prompt": "Fill the blank with price multiplied by quantity.",
+          "accepted": [
+            "price * quantity",
+            "quantity * price"
+          ],
+          "explanation": "* multiplies the two values.",
+          "hint": "Use the multiplication operator.",
+          "concept": "arithmetic"
+        },
+        {
+          "id": "arithmetic-v4",
+          "kind": "write",
+          "concept": "arithmetic",
+          "code": "price = ${a}\nquantity = ${b}\ncost = ____",
+          "prompt": "Multiply price by quantity, in that order.",
+          "explanation": "The values vary, but the multiplication expression stays the same.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 2,
+              "max": 50
+            },
+            "b": {
+              "type": "int",
+              "min": 2,
+              "max": 15
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "price * quantity"
+          ]
+        },
+        {
+          "id": "arithmetic-v5",
+          "kind": "write",
+          "concept": "arithmetic",
+          "code": "____",
+          "prompt": "Write an expression using // to divide ${a} by ${b}.",
+          "explanation": "Use // for floor division, rather than /.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 10,
+              "max": 99
+            },
+            "b": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "${a} // ${b}"
+          ]
+        },
+        {
+          "id": "arithmetic-v7",
+          "kind": "write",
+          "concept": "arithmetic",
+          "code": "____",
+          "prompt": "Write a remainder expression for ${a} divided by ${b}.",
+          "explanation": "% returns the remainder.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 20,
+              "max": 99
+            },
+            "b": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "${a} % ${b}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "input",
+      "section": "Basics",
+      "title": "Input, types, and conversion",
+      "intro": "input(prompt) displays a prompt and returns text, even when you type digits. int(text) parses an integer; float(text) parses a decimal number. Adding two strings concatenates them. Mixing a string and an integer with + raises TypeError. Invalid numeric text causes ValueError.",
+      "sources": [
+        "helsinki",
+        "carpentries"
+      ],
+      "requires": [
+        "arithmetic"
+      ],
+      "questions": [
+        {
+          "id": "input-v1",
+          "kind": "mcq",
+          "concept": "input",
+          "code": "raw = ${raw}\nprint(raw + \"1\")",
+          "prompt": "What is printed?",
+          "explanation": "raw is text, so + concatenates it into ${concat}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 10,
+              "max": 80
+            }
+          },
+          "derived": {
+            "raw": "repr(str(n))",
+            "concat": "str(n)+\"1\"",
+            "added": "n+1"
+          },
+          "answer": "${concat}",
+          "options": [
+            "${concat}",
+            "${added}",
+            "${n}",
+            "TypeError"
+          ]
+        },
+        {
+          "id": "input-v2",
+          "kind": "mcq",
+          "concept": "input",
+          "code": "raw = ${raw}\nprint(int(raw) + ${b})",
+          "prompt": "What is printed?",
+          "explanation": "int converts the text before arithmetic, giving ${out}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 10,
+              "max": 80
+            },
+            "b": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            }
+          },
+          "derived": {
+            "raw": "repr(str(n))",
+            "out": "n+b",
+            "concat": "str(n)+str(b)"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${concat}",
+            "${n}",
+            "TypeError"
+          ]
+        },
+        {
+          "id": "input-v3",
+          "kind": "mcq",
+          "concept": "input",
+          "code": "print(str(${n}) + ${suffix_py})",
+          "prompt": "What is printed?",
+          "explanation": "str converts the integer into text before concatenation.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            },
+            "suffix": {
+              "type": "choice",
+              "values": [
+                " jobs",
+                " files",
+                " tasks",
+                " bytes"
+              ]
+            }
+          },
+          "derived": {
+            "suffix_py": "repr(suffix)",
+            "out": "str(n)+suffix",
+            "reverse": "suffix+str(n)"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${n}",
+            "TypeError",
+            "${reverse}"
+          ]
+        },
+        {
+          "id": "input-v6",
+          "kind": "mcq",
+          "concept": "input",
+          "code": "number = int(${raw})\nprint(str(number))",
+          "prompt": "What text is printed?",
+          "explanation": "int parses the digits and str returns their textual representation.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 10,
+              "max": 999
+            }
+          },
+          "derived": {
+            "raw": "repr(str(n))"
+          },
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${raw}",
+            "TypeError",
+            "None"
+          ]
+        },
+        {
+          "id": "input-1",
+          "kind": "mcq",
+          "code": "age = input(\"Age: \")\nprint(age + \"1\")",
+          "prompt": "The user types 20. What does the final print display?",
+          "answer": "201",
+          "options": [
+            "201",
+            "21",
+            "20 1",
+            "TypeError"
+          ],
+          "explanation": "input returns \"20\", so adding \"1\" joins the text.",
+          "hint": "Both operands are strings.",
+          "concept": "input"
+        },
+        {
+          "id": "input-2",
+          "kind": "mcq",
+          "code": "age = int(input(\"Age: \"))\nprint(age + 1)",
+          "prompt": "The user types 20. What does the final print display?",
+          "answer": "21",
+          "options": [
+            "21",
+            "201",
+            "20",
+            "ValueError"
+          ],
+          "explanation": "int converts \"20\" into the integer 20 before addition.",
+          "hint": "Follow the inner call first.",
+          "concept": "input"
+        },
+        {
+          "id": "input-3",
+          "kind": "mcq",
+          "code": "print(\"Items: \" + 3)",
+          "prompt": "What happens?",
+          "answer": "TypeError",
+          "options": [
+            "TypeError",
+            "Displays Items: 3",
+            "Displays Items: 333",
+            "ValueError"
+          ],
+          "explanation": "String concatenation with + requires another string.",
+          "hint": "The operands have different types.",
+          "concept": "input"
+        },
+        {
+          "id": "input-4",
+          "kind": "mcq",
+          "code": "count = int(\"three\")",
+          "prompt": "What happens?",
+          "answer": "ValueError",
+          "options": [
+            "ValueError",
+            "count becomes 3",
+            "count becomes 0",
+            "TypeError"
+          ],
+          "explanation": "The type is accepted, but this string does not represent an integer.",
+          "hint": "Numeric conversion does not interpret English words.",
+          "concept": "input"
+        },
+        {
+          "id": "input-5",
+          "kind": "write",
+          "code": "raw = \"42\"\nnumber = ____",
+          "prompt": "Fill the blank using int to convert raw.",
+          "accepted": [
+            "int(raw)"
+          ],
+          "explanation": "int(raw) parses the text as an integer.",
+          "hint": "Call the conversion function on raw.",
+          "concept": "input"
+        },
+        {
+          "id": "input-v4",
+          "kind": "write",
+          "concept": "input",
+          "code": "raw = ${raw}\nvalue = ____",
+          "prompt": "Use float to convert raw into a number.",
+          "explanation": "float parses the decimal text.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            }
+          },
+          "derived": {
+            "raw": "repr(str(n)+\".5\")"
+          },
+          "accepted": [
+            "float(raw)"
+          ]
+        },
+        {
+          "id": "input-v5",
+          "kind": "write",
+          "concept": "input",
+          "code": "____",
+          "prompt": "Write an int call that converts the literal ${raw}.",
+          "explanation": "The digits inside quotes are text until int parses them.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 10,
+              "max": 999
+            }
+          },
+          "derived": {
+            "raw": "repr(str(n))"
+          },
+          "accepted": [
+            "int(${raw})"
+          ]
+        },
+        {
+          "id": "input-v7",
+          "kind": "write",
+          "concept": "input",
+          "code": "number = ${n}\ntext = ____",
+          "prompt": "Convert number to text with str().",
+          "explanation": "str constructs a textual representation of the value.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "str(number)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strings",
+      "section": "Basics",
+      "title": "Strings, slices, and formatting",
+      "intro": "Strings are immutable text sequences. Indexing starts at 0; -1 means the last character. A slice [start:stop] excludes stop. strip() removes surrounding whitespace, and upper() returns uppercase text. These methods return new strings. An f-string inserts expressions inside braces.",
+      "sources": [
+        "python",
+        "helsinki"
+      ],
+      "requires": [
+        "input"
+      ],
+      "questions": [
+        {
+          "id": "strings-v1",
+          "kind": "mcq",
+          "concept": "strings",
+          "code": "text = ${word_py}\nprint(text[${i}])",
+          "prompt": "What is printed?",
+          "explanation": "Index ${i} selects ${out}; Python counts from zero.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "python",
+                "coding",
+                "worker",
+                "thread"
+              ]
+            },
+            "i": {
+              "type": "int",
+              "min": 1,
+              "max": 3
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)",
+            "out": "word[i]",
+            "first": "word[0]",
+            "last": "word[-1]"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${first}",
+            "${last}",
+            "IndexError"
+          ]
+        },
+        {
+          "id": "strings-v2",
+          "kind": "mcq",
+          "concept": "strings",
+          "code": "text = ${word_py}\nprint(text[:${n}])",
+          "prompt": "What is printed?",
+          "explanation": "The stop index ${n} is excluded, giving ${out}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "python",
+                "worker",
+                "coding",
+                "server"
+              ]
+            },
+            "n": {
+              "type": "int",
+              "min": 2,
+              "max": 4
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)",
+            "out": "word[:n]",
+            "longer": "word[:n+1]",
+            "rest": "word[n:]"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${longer}",
+            "${rest}",
+            "${word}"
+          ]
+        },
+        {
+          "id": "strings-v3",
+          "kind": "mcq",
+          "concept": "strings",
+          "code": "text = ${padded_py}\nprint(text.strip().upper())",
+          "prompt": "What is printed?",
+          "explanation": "strip removes surrounding whitespace, then upper returns ${out}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "ready",
+                "done",
+                "queued",
+                "active"
+              ]
+            }
+          },
+          "derived": {
+            "padded": "\"  \"+word+\" \"",
+            "padded_py": "repr(padded)",
+            "out": "upper(word)"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${word}",
+            "${padded}",
+            "TypeError"
+          ]
+        },
+        {
+          "id": "strings-v6",
+          "kind": "mcq",
+          "concept": "strings",
+          "code": "word = ${word_py}\nprint(word[-1])",
+          "prompt": "What is printed?",
+          "explanation": "Index -1 selects the final character.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "python",
+                "worker",
+                "stream",
+                "socket"
+              ]
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)",
+            "last": "word[-1]",
+            "first": "word[0]",
+            "second": "word[1]"
+          },
+          "answer": "${last}",
+          "options": [
+            "${last}",
+            "${first}",
+            "${second}",
+            "IndexError"
+          ]
+        },
+        {
+          "id": "strings-1",
+          "kind": "mcq",
+          "code": "word = \"code\"\nprint(word[1])",
+          "prompt": "What is printed?",
+          "answer": "o",
+          "options": [
+            "o",
+            "c",
+            "d",
+            "1"
+          ],
+          "explanation": "Index 0 is c and index 1 is o.",
+          "hint": "Count from zero.",
+          "concept": "strings"
+        },
+        {
+          "id": "strings-2",
+          "kind": "mcq",
+          "code": "path = \"report.txt\"\nprint(path[-3:])",
+          "prompt": "What is printed?",
+          "answer": "txt",
+          "options": [
+            "txt",
+            ".txt",
+            "report",
+            "IndexError"
+          ],
+          "explanation": "-3 starts at the third character from the end; the omitted stop runs to the end.",
+          "hint": "Count the final three characters.",
+          "concept": "strings"
+        },
+        {
+          "id": "strings-3",
+          "kind": "mcq",
+          "code": "name = \" ada \"\nprint(name.strip().upper())",
+          "prompt": "What is printed?",
+          "answer": "ADA",
+          "options": [
+            "ADA",
+            " ada ",
+            "ada",
+            "AttributeError"
+          ],
+          "explanation": "strip returns \"ada\" and upper turns that result into \"ADA\".",
+          "hint": "Read the method calls from left to right.",
+          "concept": "strings"
+        },
+        {
+          "id": "strings-4",
+          "kind": "mcq",
+          "code": "n = 4\nprint(f\"{n} files\")",
+          "prompt": "What is printed?",
+          "answer": "4 files",
+          "options": [
+            "4 files",
+            "{n} files",
+            "n files",
+            "f4 files"
+          ],
+          "explanation": "The f prefix enables interpolation of the expression inside braces.",
+          "hint": "Braces in an f-string contain Python expressions.",
+          "concept": "strings"
+        },
+        {
+          "id": "strings-5",
+          "kind": "write",
+          "code": "word = \"python\"\nprefix = ____",
+          "prompt": "Fill the blank with a slice of word that selects its first two characters.",
+          "accepted": [
+            "word[:2]",
+            "word[0:2]"
+          ],
+          "explanation": "The stop index 2 is excluded, selecting indices 0 and 1.",
+          "hint": "Start can be omitted when it is zero.",
+          "concept": "strings"
+        },
+        {
+          "id": "strings-v4",
+          "kind": "write",
+          "concept": "strings",
+          "code": "text = ${word_py}\nresult = ____",
+          "prompt": "Slice text from index 0 (omitted) up to, but excluding, ${n}.",
+          "explanation": "The stop is excluded; an omitted start means index zero.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "python",
+                "buffer",
+                "stream"
+              ]
+            },
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 4
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)"
+          },
+          "accepted": [
+            "text[:${n}]"
+          ]
+        },
+        {
+          "id": "strings-v5",
+          "kind": "write",
+          "concept": "strings",
+          "code": "____",
+          "prompt": "Call upper() on the literal ${word_py}.",
+          "explanation": "upper returns uppercase text without changing the original string.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "token",
+                "hello",
+                "queue"
+              ]
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)"
+          },
+          "accepted": [
+            "${word_py}.upper()"
+          ]
+        },
+        {
+          "id": "strings-v7",
+          "kind": "write",
+          "concept": "strings",
+          "code": "text = ${padded_py}\nclean = ____",
+          "prompt": "Remove surrounding whitespace from text using strip().",
+          "explanation": "strip returns a new string with surrounding whitespace removed.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "ready",
+                "pending",
+                "done"
+              ]
+            }
+          },
+          "derived": {
+            "padded_py": "repr(\"  \"+word+\" \")"
+          },
+          "accepted": [
+            "text.strip()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conditions",
+      "section": "Basics",
+      "title": "Branches and truthiness",
+      "intro": "An if/elif/else chain runs only the first matching branch. Indentation defines the branch body. == compares values; = assigns. and and or short-circuit. Empty strings, zero, None, and empty containers are falsey. or returns an operand, which makes value or default a common fallback idiom.",
+      "sources": [
+        "helsinki",
+        "python"
+      ],
+      "requires": [
+        "strings"
+      ],
+      "questions": [
+        {
+          "id": "conditions-v1",
+          "kind": "mcq",
+          "concept": "conditions",
+          "code": "count = ${n}\nif count > ${limit}:\n    print(\"large\")\nelse:\n    print(\"small\")",
+          "prompt": "What is printed?",
+          "explanation": "${n} is below ${limit}, so the else branch prints small.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 9
+            },
+            "limit": {
+              "type": "int",
+              "min": 10,
+              "max": 30
+            }
+          },
+          "derived": {},
+          "answer": "small",
+          "options": [
+            "small",
+            "large",
+            "True",
+            "Nothing"
+          ]
+        },
+        {
+          "id": "conditions-v2",
+          "kind": "mcq",
+          "concept": "conditions",
+          "code": "name = \"\"\nlabel = name or ${fallback_py}\nprint(label)",
+          "prompt": "What is printed?",
+          "explanation": "An empty string is falsey, so or returns the fallback ${fallback}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "fallback": {
+              "type": "choice",
+              "values": [
+                "Guest",
+                "Anonymous",
+                "Visitor",
+                "Unknown"
+              ]
+            }
+          },
+          "derived": {
+            "fallback_py": "repr(fallback)"
+          },
+          "answer": "${fallback}",
+          "options": [
+            "${fallback}",
+            "An empty string",
+            "True",
+            "name"
+          ]
+        },
+        {
+          "id": "conditions-v3",
+          "kind": "mcq",
+          "concept": "conditions",
+          "code": "n = ${n}\nif n > ${low}:\n    print(\"first\")\nelif n > ${high}:\n    print(\"second\")",
+          "prompt": "What is printed?",
+          "explanation": "Both comparisons would be true, but only the first matching branch runs.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "low": {
+              "type": "int",
+              "min": 1,
+              "max": 9
+            },
+            "high": {
+              "type": "int",
+              "min": 10,
+              "max": 19
+            },
+            "n": {
+              "type": "int",
+              "min": 20,
+              "max": 90
+            }
+          },
+          "derived": {},
+          "answer": "first",
+          "options": [
+            "first",
+            "second",
+            "first then second",
+            "Nothing"
+          ]
+        },
+        {
+          "id": "conditions-v6",
+          "kind": "mcq",
+          "concept": "conditions",
+          "code": "enabled = False\nif enabled and ${name}:\n    print(\"go\")",
+          "prompt": "The name ${name} is undefined. What happens?",
+          "explanation": "and short-circuits when the left side is false.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "missing_flag",
+                "unknown_setting",
+                "absent_value"
+              ]
+            }
+          },
+          "derived": {},
+          "answer": "Nothing is printed; no exception",
+          "options": [
+            "Nothing is printed; no exception",
+            "NameError",
+            "Displays go",
+            "TypeError"
+          ]
+        },
+        {
+          "id": "conditions-1",
+          "kind": "mcq",
+          "code": "ready = False\nif ready:\n    print(\"send\")\nelse:\n    print(\"wait\")",
+          "prompt": "What is printed?",
+          "answer": "wait",
+          "options": [
+            "wait",
+            "send",
+            "send then wait",
+            "Nothing"
+          ],
+          "explanation": "ready is false, so execution enters the else branch.",
+          "hint": "Only one of these branches runs.",
+          "concept": "conditions"
+        },
+        {
+          "id": "conditions-2",
+          "kind": "mcq",
+          "code": "level = 8\nif level > 5:\n    print(\"high\")\nelif level > 7:\n    print(\"very high\")",
+          "prompt": "What is printed?",
+          "answer": "high",
+          "options": [
+            "high",
+            "very high",
+            "high then very high",
+            "Nothing"
+          ],
+          "explanation": "The first true branch wins; the later elif is skipped.",
+          "hint": "An elif is not an independent if.",
+          "concept": "conditions"
+        },
+        {
+          "id": "conditions-3",
+          "kind": "mcq",
+          "code": "nickname = \"\"\nlabel = nickname or \"Guest\"",
+          "prompt": "What is label?",
+          "answer": "Guest",
+          "options": [
+            "Guest",
+            "An empty string",
+            "True",
+            "False"
+          ],
+          "explanation": "The empty string is falsey, so or returns its right operand.",
+          "hint": "or can return strings, not just booleans.",
+          "concept": "conditions"
+        },
+        {
+          "id": "conditions-4",
+          "kind": "mcq",
+          "code": "enabled = False\nif enabled and missing_name:\n    print(\"go\")",
+          "prompt": "What happens?",
+          "answer": "Nothing is printed; no exception",
+          "options": [
+            "Nothing is printed; no exception",
+            "NameError",
+            "Displays go",
+            "TypeError"
+          ],
+          "explanation": "and stops at the false left operand and never looks up missing_name.",
+          "hint": "The right side may never be evaluated.",
+          "concept": "conditions"
+        },
+        {
+          "id": "conditions-5",
+          "kind": "write",
+          "code": "count = 0\nempty = ____",
+          "prompt": "Fill the blank with an equality comparison of count to zero.",
+          "accepted": [
+            "count == 0",
+            "0 == count"
+          ],
+          "explanation": "== tests equality; = would assign a value.",
+          "hint": "Use two equals signs.",
+          "concept": "conditions"
+        },
+        {
+          "id": "conditions-v4",
+          "kind": "write",
+          "concept": "conditions",
+          "code": "count = ${n}\nready = ____",
+          "prompt": "Compare count to ${n} using ==, with count on the left.",
+          "explanation": "== compares values; = assigns.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "count == ${n}"
+          ]
+        },
+        {
+          "id": "conditions-v5",
+          "kind": "write",
+          "concept": "conditions",
+          "code": "name = \"\"\nlabel = ____",
+          "prompt": "Use name or the fallback literal ${fallback_py}.",
+          "explanation": "or supplies this fallback when name is falsey.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "fallback": {
+              "type": "choice",
+              "values": [
+                "Guest",
+                "Visitor",
+                "Anonymous"
+              ]
+            }
+          },
+          "derived": {
+            "fallback_py": "repr(fallback)"
+          },
+          "accepted": [
+            "name or ${fallback_py}"
+          ]
+        },
+        {
+          "id": "conditions-v7",
+          "kind": "write",
+          "concept": "conditions",
+          "code": "n = ${n}\nlarge = ____",
+          "prompt": "Compare n to ${limit} using >, with n on the left.",
+          "explanation": "> checks whether the left value exceeds the right.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            },
+            "limit": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "n > ${limit}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "containers",
+      "section": "Intermediate",
+      "title": "Read everyday collection syntax",
+      "intro": "Lists hold ordered values and can be changed; dictionaries map keys to values. This lesson covers Python usage, not data-structure theory. append changes a list in place and returns None. dict.get(key, default) supplies a fallback for missing keys. in tests dictionary keys. Tuple unpacking binds several names at once.",
+      "sources": [
+        "python",
+        "carpentries"
+      ],
+      "requires": [
+        "conditions"
+      ],
+      "questions": [
+        {
+          "id": "containers-v1",
+          "kind": "mcq",
+          "concept": "containers",
+          "code": "settings = {\"port\": ${port}}\nprint(settings.get(\"timeout\", ${timeout}))",
+          "prompt": "What is printed?",
+          "explanation": "timeout is missing, so get returns its default ${timeout}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "port": {
+              "type": "int",
+              "min": 8000,
+              "max": 9000
+            },
+            "timeout": {
+              "type": "int",
+              "min": 5,
+              "max": 90
+            }
+          },
+          "derived": {},
+          "answer": "${timeout}",
+          "options": [
+            "${timeout}",
+            "${port}",
+            "None",
+            "KeyError"
+          ]
+        },
+        {
+          "id": "containers-v2",
+          "kind": "mcq",
+          "concept": "containers",
+          "code": "items = [${a}, ${b}]\nresult = items.append(${c})\nprint(result)",
+          "prompt": "What is printed?",
+          "explanation": "append changes the list in place but returns None.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 2,
+              "max": 20
+            },
+            "b": {
+              "type": "int",
+              "min": 30,
+              "max": 50
+            },
+            "c": {
+              "type": "int",
+              "min": 60,
+              "max": 99
+            }
+          },
+          "derived": {
+            "values": "str([a,b,c])"
+          },
+          "answer": "None",
+          "options": [
+            "None",
+            "${c}",
+            "${values}",
+            "True"
+          ]
+        },
+        {
+          "id": "containers-v3",
+          "kind": "mcq",
+          "concept": "containers",
+          "code": "left, right = (${a}, ${b})\nprint(right)",
+          "prompt": "What is printed?",
+          "explanation": "Unpacking binds right to the second value, ${b}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 30
+            },
+            "b": {
+              "type": "int",
+              "min": 40,
+              "max": 90
+            }
+          },
+          "derived": {
+            "total": "a+b"
+          },
+          "answer": "${b}",
+          "options": [
+            "${b}",
+            "${a}",
+            "${total}",
+            "TypeError"
+          ]
+        },
+        {
+          "id": "containers-v6",
+          "kind": "mcq",
+          "concept": "containers",
+          "code": "user = {\"name\": ${name_py}}\nprint(${name_py} in user)",
+          "prompt": "What is printed?",
+          "explanation": "Dictionary membership checks keys, not values.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "Ada",
+                "Lin",
+                "Nia",
+                "Kai"
+              ]
+            }
+          },
+          "derived": {
+            "name_py": "repr(name)"
+          },
+          "answer": "False",
+          "options": [
+            "False",
+            "True",
+            "${name}",
+            "KeyError"
+          ]
+        },
+        {
+          "id": "containers-1",
+          "kind": "mcq",
+          "code": "config = {\"port\": 8000}\nprint(config.get(\"timeout\", 30))",
+          "prompt": "What is printed?",
+          "answer": "30",
+          "options": [
+            "30",
+            "8000",
+            "None",
+            "KeyError"
+          ],
+          "explanation": "timeout is absent, so get returns the explicit fallback 30.",
+          "hint": "The second argument is the default.",
+          "concept": "containers"
+        },
+        {
+          "id": "containers-2",
+          "kind": "mcq",
+          "code": "items = [\"a\"]\nresult = items.append(\"b\")\nprint(result)",
+          "prompt": "What is printed?",
+          "answer": "None",
+          "options": [
+            "None",
+            "[\"a\", \"b\"]",
+            "b",
+            "True"
+          ],
+          "explanation": "append mutates items but does not return the list.",
+          "hint": "Separate the side effect from the return value.",
+          "concept": "containers"
+        },
+        {
+          "id": "containers-3",
+          "kind": "mcq",
+          "code": "user = {\"name\": \"Nia\"}\nprint(\"Nia\" in user)",
+          "prompt": "What is printed?",
+          "answer": "False",
+          "options": [
+            "False",
+            "True",
+            "Nia",
+            "KeyError"
+          ],
+          "explanation": "Dictionary membership tests keys; Nia is a value, not a key.",
+          "hint": "Look at the left side of each key-value pair.",
+          "concept": "containers"
+        },
+        {
+          "id": "containers-4",
+          "kind": "mcq",
+          "code": "width, height = (640, 480)\nprint(height)",
+          "prompt": "What is printed?",
+          "answer": "480",
+          "options": [
+            "480",
+            "640",
+            "(640, 480)",
+            "TypeError"
+          ],
+          "explanation": "Unpacking assigns the second value to height.",
+          "hint": "Match names and values by position.",
+          "concept": "containers"
+        },
+        {
+          "id": "containers-5",
+          "kind": "write",
+          "code": "config = {\"port\": 8000}\nport = ____",
+          "prompt": "Read the port entry using square-bracket indexing.",
+          "accepted": [
+            "config[\"port\"]"
+          ],
+          "explanation": "The quoted key selects the matching dictionary value.",
+          "hint": "Use the key as a string inside brackets.",
+          "concept": "containers"
+        },
+        {
+          "id": "containers-v4",
+          "kind": "write",
+          "concept": "containers",
+          "code": "settings = {${key_py}: ${n}}\nvalue = ____",
+          "prompt": "Read settings using the literal key ${key_py} and square brackets.",
+          "explanation": "Dictionary indexing looks up the named key.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "key": {
+              "type": "choice",
+              "values": [
+                "timeout",
+                "retries",
+                "limit",
+                "port"
+              ]
+            },
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            }
+          },
+          "derived": {
+            "key_py": "repr(key)"
+          },
+          "accepted": [
+            "settings[${key_py}]"
+          ]
+        },
+        {
+          "id": "containers-v5",
+          "kind": "write",
+          "concept": "containers",
+          "code": "items = [1, 2]\n____",
+          "prompt": "Append the integer ${n} to items using append().",
+          "explanation": "append mutates items and returns None.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "items.append(${n})"
+          ]
+        },
+        {
+          "id": "containers-v7",
+          "kind": "write",
+          "concept": "containers",
+          "code": "settings = {}\nvalue = ____",
+          "prompt": "Use settings.get to read \"timeout\" with default ${n}.",
+          "explanation": "get returns this default when the key is absent.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 2,
+              "max": 90
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "settings.get(\"timeout\", ${n})"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loops",
+      "section": "Intermediate",
+      "title": "Follow loops in real scripts",
+      "intro": "A for loop visits each item. range(stop) starts at zero and excludes stop. enumerate yields index/item pairs; start=1 changes the first index. continue skips the remainder of one iteration; break exits the loop. Loop else runs only when the loop finishes without break. A while loop repeats while its condition remains true.",
+      "sources": [
+        "python",
+        "carpentries"
+      ],
+      "requires": [
+        "containers"
+      ],
+      "questions": [
+        {
+          "id": "loops-v1",
+          "kind": "mcq",
+          "concept": "loops",
+          "code": "for n in range(${start}, ${stop}):\n    print(n)",
+          "prompt": "What is the LAST number printed?",
+          "explanation": "range excludes its stop, so the final value is ${last}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "start": {
+              "type": "int",
+              "min": 1,
+              "max": 10
+            },
+            "length": {
+              "type": "int",
+              "min": 3,
+              "max": 7
+            }
+          },
+          "derived": {
+            "stop": "start+length",
+            "last": "stop-1",
+            "after": "stop+1"
+          },
+          "answer": "${last}",
+          "options": [
+            "${last}",
+            "${stop}",
+            "${start}",
+            "${after}"
+          ]
+        },
+        {
+          "id": "loops-v2",
+          "kind": "mcq",
+          "concept": "loops",
+          "code": "for i, name in enumerate([\"api\", \"db\"], start=${start}):\n    print(i, name)",
+          "prompt": "What is the final line?",
+          "explanation": "The second item receives the starting index plus one.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "start": {
+              "type": "int",
+              "min": 3,
+              "max": 30
+            }
+          },
+          "derived": {
+            "last": "start+1"
+          },
+          "answer": "${last} db",
+          "options": [
+            "${last} db",
+            "${start} db",
+            "${last} api",
+            "1 db"
+          ]
+        },
+        {
+          "id": "loops-v3",
+          "kind": "mcq",
+          "concept": "loops",
+          "code": "for name in [${skip_py}, ${keep_py}]:\n    if name == ${skip_py}:\n        continue\n    print(name)",
+          "prompt": "What is printed?",
+          "explanation": "continue skips the first print, but the next iteration prints ${keep}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "skip": {
+              "type": "choice",
+              "values": [
+                "draft",
+                "pending",
+                "ignored"
+              ]
+            },
+            "keep": {
+              "type": "choice",
+              "values": [
+                "ready",
+                "approved",
+                "published"
+              ]
+            }
+          },
+          "derived": {
+            "skip_py": "repr(skip)",
+            "keep_py": "repr(keep)",
+            "both": "skip+\" then \"+keep"
+          },
+          "answer": "${keep}",
+          "options": [
+            "${keep}",
+            "${skip}",
+            "Nothing",
+            "${both}"
+          ]
+        },
+        {
+          "id": "loops-v6",
+          "kind": "mcq",
+          "concept": "loops",
+          "code": "for item in [${name_py}]:\n    print(item)\n    break\nelse:\n    print(\"empty\")",
+          "prompt": "What is printed?",
+          "explanation": "break suppresses the loop else block.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "config",
+                "report",
+                "entry",
+                "task"
+              ]
+            }
+          },
+          "derived": {
+            "name_py": "repr(name)"
+          },
+          "answer": "${name}",
+          "options": [
+            "${name}",
+            "empty",
+            "${name} then empty",
+            "Nothing"
+          ]
+        },
+        {
+          "id": "loops-1",
+          "kind": "mcq",
+          "code": "for n in range(1, 4):\n    print(n)",
+          "prompt": "Which values are printed, in order?",
+          "answer": "1, 2, 3",
+          "options": [
+            "1, 2, 3",
+            "1, 2, 3, 4",
+            "0, 1, 2, 3",
+            "1, 4"
+          ],
+          "explanation": "range includes its start and excludes its stop.",
+          "hint": "The upper bound is excluded.",
+          "concept": "loops"
+        },
+        {
+          "id": "loops-2",
+          "kind": "mcq",
+          "code": "for index, name in enumerate([\"a\", \"b\"], start=1):\n    print(index, name)",
+          "prompt": "What is the final line printed?",
+          "answer": "2 b",
+          "options": [
+            "2 b",
+            "1 b",
+            "2 a",
+            "b 2"
+          ],
+          "explanation": "enumerate starts at one here, so the second item receives index two.",
+          "hint": "start overrides the usual zero-based count.",
+          "concept": "loops"
+        },
+        {
+          "id": "loops-3",
+          "kind": "mcq",
+          "code": "for status in [\"skip\", \"ok\"]:\n    if status == \"skip\":\n        continue\n    print(status)",
+          "prompt": "What is printed?",
+          "answer": "ok",
+          "options": [
+            "ok",
+            "skip then ok",
+            "skip",
+            "Nothing"
+          ],
+          "explanation": "continue skips print on the first iteration, but the second iteration prints ok.",
+          "hint": "continue does not exit the whole loop.",
+          "concept": "loops"
+        },
+        {
+          "id": "loops-4",
+          "kind": "mcq",
+          "code": "for name in [\"settings.toml\"]:\n    if name.endswith(\".toml\"):\n        print(\"found\")\n        break\nelse:\n    print(\"missing\")",
+          "prompt": "What is printed?",
+          "answer": "found",
+          "options": [
+            "found",
+            "found then missing",
+            "missing",
+            "SyntaxError"
+          ],
+          "explanation": "break exits the loop and suppresses its else block.",
+          "hint": "This else belongs to the for loop.",
+          "concept": "loops"
+        },
+        {
+          "id": "loops-5",
+          "kind": "write",
+          "code": "attempts = 2\n____",
+          "prompt": "Write an augmented assignment that increases attempts by one.",
+          "accepted": [
+            "attempts += 1"
+          ],
+          "explanation": "+= updates the name using its current value.",
+          "hint": "Use the += operator.",
+          "concept": "loops"
+        },
+        {
+          "id": "loops-v4",
+          "kind": "write",
+          "concept": "loops",
+          "code": "retries = ${n}\n____",
+          "prompt": "Increase retries by ${step} using +=.",
+          "explanation": "Augmented assignment updates the existing binding.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 20
+            },
+            "step": {
+              "type": "int",
+              "min": 1,
+              "max": 9
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "retries += ${step}"
+          ]
+        },
+        {
+          "id": "loops-v5",
+          "kind": "write",
+          "concept": "loops",
+          "code": "____",
+          "prompt": "Write a range call with start ${a} and stop ${b}, with no step argument.",
+          "explanation": "The start is included and the stop excluded.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 10
+            },
+            "b": {
+              "type": "int",
+              "min": 20,
+              "max": 40
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "range(${a}, ${b})"
+          ]
+        },
+        {
+          "id": "loops-v7",
+          "kind": "write",
+          "concept": "loops",
+          "code": "names = [\"a\", \"b\"]\nindexed = ____",
+          "prompt": "Call enumerate with names and the keyword start=${n}.",
+          "explanation": "start changes the index assigned to the first item.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 2,
+              "max": 30
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "enumerate(names, start=${n})"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "functions",
+      "section": "Intermediate",
+      "title": "Read function contracts and calls",
+      "intro": "def defines a function; its body runs when called. return supplies a value and exits the call; falling off the end returns None. Defaults apply when arguments are omitted. Keyword arguments bind by name. A parameter after * must be passed by keyword. Local names do not rebind names outside the function.",
+      "sources": [
+        "python",
+        "carpentries"
+      ],
+      "requires": [
+        "loops"
+      ],
+      "questions": [
+        {
+          "id": "functions-v1",
+          "kind": "mcq",
+          "concept": "functions",
+          "code": "def offset(value, amount=${a}):\n    return value + amount\n\nprint(offset(${b}))",
+          "prompt": "What is printed?",
+          "explanation": "The omitted amount uses ${a}; the call returns ${out}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 2,
+              "max": 15
+            },
+            "b": {
+              "type": "int",
+              "min": 20,
+              "max": 50
+            }
+          },
+          "derived": {
+            "out": "a+b"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${a}",
+            "${b}",
+            "None"
+          ]
+        },
+        {
+          "id": "functions-v2",
+          "kind": "mcq",
+          "concept": "functions",
+          "code": "def label(name):\n    print(name)\n\nresult = label(${name_py})",
+          "prompt": "What is result?",
+          "explanation": "A printed message is not the function return value.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "build",
+                "test",
+                "deploy",
+                "format"
+              ]
+            }
+          },
+          "derived": {
+            "name_py": "repr(name)"
+          },
+          "answer": "None",
+          "options": [
+            "None",
+            "${name}",
+            "True",
+            "An empty string"
+          ]
+        },
+        {
+          "id": "functions-v3",
+          "kind": "mcq",
+          "concept": "functions",
+          "code": "value = ${a}\ndef local():\n    value = ${b}\n    return value\n\nlocal()\nprint(value)",
+          "prompt": "What is printed?",
+          "explanation": "The function has a separate local binding; the outer value remains ${a}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 30
+            },
+            "b": {
+              "type": "int",
+              "min": 40,
+              "max": 80
+            }
+          },
+          "derived": {},
+          "answer": "${a}",
+          "options": [
+            "${a}",
+            "${b}",
+            "None",
+            "UnboundLocalError"
+          ]
+        },
+        {
+          "id": "functions-v6",
+          "kind": "mcq",
+          "concept": "functions",
+          "code": "def offset(value, amount=${a}):\n    return value + amount\n\nprint(offset(${b}, amount=${c}))",
+          "prompt": "What is printed?",
+          "explanation": "The explicit amount ${c} overrides the default ${a}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            },
+            "b": {
+              "type": "int",
+              "min": 20,
+              "max": 40
+            },
+            "c": {
+              "type": "int",
+              "min": 10,
+              "max": 19
+            }
+          },
+          "derived": {
+            "out": "b+c",
+            "default": "b+a"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${default}",
+            "${b}",
+            "None"
+          ]
+        },
+        {
+          "id": "functions-1",
+          "kind": "mcq",
+          "code": "def label(name, prefix=\"Hi\"):\n    return prefix + \" \" + name\n\nprint(label(\"Jo\"))",
+          "prompt": "What is printed?",
+          "answer": "Hi Jo",
+          "options": [
+            "Hi Jo",
+            "Jo Hi",
+            "None",
+            "TypeError"
+          ],
+          "explanation": "The omitted prefix uses its default, then return supplies the combined string.",
+          "hint": "Only name is supplied by the caller.",
+          "concept": "functions"
+        },
+        {
+          "id": "functions-2",
+          "kind": "mcq",
+          "code": "def log(message):\n    print(message)\n\nresult = log(\"ready\")",
+          "prompt": "What is result after the call?",
+          "answer": "None",
+          "options": [
+            "None",
+            "ready",
+            "True",
+            "An empty string"
+          ],
+          "explanation": "Printing is a side effect; without return, the function result is None.",
+          "hint": "Output and return values are separate.",
+          "concept": "functions"
+        },
+        {
+          "id": "functions-3",
+          "kind": "mcq",
+          "code": "count = 1\ndef make_count():\n    count = 5\n    return count\n\nmake_count()\nprint(count)",
+          "prompt": "What is printed?",
+          "answer": "1",
+          "options": [
+            "1",
+            "5",
+            "None",
+            "UnboundLocalError"
+          ],
+          "explanation": "The assignment inside the function creates a local count.",
+          "hint": "The returned value is not assigned outside.",
+          "concept": "functions"
+        },
+        {
+          "id": "functions-4",
+          "kind": "mcq",
+          "code": "def connect(host, *, timeout=10):\n    return host, timeout\n\nconnect(\"localhost\", 3)",
+          "prompt": "What happens?",
+          "answer": "TypeError",
+          "options": [
+            "TypeError",
+            "Returns (\"localhost\", 3)",
+            "Returns (\"localhost\", 10)",
+            "SyntaxError"
+          ],
+          "explanation": "timeout is keyword-only because it follows *.",
+          "hint": "Try naming the second argument.",
+          "concept": "functions"
+        },
+        {
+          "id": "functions-5",
+          "kind": "write",
+          "code": "def connect(host, *, timeout=10):\n    return host, timeout\n\n____",
+          "prompt": "Call connect with host \"localhost\" and timeout=3.",
+          "accepted": [
+            "connect(\"localhost\", timeout=3)",
+            "connect(host=\"localhost\", timeout=3)"
+          ],
+          "explanation": "The keyword timeout names the keyword-only argument.",
+          "hint": "The host may be positional; timeout must be named.",
+          "concept": "functions"
+        },
+        {
+          "id": "functions-v4",
+          "kind": "write",
+          "concept": "functions",
+          "code": "def connect(host, *, timeout=10):\n    return host, timeout\n\n____",
+          "prompt": "Call connect with positional host ${host_py} and keyword timeout=${n}.",
+          "explanation": "The parameter after * must be passed by keyword.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "host": {
+              "type": "choice",
+              "values": [
+                "localhost",
+                "db.internal",
+                "cache.local"
+              ]
+            },
+            "n": {
+              "type": "int",
+              "min": 2,
+              "max": 60
+            }
+          },
+          "derived": {
+            "host_py": "repr(host)"
+          },
+          "accepted": [
+            "connect(${host_py}, timeout=${n})"
+          ]
+        },
+        {
+          "id": "functions-v5",
+          "kind": "write",
+          "concept": "functions",
+          "code": "def greet(name):\n    return \"Hi \" + name\n\n____",
+          "prompt": "Call greet with the positional string ${name_py}.",
+          "explanation": "Calling runs the function body with the given argument.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "Ada",
+                "Lin",
+                "Nia",
+                "Jo",
+                "Kai"
+              ]
+            }
+          },
+          "derived": {
+            "name_py": "repr(name)"
+          },
+          "accepted": [
+            "greet(${name_py})"
+          ]
+        },
+        {
+          "id": "functions-v7",
+          "kind": "write",
+          "concept": "functions",
+          "code": "def label(name, prefix=\"Hi\"):\n    return prefix + \" \" + name\n\n____",
+          "prompt": "Call label with positional ${name_py} and keyword prefix=${prefix_py}.",
+          "explanation": "The keyword overrides the function default.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "Ada",
+                "Lin",
+                "Nia"
+              ]
+            },
+            "prefix": {
+              "type": "choice",
+              "values": [
+                "Hello",
+                "Welcome",
+                "Dear"
+              ]
+            }
+          },
+          "derived": {
+            "name_py": "repr(name)",
+            "prefix_py": "repr(prefix)"
+          },
+          "accepted": [
+            "label(${name_py}, prefix=${prefix_py})"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modules",
+      "section": "Intermediate",
+      "title": "Imports and module boundaries",
+      "intro": "import brings a module into the current namespace; as gives it a local alias. from module import name imports a selected name. Importing a module normally runs its top-level code once per interpreter. The __name__ == '__main__' guard runs a block when the file is launched as a script, but not when it is imported. pathlib.Path represents filesystem paths.",
+      "sources": [
+        "python"
+      ],
+      "requires": [
+        "functions"
+      ],
+      "questions": [
+        {
+          "id": "modules-v1",
+          "kind": "mcq",
+          "concept": "modules",
+          "code": "import math as ${alias}\nprint(${alias}.floor(${n}.8))",
+          "prompt": "What is printed?",
+          "explanation": "The alias refers to math; floor rounds ${n}.8 downward to ${n}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "alias": {
+              "type": "choice",
+              "values": [
+                "m",
+                "maths",
+                "numeric"
+              ]
+            },
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 80
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "${n}.8",
+            "NameError"
+          ]
+        },
+        {
+          "id": "modules-v2",
+          "kind": "mcq",
+          "concept": "modules",
+          "code": "# file: helper.py\nprint(${word_py})\nif __name__ == \"__main__\":\n    print(\"script\")",
+          "prompt": "What prints on the first import of helper?",
+          "explanation": "Import runs the top-level print but not the guarded script block.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "loaded",
+                "imported",
+                "initialized",
+                "registered"
+              ]
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)",
+            "both": "word+\" then script\""
+          },
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "script",
+            "Nothing",
+            "${both}"
+          ]
+        },
+        {
+          "id": "modules-v3",
+          "kind": "mcq",
+          "concept": "modules",
+          "code": "from pathlib import Path\np = Path(${folder_py}) / ${file_py}",
+          "prompt": "What has this code done?",
+          "explanation": "Path construction joins components without creating or opening the file.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "folder": {
+              "type": "choice",
+              "values": [
+                "logs",
+                "reports",
+                "data"
+              ]
+            },
+            "file": {
+              "type": "choice",
+              "values": [
+                "today.txt",
+                "result.csv",
+                "notes.md"
+              ]
+            }
+          },
+          "derived": {
+            "folder_py": "repr(folder)",
+            "file_py": "repr(file)"
+          },
+          "answer": "Constructed a path object",
+          "options": [
+            "Constructed a path object",
+            "Created the file",
+            "Read the file contents",
+            "Divided numbers"
+          ]
+        },
+        {
+          "id": "modules-v6",
+          "kind": "mcq",
+          "concept": "modules",
+          "code": "from math import ceil\nprint(ceil(${n}.2))",
+          "prompt": "What is printed?",
+          "explanation": "ceil rounds upward to the next integer.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 90
+            }
+          },
+          "derived": {
+            "out": "n+1"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${n}",
+            "${n}.2",
+            "NameError"
+          ]
+        },
+        {
+          "id": "modules-1",
+          "kind": "mcq",
+          "code": "import math as m\nprint(m.floor(3.8))",
+          "prompt": "What is printed?",
+          "answer": "3",
+          "options": [
+            "3",
+            "4",
+            "3.8",
+            "NameError"
+          ],
+          "explanation": "m is the local alias for math, and floor rounds downward.",
+          "hint": "The alias points to the same imported module.",
+          "concept": "modules"
+        },
+        {
+          "id": "modules-2",
+          "kind": "mcq",
+          "code": "from math import ceil\nprint(ceil(2.1))",
+          "prompt": "Which name was directly imported?",
+          "answer": "ceil",
+          "options": [
+            "ceil",
+            "math",
+            "print",
+            "2.1"
+          ],
+          "explanation": "The from form binds ceil in this namespace.",
+          "hint": "Read the name after import.",
+          "concept": "modules"
+        },
+        {
+          "id": "modules-3",
+          "kind": "mcq",
+          "code": "# file: report.py\nprint(\"loaded\")\nif __name__ == \"__main__\":\n    print(\"running\")",
+          "prompt": "On the first import of report in a fresh interpreter, what is printed?",
+          "answer": "loaded",
+          "options": [
+            "loaded",
+            "running",
+            "loaded then running",
+            "Nothing"
+          ],
+          "explanation": "Top-level print runs on import; the guarded block does not.",
+          "hint": "On import, __name__ is report.",
+          "concept": "modules"
+        },
+        {
+          "id": "modules-4",
+          "kind": "mcq",
+          "code": "from pathlib import Path\np = Path(\"logs\") / \"today.txt\"",
+          "prompt": "What does / do here?",
+          "answer": "Builds a child path",
+          "options": [
+            "Builds a child path",
+            "Divides two numbers",
+            "Creates the file immediately",
+            "Reads the file"
+          ],
+          "explanation": "Path overloads / to join path components; constructing a path does not create a file.",
+          "hint": "Operators can have type-specific meanings.",
+          "concept": "modules"
+        },
+        {
+          "id": "modules-5",
+          "kind": "write",
+          "code": "import math as m\nvalue = ____",
+          "prompt": "Call floor through the alias m on the value 6.9.",
+          "accepted": [
+            "m.floor(6.9)"
+          ],
+          "explanation": "Attribute lookup through m selects the imported function.",
+          "hint": "Use module_alias.function(value).",
+          "concept": "modules"
+        },
+        {
+          "id": "modules-v4",
+          "kind": "write",
+          "concept": "modules",
+          "code": "import math as ${alias}\nvalue = ____",
+          "prompt": "Call floor through ${alias} on ${n}.6.",
+          "explanation": "Use the alias followed by the function attribute.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "alias": {
+              "type": "choice",
+              "values": [
+                "m",
+                "maths",
+                "numeric"
+              ]
+            },
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 90
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "${alias}.floor(${n}.6)"
+          ]
+        },
+        {
+          "id": "modules-v5",
+          "kind": "write",
+          "concept": "modules",
+          "code": "from pathlib import Path\npath = ____",
+          "prompt": "Join Path(${folder_py}) and ${file_py} using /.",
+          "explanation": "Path overloads / to join components.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "folder": {
+              "type": "choice",
+              "values": [
+                "logs",
+                "data",
+                "reports"
+              ]
+            },
+            "file": {
+              "type": "choice",
+              "values": [
+                "app.log",
+                "daily.csv",
+                "run.txt"
+              ]
+            }
+          },
+          "derived": {
+            "folder_py": "repr(folder)",
+            "file_py": "repr(file)"
+          },
+          "accepted": [
+            "Path(${folder_py}) / ${file_py}"
+          ]
+        },
+        {
+          "id": "modules-v7",
+          "kind": "write",
+          "concept": "modules",
+          "code": "____",
+          "prompt": "Import math with the alias ${alias}.",
+          "explanation": "as chooses a local alias for the imported module.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "alias": {
+              "type": "choice",
+              "values": [
+                "m",
+                "maths",
+                "numeric"
+              ]
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "import math as ${alias}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "errors",
+      "section": "Intermediate",
+      "title": "Exceptions and resource cleanup",
+      "intro": "try encloses work that may fail; except handles matching exceptions. An exception skips the remaining statements in the try block. finally runs during normal exit or exception propagation. A with block delegates cleanup to a context manager; with open(...) closes the file when leaving the block. Catch the exception you expect rather than hiding every error. ValueError(message) constructs an exception object; raising it is a separate action. ValueError(message) constructs an exception object; raising it is a separate action.",
+      "sources": [
+        "python"
+      ],
+      "requires": [
+        "modules"
+      ],
+      "questions": [
+        {
+          "id": "errors-v1",
+          "kind": "mcq",
+          "concept": "errors",
+          "code": "try:\n    n = int(${bad_py})\nexcept ValueError:\n    n = ${fallback}\nprint(n)",
+          "prompt": "What is printed?",
+          "explanation": "Invalid integer text raises ValueError; the handler supplies ${fallback}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "bad": {
+              "type": "choice",
+              "values": [
+                "oops",
+                "invalid",
+                "unknown",
+                "many"
+              ]
+            },
+            "fallback": {
+              "type": "int",
+              "min": 1,
+              "max": 50
+            }
+          },
+          "derived": {
+            "bad_py": "repr(bad)"
+          },
+          "answer": "${fallback}",
+          "options": [
+            "${fallback}",
+            "ValueError",
+            "None",
+            "${bad}"
+          ]
+        },
+        {
+          "id": "errors-v2",
+          "kind": "mcq",
+          "concept": "errors",
+          "code": "try:\n    int(${bad_py})\n    print(\"ok\")\nexcept ValueError:\n    print(${message_py})",
+          "prompt": "What is printed?",
+          "explanation": "The failed conversion skips the rest of try and enters the handler.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "bad": {
+              "type": "choice",
+              "values": [
+                "missing",
+                "bad",
+                "none"
+              ]
+            },
+            "message": {
+              "type": "choice",
+              "values": [
+                "retry",
+                "rejected",
+                "invalid input"
+              ]
+            }
+          },
+          "derived": {
+            "bad_py": "repr(bad)",
+            "message_py": "repr(message)"
+          },
+          "answer": "${message}",
+          "options": [
+            "${message}",
+            "ok",
+            "ok then ${message}",
+            "Nothing"
+          ]
+        },
+        {
+          "id": "errors-v3",
+          "kind": "mcq",
+          "concept": "errors",
+          "code": "with open(${file_py}, encoding=\"utf-8\") as f:\n    text = f.read()\nprint(f.closed)",
+          "prompt": "Assume the file exists and is readable. What is printed?",
+          "explanation": "Leaving the with block closes the file even though f remains bound.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "file": {
+              "type": "choice",
+              "values": [
+                "notes.txt",
+                "config.txt",
+                "events.log"
+              ]
+            }
+          },
+          "derived": {
+            "file_py": "repr(file)"
+          },
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None",
+            "NameError"
+          ]
+        },
+        {
+          "id": "errors-v6",
+          "kind": "mcq",
+          "concept": "errors",
+          "code": "try:\n    print(${work_py})\nfinally:\n    print(${clean_py})",
+          "prompt": "Which lines are printed?",
+          "explanation": "finally runs even when no exception occurs.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "work": {
+              "type": "choice",
+              "values": [
+                "running",
+                "processing",
+                "working"
+              ]
+            },
+            "clean": {
+              "type": "choice",
+              "values": [
+                "closed",
+                "cleaned",
+                "released"
+              ]
+            }
+          },
+          "derived": {
+            "work_py": "repr(work)",
+            "clean_py": "repr(clean)"
+          },
+          "answer": "${work} then ${clean}",
+          "options": [
+            "${work} then ${clean}",
+            "${work}",
+            "${clean}",
+            "SyntaxError"
+          ]
+        },
+        {
+          "id": "errors-1",
+          "kind": "mcq",
+          "code": "try:\n    count = int(\"oops\")\nexcept ValueError:\n    count = 0\nprint(count)",
+          "prompt": "What is printed?",
+          "answer": "0",
+          "options": [
+            "0",
+            "oops",
+            "None",
+            "An uncaught ValueError"
+          ],
+          "explanation": "int raises ValueError and the matching handler supplies the fallback.",
+          "hint": "Trace control flow into the handler.",
+          "concept": "errors"
+        },
+        {
+          "id": "errors-2",
+          "kind": "mcq",
+          "code": "try:\n    int(\"x\")\n    print(\"converted\")\nexcept ValueError:\n    print(\"bad input\")",
+          "prompt": "What is printed?",
+          "answer": "bad input",
+          "options": [
+            "bad input",
+            "converted",
+            "converted then bad input",
+            "Nothing"
+          ],
+          "explanation": "The exception skips the rest of the try block.",
+          "hint": "Execution does not resume at the failed statement.",
+          "concept": "errors"
+        },
+        {
+          "id": "errors-3",
+          "kind": "mcq",
+          "code": "try:\n    print(\"work\")\nfinally:\n    print(\"cleanup\")",
+          "prompt": "Which lines are printed?",
+          "answer": "work then cleanup",
+          "options": [
+            "work then cleanup",
+            "work",
+            "cleanup",
+            "SyntaxError"
+          ],
+          "explanation": "finally also runs when no exception occurs.",
+          "hint": "Cleanup is not restricted to errors.",
+          "concept": "errors"
+        },
+        {
+          "id": "errors-4",
+          "kind": "mcq",
+          "code": "with open(\"notes.txt\", encoding=\"utf-8\") as handle:\n    text = handle.read()\nprint(handle.closed)",
+          "prompt": "Assume the file exists and is readable. What is printed?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "The file contents",
+            "NameError"
+          ],
+          "explanation": "The file context manager closes the handle when the block exits.",
+          "hint": "The name survives, but the resource is closed.",
+          "concept": "errors"
+        },
+        {
+          "id": "errors-5",
+          "kind": "write",
+          "code": "raw = \"17\"\nnumber = ____",
+          "prompt": "Fill the blank with an int conversion of raw (which may raise ValueError).",
+          "accepted": [
+            "int(raw)"
+          ],
+          "explanation": "int(raw) attempts the conversion; callers can catch ValueError for invalid input.",
+          "hint": "Use the same conversion function as in the examples.",
+          "concept": "errors"
+        },
+        {
+          "id": "errors-v4",
+          "kind": "write",
+          "concept": "errors",
+          "code": "raw = ${raw}\nnumber = ____",
+          "prompt": "Convert raw with int().",
+          "explanation": "int parses numeric strings and raises ValueError for invalid integer text.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 999
+            }
+          },
+          "derived": {
+            "raw": "repr(str(n))"
+          },
+          "accepted": [
+            "int(raw)"
+          ]
+        },
+        {
+          "id": "errors-v5",
+          "kind": "write",
+          "concept": "errors",
+          "code": "____",
+          "prompt": "Construct a ValueError with message ${message_py}; do not raise it.",
+          "explanation": "This creates an exception object; raising is a separate operation.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "message": {
+              "type": "choice",
+              "values": [
+                "invalid port",
+                "missing name",
+                "bad timeout"
+              ]
+            }
+          },
+          "derived": {
+            "message_py": "repr(message)"
+          },
+          "accepted": [
+            "ValueError(${message_py})"
+          ]
+        },
+        {
+          "id": "errors-v7",
+          "kind": "write",
+          "concept": "errors",
+          "code": "____",
+          "prompt": "Construct a ValueError with the integer ${n} as its argument. Do not raise it.",
+          "explanation": "An exception can carry this value as its argument.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "ValueError(${n})"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mutation",
+      "section": "Advanced",
+      "title": "Aliasing and Python gotchas",
+      "intro": "Two names can refer to the same mutable object. Mutating through either name affects that object; rebinding a name is different. list.copy() makes a shallow copy, so nested objects may remain shared. A default argument is evaluated once when def runs: a mutable default can accidentally retain state across calls. Use None and create the container inside instead.",
+      "sources": [
+        "python"
+      ],
+      "requires": [
+        "errors"
+      ],
+      "questions": [
+        {
+          "id": "mutation-v1",
+          "kind": "mcq",
+          "concept": "mutation",
+          "code": "a = [${x}]\nb = a\nb.append(${y})\nprint(a)",
+          "prompt": "What is printed?",
+          "explanation": "Both names refer to the same mutable list, now ${out}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "x": {
+              "type": "int",
+              "min": 1,
+              "max": 30
+            },
+            "y": {
+              "type": "int",
+              "min": 40,
+              "max": 90
+            }
+          },
+          "derived": {
+            "out": "str([x,y])",
+            "original": "str([x])",
+            "other": "str([y])"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${original}",
+            "${other}",
+            "None"
+          ]
+        },
+        {
+          "id": "mutation-v2",
+          "kind": "mcq",
+          "concept": "mutation",
+          "code": "rows = [[${x}]]\ncopy = rows.copy()\ncopy[0].append(${y})\nprint(rows[0])",
+          "prompt": "What is printed?",
+          "explanation": "The outer list was copied, but its nested list is shared.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "x": {
+              "type": "int",
+              "min": 1,
+              "max": 30
+            },
+            "y": {
+              "type": "int",
+              "min": 40,
+              "max": 90
+            }
+          },
+          "derived": {
+            "out": "str([x,y])",
+            "original": "str([x])",
+            "other": "str([y])"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${original}",
+            "${other}",
+            "TypeError"
+          ]
+        },
+        {
+          "id": "mutation-v3",
+          "kind": "mcq",
+          "concept": "mutation",
+          "code": "def remember(x, seen=[]):\n    seen.append(x)\n    return len(seen)\n\nremember(${first_py})\nprint(remember(${second_py}))",
+          "prompt": "What is printed?",
+          "explanation": "The default list is shared between these two calls.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "first": {
+              "type": "choice",
+              "values": [
+                "alpha",
+                "build",
+                "start"
+              ]
+            },
+            "second": {
+              "type": "choice",
+              "values": [
+                "beta",
+                "test",
+                "finish"
+              ]
+            }
+          },
+          "derived": {
+            "first_py": "repr(first)",
+            "second_py": "repr(second)"
+          },
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0",
+            "None"
+          ]
+        },
+        {
+          "id": "mutation-v6",
+          "kind": "mcq",
+          "concept": "mutation",
+          "code": "a = [${a}]\nb = a\nb = [${b}]\nprint(a)",
+          "prompt": "What is printed?",
+          "explanation": "Rebinding b leaves a attached to its original list.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 30
+            },
+            "b": {
+              "type": "int",
+              "min": 40,
+              "max": 90
+            }
+          },
+          "derived": {
+            "out": "str([a])",
+            "other": "str([b])",
+            "both": "str([a,b])"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${other}",
+            "${both}",
+            "None"
+          ]
+        },
+        {
+          "id": "mutation-1",
+          "kind": "mcq",
+          "code": "original = [\"draft\"]\nalias = original\nalias.append(\"done\")\nprint(len(original))",
+          "prompt": "What is printed?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0",
+            "TypeError"
+          ],
+          "explanation": "Both names refer to the same list; append mutates that shared object.",
+          "hint": "No copy was made.",
+          "concept": "mutation"
+        },
+        {
+          "id": "mutation-2",
+          "kind": "mcq",
+          "code": "original = [\"draft\"]\nalias = original\nalias = [\"done\", \"sent\"]\nprint(len(original))",
+          "prompt": "What is printed?",
+          "answer": "1",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "0"
+          ],
+          "explanation": "Rebinding alias to a new list leaves original referring to the old list.",
+          "hint": "Assignment changes the binding, not the old list.",
+          "concept": "mutation"
+        },
+        {
+          "id": "mutation-3",
+          "kind": "mcq",
+          "code": "rows = [[1], [2]]\ncopy = rows.copy()\ncopy[0].append(9)\nprint(rows[0])",
+          "prompt": "What is printed?",
+          "answer": "[1, 9]",
+          "options": [
+            "[1, 9]",
+            "[1]",
+            "[9]",
+            "[[1], [2]]"
+          ],
+          "explanation": "A shallow copy creates a new outer list but shares its nested lists.",
+          "hint": "Which objects were actually copied?",
+          "concept": "mutation"
+        },
+        {
+          "id": "mutation-4",
+          "kind": "mcq",
+          "code": "def remember(item, seen=[]):\n    seen.append(item)\n    return len(seen)\n\nremember(\"a\")\nprint(remember(\"b\"))",
+          "prompt": "What is printed?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0",
+            "TypeError"
+          ],
+          "explanation": "The default list is created once and reused by both calls.",
+          "hint": "Default expressions run at definition time.",
+          "concept": "mutation"
+        },
+        {
+          "id": "mutation-5",
+          "kind": "write",
+          "code": "items = [\"a\", \"b\"]\nindependent = ____",
+          "prompt": "Make a shallow copy of items using its copy method.",
+          "accepted": [
+            "items.copy()"
+          ],
+          "explanation": "copy creates a distinct outer list with the same elements.",
+          "hint": "Call the list method without arguments.",
+          "concept": "mutation"
+        },
+        {
+          "id": "mutation-v4",
+          "kind": "write",
+          "concept": "mutation",
+          "code": "${name} = [${n}]\nindependent = ____",
+          "prompt": "Call copy() on ${name}.",
+          "explanation": "This creates a separate outer list.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "items",
+                "jobs",
+                "values"
+              ]
+            },
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "${name}.copy()"
+          ]
+        },
+        {
+          "id": "mutation-v5",
+          "kind": "write",
+          "concept": "mutation",
+          "code": "items = [1, 2]\n____",
+          "prompt": "Rebind items to a new one-element list containing ${n}.",
+          "explanation": "Rebinding changes the name; it does not mutate the previous list.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "items = [${n}]"
+          ]
+        },
+        {
+          "id": "mutation-v7",
+          "kind": "write",
+          "concept": "mutation",
+          "code": "items = [1, 2]\n____",
+          "prompt": "Mutate the first element of items to ${n} using indexing.",
+          "explanation": "Index assignment changes the existing list.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "items[0] = ${n}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "classes",
+      "section": "Advanced",
+      "title": "Objects, attributes, and dataclasses",
+      "intro": "A class defines a type. Calling it constructs an instance; __init__ initializes that instance. self refers to the instance receiving a method call. Attributes assigned on self belong to that instance. @dataclass can generate an initializer from annotated fields. Type annotations document expected types but do not automatically validate values at runtime. A method can mutate instance state.",
+      "sources": [
+        "python"
+      ],
+      "requires": [
+        "mutation"
+      ],
+      "questions": [
+        {
+          "id": "classes-v1",
+          "kind": "mcq",
+          "concept": "classes",
+          "code": "class Job:\n    def __init__(self, name):\n        self.name = name\n\njob = Job(${name_py})\nprint(job.name)",
+          "prompt": "What is printed?",
+          "explanation": "The initializer stores the supplied string on this instance.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "lint",
+                "format",
+                "compile",
+                "publish",
+                "package"
+              ]
+            }
+          },
+          "derived": {
+            "name_py": "repr(name)"
+          },
+          "answer": "${name}",
+          "options": [
+            "${name}",
+            "name",
+            "Job",
+            "None"
+          ]
+        },
+        {
+          "id": "classes-v2",
+          "kind": "mcq",
+          "concept": "classes",
+          "code": "from dataclasses import dataclass\n@dataclass\nclass Config:\n    port: int = ${port}\n\nprint(Config().port)",
+          "prompt": "What is printed?",
+          "explanation": "The generated initializer uses the field default ${port}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "port": {
+              "type": "int",
+              "min": 8000,
+              "max": 9000
+            }
+          },
+          "derived": {},
+          "answer": "${port}",
+          "options": [
+            "${port}",
+            "int",
+            "None",
+            "TypeError"
+          ]
+        },
+        {
+          "id": "classes-v3",
+          "kind": "mcq",
+          "concept": "classes",
+          "code": "def stringify(value: int) -> str:\n    return str(value)\n\nprint(stringify(${word_py}))",
+          "prompt": "Without a runtime type checker, what happens?",
+          "explanation": "Annotations do not automatically reject the string; str returns its text.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "many",
+                "unknown",
+                "none",
+                "several"
+              ]
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)"
+          },
+          "answer": "Displays ${word}",
+          "options": [
+            "Displays ${word}",
+            "TypeError",
+            "SyntaxError",
+            "Displays int"
+          ]
+        },
+        {
+          "id": "classes-v6",
+          "kind": "mcq",
+          "concept": "classes",
+          "code": "class Job:\n    def __init__(self, name):\n        self.name = name\n\na = Job(${a_py})\nb = Job(${b_py})\na.name = \"changed\"\nprint(b.name)",
+          "prompt": "What is printed?",
+          "explanation": "These are separate instances with separate name attributes.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "choice",
+              "values": [
+                "build",
+                "compile",
+                "lint"
+              ]
+            },
+            "b": {
+              "type": "choice",
+              "values": [
+                "test",
+                "deploy",
+                "package"
+              ]
+            }
+          },
+          "derived": {
+            "a_py": "repr(a)",
+            "b_py": "repr(b)"
+          },
+          "answer": "${b}",
+          "options": [
+            "${b}",
+            "${a}",
+            "changed",
+            "None"
+          ]
+        },
+        {
+          "id": "classes-1",
+          "kind": "mcq",
+          "code": "class Job:\n    def __init__(self, name):\n        self.name = name\n\na = Job(\"build\")\nprint(a.name)",
+          "prompt": "What is printed?",
+          "answer": "build",
+          "options": [
+            "build",
+            "name",
+            "Job",
+            "None"
+          ],
+          "explanation": "Construction calls __init__, which stores name on the new instance.",
+          "hint": "Follow the assignment to self.name.",
+          "concept": "classes"
+        },
+        {
+          "id": "classes-2",
+          "kind": "mcq",
+          "code": "class Counter:\n    def __init__(self):\n        self.value = 0\n    def tick(self):\n        self.value += 1\n\na = Counter()\nb = Counter()\na.tick()\nprint(b.value)",
+          "prompt": "What is printed?",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "AttributeError"
+          ],
+          "explanation": "Each instance has its own value attribute; only a is changed.",
+          "hint": "self refers to the receiver of the call.",
+          "concept": "classes"
+        },
+        {
+          "id": "classes-3",
+          "kind": "mcq",
+          "code": "from dataclasses import dataclass\n\n@dataclass\nclass Config:\n    port: int = 8000\n\nprint(Config().port)",
+          "prompt": "What is printed?",
+          "answer": "8000",
+          "options": [
+            "8000",
+            "int",
+            "None",
+            "TypeError"
+          ],
+          "explanation": "The dataclass-generated initializer applies the field default.",
+          "hint": "The annotation and the default serve different purposes.",
+          "concept": "classes"
+        },
+        {
+          "id": "classes-4",
+          "kind": "mcq",
+          "code": "def label(count: int) -> str:\n    return str(count)\n\nprint(label(\"many\"))",
+          "prompt": "What happens in standard Python without a runtime type checker?",
+          "answer": "Displays many",
+          "options": [
+            "Displays many",
+            "TypeError because of the annotation",
+            "SyntaxError",
+            "Displays int"
+          ],
+          "explanation": "Annotations do not enforce types automatically; str accepts the string.",
+          "hint": "Runtime enforcement would require extra code or tooling.",
+          "concept": "classes"
+        },
+        {
+          "id": "classes-5",
+          "kind": "write",
+          "code": "class Job:\n    def __init__(self, name):\n        self.name = name\n\njob = ____",
+          "prompt": "Construct a Job with the name \"test\".",
+          "accepted": [
+            "Job(\"test\")",
+            "Job(name=\"test\")"
+          ],
+          "explanation": "Calling the class creates and initializes an instance.",
+          "hint": "Use the class name as the callable.",
+          "concept": "classes"
+        },
+        {
+          "id": "classes-v4",
+          "kind": "write",
+          "concept": "classes",
+          "code": "class Job:\n    def __init__(self, name):\n        self.name = name\n\njob = ____",
+          "prompt": "Construct Job with positional string ${name_py}.",
+          "explanation": "Calling the class constructs an instance.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "test",
+                "build",
+                "deploy",
+                "lint"
+              ]
+            }
+          },
+          "derived": {
+            "name_py": "repr(name)"
+          },
+          "accepted": [
+            "Job(${name_py})"
+          ]
+        },
+        {
+          "id": "classes-v5",
+          "kind": "write",
+          "concept": "classes",
+          "code": "job = Job(\"initial\")\n____",
+          "prompt": "Assign ${name_py} to job.name.",
+          "explanation": "Attribute assignment changes this instance.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "queued",
+                "running",
+                "done",
+                "failed"
+              ]
+            }
+          },
+          "derived": {
+            "name_py": "repr(name)"
+          },
+          "accepted": [
+            "job.name = ${name_py}"
+          ]
+        },
+        {
+          "id": "classes-v7",
+          "kind": "write",
+          "concept": "classes",
+          "code": "job = Job(${name_py})\nlabel = ____",
+          "prompt": "Read the name attribute of job.",
+          "explanation": "Attribute lookup reads the instance value.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "compile",
+                "test",
+                "lint"
+              ]
+            }
+          },
+          "derived": {
+            "name_py": "repr(name)"
+          },
+          "accepted": [
+            "job.name"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "iteration",
+      "section": "Advanced",
+      "title": "Comprehensions and lazy iteration",
+      "intro": "A comprehension places the result expression before for and an optional filter after it. A generator expression uses parentheses and produces values on demand. next consumes one value; exhausting a generator leaves no remaining values. A function containing yield returns a generator and pauses at each yield. zip pairs items and stops at the shortest input.",
+      "sources": [
+        "python"
+      ],
+      "requires": [
+        "classes"
+      ],
+      "questions": [
+        {
+          "id": "iteration-v1",
+          "kind": "mcq",
+          "concept": "iteration",
+          "code": "g = (n * ${factor} for n in [${a}, ${b}])\nprint(next(g))",
+          "prompt": "What is printed?",
+          "explanation": "The first next consumes only the first value, ${a} times ${factor}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "factor": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            },
+            "a": {
+              "type": "int",
+              "min": 2,
+              "max": 15
+            },
+            "b": {
+              "type": "int",
+              "min": 20,
+              "max": 40
+            }
+          },
+          "derived": {
+            "out": "a*factor",
+            "second": "b*factor"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${second}",
+            "${a}",
+            "${b}"
+          ]
+        },
+        {
+          "id": "iteration-v2",
+          "kind": "mcq",
+          "concept": "iteration",
+          "code": "g = (n for n in [${a}, ${b}])\nlist(g)\nprint(list(g))",
+          "prompt": "What is printed?",
+          "explanation": "The first traversal exhausted this generator.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 30
+            },
+            "b": {
+              "type": "int",
+              "min": 40,
+              "max": 90
+            }
+          },
+          "derived": {
+            "values": "str([a,b])",
+            "last": "str([b])"
+          },
+          "answer": "[]",
+          "options": [
+            "[]",
+            "${values}",
+            "${last}",
+            "StopIteration"
+          ]
+        },
+        {
+          "id": "iteration-v3",
+          "kind": "mcq",
+          "concept": "iteration",
+          "code": "names = [${first_py}, ${second_py}]\nlabels = [name.upper() for name in names]\nprint(labels[1])",
+          "prompt": "What is printed?",
+          "explanation": "The comprehension uppercases both items; index 1 selects the second.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "first": {
+              "type": "choice",
+              "values": [
+                "ada",
+                "lin",
+                "nia"
+              ]
+            },
+            "second": {
+              "type": "choice",
+              "values": [
+                "kai",
+                "jo",
+                "sam"
+              ]
+            }
+          },
+          "derived": {
+            "first_py": "repr(first)",
+            "second_py": "repr(second)",
+            "out": "upper(second)",
+            "wrong": "upper(first)"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${second}",
+            "${wrong}",
+            "IndexError"
+          ]
+        },
+        {
+          "id": "iteration-v6",
+          "kind": "mcq",
+          "concept": "iteration",
+          "code": "pairs = list(zip([${a_py}, ${b_py}], [${n}]))\nprint(len(pairs))",
+          "prompt": "What is printed?",
+          "explanation": "zip stops at its shortest input, so there is one pair.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "choice",
+              "values": [
+                "a",
+                "first",
+                "left"
+              ]
+            },
+            "b": {
+              "type": "choice",
+              "values": [
+                "b",
+                "second",
+                "right"
+              ]
+            },
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 90
+            }
+          },
+          "derived": {
+            "a_py": "repr(a)",
+            "b_py": "repr(b)"
+          },
+          "answer": "1",
+          "options": [
+            "1",
+            "2",
+            "${n}",
+            "ValueError"
+          ]
+        },
+        {
+          "id": "iteration-1",
+          "kind": "mcq",
+          "code": "names = [\"a.py\", \"b.txt\", \"c.py\"]\npython_files = [n for n in names if n.endswith(\".py\")]",
+          "prompt": "What does python_files contain?",
+          "answer": "[\"a.py\", \"c.py\"]",
+          "options": [
+            "[\"a.py\", \"c.py\"]",
+            "[\"b.txt\"]",
+            "[True, False, True]",
+            "All three names"
+          ],
+          "explanation": "The expression n retains each name for which the suffix condition is true.",
+          "hint": "The condition filters; it is not the produced value.",
+          "concept": "iteration"
+        },
+        {
+          "id": "iteration-2",
+          "kind": "mcq",
+          "code": "g = (n * 2 for n in [3, 4])\nprint(next(g))",
+          "prompt": "What is printed?",
+          "answer": "6",
+          "options": [
+            "6",
+            "8",
+            "[6, 8]",
+            "3"
+          ],
+          "explanation": "next asks for the first generated value, 3 times 2.",
+          "hint": "Only one item is consumed.",
+          "concept": "iteration"
+        },
+        {
+          "id": "iteration-3",
+          "kind": "mcq",
+          "code": "g = (n for n in [1, 2])\nlist(g)\nprint(list(g))",
+          "prompt": "What is printed?",
+          "answer": "[]",
+          "options": [
+            "[]",
+            "[1, 2]",
+            "[2]",
+            "StopIteration"
+          ],
+          "explanation": "The first list call exhausts g; a second traversal has no items.",
+          "hint": "A generator is not a reusable list.",
+          "concept": "iteration"
+        },
+        {
+          "id": "iteration-4",
+          "kind": "mcq",
+          "code": "pairs = list(zip([\"a\", \"b\"], [10]))",
+          "prompt": "What is pairs?",
+          "answer": "[(\"a\", 10)]",
+          "options": [
+            "[(\"a\", 10)]",
+            "[(\"a\", 10), (\"b\", None)]",
+            "[(\"a\", \"b\", 10)]",
+            "ValueError"
+          ],
+          "explanation": "zip stops when its shortest input is exhausted.",
+          "hint": "There is no default padding.",
+          "concept": "iteration"
+        },
+        {
+          "id": "iteration-5",
+          "kind": "write",
+          "code": "names = [\"ada\", \"lin\"]\nlabels = ____",
+          "prompt": "Write a list comprehension using n to uppercase each name.",
+          "accepted": [
+            "[n.upper() for n in names]"
+          ],
+          "explanation": "The result expression n.upper() appears before the iteration clause.",
+          "hint": "Use [expression for n in names].",
+          "concept": "iteration"
+        },
+        {
+          "id": "iteration-v4",
+          "kind": "write",
+          "concept": "iteration",
+          "code": "values = [1, 2, 3]\nscaled = ____",
+          "prompt": "Use a list comprehension with n to multiply each value by ${factor}.",
+          "explanation": "The result expression goes before the for clause.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "factor": {
+              "type": "int",
+              "min": 2,
+              "max": 12
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "[n * ${factor} for n in values]"
+          ]
+        },
+        {
+          "id": "iteration-v5",
+          "kind": "write",
+          "concept": "iteration",
+          "code": "values = [1, 2, 3]\ng = ____",
+          "prompt": "Use a generator expression with n to add ${offset} to each value.",
+          "explanation": "Parentheses form a lazy generator expression.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "offset": {
+              "type": "int",
+              "min": 1,
+              "max": 20
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "(n + ${offset} for n in values)"
+          ]
+        },
+        {
+          "id": "iteration-v7",
+          "kind": "write",
+          "concept": "iteration",
+          "code": "g = (n for n in [${a}, ${b}])\nfirst = ____",
+          "prompt": "Consume one value from g with next().",
+          "explanation": "next advances the generator by one value.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 30
+            },
+            "b": {
+              "type": "int",
+              "min": 40,
+              "max": 90
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "next(g)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decorators",
+      "section": "Advanced",
+      "title": "Wrappers and asynchronous calls",
+      "intro": "Functions are values that can be passed to other functions. @decorate replaces the defined function with decorate(function). A wrapper often accepts *args and **kwargs to forward positional and keyword arguments. async def defines a coroutine function; calling it produces a coroutine object without running its body. await drives an awaitable within async code. asyncio.run is a usual script entry point.",
+      "sources": [
+        "python"
+      ],
+      "requires": [
+        "iteration"
+      ],
+      "questions": [
+        {
+          "id": "decorators-v1",
+          "kind": "mcq",
+          "concept": "decorators",
+          "code": "def scale(fn):\n    def wrapped():\n        return fn() * ${factor}\n    return wrapped\n\n@scale\ndef size():\n    return ${n}\n\nprint(size())",
+          "prompt": "What is printed?",
+          "explanation": "The wrapper multiplies the original result ${n} by ${factor}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "factor": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            },
+            "n": {
+              "type": "int",
+              "min": 10,
+              "max": 30
+            }
+          },
+          "derived": {
+            "out": "factor*n"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${n}",
+            "${factor}",
+            "None"
+          ]
+        },
+        {
+          "id": "decorators-v2",
+          "kind": "mcq",
+          "concept": "decorators",
+          "code": "async def fetch():\n    return ${word_py}\n\nresult = fetch()",
+          "prompt": "Before awaiting, what is result?",
+          "explanation": "Calling async def creates a coroutine; it does not yet return the body result.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "ready",
+                "done",
+                "loaded",
+                "fetched"
+              ]
+            }
+          },
+          "derived": {
+            "word_py": "repr(word)"
+          },
+          "answer": "A coroutine object",
+          "options": [
+            "A coroutine object",
+            "The string ${word}",
+            "A running thread",
+            "None"
+          ]
+        },
+        {
+          "id": "decorators-v3",
+          "kind": "mcq",
+          "concept": "decorators",
+          "code": "import asyncio\nasync def main():\n    return ${n}\n\nprint(asyncio.run(main()))",
+          "prompt": "In a normal script with no running event loop, what is printed?",
+          "explanation": "The runner drives the coroutine and returns its result ${n}.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 2,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "None",
+            "A coroutine object",
+            "True"
+          ]
+        },
+        {
+          "id": "decorators-v6",
+          "kind": "mcq",
+          "concept": "decorators",
+          "code": "def forward(fn, *${args}, **${kwargs}):\n    return fn(*${args}, **${kwargs})",
+          "prompt": "What does the function do?",
+          "explanation": "Stars collect arguments in the signature and unpack them at the call.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "args": {
+              "type": "choice",
+              "values": [
+                "args",
+                "positional",
+                "values"
+              ]
+            },
+            "kwargs": {
+              "type": "choice",
+              "values": [
+                "kwargs",
+                "named",
+                "options"
+              ]
+            }
+          },
+          "derived": {},
+          "answer": "Forwards positional and keyword arguments",
+          "options": [
+            "Forwards positional and keyword arguments",
+            "Calls fn once per argument",
+            "Converts arguments to strings",
+            "Drops named arguments"
+          ]
+        },
+        {
+          "id": "decorators-1",
+          "kind": "mcq",
+          "code": "def twice(fn):\n    def wrapped():\n        return fn() * 2\n    return wrapped\n\n@twice\ndef size():\n    return 3\n\nprint(size())",
+          "prompt": "What is printed?",
+          "answer": "6",
+          "options": [
+            "6",
+            "3",
+            "9",
+            "None"
+          ],
+          "explanation": "The decorator replaces size with wrapped; wrapped doubles the original return value.",
+          "hint": "The replacement is what later calls invoke.",
+          "concept": "decorators"
+        },
+        {
+          "id": "decorators-2",
+          "kind": "mcq",
+          "code": "def forward(fn, *args, **kwargs):\n    return fn(*args, **kwargs)",
+          "prompt": "What is this function doing?",
+          "answer": "Forwarding positional and keyword arguments",
+          "options": [
+            "Forwarding positional and keyword arguments",
+            "Converting every argument to a string",
+            "Calling fn once per argument",
+            "Discarding keyword arguments"
+          ],
+          "explanation": "The stars collect arguments in the signature and unpack them at the call.",
+          "hint": "Look at where the stars appear.",
+          "concept": "decorators"
+        },
+        {
+          "id": "decorators-3",
+          "kind": "mcq",
+          "code": "async def fetch():\n    return \"ok\"\n\nresult = fetch()",
+          "prompt": "Before awaiting result, what is it?",
+          "answer": "A coroutine object",
+          "options": [
+            "A coroutine object",
+            "The string ok",
+            "A running thread",
+            "None"
+          ],
+          "explanation": "Calling an async function creates a coroutine; it must be awaited or scheduled to run.",
+          "hint": "Calling and awaiting are distinct actions.",
+          "concept": "decorators"
+        },
+        {
+          "id": "decorators-4",
+          "kind": "mcq",
+          "code": "import asyncio\n\nasync def main():\n    return \"ready\"\n\nprint(asyncio.run(main()))",
+          "prompt": "In a normal script with no running event loop, what is printed?",
+          "answer": "ready",
+          "options": [
+            "ready",
+            "A coroutine object",
+            "None",
+            "True"
+          ],
+          "explanation": "asyncio.run drives main to completion and returns its result.",
+          "hint": "The runner executes the coroutine.",
+          "concept": "decorators"
+        },
+        {
+          "id": "decorators-5",
+          "kind": "write",
+          "code": "async def fetch():\n    return \"ok\"\n\nasync def main():\n    result = ____",
+          "prompt": "Inside main, fill the blank to await fetch().",
+          "accepted": [
+            "await fetch()"
+          ],
+          "explanation": "await waits for the coroutine result inside an async function.",
+          "hint": "Use await followed by the call.",
+          "concept": "decorators"
+        },
+        {
+          "id": "decorators-v4",
+          "kind": "write",
+          "concept": "decorators",
+          "code": "async def ${name}():\n    return \"ok\"\n\nasync def main():\n    result = ____",
+          "prompt": "Await ${name}() inside main.",
+          "explanation": "await obtains the coroutine result.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "fetch",
+                "load",
+                "receive",
+                "query"
+              ]
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "await ${name}()"
+          ]
+        },
+        {
+          "id": "decorators-v5",
+          "kind": "write",
+          "concept": "decorators",
+          "code": "def forward(fn, *args, **kwargs):\n    return ____",
+          "prompt": "Call fn, forwarding *args and **kwargs. The sample caller uses ${n} positional values.",
+          "explanation": "The stars unpack the collected positional and keyword arguments.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 9
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "fn(*args, **kwargs)"
+          ]
+        },
+        {
+          "id": "decorators-v7",
+          "kind": "write",
+          "concept": "decorators",
+          "code": "import asyncio\nasync def ${name}():\n    return \"ok\"\n\n____",
+          "prompt": "In a normal script, run ${name}() with asyncio.run.",
+          "explanation": "The runner drives the coroutine to completion.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "main",
+                "start",
+                "run_job"
+              ]
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "asyncio.run(${name}())"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numpy",
+      "section": "Specialized",
+      "title": "NumPy: shapes, axes, and broadcasting",
+      "intro": "This is an API-reading sampler; NumPy is not needed to run the tutor. np.array creates an array; shape describes its dimensions. Array arithmetic is elementwise. A scalar broadcasts across all elements. Reduction with axis=0 removes the row axis of a 2D array, yielding one value per column. A basic slice usually shares data with its source; copy() makes independent data. np.zeros((rows, columns)) creates a zero-filled array with that shape. np.zeros((rows, columns)) creates a zero-filled array with that shape.",
+      "sources": [
+        "numpy"
+      ],
+      "requires": [
+        "errors"
+      ],
+      "questions": [
+        {
+          "id": "numpy-v1",
+          "kind": "mcq",
+          "concept": "numpy",
+          "code": "import numpy as np\nx = np.array([${a}, ${b}])\ny = x + ${offset}",
+          "prompt": "Which values does y contain?",
+          "explanation": "The scalar broadcasts across both elements.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 20
+            },
+            "b": {
+              "type": "int",
+              "min": 30,
+              "max": 50
+            },
+            "offset": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            }
+          },
+          "derived": {
+            "out": "str([a+offset,b+offset])",
+            "concat": "str([a,b,offset])",
+            "original": "str([a,b])"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${concat}",
+            "${original}",
+            "TypeError"
+          ]
+        },
+        {
+          "id": "numpy-v2",
+          "kind": "mcq",
+          "concept": "numpy",
+          "code": "import numpy as np\nx = np.zeros((${rows}, ${cols}))\nprint(x.shape)",
+          "prompt": "What is printed?",
+          "explanation": "shape reports ${rows} rows and ${cols} columns.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "rows": {
+              "type": "int",
+              "min": 2,
+              "max": 5
+            },
+            "cols": {
+              "type": "int",
+              "min": 6,
+              "max": 9
+            }
+          },
+          "derived": {
+            "size": "rows*cols"
+          },
+          "answer": "(${rows}, ${cols})",
+          "options": [
+            "(${rows}, ${cols})",
+            "(${cols}, ${rows})",
+            "(${size},)",
+            "(0, 0)"
+          ]
+        },
+        {
+          "id": "numpy-v3",
+          "kind": "mcq",
+          "concept": "numpy",
+          "code": "import numpy as np\nx = np.array([[${a}, ${b}], [${c}, ${e}]])\ny = x.sum(axis=0)",
+          "prompt": "Which values does y contain?",
+          "explanation": "axis=0 removes the row axis and adds values in each column.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 9
+            },
+            "b": {
+              "type": "int",
+              "min": 11,
+              "max": 19
+            },
+            "c": {
+              "type": "int",
+              "min": 21,
+              "max": 29
+            },
+            "e": {
+              "type": "int",
+              "min": 31,
+              "max": 39
+            }
+          },
+          "derived": {
+            "out": "str([a+c,b+e])",
+            "rows": "str([a+b,c+e])",
+            "total": "str([a+b+c+e])"
+          },
+          "answer": "${out}",
+          "options": [
+            "${out}",
+            "${rows}",
+            "${total}",
+            "[0, 0]"
+          ]
+        },
+        {
+          "id": "numpy-v6",
+          "kind": "mcq",
+          "concept": "numpy",
+          "code": "import numpy as np\nx = np.array([${a}, ${b}])\ny = x[:1]\ny[0] = ${c}\nprint(x[0])",
+          "prompt": "What is printed?",
+          "explanation": "The basic slice is a view sharing storage with x.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 20
+            },
+            "b": {
+              "type": "int",
+              "min": 30,
+              "max": 50
+            },
+            "c": {
+              "type": "int",
+              "min": 60,
+              "max": 90
+            }
+          },
+          "derived": {},
+          "answer": "${c}",
+          "options": [
+            "${c}",
+            "${a}",
+            "${b}",
+            "ValueError"
+          ]
+        },
+        {
+          "id": "numpy-1",
+          "kind": "mcq",
+          "code": "import numpy as np\nx = np.array([[1, 2, 3], [4, 5, 6]])\nprint(x.shape)",
+          "prompt": "What is printed?",
+          "answer": "(2, 3)",
+          "options": [
+            "(2, 3)",
+            "(3, 2)",
+            "(6,)",
+            "2"
+          ],
+          "explanation": "There are two rows and three columns.",
+          "hint": "Read the outer dimension before the inner one.",
+          "concept": "numpy"
+        },
+        {
+          "id": "numpy-2",
+          "kind": "mcq",
+          "code": "import numpy as np\nx = np.array([2, 5])\ny = x + 10",
+          "prompt": "Which values does y contain?",
+          "answer": "[12, 15]",
+          "options": [
+            "[12, 15]",
+            "[2, 5, 10]",
+            "[20, 50]",
+            "[7, 10]"
+          ],
+          "explanation": "The scalar is broadcast and added to each element.",
+          "hint": "Array + is not list concatenation.",
+          "concept": "numpy"
+        },
+        {
+          "id": "numpy-3",
+          "kind": "mcq",
+          "code": "import numpy as np\nx = np.array([[2, 4], [6, 8]])\ny = x.sum(axis=0)",
+          "prompt": "Which values does y contain?",
+          "answer": "[8, 12]",
+          "options": [
+            "[8, 12]",
+            "[6, 14]",
+            "[20]",
+            "[2, 4, 6, 8]"
+          ],
+          "explanation": "Summing across rows yields a total for each column: 2+6 and 4+8.",
+          "hint": "axis=0 is the dimension being removed.",
+          "concept": "numpy"
+        },
+        {
+          "id": "numpy-4",
+          "kind": "mcq",
+          "code": "import numpy as np\nx = np.array([1, 2, 3])\ny = x[:2]\ny[0] = 9",
+          "prompt": "What is x[0] afterward?",
+          "answer": "9",
+          "options": [
+            "9",
+            "1",
+            "2",
+            "An error"
+          ],
+          "explanation": "Basic slicing returns a view here; y shares its underlying data with x.",
+          "hint": "A slice is not necessarily a copy.",
+          "concept": "numpy"
+        },
+        {
+          "id": "numpy-5",
+          "kind": "write",
+          "code": "import numpy as np\nx = np.array([1, 2, 3])\ny = ____",
+          "prompt": "Use x.copy() to create an independent array.",
+          "accepted": [
+            "x.copy()"
+          ],
+          "explanation": "copy creates separate array data.",
+          "hint": "Call the method without arguments.",
+          "concept": "numpy"
+        },
+        {
+          "id": "numpy-v4",
+          "kind": "write",
+          "concept": "numpy",
+          "code": "import numpy as np\nx = ____",
+          "prompt": "Use np.zeros with a shape tuple of ${rows} rows and ${cols} columns.",
+          "explanation": "The single tuple argument describes both dimensions.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "rows": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            },
+            "cols": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "np.zeros((${rows}, ${cols}))"
+          ]
+        },
+        {
+          "id": "numpy-v5",
+          "kind": "write",
+          "concept": "numpy",
+          "code": "import numpy as np\nx = np.array([1, 2])\ny = ____",
+          "prompt": "Add the scalar ${offset} to x, with x on the left.",
+          "explanation": "NumPy broadcasts the scalar across x.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "offset": {
+              "type": "int",
+              "min": 2,
+              "max": 30
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "x + ${offset}"
+          ]
+        },
+        {
+          "id": "numpy-v7",
+          "kind": "write",
+          "concept": "numpy",
+          "code": "import numpy as np\n${name} = np.array([1, 2])\nindependent = ____",
+          "prompt": "Copy the data using the copy() method of ${name}.",
+          "explanation": "copy allocates independent array data.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "name": {
+              "type": "choice",
+              "values": [
+                "values",
+                "scores",
+                "samples"
+              ]
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "${name}.copy()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matplotlib",
+      "section": "Specialized",
+      "title": "Matplotlib: read a plotting script",
+      "intro": "This sampler reads the explicit figure/Axes API. plt.subplots() returns a figure and an Axes for one panel. ax.plot(x, y) adds a line; ax.scatter(x, y) adds markers. set_xlabel labels the horizontal axis, while set_title labels the panel. fig.savefig writes an image. Setting labels does not change the underlying data.",
+      "sources": [
+        "matplotlib",
+        "carpentries"
+      ],
+      "requires": [
+        "errors"
+      ],
+      "questions": [
+        {
+          "id": "matplotlib-v1",
+          "kind": "mcq",
+          "concept": "matplotlib",
+          "code": "ax.plot([${a}, ${b}], [${c}, ${e}])",
+          "prompt": "Which are the plotted points?",
+          "explanation": "x and y values are paired by index.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "int",
+              "min": 1,
+              "max": 9
+            },
+            "b": {
+              "type": "int",
+              "min": 11,
+              "max": 19
+            },
+            "c": {
+              "type": "int",
+              "min": 21,
+              "max": 29
+            },
+            "e": {
+              "type": "int",
+              "min": 31,
+              "max": 39
+            }
+          },
+          "derived": {},
+          "answer": "(${a}, ${c}) and (${b}, ${e})",
+          "options": [
+            "(${a}, ${c}) and (${b}, ${e})",
+            "(${a}, ${b}) and (${c}, ${e})",
+            "(${c}, ${a}) and (${e}, ${b})",
+            "(0, ${a}) and (1, ${b})"
+          ]
+        },
+        {
+          "id": "matplotlib-v2",
+          "kind": "mcq",
+          "concept": "matplotlib",
+          "code": "ax.set_xlabel(${label_py})\nax.set_title(${title_py})",
+          "prompt": "What labels the horizontal axis?",
+          "explanation": "set_xlabel sets the horizontal label independently of the title.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "label": {
+              "type": "choice",
+              "values": [
+                "Epoch",
+                "Time",
+                "Step",
+                "Distance"
+              ]
+            },
+            "title": {
+              "type": "choice",
+              "values": [
+                "Training run",
+                "Experiment",
+                "Measurements"
+              ]
+            }
+          },
+          "derived": {
+            "label_py": "repr(label)",
+            "title_py": "repr(title)"
+          },
+          "answer": "${label}",
+          "options": [
+            "${label}",
+            "${title}",
+            "Nothing",
+            "The filename"
+          ]
+        },
+        {
+          "id": "matplotlib-v3",
+          "kind": "mcq",
+          "concept": "matplotlib",
+          "code": "fig.savefig(${file_py})",
+          "prompt": "What is this intended to do?",
+          "explanation": "savefig writes the figure using the specified filename.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "file": {
+              "type": "choice",
+              "values": [
+                "loss.png",
+                "accuracy.svg",
+                "results.pdf",
+                "plot.png"
+              ]
+            }
+          },
+          "derived": {
+            "file_py": "repr(file)"
+          },
+          "answer": "Save the figure to ${file}",
+          "options": [
+            "Save the figure to ${file}",
+            "Load ${file}",
+            "Rename the axis",
+            "Change every data point"
+          ]
+        },
+        {
+          "id": "matplotlib-v6",
+          "kind": "mcq",
+          "concept": "matplotlib",
+          "code": "fig, ax = plt.subplots()\nax.set_title(${title_py})",
+          "prompt": "Which object owns this title?",
+          "explanation": "set_title is an Axes method, so the title belongs to that panel.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "title": {
+              "type": "choice",
+              "values": [
+                "Run A",
+                "Baseline",
+                "Experiment"
+              ]
+            }
+          },
+          "derived": {
+            "title_py": "repr(title)"
+          },
+          "answer": "ax",
+          "options": [
+            "ax",
+            "fig only",
+            "plt only",
+            "The string ${title}"
+          ]
+        },
+        {
+          "id": "matplotlib-1",
+          "kind": "mcq",
+          "code": "import matplotlib.pyplot as plt\nfig, ax = plt.subplots()\nax.plot([1, 2], [3, 5])",
+          "prompt": "Which object represents the plotting panel?",
+          "answer": "ax",
+          "options": [
+            "ax",
+            "fig",
+            "plt",
+            "The list [1, 2]"
+          ],
+          "explanation": "Axes is the panel that owns data coordinates and plotting methods.",
+          "hint": "The figure is the outer container.",
+          "concept": "matplotlib"
+        },
+        {
+          "id": "matplotlib-2",
+          "kind": "mcq",
+          "code": "ax.plot([10, 20], [2, 4])",
+          "prompt": "Which points are connected?",
+          "answer": "(10, 2) and (20, 4)",
+          "options": [
+            "(10, 2) and (20, 4)",
+            "(10, 20) and (2, 4)",
+            "(0, 10) and (1, 20)",
+            "(2, 10) and (4, 20)"
+          ],
+          "explanation": "plot pairs x and y values at matching positions.",
+          "hint": "The first argument supplies x coordinates.",
+          "concept": "matplotlib"
+        },
+        {
+          "id": "matplotlib-3",
+          "kind": "mcq",
+          "code": "ax.set_xlabel(\"Epoch\")\nax.set_title(\"Training\")",
+          "prompt": "What does Epoch label?",
+          "answer": "The horizontal axis",
+          "options": [
+            "The horizontal axis",
+            "The figure file",
+            "The plotted line",
+            "The vertical axis"
+          ],
+          "explanation": "set_xlabel sets the x-axis label, independently of the title.",
+          "hint": "x is the horizontal coordinate.",
+          "concept": "matplotlib"
+        },
+        {
+          "id": "matplotlib-4",
+          "kind": "mcq",
+          "code": "fig.savefig(\"loss.png\")",
+          "prompt": "What is this line intended to do?",
+          "answer": "Save the figure to an image file",
+          "options": [
+            "Save the figure to an image file",
+            "Display only the final data point",
+            "Read loss.png into an array",
+            "Rename the Axes"
+          ],
+          "explanation": "savefig serializes the figure to the specified output file.",
+          "hint": "Read the receiver and the method name.",
+          "concept": "matplotlib"
+        },
+        {
+          "id": "matplotlib-5",
+          "kind": "write",
+          "code": "fig, ax = plt.subplots()\n____",
+          "prompt": "Set the panel title to \"Accuracy\" using ax.set_title.",
+          "accepted": [
+            "ax.set_title(\"Accuracy\")"
+          ],
+          "explanation": "set_title changes the Axes title.",
+          "hint": "Call the method on ax with the title string.",
+          "concept": "matplotlib"
+        },
+        {
+          "id": "matplotlib-v4",
+          "kind": "write",
+          "concept": "matplotlib",
+          "code": "fig, ax = plt.subplots()\n____",
+          "prompt": "Call ax.set_title with ${title_py}.",
+          "explanation": "The title belongs to this plotting panel.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "title": {
+              "type": "choice",
+              "values": [
+                "Accuracy",
+                "Loss",
+                "Latency",
+                "Throughput"
+              ]
+            }
+          },
+          "derived": {
+            "title_py": "repr(title)"
+          },
+          "accepted": [
+            "ax.set_title(${title_py})"
+          ]
+        },
+        {
+          "id": "matplotlib-v5",
+          "kind": "write",
+          "concept": "matplotlib",
+          "code": "fig, ax = plt.subplots()\n____",
+          "prompt": "Save fig to ${file_py} using savefig.",
+          "explanation": "The figure method writes the output file.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "file": {
+              "type": "choice",
+              "values": [
+                "report.png",
+                "summary.svg",
+                "training.pdf"
+              ]
+            }
+          },
+          "derived": {
+            "file_py": "repr(file)"
+          },
+          "accepted": [
+            "fig.savefig(${file_py})"
+          ]
+        },
+        {
+          "id": "matplotlib-v7",
+          "kind": "write",
+          "concept": "matplotlib",
+          "code": "fig, ax = plt.subplots()\n____",
+          "prompt": "Set the horizontal axis label to ${label_py} using ax.set_xlabel.",
+          "explanation": "The x label describes the horizontal coordinate.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "label": {
+              "type": "choice",
+              "values": [
+                "Time",
+                "Epoch",
+                "Step"
+              ]
+            }
+          },
+          "derived": {
+            "label_py": "repr(label)"
+          },
+          "accepted": [
+            "ax.set_xlabel(${label_py})"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pytorch",
+      "section": "Specialized",
+      "title": "PyTorch: tensors and inference idioms",
+      "intro": "This sampler focuses on code semantics, not ML algorithms. Tensors have shapes and can track gradients. requires_grad=True requests autograd tracking for floating tensors; detach returns a tensor detached from that graph, sharing storage. model.eval() changes training-sensitive module behavior, but does not disable gradient recording. torch.no_grad() disables recording in its block. model(...) calls a module on inputs.",
+      "sources": [
+        "pytorch"
+      ],
+      "requires": [
+        "errors"
+      ],
+      "questions": [
+        {
+          "id": "pytorch-v1",
+          "kind": "mcq",
+          "concept": "pytorch",
+          "code": "import torch\nx = torch.zeros(${rows}, ${cols})\nprint(tuple(x.shape))",
+          "prompt": "What is printed?",
+          "explanation": "The dimensions follow the size arguments.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "rows": {
+              "type": "int",
+              "min": 2,
+              "max": 5
+            },
+            "cols": {
+              "type": "int",
+              "min": 6,
+              "max": 10
+            }
+          },
+          "derived": {
+            "size": "rows*cols"
+          },
+          "answer": "(${rows}, ${cols})",
+          "options": [
+            "(${rows}, ${cols})",
+            "(${cols}, ${rows})",
+            "(${size},)",
+            "(0, 0)"
+          ]
+        },
+        {
+          "id": "pytorch-v2",
+          "kind": "mcq",
+          "concept": "pytorch",
+          "code": "x = torch.tensor([${n}.0], requires_grad=True)\ny = x.detach()",
+          "prompt": "Which statement about y is true?",
+          "explanation": "detach removes gradient history without allocating an independent data copy.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 2,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "answer": "It shares storage with x but is detached from autograd",
+          "options": [
+            "It shares storage with x but is detached from autograd",
+            "It is an independent deep copy",
+            "It always requires gradients",
+            "It is a Python list"
+          ]
+        },
+        {
+          "id": "pytorch-v3",
+          "kind": "mcq",
+          "concept": "pytorch",
+          "code": "${model}.eval()\nwith torch.no_grad():\n    result = ${model}(${inputs})",
+          "prompt": "What does the no_grad block do?",
+          "explanation": "eval controls module mode; no_grad controls gradient recording.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "model": {
+              "type": "choice",
+              "values": [
+                "model",
+                "classifier",
+                "network"
+              ]
+            },
+            "inputs": {
+              "type": "choice",
+              "values": [
+                "inputs",
+                "images",
+                "features"
+              ]
+            }
+          },
+          "derived": {},
+          "answer": "Disables recording these operations for autograd",
+          "options": [
+            "Disables recording these operations for autograd",
+            "Moves inputs to a GPU",
+            "Enables dropout",
+            "Deletes the model parameters"
+          ]
+        },
+        {
+          "id": "pytorch-v6",
+          "kind": "mcq",
+          "concept": "pytorch",
+          "code": "${model}.eval()",
+          "prompt": "Does this alone disable gradient recording?",
+          "explanation": "eval changes training-sensitive module behavior, not autograd recording.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "model": {
+              "type": "choice",
+              "values": [
+                "model",
+                "network",
+                "classifier"
+              ]
+            }
+          },
+          "derived": {},
+          "answer": "No; evaluation mode and gradient recording are separate",
+          "options": [
+            "No; evaluation mode and gradient recording are separate",
+            "Yes, always",
+            "Only if the model is on CPU",
+            "It deletes existing gradients"
+          ]
+        },
+        {
+          "id": "pytorch-1",
+          "kind": "mcq",
+          "code": "import torch\nx = torch.zeros(2, 3)\nprint(tuple(x.shape))",
+          "prompt": "What is printed?",
+          "answer": "(2, 3)",
+          "options": [
+            "(2, 3)",
+            "(3, 2)",
+            "(6,)",
+            "(0, 0)"
+          ],
+          "explanation": "zeros constructs a tensor with the requested two dimensions.",
+          "hint": "The size arguments specify the shape.",
+          "concept": "pytorch"
+        },
+        {
+          "id": "pytorch-2",
+          "kind": "mcq",
+          "code": "model.eval()",
+          "prompt": "Which statement is accurate?",
+          "answer": "It switches modules such as Dropout to evaluation behavior",
+          "options": [
+            "It switches modules such as Dropout to evaluation behavior",
+            "It always disables gradients",
+            "It deletes all model parameters",
+            "It trains for one epoch"
+          ],
+          "explanation": "eval changes module mode; gradient recording is controlled separately.",
+          "hint": "Mode and autograd are independent controls.",
+          "concept": "pytorch"
+        },
+        {
+          "id": "pytorch-3",
+          "kind": "mcq",
+          "code": "with torch.no_grad():\n    predictions = model(inputs)",
+          "prompt": "What is the purpose of the context here?",
+          "answer": "Avoid recording the forward operations for autograd",
+          "options": [
+            "Avoid recording the forward operations for autograd",
+            "Set every parameter to zero",
+            "Move the model to a GPU",
+            "Enable dropout"
+          ],
+          "explanation": "no_grad suppresses gradient recording for the operations in the block.",
+          "hint": "The context name describes the autograd behavior.",
+          "concept": "pytorch"
+        },
+        {
+          "id": "pytorch-4",
+          "kind": "mcq",
+          "code": "x = torch.tensor([2.0], requires_grad=True)\ny = x.detach()",
+          "prompt": "Which description of y is correct?",
+          "answer": "Detached from autograd, but shares storage with x",
+          "options": [
+            "Detached from autograd, but shares storage with x",
+            "A deep copy on the GPU",
+            "Always requires gradients",
+            "An ordinary Python list"
+          ],
+          "explanation": "detach separates gradient history without copying tensor storage.",
+          "hint": "Detachment is not a deep copy.",
+          "concept": "pytorch"
+        },
+        {
+          "id": "pytorch-5",
+          "kind": "write",
+          "code": "model.eval()\nwith torch.no_grad():\n    predictions = ____",
+          "prompt": "Call model on inputs to fill the blank.",
+          "accepted": [
+            "model(inputs)"
+          ],
+          "explanation": "Calling the module invokes its forward computation.",
+          "hint": "Use the ordinary callable syntax.",
+          "concept": "pytorch"
+        },
+        {
+          "id": "pytorch-v4",
+          "kind": "write",
+          "concept": "pytorch",
+          "code": "import torch\nx = ____",
+          "prompt": "Create a zeros tensor with ${rows} rows and ${cols} columns using two positional size arguments.",
+          "explanation": "torch.zeros accepts these dimensions as separate size arguments.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "rows": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            },
+            "cols": {
+              "type": "int",
+              "min": 2,
+              "max": 9
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "torch.zeros(${rows}, ${cols})"
+          ]
+        },
+        {
+          "id": "pytorch-v5",
+          "kind": "write",
+          "concept": "pytorch",
+          "code": "${model}.eval()\nwith torch.no_grad():\n    predictions = ____",
+          "prompt": "Call ${model} with the positional argument ${inputs}.",
+          "explanation": "The module call performs the forward computation.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "model": {
+              "type": "choice",
+              "values": [
+                "model",
+                "network",
+                "classifier"
+              ]
+            },
+            "inputs": {
+              "type": "choice",
+              "values": [
+                "images",
+                "features",
+                "inputs"
+              ]
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "${model}(${inputs})"
+          ]
+        },
+        {
+          "id": "pytorch-v7",
+          "kind": "write",
+          "concept": "pytorch",
+          "code": "x = torch.tensor([${n}.0], requires_grad=True)\ny = ____",
+          "prompt": "Detach x using its detach() method.",
+          "explanation": "detach removes gradient tracking while sharing storage.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 1,
+              "max": 99
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "x.detach()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transformers",
+      "section": "Specialized",
+      "title": "Transformers: tokenizer-to-model flow",
+      "intro": "This sampler reads Hugging Face API usage without downloading models. A tokenizer maps text into model inputs such as input_ids and attention_mask. return_tensors='pt' requests PyTorch tensors; padding=True aligns batch lengths and truncation=True enables truncation subject to tokenizer settings. **batch unpacks named inputs into a model call. Outputs such as logits are raw scores, not probabilities. A checkpoint identifier selects compatible pretrained assets.",
+      "sources": [
+        "huggingface"
+      ],
+      "requires": [
+        "pytorch"
+      ],
+      "questions": [
+        {
+          "id": "transformers-v1",
+          "kind": "mcq",
+          "concept": "transformers",
+          "code": "batch = tokenizer(${text_py}, return_tensors=\"pt\")",
+          "prompt": "What does return_tensors=\"pt\" request?",
+          "explanation": "pt selects the PyTorch tensor representation, regardless of input text.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "text": {
+              "type": "choice",
+              "values": [
+                "Hello world",
+                "Read this code",
+                "The model is ready",
+                "A short example"
+              ]
+            }
+          },
+          "derived": {
+            "text_py": "repr(text)"
+          },
+          "answer": "PyTorch tensors",
+          "options": [
+            "PyTorch tensors",
+            "A translation of ${text}",
+            "Plain text tokens only",
+            "Probability scores"
+          ]
+        },
+        {
+          "id": "transformers-v2",
+          "kind": "mcq",
+          "concept": "transformers",
+          "code": "${batch} = tokenizer(texts, padding=True, truncation=True)\noutputs = ${model}(**${batch})",
+          "prompt": "What does **${batch} do?",
+          "explanation": "Keys become keyword argument names; values become their inputs.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "batch": {
+              "type": "choice",
+              "values": [
+                "batch",
+                "encoded",
+                "tokens"
+              ]
+            },
+            "model": {
+              "type": "choice",
+              "values": [
+                "model",
+                "classifier",
+                "network"
+              ]
+            }
+          },
+          "derived": {},
+          "answer": "Unpacks named model inputs from the mapping",
+          "options": [
+            "Unpacks named model inputs from the mapping",
+            "Squares every tensor",
+            "Calls the model twice",
+            "Passes a single positional dictionary"
+          ]
+        },
+        {
+          "id": "transformers-v3",
+          "kind": "mcq",
+          "concept": "transformers",
+          "code": "encoded = tokenizer([${a_py}, ${b_py}], padding=True, return_tensors=\"pt\")",
+          "prompt": "What is padding intended to achieve here?",
+          "explanation": "Padding supplies extra positions where needed so the batch has matching lengths.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "a": {
+              "type": "choice",
+              "values": [
+                "Hi",
+                "Hello",
+                "Thanks"
+              ]
+            },
+            "b": {
+              "type": "choice",
+              "values": [
+                "Read the function carefully",
+                "The service is now ready",
+                "This is a longer sentence"
+              ]
+            }
+          },
+          "derived": {
+            "a_py": "repr(a)",
+            "b_py": "repr(b)"
+          },
+          "answer": "Align sequence lengths into a rectangular batch",
+          "options": [
+            "Align sequence lengths into a rectangular batch",
+            "Train the tokenizer",
+            "Guarantee no truncation",
+            "Convert all IDs to zero"
+          ]
+        },
+        {
+          "id": "transformers-v6",
+          "kind": "mcq",
+          "concept": "transformers",
+          "code": "outputs = ${model}(**batch)\nvalues = outputs.logits",
+          "prompt": "What are values?",
+          "explanation": "logits contains unnormalized model scores.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "model": {
+              "type": "choice",
+              "values": [
+                "model",
+                "classifier",
+                "network"
+              ]
+            }
+          },
+          "derived": {},
+          "answer": "Raw scores before probability normalization",
+          "options": [
+            "Raw scores before probability normalization",
+            "Always normalized probabilities",
+            "The original text",
+            "The tokenizer vocabulary"
+          ]
+        },
+        {
+          "id": "transformers-1",
+          "kind": "mcq",
+          "code": "batch = tokenizer([\"Hi\", \"Hello there\"],\n                  padding=True, return_tensors=\"pt\")",
+          "prompt": "What does return_tensors=\"pt\" request?",
+          "answer": "PyTorch tensors",
+          "options": [
+            "PyTorch tensors",
+            "Portuguese translations",
+            "Plain text output",
+            "Probability tables"
+          ],
+          "explanation": "pt selects the PyTorch tensor representation of encoded inputs.",
+          "hint": "This option selects a backend representation.",
+          "concept": "transformers"
+        },
+        {
+          "id": "transformers-2",
+          "kind": "mcq",
+          "code": "batch = tokenizer(texts, padding=True, truncation=True)",
+          "prompt": "Why enable padding for a batch of different-length inputs?",
+          "answer": "Align sequence lengths so they can form a rectangular batch",
+          "options": [
+            "Align sequence lengths so they can form a rectangular batch",
+            "Guarantee that no input is shortened",
+            "Train the tokenizer vocabulary",
+            "Change every token ID to zero"
+          ],
+          "explanation": "Padding adds positions to shorter examples; masks identify padding where provided.",
+          "hint": "Think about the dimensions of a batched tensor.",
+          "concept": "transformers"
+        },
+        {
+          "id": "transformers-3",
+          "kind": "mcq",
+          "code": "outputs = model(**batch)",
+          "prompt": "What does **batch do at this call site?",
+          "answer": "Pass mapping entries as named arguments",
+          "options": [
+            "Pass mapping entries as named arguments",
+            "Square every tensor",
+            "Pass the mapping as a single positional argument",
+            "Run the model twice"
+          ],
+          "explanation": "Keys such as input_ids become argument names and values become their inputs.",
+          "hint": "Two stars unpack keyword arguments.",
+          "concept": "transformers"
+        },
+        {
+          "id": "transformers-4",
+          "kind": "mcq",
+          "code": "outputs = model(**batch)\nscores = outputs.logits",
+          "prompt": "What are logits here?",
+          "answer": "Raw model scores before probability normalization",
+          "options": [
+            "Raw model scores before probability normalization",
+            "Always normalized probabilities",
+            "The tokenizer vocabulary",
+            "The original text strings"
+          ],
+          "explanation": "Logits are unnormalized scores; a task-specific step interprets them.",
+          "hint": "A field name can reveal where you are in the pipeline.",
+          "concept": "transformers"
+        },
+        {
+          "id": "transformers-5",
+          "kind": "write",
+          "code": "batch = tokenizer(text, return_tensors=\"pt\")\noutputs = ____",
+          "prompt": "Call model using the mapping batch as keyword arguments.",
+          "accepted": [
+            "model(**batch)"
+          ],
+          "explanation": "Keyword unpacking matches the tokenizer output names to model parameters.",
+          "hint": "Use ** inside the call.",
+          "concept": "transformers"
+        },
+        {
+          "id": "transformers-v4",
+          "kind": "write",
+          "concept": "transformers",
+          "code": "${batch} = tokenizer(text, return_tensors=\"pt\")\noutputs = ____",
+          "prompt": "Call model with the mapping ${batch} unpacked as keyword arguments.",
+          "explanation": "** unpacks the input mapping into named parameters.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "batch": {
+              "type": "choice",
+              "values": [
+                "tokens",
+                "encoded",
+                "batch",
+                "model_inputs"
+              ]
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "model(**${batch})"
+          ]
+        },
+        {
+          "id": "transformers-v5",
+          "kind": "write",
+          "concept": "transformers",
+          "code": "outputs = ${model}(**batch)\nscores = ____",
+          "prompt": "Read the logits attribute of outputs. The model is named ${model}.",
+          "explanation": "The logits field contains raw scores before normalization.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "model": {
+              "type": "choice",
+              "values": [
+                "model",
+                "classifier",
+                "network"
+              ]
+            }
+          },
+          "derived": {},
+          "accepted": [
+            "outputs.logits"
+          ]
+        },
+        {
+          "id": "transformers-v7",
+          "kind": "write",
+          "concept": "transformers",
+          "code": "____",
+          "prompt": "Call tokenizer on the literal ${text_py} with return_tensors=\"pt\".",
+          "explanation": "The option requests PyTorch tensor inputs.",
+          "hint": "Trace the values in this variant and use the language rule from the lesson.",
+          "parameters": {
+            "text": {
+              "type": "choice",
+              "values": [
+                "Hello world",
+                "Read the code",
+                "A short example"
+              ]
+            }
+          },
+          "derived": {
+            "text_py": "repr(text)"
+          },
+          "accepted": [
+            "tokenizer(${text_py}, return_tensors=\"pt\")"
+          ]
+        }
+      ]
+    }
+  ]
+}

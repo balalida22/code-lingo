@@ -1,0 +1,4427 @@
+{
+  "schema_version": 2,
+  "id": "ruby",
+  "title": "Ruby",
+  "language": "Ruby 3.x",
+  "version": "1.0",
+  "sources": [
+    {
+      "id": "ruby",
+      "title": "Ruby in Twenty Minutes",
+      "url": "https://www.ruby-lang.org/en/documentation/quickstart/",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "ruby-doc",
+      "title": "Ruby syntax reference",
+      "url": "https://docs.ruby-lang.org/en/master/syntax_rdoc.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "values",
+      "title": "Values and assignment",
+      "section": "Basics",
+      "intro": "Ruby 3.x. A variable names a value. Assignment updates that variable; an earlier copied number does not follow later assignments. Read statements from top to bottom.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-read-1",
+          "kind": "mcq",
+          "code": "x = ${n}\nputs x",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-choose-1",
+          "kind": "mcq",
+          "code": "x = ____\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-read-2",
+          "kind": "mcq",
+          "code": "x = ${n}\nx = ${m}\nputs x",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-choose-2",
+          "kind": "mcq",
+          "code": "x = ${n}\nx = ____\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal.",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "values-read-3",
+          "kind": "mcq",
+          "code": "x = ${n}\nputs x + ${m}",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-choose-3",
+          "kind": "mcq",
+          "code": "x = ${n}\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable.",
+          "answer": "x + ${m}",
+          "options": [
+            "x + ${m}",
+            "x * ${m}",
+            "x"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "prev": "n-1"
+          },
+          "id": "values-read-4",
+          "kind": "mcq",
+          "code": "x = ${n}\nx = x + 1\nputs x",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "${prev}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-choose-4",
+          "kind": "mcq",
+          "code": "x = ${n}\nx = x + ____\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "values-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "x = ____\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "values-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "x = ${n}\nx = ____\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "x = ${n}\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x + ${m}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "x = ${n}\nx = x + ____\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arithmetic",
+      "title": "Arithmetic and precedence",
+      "section": "Basics",
+      "intro": "Ruby 3.x. Multiplication binds more tightly than addition. Parentheses group expressions. Integer quotient and remainder answer different questions; all operands here are positive.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "values"
+      ],
+      "questions": [
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mul": "n*m",
+            "n_plus_twom": "n+m*2",
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-read-1",
+          "kind": "mcq",
+          "code": "puts ${n} + ${m} * 2",
+          "prompt": "What is the result?",
+          "answer": "${n_plus_twom}",
+          "options": [
+            "${n_plus_twom}",
+            "${doubleadd}",
+            "${mul}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "n_plus_twom": "n+m*2"
+          },
+          "id": "arithmetic-choose-1",
+          "kind": "mcq",
+          "code": "puts ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added.",
+          "answer": "${n} + ${m} * 2",
+          "options": [
+            "${n} + ${m} * 2",
+            "(${n} + ${m}) * 2",
+            "${n} * ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "n_plus_twom": "n+m*2",
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-read-2",
+          "kind": "mcq",
+          "code": "puts (${n} + ${m}) * 2",
+          "prompt": "What is the result?",
+          "answer": "${doubleadd}",
+          "options": [
+            "${doubleadd}",
+            "${n_plus_twom}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-choose-2",
+          "kind": "mcq",
+          "code": "puts ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling.",
+          "answer": "(${n} + ${m}) * 2",
+          "options": [
+            "(${n} + ${m}) * 2",
+            "${n} + ${m} * 2",
+            "${n} + ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mul": "n*m",
+            "rem": "n%m",
+            "div": "n//m"
+          },
+          "id": "arithmetic-read-3",
+          "kind": "mcq",
+          "code": "puts ${n} / ${m}",
+          "prompt": "What is the result?",
+          "answer": "${div}",
+          "options": [
+            "${div}",
+            "${rem}",
+            "${mul}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "arithmetic-choose-3",
+          "kind": "mcq",
+          "code": "puts ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part.",
+          "answer": "${n} / ${m}",
+          "options": [
+            "${n} / ${m}",
+            "${n} % ${m}",
+            "${n} * ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m",
+            "rem": "n%m"
+          },
+          "id": "arithmetic-read-4",
+          "kind": "mcq",
+          "code": "puts ${n} % ${m}",
+          "prompt": "What is the result?",
+          "answer": "${rem}",
+          "options": [
+            "${rem}",
+            "${mul}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "rem": "n%m"
+          },
+          "id": "arithmetic-choose-4",
+          "kind": "mcq",
+          "code": "puts ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}.",
+          "answer": "${n} % ${m}",
+          "options": [
+            "${n} % ${m}",
+            "${n} * ${m}",
+            "${n} + ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "n_plus_twom": "n+m*2"
+          },
+          "id": "arithmetic-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} + ${m} * 2"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "(${n} + ${m}) * 2"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "arithmetic-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} / ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "rem": "n%m"
+          },
+          "id": "arithmetic-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} % ${m}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strings",
+      "title": "Strings and symbols",
+      "section": "Basics",
+      "intro": "Ruby 3.x. Double quotes interpolate expressions; single quotes usually preserve them. Symbols are immutable names, distinct from strings.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "arithmetic"
+      ],
+      "questions": [
+        {
+          "concept": "Strings and symbols",
+          "explanation": "length counts the characters of this ASCII string.",
+          "hint": "length counts the characters of this ASCII string.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "length": "len(word)"
+          },
+          "id": "strings-read-1",
+          "kind": "mcq",
+          "code": "puts \"${word}\".length",
+          "prompt": "What is the result?",
+          "answer": "${length}",
+          "options": [
+            "${length}",
+            "0",
+            "${next}"
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "length counts the characters of this ASCII string.",
+          "hint": "length counts the characters of this ASCII string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "strings-choose-1",
+          "kind": "mcq",
+          "code": "puts ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. length counts the characters of this ASCII string.",
+          "answer": "\"${word}\".length",
+          "options": [
+            "\"${word}\".length",
+            "\"${word}\"",
+            ":${word}"
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "upcase returns uppercase text.",
+          "hint": "upcase returns uppercase text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "strings-read-2",
+          "kind": "mcq",
+          "code": "puts \"${word}\".upcase",
+          "prompt": "What is the result?",
+          "answer": "${upper}",
+          "options": [
+            "${upper}",
+            "${word}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "upcase returns uppercase text.",
+          "hint": "upcase returns uppercase text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "strings-choose-2",
+          "kind": "mcq",
+          "code": "puts \"${word}\".____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${upper}. upcase returns uppercase text.",
+          "answer": "upcase",
+          "options": [
+            "upcase",
+            "downcase",
+            "length"
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "Double-quoted interpolation evaluates x.",
+          "hint": "Double-quoted interpolation evaluates x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "strings-read-3",
+          "kind": "mcq",
+          "code": "x = ${n}\nputs \"#{x}\"",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "#{x}",
+            "x"
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "Double-quoted interpolation evaluates x.",
+          "hint": "Double-quoted interpolation evaluates x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "strings-choose-3",
+          "kind": "mcq",
+          "code": "x = ${n}\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Double-quoted interpolation evaluates x. Use \"#{x}\" as the replacement literal.",
+          "answer": "\"#{x}\"",
+          "options": [
+            "\"#{x}\"",
+            "'#{x}'",
+            "\"x\""
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "A colon-prefixed name is a Symbol.",
+          "hint": "A colon-prefixed name is a Symbol.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "strings-read-4",
+          "kind": "mcq",
+          "code": "p :${word}.class",
+          "prompt": "What is the result?",
+          "answer": "Symbol",
+          "options": [
+            "Symbol",
+            "String",
+            "Integer"
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "A colon-prefixed name is a Symbol.",
+          "hint": "A colon-prefixed name is a Symbol.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "strings-choose-4",
+          "kind": "mcq",
+          "code": "p ____.class",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Symbol. A colon-prefixed name is a Symbol.",
+          "answer": ":${word}",
+          "options": [
+            ":${word}",
+            "\"${word}\"",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "length counts the characters of this ASCII string.",
+          "hint": "length counts the characters of this ASCII string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "strings-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. length counts the characters of this ASCII string. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"${word}\".length"
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "upcase returns uppercase text.",
+          "hint": "upcase returns uppercase text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "strings-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts \"${word}\".____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${upper}. upcase returns uppercase text. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "upcase"
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "Double-quoted interpolation evaluates x.",
+          "hint": "Double-quoted interpolation evaluates x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "strings-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "x = ${n}\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Double-quoted interpolation evaluates x. Use \"#{x}\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"#{x}\""
+          ]
+        },
+        {
+          "concept": "Strings and symbols",
+          "explanation": "A colon-prefixed name is a Symbol.",
+          "hint": "A colon-prefixed name is a Symbol.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "strings-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "p ____.class",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Symbol. A colon-prefixed name is a Symbol. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            ":${word}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conditions",
+      "title": "Truthiness and branches",
+      "section": "Basics",
+      "intro": "Ruby 3.x. Only nil and false are falsey in Ruby; zero and empty strings are truthy. == compares values; && short-circuits.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "strings"
+      ],
+      "questions": [
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "Zero is truthy, so the first branch is selected.",
+          "hint": "Zero is truthy, so the first branch is selected.",
+          "id": "conditions-read-1",
+          "kind": "mcq",
+          "code": "puts(0 ? \"yes\" : \"no\")",
+          "prompt": "What is the result?",
+          "answer": "yes",
+          "options": [
+            "yes",
+            "no",
+            "0"
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "Zero is truthy, so the first branch is selected.",
+          "hint": "Zero is truthy, so the first branch is selected.",
+          "id": "conditions-choose-1",
+          "kind": "mcq",
+          "code": "puts(____ ? \"yes\" : \"no\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: yes. Zero is truthy, so the first branch is selected.",
+          "answer": "0",
+          "options": [
+            "0",
+            "nil",
+            "false"
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "|| supplies the fallback because nil is falsey.",
+          "hint": "|| supplies the fallback because nil is falsey.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-2",
+          "kind": "mcq",
+          "code": "puts(nil || \"${word}\")",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "nil",
+            "false"
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "|| supplies the fallback because nil is falsey.",
+          "hint": "|| supplies the fallback because nil is falsey.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-2",
+          "kind": "mcq",
+          "code": "puts(____ || \"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. || supplies the fallback because nil is falsey.",
+          "answer": "nil",
+          "options": [
+            "nil",
+            "true",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "== compares the two equal integer values.",
+          "hint": "== compares the two equal integer values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-3",
+          "kind": "mcq",
+          "code": "puts(${n} == ${n})",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "== compares the two equal integer values.",
+          "hint": "== compares the two equal integer values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-3",
+          "kind": "mcq",
+          "code": "puts(${n} ____ ${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. == compares the two equal integer values.",
+          "answer": "==",
+          "options": [
+            "==",
+            "!=",
+            "<"
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "unless executes its body when the condition is false.",
+          "hint": "unless executes its body when the condition is false.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "prev": "n-1"
+          },
+          "id": "conditions-read-4",
+          "kind": "mcq",
+          "code": "x = ${n}\nx += 1 unless false\nputs x",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "${prev}"
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "unless executes its body when the condition is false.",
+          "hint": "unless executes its body when the condition is false.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "conditions-choose-4",
+          "kind": "mcq",
+          "code": "x = ${n}\nx += 1 ____ false\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. unless executes its body when the condition is false.",
+          "answer": "unless",
+          "options": [
+            "unless",
+            "if",
+            "while"
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "Zero is truthy, so the first branch is selected.",
+          "hint": "Zero is truthy, so the first branch is selected.",
+          "id": "conditions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts(____ ? \"yes\" : \"no\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: yes. Zero is truthy, so the first branch is selected. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "|| supplies the fallback because nil is falsey.",
+          "hint": "|| supplies the fallback because nil is falsey.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts(____ || \"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. || supplies the fallback because nil is falsey. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "nil"
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "== compares the two equal integer values.",
+          "hint": "== compares the two equal integer values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts(${n} ____ ${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. == compares the two equal integer values. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        },
+        {
+          "concept": "Truthiness and branches",
+          "explanation": "unless executes its body when the condition is false.",
+          "hint": "unless executes its body when the condition is false.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "conditions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "x = ${n}\nx += 1 ____ false\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. unless executes its body when the condition is false. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "unless"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loops",
+      "title": "Iteration and ranges",
+      "section": "Basics",
+      "intro": "Ruby 3.x. times repeats a block; each yields elements. .. includes the endpoint and ... excludes it. next skips the current iteration.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "conditions"
+      ],
+      "questions": [
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "times invokes the block ${n} times.",
+          "hint": "times invokes the block ${n} times.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "loops-read-1",
+          "kind": "mcq",
+          "code": "x = 0\n${n}.times { x += 1 }\nputs x",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "${next}"
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "times invokes the block ${n} times.",
+          "hint": "times invokes the block ${n} times.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-choose-1",
+          "kind": "mcq",
+          "code": "x = 0\n${n}.____ { x += 1 }\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. times invokes the block ${n} times.",
+          "answer": "times",
+          "options": [
+            "times",
+            "to_s",
+            "abs"
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "The three-dot range excludes its endpoint.",
+          "hint": "The three-dot range excludes its endpoint.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "prev": "n-1"
+          },
+          "id": "loops-read-2",
+          "kind": "mcq",
+          "code": "p (1...${n}).to_a.length",
+          "prompt": "What is the result?",
+          "answer": "${prev}",
+          "options": [
+            "${prev}",
+            "${n}",
+            "${next}"
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "The three-dot range excludes its endpoint.",
+          "hint": "The three-dot range excludes its endpoint.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "prev": "n-1"
+          },
+          "id": "loops-choose-2",
+          "kind": "mcq",
+          "code": "p (1____${n}).to_a.length",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${prev}. The three-dot range excludes its endpoint.",
+          "answer": "...",
+          "options": [
+            "...",
+            "..",
+            "+"
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "each yields both values to the block.",
+          "hint": "each yields both values to the block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "loops-read-3",
+          "kind": "mcq",
+          "code": "x = 0\n[${n}, ${m}].each { |v| x += v }\nputs x",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "each yields both values to the block.",
+          "hint": "each yields both values to the block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "loops-choose-3",
+          "kind": "mcq",
+          "code": "x = 0\n[${n}, ${m}].____ { |v| x += v }\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. each yields both values to the block.",
+          "answer": "each",
+          "options": [
+            "each",
+            "clear",
+            "first"
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "next skips only the iteration where i is one.",
+          "hint": "next skips only the iteration where i is one.",
+          "id": "loops-read-4",
+          "kind": "mcq",
+          "code": "x = 0\n3.times do |i|\n  next if i == 1\n  x += 1\nend\nputs x",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "next skips only the iteration where i is one.",
+          "hint": "next skips only the iteration where i is one.",
+          "id": "loops-choose-4",
+          "kind": "mcq",
+          "code": "x = 0\n3.times do |i|\n  ____ if i == 1\n  x += 1\nend\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. next skips only the iteration where i is one.",
+          "answer": "next",
+          "options": [
+            "next",
+            "break",
+            "redo"
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "times invokes the block ${n} times.",
+          "hint": "times invokes the block ${n} times.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "x = 0\n${n}.____ { x += 1 }\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. times invokes the block ${n} times. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "times"
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "The three-dot range excludes its endpoint.",
+          "hint": "The three-dot range excludes its endpoint.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "prev": "n-1"
+          },
+          "id": "loops-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "p (1____${n}).to_a.length",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${prev}. The three-dot range excludes its endpoint. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "..."
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "each yields both values to the block.",
+          "hint": "each yields both values to the block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "loops-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "x = 0\n[${n}, ${m}].____ { |v| x += v }\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. each yields both values to the block. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "each"
+          ]
+        },
+        {
+          "concept": "Iteration and ranges",
+          "explanation": "next skips only the iteration where i is one.",
+          "hint": "next skips only the iteration where i is one.",
+          "id": "loops-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "x = 0\n3.times do |i|\n  ____ if i == 1\n  x += 1\nend\nputs x",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. next skips only the iteration where i is one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "next"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "methods",
+      "title": "Methods and arguments",
+      "section": "Intermediate",
+      "intro": "Ruby 3.x. Methods return their last expression unless return exits earlier. Defaults fill omitted arguments; keyword arguments are named.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "loops"
+      ],
+      "questions": [
+        {
+          "concept": "Methods and arguments",
+          "explanation": "The last expression is the method result.",
+          "hint": "The last expression is the method result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "methods-read-1",
+          "kind": "mcq",
+          "code": "def bump(x)\n  x + 1\nend\nputs bump(${n})",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "The last expression is the method result.",
+          "hint": "The last expression is the method result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "methods-choose-1",
+          "kind": "mcq",
+          "code": "def bump(x)\n  ____\nend\nputs bump(${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The last expression is the method result.",
+          "answer": "x + 1",
+          "options": [
+            "x + 1",
+            "x",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "An omitted argument uses the default.",
+          "hint": "An omitted argument uses the default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "methods-read-2",
+          "kind": "mcq",
+          "code": "def size(x = ${n})\n x\nend\nputs size",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "0"
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "An omitted argument uses the default.",
+          "hint": "An omitted argument uses the default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "methods-choose-2",
+          "kind": "mcq",
+          "code": "def size(x = ${n})\n x\nend\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. An omitted argument uses the default.",
+          "answer": "size",
+          "options": [
+            "size",
+            "size(0)",
+            "size(nil)"
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "text: supplies the required keyword argument.",
+          "hint": "text: supplies the required keyword argument.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "methods-read-3",
+          "kind": "mcq",
+          "code": "def label(text:)\n text\nend\nputs label(text: \"${word}\")",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "nil",
+            "text"
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "text: supplies the required keyword argument.",
+          "hint": "text: supplies the required keyword argument.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "methods-choose-3",
+          "kind": "mcq",
+          "code": "def label(text:)\n text\nend\nputs label(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. text: supplies the required keyword argument.",
+          "answer": "text: \"${word}\"",
+          "options": [
+            "text: \"${word}\"",
+            "\"${word}\"",
+            "value: \"${word}\""
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "return exits before the next expression.",
+          "hint": "return exits before the next expression.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "methods-read-4",
+          "kind": "mcq",
+          "code": "def stop\n return ${n}\n ${m}\nend\nputs stop",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "return exits before the next expression.",
+          "hint": "return exits before the next expression.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "methods-choose-4",
+          "kind": "mcq",
+          "code": "def stop\n ____ ${n}\n ${m}\nend\nputs stop",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. return exits before the next expression.",
+          "answer": "return",
+          "options": [
+            "return",
+            "puts",
+            "print"
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "The last expression is the method result.",
+          "hint": "The last expression is the method result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "methods-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "def bump(x)\n  ____\nend\nputs bump(${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The last expression is the method result. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x + 1"
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "An omitted argument uses the default.",
+          "hint": "An omitted argument uses the default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "methods-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "def size(x = ${n})\n x\nend\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. An omitted argument uses the default. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "size"
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "text: supplies the required keyword argument.",
+          "hint": "text: supplies the required keyword argument.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "methods-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "def label(text:)\n text\nend\nputs label(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. text: supplies the required keyword argument. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "text: \"${word}\""
+          ]
+        },
+        {
+          "concept": "Methods and arguments",
+          "explanation": "return exits before the next expression.",
+          "hint": "return exits before the next expression.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "methods-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "def stop\n ____ ${n}\n ${m}\nend\nputs stop",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. return exits before the next expression. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "return"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "collections",
+      "title": "Arrays and hashes",
+      "section": "Intermediate",
+      "intro": "Ruby 3.x. Arrays use zero-based indexes; hashes associate keys with values. Reading a missing hash key normally returns nil. fetch can supply a fallback.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "methods"
+      ],
+      "questions": [
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "Index zero selects the first element.",
+          "hint": "Index zero selects the first element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-read-1",
+          "kind": "mcq",
+          "code": "puts [${n}, ${m}][0]",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "Index zero selects the first element.",
+          "hint": "Index zero selects the first element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-choose-1",
+          "kind": "mcq",
+          "code": "puts [${n}, ${m}][____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Index zero selects the first element.",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "Symbol :name is the key used in this hash.",
+          "hint": "Symbol :name is the key used in this hash.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "collections-read-2",
+          "kind": "mcq",
+          "code": "h = {name: \"${word}\"}\nputs h[:name]",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "nil",
+            "name"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "Symbol :name is the key used in this hash.",
+          "hint": "Symbol :name is the key used in this hash.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "collections-choose-2",
+          "kind": "mcq",
+          "code": "h = {name: \"${word}\"}\nputs h[____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Symbol :name is the key used in this hash.",
+          "answer": ":name",
+          "options": [
+            ":name",
+            "\"name\"",
+            "0"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "fetch returns its default for this absent key.",
+          "hint": "fetch returns its default for this absent key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "collections-read-3",
+          "kind": "mcq",
+          "code": "h = {}\nputs h.fetch(:size, ${n})",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "0"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "fetch returns its default for this absent key.",
+          "hint": "fetch returns its default for this absent key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "collections-choose-3",
+          "kind": "mcq",
+          "code": "h = {}\nputs h.____(:size, ${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. fetch returns its default for this absent key.",
+          "answer": "fetch",
+          "options": [
+            "fetch",
+            "delete",
+            "key?"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "<< appends one element in place.",
+          "hint": "<< appends one element in place.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "collections-read-4",
+          "kind": "mcq",
+          "code": "a = [${n}]\na << ${m}\nputs a.length",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "<< appends one element in place.",
+          "hint": "<< appends one element in place.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-choose-4",
+          "kind": "mcq",
+          "code": "a = [${n}]\na ____ ${m}\nputs a.length",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. << appends one element in place.",
+          "answer": "<<",
+          "options": [
+            "<<",
+            "==",
+            "+"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "Index zero selects the first element.",
+          "hint": "Index zero selects the first element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts [${n}, ${m}][____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Index zero selects the first element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "Symbol :name is the key used in this hash.",
+          "hint": "Symbol :name is the key used in this hash.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "collections-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "h = {name: \"${word}\"}\nputs h[____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Symbol :name is the key used in this hash. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            ":name"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "fetch returns its default for this absent key.",
+          "hint": "fetch returns its default for this absent key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "collections-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "h = {}\nputs h.____(:size, ${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. fetch returns its default for this absent key. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "fetch"
+          ]
+        },
+        {
+          "concept": "Arrays and hashes",
+          "explanation": "<< appends one element in place.",
+          "hint": "<< appends one element in place.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "a = [${n}]\na ____ ${m}\nputs a.length",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. << appends one element in place. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "<<"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io",
+      "title": "Input, output, and conversion",
+      "section": "Intermediate",
+      "intro": "Ruby 3.x. gets reads a line or nil at EOF; chomp removes a trailing record separator. to_i converts a leading integer. File blocks close handles automatically.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "collections"
+      ],
+      "questions": [
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "to_i converts digit text to an integer before addition.",
+          "hint": "to_i converts digit text to an integer before addition.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "io-read-1",
+          "kind": "mcq",
+          "code": "puts \"${n}\".to_i + ${m}",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${n}${m}",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "to_i converts digit text to an integer before addition.",
+          "hint": "to_i converts digit text to an integer before addition.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "io-choose-1",
+          "kind": "mcq",
+          "code": "puts \"${n}\".____ + ${m}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. to_i converts digit text to an integer before addition.",
+          "answer": "to_i",
+          "options": [
+            "to_i",
+            "to_s",
+            "length"
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "chomp removes the trailing newline without deleting other text.",
+          "hint": "chomp removes the trailing newline without deleting other text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-2",
+          "kind": "mcq",
+          "code": "p \"${word}\n\".chomp",
+          "prompt": "What is the result?",
+          "answer": "\"${word}\"",
+          "options": [
+            "\"${word}\"",
+            "nil",
+            "\"\""
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "chomp removes the trailing newline without deleting other text.",
+          "hint": "chomp removes the trailing newline without deleting other text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-2",
+          "kind": "mcq",
+          "code": "p \"${word}\n\".____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: \"${word}\". chomp removes the trailing newline without deleting other text.",
+          "answer": "chomp",
+          "options": [
+            "chomp",
+            "clear",
+            "length"
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "Safe navigation skips the call when the receiver is nil.",
+          "hint": "Safe navigation skips the call when the receiver is nil.",
+          "id": "io-read-3",
+          "kind": "mcq",
+          "code": "line = nil\np line&.chomp",
+          "prompt": "What is the result?",
+          "answer": "nil",
+          "options": [
+            "nil",
+            "false",
+            "0"
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "Safe navigation skips the call when the receiver is nil.",
+          "hint": "Safe navigation skips the call when the receiver is nil.",
+          "id": "io-choose-3",
+          "kind": "mcq",
+          "code": "line = nil\np line____chomp",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. Safe navigation skips the call when the receiver is nil.",
+          "answer": "&.",
+          "options": [
+            "&.",
+            ".",
+            "::"
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "The block form closes the handle when the block exits.",
+          "hint": "The block form closes the handle when the block exits.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-4",
+          "kind": "mcq",
+          "code": "File.open(\"notes.txt\", \"w\") { |f| f.write(\"${word}\") }",
+          "prompt": "What does the block form do, assuming the file can be opened?",
+          "answer": "Writes text and closes the file",
+          "options": [
+            "Writes text and closes the file",
+            "Only reads the file",
+            "Leaves the file open"
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "The block form closes the handle when the block exits.",
+          "hint": "The block form closes the handle when the block exits.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-4",
+          "kind": "mcq",
+          "code": "File.____(\"notes.txt\", \"w\") { |f| f.write(\"${word}\") }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text and closes the file. The block form closes the handle when the block exits.",
+          "answer": "open",
+          "options": [
+            "open",
+            "read",
+            "delete"
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "to_i converts digit text to an integer before addition.",
+          "hint": "to_i converts digit text to an integer before addition.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "io-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts \"${n}\".____ + ${m}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. to_i converts digit text to an integer before addition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "to_i"
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "chomp removes the trailing newline without deleting other text.",
+          "hint": "chomp removes the trailing newline without deleting other text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "p \"${word}\n\".____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: \"${word}\". chomp removes the trailing newline without deleting other text. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "chomp"
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "Safe navigation skips the call when the receiver is nil.",
+          "hint": "Safe navigation skips the call when the receiver is nil.",
+          "id": "io-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "line = nil\np line____chomp",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. Safe navigation skips the call when the receiver is nil. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&."
+          ]
+        },
+        {
+          "concept": "Input, output, and conversion",
+          "explanation": "The block form closes the handle when the block exits.",
+          "hint": "The block form closes the handle when the block exits.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "File.____(\"notes.txt\", \"w\") { |f| f.write(\"${word}\") }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text and closes the file. The block form closes the handle when the block exits. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "open"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modules",
+      "title": "Modules and loading",
+      "section": "Intermediate",
+      "intro": "Ruby 3.x. Modules provide namespaces and reusable methods. include adds instance methods; require loads a feature once. :: accesses a constant in a namespace.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "io"
+      ],
+      "questions": [
+        {
+          "concept": "Modules and loading",
+          "explanation": ":: resolves the constant within Config.",
+          "hint": ":: resolves the constant within Config.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-read-1",
+          "kind": "mcq",
+          "code": "module Config\n SIZE = ${n}\nend\nputs Config::SIZE",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "Config"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": ":: resolves the constant within Config.",
+          "hint": ":: resolves the constant within Config.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-1",
+          "kind": "mcq",
+          "code": "module Config\n SIZE = ${n}\nend\nputs Config____SIZE",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. :: resolves the constant within Config.",
+          "answer": "::",
+          "options": [
+            "::",
+            ".",
+            "->"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "include makes module methods available to instances.",
+          "hint": "include makes module methods available to instances.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "modules-read-2",
+          "kind": "mcq",
+          "code": "module Tag\n def label; \"${word}\"; end\nend\nclass Item\n include Tag\nend\nputs Item.new.label",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "nil",
+            "Tag"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "include makes module methods available to instances.",
+          "hint": "include makes module methods available to instances.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-2",
+          "kind": "mcq",
+          "code": "module Tag\n def label; \"${word}\"; end\nend\nclass Item\n ____ Tag\nend\nputs Item.new.label",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. include makes module methods available to instances.",
+          "answer": "include",
+          "options": [
+            "include",
+            "extend",
+            "require"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "require tracks features already loaded.",
+          "hint": "require tracks features already loaded.",
+          "id": "modules-read-3",
+          "kind": "mcq",
+          "code": "require \"set\"",
+          "prompt": "What loading rule applies?",
+          "answer": "Loads the feature at most once",
+          "options": [
+            "Loads the feature at most once",
+            "Reloads on every call",
+            "Declares a class"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "require tracks features already loaded.",
+          "hint": "require tracks features already loaded.",
+          "id": "modules-choose-3",
+          "kind": "mcq",
+          "code": "____ \"set\"",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads the feature at most once. require tracks features already loaded.",
+          "answer": "require",
+          "options": [
+            "require",
+            "load",
+            "include"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "A method defined on self here is called on the module object.",
+          "hint": "A method defined on self here is called on the module object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-read-4",
+          "kind": "mcq",
+          "code": "module Box\n def self.size; ${n}; end\nend\nputs Box.size",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "Box"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "A method defined on self here is called on the module object.",
+          "hint": "A method defined on self here is called on the module object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-4",
+          "kind": "mcq",
+          "code": "module Box\n def self.size; ${n}; end\nend\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A method defined on self here is called on the module object.",
+          "answer": "Box.size",
+          "options": [
+            "Box.size",
+            "Box.new.size",
+            "size"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": ":: resolves the constant within Config.",
+          "hint": ":: resolves the constant within Config.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "module Config\n SIZE = ${n}\nend\nputs Config____SIZE",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. :: resolves the constant within Config. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "::"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "include makes module methods available to instances.",
+          "hint": "include makes module methods available to instances.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "modules-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "module Tag\n def label; \"${word}\"; end\nend\nclass Item\n ____ Tag\nend\nputs Item.new.label",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. include makes module methods available to instances. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "include"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "require tracks features already loaded.",
+          "hint": "require tracks features already loaded.",
+          "id": "modules-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ \"set\"",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads the feature at most once. require tracks features already loaded. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "require"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "A method defined on self here is called on the module object.",
+          "hint": "A method defined on self here is called on the module object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "module Box\n def self.size; ${n}; end\nend\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A method defined on self here is called on the module object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Box.size"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "errors",
+      "title": "Exceptions and cleanup",
+      "section": "Intermediate",
+      "intro": "Ruby 3.x. raise signals an exception, rescue handles it, and ensure runs during normal or exceptional exit. Rescue specific errors when possible.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "modules"
+      ],
+      "questions": [
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "rescue catches the matching exception.",
+          "hint": "rescue catches the matching exception.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-1",
+          "kind": "mcq",
+          "code": "begin\n raise ArgumentError\nrescue ArgumentError\n puts \"${word}\"\nend",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "ArgumentError escapes",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "rescue catches the matching exception.",
+          "hint": "rescue catches the matching exception.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-1",
+          "kind": "mcq",
+          "code": "begin\n raise ArgumentError\n____ ArgumentError\n puts \"${word}\"\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. rescue catches the matching exception.",
+          "answer": "rescue",
+          "options": [
+            "rescue",
+            "ensure",
+            "else"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "ensure runs after the protected body.",
+          "hint": "ensure runs after the protected body.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "errors-read-2",
+          "kind": "mcq",
+          "code": "begin\n puts ${n}\nensure\n puts ${m}\nend",
+          "prompt": "What is the result?",
+          "answer": "${n}\n${m}",
+          "options": [
+            "${n}\n${m}",
+            "${m}",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "ensure runs after the protected body.",
+          "hint": "ensure runs after the protected body.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-2",
+          "kind": "mcq",
+          "code": "begin\n puts ${n}\n____\n puts ${m}\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}\n${m}. ensure runs after the protected body.",
+          "answer": "ensure",
+          "options": [
+            "ensure",
+            "rescue",
+            "else_if"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "raise creates exceptional control flow with a message.",
+          "hint": "raise creates exceptional control flow with a message.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-3",
+          "kind": "mcq",
+          "code": "raise ArgumentError, \"${word}\"",
+          "prompt": "What happens?",
+          "answer": "Raises ArgumentError",
+          "options": [
+            "Raises ArgumentError",
+            "Returns a string",
+            "Returns nil"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "raise creates exceptional control flow with a message.",
+          "hint": "raise creates exceptional control flow with a message.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-3",
+          "kind": "mcq",
+          "code": "____ ArgumentError, \"${word}\"",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises ArgumentError. raise creates exceptional control flow with a message.",
+          "answer": "raise",
+          "options": [
+            "raise",
+            "return",
+            "puts"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "Integer rejects invalid numeric input with ArgumentError.",
+          "hint": "Integer rejects invalid numeric input with ArgumentError.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-read-4",
+          "kind": "mcq",
+          "code": "begin\n Integer(\"bad\")\nrescue ArgumentError\n puts ${n}\nend",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "Integer rejects invalid numeric input with ArgumentError.",
+          "hint": "Integer rejects invalid numeric input with ArgumentError.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-4",
+          "kind": "mcq",
+          "code": "begin\n Integer(\"bad\")\nrescue ____\n puts ${n}\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Integer rejects invalid numeric input with ArgumentError.",
+          "answer": "ArgumentError",
+          "options": [
+            "ArgumentError",
+            "NameError",
+            "NoMethodError"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "rescue catches the matching exception.",
+          "hint": "rescue catches the matching exception.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "begin\n raise ArgumentError\n____ ArgumentError\n puts \"${word}\"\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. rescue catches the matching exception. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "rescue"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "ensure runs after the protected body.",
+          "hint": "ensure runs after the protected body.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "errors-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "begin\n puts ${n}\n____\n puts ${m}\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}\n${m}. ensure runs after the protected body. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ensure"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "raise creates exceptional control flow with a message.",
+          "hint": "raise creates exceptional control flow with a message.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ ArgumentError, \"${word}\"",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises ArgumentError. raise creates exceptional control flow with a message. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "raise"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "Integer rejects invalid numeric input with ArgumentError.",
+          "hint": "Integer rejects invalid numeric input with ArgumentError.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "begin\n Integer(\"bad\")\nrescue ____\n puts ${n}\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Integer rejects invalid numeric input with ArgumentError. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ArgumentError"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "objects",
+      "title": "Objects and encapsulation",
+      "section": "Advanced",
+      "intro": "Ruby 3.x. initialize sets up new objects. @ names instance state; attr_reader exposes a getter. Instances keep separate state.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "errors"
+      ],
+      "questions": [
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "new allocates an instance and invokes initialize.",
+          "hint": "new allocates an instance and invokes initialize.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-read-1",
+          "kind": "mcq",
+          "code": "class Box\n attr_reader :size\n def initialize(n); @size = n; end\nend\nputs Box.new(${n}).size",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "0"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "new allocates an instance and invokes initialize.",
+          "hint": "new allocates an instance and invokes initialize.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-1",
+          "kind": "mcq",
+          "code": "class Box\n attr_reader :size\n def initialize(n); @size = n; end\nend\nputs Box.____(${n}).size",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. new allocates an instance and invokes initialize.",
+          "answer": "new",
+          "options": [
+            "new",
+            "initialize",
+            "allocate"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "@size persists as instance state across method calls.",
+          "hint": "@size persists as instance state across method calls.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-read-2",
+          "kind": "mcq",
+          "code": "class Box\n def initialize; @size = ${n}; end\n def size; @size; end\nend\nputs Box.new.size",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "0"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "@size persists as instance state across method calls.",
+          "hint": "@size persists as instance state across method calls.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-2",
+          "kind": "mcq",
+          "code": "class Box\n def initialize; ____ = ${n}; end\n def size; @size; end\nend\nputs Box.new.size",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. @size persists as instance state across method calls.",
+          "answer": "@size",
+          "options": [
+            "@size",
+            "size",
+            "@@other"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "attr_reader creates the size getter.",
+          "hint": "attr_reader creates the size getter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-read-3",
+          "kind": "mcq",
+          "code": "class Box\n attr_reader :size\n def initialize; @size = ${n}; end\nend\nputs Box.new.size",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "NoMethodError"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "attr_reader creates the size getter.",
+          "hint": "attr_reader creates the size getter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-3",
+          "kind": "mcq",
+          "code": "class Box\n ____ :size\n def initialize; @size = ${n}; end\nend\nputs Box.new.size",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. attr_reader creates the size getter.",
+          "answer": "attr_reader",
+          "options": [
+            "attr_reader",
+            "attr_writer",
+            "private"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "Dot syntax dispatches an instance method.",
+          "hint": "Dot syntax dispatches an instance method.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-read-4",
+          "kind": "mcq",
+          "code": "class Box\n def value; ${n}; end\nend\na = Box.new\nputs a.value",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "Box"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "Dot syntax dispatches an instance method.",
+          "hint": "Dot syntax dispatches an instance method.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-4",
+          "kind": "mcq",
+          "code": "class Box\n def value; ${n}; end\nend\na = Box.new\nputs a.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Dot syntax dispatches an instance method.",
+          "answer": "value",
+          "options": [
+            "value",
+            "new",
+            "initialize"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "new allocates an instance and invokes initialize.",
+          "hint": "new allocates an instance and invokes initialize.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Box\n attr_reader :size\n def initialize(n); @size = n; end\nend\nputs Box.____(${n}).size",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. new allocates an instance and invokes initialize. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "new"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "@size persists as instance state across method calls.",
+          "hint": "@size persists as instance state across method calls.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Box\n def initialize; ____ = ${n}; end\n def size; @size; end\nend\nputs Box.new.size",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. @size persists as instance state across method calls. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "@size"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "attr_reader creates the size getter.",
+          "hint": "attr_reader creates the size getter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Box\n ____ :size\n def initialize; @size = ${n}; end\nend\nputs Box.new.size",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. attr_reader creates the size getter. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "attr_reader"
+          ]
+        },
+        {
+          "concept": "Objects and encapsulation",
+          "explanation": "Dot syntax dispatches an instance method.",
+          "hint": "Dot syntax dispatches an instance method.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Box\n def value; ${n}; end\nend\na = Box.new\nputs a.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Dot syntax dispatches an instance method. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blocks",
+      "title": "Blocks, yield, and closures",
+      "section": "Advanced",
+      "intro": "Ruby 3.x. yield invokes the supplied block. A lambda is a callable object; closures retain access to captured local variables.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "objects"
+      ],
+      "questions": [
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "yield passes ${n} to the caller block and returns its result.",
+          "hint": "yield passes ${n} to the caller block and returns its result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "blocks-read-1",
+          "kind": "mcq",
+          "code": "def run\n yield ${n}\nend\nputs run { |x| x + 1 }",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "yield passes ${n} to the caller block and returns its result.",
+          "hint": "yield passes ${n} to the caller block and returns its result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "blocks-choose-1",
+          "kind": "mcq",
+          "code": "def run\n ____ ${n}\nend\nputs run { |x| x + 1 }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. yield passes ${n} to the caller block and returns its result.",
+          "answer": "yield",
+          "options": [
+            "yield",
+            "return",
+            "puts"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "A lambda can be stored and called later.",
+          "hint": "A lambda can be stored and called later.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "blocks-read-2",
+          "kind": "mcq",
+          "code": "f = ->(x) { x * 2 }\nputs f.call(${n})",
+          "prompt": "What is the result?",
+          "answer": "${double}",
+          "options": [
+            "${double}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "A lambda can be stored and called later.",
+          "hint": "A lambda can be stored and called later.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "blocks-choose-2",
+          "kind": "mcq",
+          "code": "f = ____\nputs f.call(${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. A lambda can be stored and called later.",
+          "answer": "->(x) { x * 2 }",
+          "options": [
+            "->(x) { x * 2 }",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "The closure reads the captured variable after reassignment.",
+          "hint": "The closure reads the captured variable after reassignment.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "blocks-read-3",
+          "kind": "mcq",
+          "code": "x = ${n}\nf = -> { x }\nx = ${m}\nputs f.call",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "The closure reads the captured variable after reassignment.",
+          "hint": "The closure reads the captured variable after reassignment.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "blocks-choose-3",
+          "kind": "mcq",
+          "code": "x = ${n}\nf = -> { x }\nx = ${m}\nputs f.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The closure reads the captured variable after reassignment.",
+          "answer": "call",
+          "options": [
+            "call",
+            "to_s",
+            "arity"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "&block captures the block as a callable Proc.",
+          "hint": "&block captures the block as a callable Proc.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "blocks-read-4",
+          "kind": "mcq",
+          "code": "def run(&block)\n block.call(${n})\nend\nputs run { |x| x + ${m} }",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "&block captures the block as a callable Proc.",
+          "hint": "&block captures the block as a callable Proc.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "blocks-choose-4",
+          "kind": "mcq",
+          "code": "def run(&block)\n block.____(${n})\nend\nputs run { |x| x + ${m} }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. &block captures the block as a callable Proc.",
+          "answer": "call",
+          "options": [
+            "call",
+            "arity",
+            "source_location"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "yield passes ${n} to the caller block and returns its result.",
+          "hint": "yield passes ${n} to the caller block and returns its result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "blocks-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "def run\n ____ ${n}\nend\nputs run { |x| x + 1 }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. yield passes ${n} to the caller block and returns its result. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "yield"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "A lambda can be stored and called later.",
+          "hint": "A lambda can be stored and called later.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "blocks-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "f = ____\nputs f.call(${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. A lambda can be stored and called later. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "->(x) { x * 2 }"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "The closure reads the captured variable after reassignment.",
+          "hint": "The closure reads the captured variable after reassignment.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "blocks-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "x = ${n}\nf = -> { x }\nx = ${m}\nputs f.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The closure reads the captured variable after reassignment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "call"
+          ]
+        },
+        {
+          "concept": "Blocks, yield, and closures",
+          "explanation": "&block captures the block as a callable Proc.",
+          "hint": "&block captures the block as a callable Proc.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "blocks-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "def run(&block)\n block.____(${n})\nend\nputs run { |x| x + ${m} }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. &block captures the block as a callable Proc. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "call"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enumeration",
+      "title": "Enumerable and lazy iteration",
+      "section": "Advanced",
+      "intro": "Ruby 3.x. map transforms values, select keeps matches, and find returns the first match. Lazy enumerators defer traversal until values are requested.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "blocks"
+      ],
+      "questions": [
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "map builds an array of the block results.",
+          "hint": "map builds an array of the block results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "double": "n*2",
+            "m_double": "m*2"
+          },
+          "id": "enumeration-read-1",
+          "kind": "mcq",
+          "code": "p [${n}, ${m}].map { |x| x * 2 }",
+          "prompt": "What is the result?",
+          "answer": "[${double}, ${m_double}]",
+          "options": [
+            "[${double}, ${m_double}]",
+            "[${n}, ${m}]",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "map builds an array of the block results.",
+          "hint": "map builds an array of the block results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "double": "n*2",
+            "m_double": "m*2"
+          },
+          "id": "enumeration-choose-1",
+          "kind": "mcq",
+          "code": "p [${n}, ${m}].____ { |x| x * 2 }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${double}, ${m_double}]. map builds an array of the block results.",
+          "answer": "map",
+          "options": [
+            "map",
+            "select",
+            "each"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "select keeps elements whose block result is truthy.",
+          "hint": "select keeps elements whose block result is truthy.",
+          "id": "enumeration-read-2",
+          "kind": "mcq",
+          "code": "p [1, 2, 3].select { |x| x > 1 }",
+          "prompt": "What is the result?",
+          "answer": "[2, 3]",
+          "options": [
+            "[2, 3]",
+            "[1, 2, 3]",
+            "2"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "select keeps elements whose block result is truthy.",
+          "hint": "select keeps elements whose block result is truthy.",
+          "id": "enumeration-choose-2",
+          "kind": "mcq",
+          "code": "p [1, 2, 3].____ { |x| x > 1 }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [2, 3]. select keeps elements whose block result is truthy.",
+          "answer": "select",
+          "options": [
+            "select",
+            "find",
+            "map"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "find returns the first matching element.",
+          "hint": "find returns the first matching element.",
+          "id": "enumeration-read-3",
+          "kind": "mcq",
+          "code": "puts [1, 2, 3].find { |x| x > 1 }",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "3",
+            "[2, 3]"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "find returns the first matching element.",
+          "hint": "find returns the first matching element.",
+          "id": "enumeration-choose-3",
+          "kind": "mcq",
+          "code": "puts [1, 2, 3].____ { |x| x > 1 }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. find returns the first matching element.",
+          "answer": "find",
+          "options": [
+            "find",
+            "select",
+            "map"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "lazy defers work; force evaluates the requested first two values.",
+          "hint": "lazy defers work; force evaluates the requested first two values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "enumeration-read-4",
+          "kind": "mcq",
+          "code": "p (1..${n}).lazy.map { |x| x * 2 }.take(2).force",
+          "prompt": "What is the result?",
+          "answer": "[2, 4]",
+          "options": [
+            "[2, 4]",
+            "[1, 2]",
+            "[]"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "lazy defers work; force evaluates the requested first two values.",
+          "hint": "lazy defers work; force evaluates the requested first two values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "enumeration-choose-4",
+          "kind": "mcq",
+          "code": "p (1..${n}).____.map { |x| x * 2 }.take(2).force",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [2, 4]. lazy defers work; force evaluates the requested first two values.",
+          "answer": "lazy",
+          "options": [
+            "lazy",
+            "to_i",
+            "first"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "map builds an array of the block results.",
+          "hint": "map builds an array of the block results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "double": "n*2",
+            "m_double": "m*2"
+          },
+          "id": "enumeration-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "p [${n}, ${m}].____ { |x| x * 2 }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${double}, ${m_double}]. map builds an array of the block results. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "map"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "select keeps elements whose block result is truthy.",
+          "hint": "select keeps elements whose block result is truthy.",
+          "id": "enumeration-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "p [1, 2, 3].____ { |x| x > 1 }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [2, 3]. select keeps elements whose block result is truthy. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "select"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "find returns the first matching element.",
+          "hint": "find returns the first matching element.",
+          "id": "enumeration-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts [1, 2, 3].____ { |x| x > 1 }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. find returns the first matching element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "find"
+          ]
+        },
+        {
+          "concept": "Enumerable and lazy iteration",
+          "explanation": "lazy defers work; force evaluates the requested first two values.",
+          "hint": "lazy defers work; force evaluates the requested first two values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "enumeration-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "p (1..${n}).____.map { |x| x * 2 }.take(2).force",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [2, 4]. lazy defers work; force evaluates the requested first two values. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "lazy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mutation",
+      "title": "Aliasing, freezing, and method lookup",
+      "section": "Advanced",
+      "intro": "Ruby 3.x. Assignment shares mutable objects; dup makes a shallow copy. freeze prevents mutation of that object. super delegates to the ancestor method.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc"
+      ],
+      "requires": [
+        "enumeration"
+      ],
+      "questions": [
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "Both variables refer to the same mutable array.",
+          "hint": "Both variables refer to the same mutable array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "mutation-read-1",
+          "kind": "mcq",
+          "code": "a = [${n}]\nb = a\nb << ${m}\nputs a.length",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "Both variables refer to the same mutable array.",
+          "hint": "Both variables refer to the same mutable array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "mutation-choose-1",
+          "kind": "mcq",
+          "code": "a = [${n}]\nb = a\nb ____ ${m}\nputs a.length",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Both variables refer to the same mutable array.",
+          "answer": "<<",
+          "options": [
+            "<<",
+            "==",
+            "+"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "dup creates a separate outer array.",
+          "hint": "dup creates a separate outer array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "mutation-read-2",
+          "kind": "mcq",
+          "code": "a = [${n}]\nb = a.dup\nb << ${m}\nputs a.length",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "2",
+            "0"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "dup creates a separate outer array.",
+          "hint": "dup creates a separate outer array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "mutation-choose-2",
+          "kind": "mcq",
+          "code": "a = [${n}]\nb = a.____\nb << ${m}\nputs a.length",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. dup creates a separate outer array.",
+          "answer": "dup",
+          "options": [
+            "dup",
+            "itself",
+            "freeze"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "freeze rejects attempts to modify this array.",
+          "hint": "freeze rejects attempts to modify this array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "mutation-read-3",
+          "kind": "mcq",
+          "code": "a = [${n}].freeze\na << ${m}",
+          "prompt": "What happens on the second line?",
+          "answer": "FrozenError",
+          "options": [
+            "FrozenError",
+            "Appends successfully",
+            "Returns nil"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "freeze rejects attempts to modify this array.",
+          "hint": "freeze rejects attempts to modify this array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "mutation-choose-3",
+          "kind": "mcq",
+          "code": "a = [${n}].____\na << ${m}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: FrozenError. freeze rejects attempts to modify this array.",
+          "answer": "freeze",
+          "options": [
+            "freeze",
+            "dup",
+            "itself"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "super invokes the inherited implementation.",
+          "hint": "super invokes the inherited implementation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "mutation-read-4",
+          "kind": "mcq",
+          "code": "class Base\n def size; ${n}; end\nend\nclass Child < Base\n def size; super + 1; end\nend\nputs Child.new.size",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "1"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "super invokes the inherited implementation.",
+          "hint": "super invokes the inherited implementation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "mutation-choose-4",
+          "kind": "mcq",
+          "code": "class Base\n def size; ${n}; end\nend\nclass Child < Base\n def size; ____ + 1; end\nend\nputs Child.new.size",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. super invokes the inherited implementation.",
+          "answer": "super",
+          "options": [
+            "super",
+            "nil",
+            "self"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "Both variables refer to the same mutable array.",
+          "hint": "Both variables refer to the same mutable array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "mutation-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "a = [${n}]\nb = a\nb ____ ${m}\nputs a.length",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Both variables refer to the same mutable array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "<<"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "dup creates a separate outer array.",
+          "hint": "dup creates a separate outer array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "mutation-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "a = [${n}]\nb = a.____\nb << ${m}\nputs a.length",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. dup creates a separate outer array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "dup"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "freeze rejects attempts to modify this array.",
+          "hint": "freeze rejects attempts to modify this array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "mutation-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "a = [${n}].____\na << ${m}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: FrozenError. freeze rejects attempts to modify this array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "freeze"
+          ]
+        },
+        {
+          "concept": "Aliasing, freezing, and method lookup",
+          "explanation": "super invokes the inherited implementation.",
+          "hint": "super invokes the inherited implementation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "mutation-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Base\n def size; ${n}; end\nend\nclass Child < Base\n def size; ____ + 1; end\nend\nputs Child.new.size",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. super invokes the inherited implementation. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "super"
+          ]
+        }
+      ]
+    }
+  ]
+}

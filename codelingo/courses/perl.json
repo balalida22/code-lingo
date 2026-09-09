@@ -1,0 +1,4458 @@
+{
+  "schema_version": 2,
+  "id": "perl",
+  "title": "Perl",
+  "language": "Perl 5; strict and warnings enabled; snippets omit those declarations",
+  "version": "1.0",
+  "sources": [
+    {
+      "id": "perl",
+      "title": "Perl introduction and tutorials",
+      "url": "https://perldoc.perl.org/perlintro",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "perlref",
+      "title": "Perl reference tutorial",
+      "url": "https://perldoc.perl.org/perlreftut",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "values",
+      "title": "Values and assignment",
+      "section": "Basics",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. A variable names a value. Assignment updates that variable; an earlier copied number does not follow later assignments. Read statements from top to bottom.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-read-1",
+          "kind": "mcq",
+          "code": "my $x = ${n};\nprint($x);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-choose-1",
+          "kind": "mcq",
+          "code": "my $x = ____;\nprint($x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-read-2",
+          "kind": "mcq",
+          "code": "my $x = ${n};\n$x = ${m};\nprint($x);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-choose-2",
+          "kind": "mcq",
+          "code": "my $x = ${n};\n$x = ____;\nprint($x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal.",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "values-read-3",
+          "kind": "mcq",
+          "code": "my $x = ${n};\nprint($x + ${m});",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-choose-3",
+          "kind": "mcq",
+          "code": "my $x = ${n};\nprint(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable.",
+          "answer": "$x + ${m}",
+          "options": [
+            "$x + ${m}",
+            "$x * ${m}",
+            "$x"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "prev": "n-1"
+          },
+          "id": "values-read-4",
+          "kind": "mcq",
+          "code": "my $x = ${n};\n$x = $x + 1;\nprint($x);",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "${prev}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-choose-4",
+          "kind": "mcq",
+          "code": "my $x = ${n};\n$x = $x + ____;\nprint($x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "values-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x = ____;\nprint($x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "values-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x = ${n};\n$x = ____;\nprint($x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x = ${n};\nprint(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "$x + ${m}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x = ${n};\n$x = $x + ____;\nprint($x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arithmetic",
+      "title": "Arithmetic and precedence",
+      "section": "Basics",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. Multiplication binds more tightly than addition. Parentheses group expressions. Integer quotient and remainder answer different questions; all operands here are positive.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "values"
+      ],
+      "questions": [
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mul": "n*m",
+            "n_plus_twom": "n+m*2",
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-read-1",
+          "kind": "mcq",
+          "code": "print(${n} + ${m} * 2);",
+          "prompt": "What is the result?",
+          "answer": "${n_plus_twom}",
+          "options": [
+            "${n_plus_twom}",
+            "${doubleadd}",
+            "${mul}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "n_plus_twom": "n+m*2"
+          },
+          "id": "arithmetic-choose-1",
+          "kind": "mcq",
+          "code": "print(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added.",
+          "answer": "${n} + ${m} * 2",
+          "options": [
+            "${n} + ${m} * 2",
+            "(${n} + ${m}) * 2",
+            "${n} * ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "n_plus_twom": "n+m*2",
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-read-2",
+          "kind": "mcq",
+          "code": "print((${n} + ${m}) * 2);",
+          "prompt": "What is the result?",
+          "answer": "${doubleadd}",
+          "options": [
+            "${doubleadd}",
+            "${n_plus_twom}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-choose-2",
+          "kind": "mcq",
+          "code": "print(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling.",
+          "answer": "(${n} + ${m}) * 2",
+          "options": [
+            "(${n} + ${m}) * 2",
+            "${n} + ${m} * 2",
+            "${n} + ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mul": "n*m",
+            "rem": "n%m",
+            "div": "n//m"
+          },
+          "id": "arithmetic-read-3",
+          "kind": "mcq",
+          "code": "print(int(${n} / ${m}));",
+          "prompt": "What is the result?",
+          "answer": "${div}",
+          "options": [
+            "${div}",
+            "${rem}",
+            "${mul}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "arithmetic-choose-3",
+          "kind": "mcq",
+          "code": "print(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part.",
+          "answer": "int(${n} / ${m})",
+          "options": [
+            "int(${n} / ${m})",
+            "${n} % ${m}",
+            "${n} * ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m",
+            "rem": "n%m"
+          },
+          "id": "arithmetic-read-4",
+          "kind": "mcq",
+          "code": "print(${n} % ${m});",
+          "prompt": "What is the result?",
+          "answer": "${rem}",
+          "options": [
+            "${rem}",
+            "${mul}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "rem": "n%m"
+          },
+          "id": "arithmetic-choose-4",
+          "kind": "mcq",
+          "code": "print(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}.",
+          "answer": "${n} % ${m}",
+          "options": [
+            "${n} % ${m}",
+            "${n} * ${m}",
+            "${n} + ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "n_plus_twom": "n+m*2"
+          },
+          "id": "arithmetic-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} + ${m} * 2"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "(${n} + ${m}) * 2"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "arithmetic-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "int(${n} / ${m})"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "rem": "n%m"
+          },
+          "id": "arithmetic-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} % ${m}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strings",
+      "title": "Strings, sigils, and interpolation",
+      "section": "Basics",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. Scalars use $. Double quotes interpolate; single quotes preserve literal text. A dot concatenates strings; x repeats them. Assume use strict and use warnings.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "arithmetic"
+      ],
+      "questions": [
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "Double quotes interpolate the scalar value.",
+          "hint": "Double quotes interpolate the scalar value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "strings-read-1",
+          "kind": "mcq",
+          "code": "my $x=${n}; print \"$x\";",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "$x",
+            "x"
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "Double quotes interpolate the scalar value.",
+          "hint": "Double quotes interpolate the scalar value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "strings-choose-1",
+          "kind": "mcq",
+          "code": "my $x=${n}; print ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Double quotes interpolate the scalar value. Use \"$x\" as the replacement literal.",
+          "answer": "\"$x\"",
+          "options": [
+            "\"$x\"",
+            "'$x'",
+            "\"x\""
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "The dot operator concatenates strings.",
+          "hint": "The dot operator concatenates strings.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "joined": "word+word"
+          },
+          "id": "strings-read-2",
+          "kind": "mcq",
+          "code": "print \"${word}\" . \"${word}\";",
+          "prompt": "What is the result?",
+          "answer": "${joined}",
+          "options": [
+            "${joined}",
+            "${word}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "The dot operator concatenates strings.",
+          "hint": "The dot operator concatenates strings.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "joined": "word+word"
+          },
+          "id": "strings-choose-2",
+          "kind": "mcq",
+          "code": "print \"${word}\" ____ \"${word}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${joined}. The dot operator concatenates strings.",
+          "answer": ".",
+          "options": [
+            ".",
+            "+",
+            "=="
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "length counts characters in this ASCII string.",
+          "hint": "length counts characters in this ASCII string.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "strings-read-3",
+          "kind": "mcq",
+          "code": "print length(\"${word}\");",
+          "prompt": "What is the result?",
+          "answer": "${length}",
+          "options": [
+            "${length}",
+            "0",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "length counts characters in this ASCII string.",
+          "hint": "length counts characters in this ASCII string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "strings-choose-3",
+          "kind": "mcq",
+          "code": "print ____(\"${word}\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. length counts characters in this ASCII string.",
+          "answer": "length",
+          "options": [
+            "length",
+            "uc",
+            "lc"
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "x repeats the string twice.",
+          "hint": "x repeats the string twice.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "joined": "word+word"
+          },
+          "id": "strings-read-4",
+          "kind": "mcq",
+          "code": "print \"${word}\" x 2;",
+          "prompt": "What is the result?",
+          "answer": "${joined}",
+          "options": [
+            "${joined}",
+            "${word}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "x repeats the string twice.",
+          "hint": "x repeats the string twice.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "joined": "word+word"
+          },
+          "id": "strings-choose-4",
+          "kind": "mcq",
+          "code": "print \"${word}\" ____ 2;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${joined}. x repeats the string twice.",
+          "answer": "x",
+          "options": [
+            "x",
+            "+",
+            "eq"
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "Double quotes interpolate the scalar value.",
+          "hint": "Double quotes interpolate the scalar value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "strings-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=${n}; print ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Double quotes interpolate the scalar value. Use \"$x\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"$x\""
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "The dot operator concatenates strings.",
+          "hint": "The dot operator concatenates strings.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "joined": "word+word"
+          },
+          "id": "strings-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print \"${word}\" ____ \"${word}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${joined}. The dot operator concatenates strings. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "."
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "length counts characters in this ASCII string.",
+          "hint": "length counts characters in this ASCII string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "strings-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print ____(\"${word}\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. length counts characters in this ASCII string. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "length"
+          ]
+        },
+        {
+          "concept": "Strings, sigils, and interpolation",
+          "explanation": "x repeats the string twice.",
+          "hint": "x repeats the string twice.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "joined": "word+word"
+          },
+          "id": "strings-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print \"${word}\" ____ 2;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${joined}. x repeats the string twice. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conditions",
+      "title": "Numeric and string comparison",
+      "section": "Basics",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. eq compares strings; == compares numbers. undef, empty text, zero, and \"0\" are falsey. // falls back only for undefined values.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "strings"
+      ],
+      "questions": [
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "eq checks string equality.",
+          "hint": "eq checks string equality.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-1",
+          "kind": "mcq",
+          "code": "print(\"${word}\" eq \"${word}\" ? \"yes\" : \"no\");",
+          "prompt": "What is the result?",
+          "answer": "yes",
+          "options": [
+            "yes",
+            "no",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "eq checks string equality.",
+          "hint": "eq checks string equality.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-1",
+          "kind": "mcq",
+          "code": "print(\"${word}\" ____ \"${word}\" ? \"yes\" : \"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: yes. eq checks string equality.",
+          "answer": "eq",
+          "options": [
+            "eq",
+            "ne",
+            "lt"
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "The string zero is falsey in Perl.",
+          "hint": "The string zero is falsey in Perl.",
+          "id": "conditions-read-2",
+          "kind": "mcq",
+          "code": "print(\"0\" ? \"yes\" : \"no\");",
+          "prompt": "What is the result?",
+          "answer": "no",
+          "options": [
+            "no",
+            "yes",
+            "0"
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "The string zero is falsey in Perl.",
+          "hint": "The string zero is falsey in Perl.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-2",
+          "kind": "mcq",
+          "code": "print(____ ? \"yes\" : \"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. The string zero is falsey in Perl. Use \"0\" as the replacement literal.",
+          "answer": "\"0\"",
+          "options": [
+            "\"0\"",
+            "\"${word}\"",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "Defined-or uses its fallback for undef.",
+          "hint": "Defined-or uses its fallback for undef.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-3",
+          "kind": "mcq",
+          "code": "my $x=undef; print $x // \"${word}\";",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "undef",
+            "0"
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "Defined-or uses its fallback for undef.",
+          "hint": "Defined-or uses its fallback for undef.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-3",
+          "kind": "mcq",
+          "code": "my $x=undef; print $x ____ \"${word}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Defined-or uses its fallback for undef.",
+          "answer": "//",
+          "options": [
+            "//",
+            "&&",
+            "eq"
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "Defined-or preserves zero because it is defined.",
+          "hint": "Defined-or preserves zero because it is defined.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-4",
+          "kind": "mcq",
+          "code": "my $x=0; print $x // ${n};",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "${n}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "Defined-or preserves zero because it is defined.",
+          "hint": "Defined-or preserves zero because it is defined.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-4",
+          "kind": "mcq",
+          "code": "my $x=0; print $x ____ ${n};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Defined-or preserves zero because it is defined.",
+          "answer": "//",
+          "options": [
+            "//",
+            "||",
+            "+"
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "eq checks string equality.",
+          "hint": "eq checks string equality.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(\"${word}\" ____ \"${word}\" ? \"yes\" : \"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: yes. eq checks string equality. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "eq"
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "The string zero is falsey in Perl.",
+          "hint": "The string zero is falsey in Perl.",
+          "id": "conditions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____ ? \"yes\" : \"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. The string zero is falsey in Perl. Use \"0\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"0\""
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "Defined-or uses its fallback for undef.",
+          "hint": "Defined-or uses its fallback for undef.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=undef; print $x ____ \"${word}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Defined-or uses its fallback for undef. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "//"
+          ]
+        },
+        {
+          "concept": "Numeric and string comparison",
+          "explanation": "Defined-or preserves zero because it is defined.",
+          "hint": "Defined-or preserves zero because it is defined.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=0; print $x ____ ${n};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Defined-or preserves zero because it is defined. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "//"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loops",
+      "title": "Loops and loop controls",
+      "section": "Basics",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. for can iterate a list; next skips an iteration and last exits. The range operator .. includes both integer endpoints in list context.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "conditions"
+      ],
+      "questions": [
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "The range includes every integer from one through ${n}.",
+          "hint": "The range includes every integer from one through ${n}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "prev": "n-1"
+          },
+          "id": "loops-read-1",
+          "kind": "mcq",
+          "code": "my $x=0; for my $i (1..${n}) { $x++; } print $x;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${prev}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "The range includes every integer from one through ${n}.",
+          "hint": "The range includes every integer from one through ${n}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-choose-1",
+          "kind": "mcq",
+          "code": "my $x=0; for my $i (1____${n}) { $x++; } print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The range includes every integer from one through ${n}.",
+          "answer": "..",
+          "options": [
+            "..",
+            "+",
+            ","
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "The loop visits both listed values.",
+          "hint": "The loop visits both listed values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "loops-read-2",
+          "kind": "mcq",
+          "code": "my $x=0; for my $v (${n}, ${m}) { $x+=$v; } print $x;",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "The loop visits both listed values.",
+          "hint": "The loop visits both listed values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "loops-choose-2",
+          "kind": "mcq",
+          "code": "my $x=0; ____ my $v (${n}, ${m}) { $x+=$v; } print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. The loop visits both listed values.",
+          "answer": "for",
+          "options": [
+            "for",
+            "while",
+            "if"
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "next skips only the middle iteration.",
+          "hint": "next skips only the middle iteration.",
+          "id": "loops-read-3",
+          "kind": "mcq",
+          "code": "my $x=0; for my $i (0..2) { next if $i==1; $x++; } print $x;",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "next skips only the middle iteration.",
+          "hint": "next skips only the middle iteration.",
+          "id": "loops-choose-3",
+          "kind": "mcq",
+          "code": "my $x=0; for my $i (0..2) { ____ if $i==1; $x++; } print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. next skips only the middle iteration.",
+          "answer": "next",
+          "options": [
+            "next",
+            "last",
+            "return"
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "last exits the loop after one increment.",
+          "hint": "last exits the loop after one increment.",
+          "id": "loops-read-4",
+          "kind": "mcq",
+          "code": "my $x=0; while (1) { $x++; last; } print $x;",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Never terminates"
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "last exits the loop after one increment.",
+          "hint": "last exits the loop after one increment.",
+          "id": "loops-choose-4",
+          "kind": "mcq",
+          "code": "my $x=0; while (1) { $x++; ____; } print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. last exits the loop after one increment.",
+          "answer": "last",
+          "options": [
+            "last",
+            "next",
+            "redo"
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "The range includes every integer from one through ${n}.",
+          "hint": "The range includes every integer from one through ${n}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=0; for my $i (1____${n}) { $x++; } print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The range includes every integer from one through ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            ".."
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "The loop visits both listed values.",
+          "hint": "The loop visits both listed values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "loops-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=0; ____ my $v (${n}, ${m}) { $x+=$v; } print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. The loop visits both listed values. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "for"
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "next skips only the middle iteration.",
+          "hint": "next skips only the middle iteration.",
+          "id": "loops-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=0; for my $i (0..2) { ____ if $i==1; $x++; } print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. next skips only the middle iteration. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "next"
+          ]
+        },
+        {
+          "concept": "Loops and loop controls",
+          "explanation": "last exits the loop after one increment.",
+          "hint": "last exits the loop after one increment.",
+          "id": "loops-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=0; while (1) { $x++; ____; } print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. last exits the loop after one increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "last"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "subroutines",
+      "title": "Subroutines and arguments",
+      "section": "Intermediate",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. Arguments arrive in @_. A return supplies results; list assignment commonly names parameters. Scalar arguments can alias caller variables through @_.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "loops"
+      ],
+      "questions": [
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "List assignment copies the first argument to the local x.",
+          "hint": "List assignment copies the first argument to the local x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "subroutines-read-1",
+          "kind": "mcq",
+          "code": "sub bump { my ($x)=@_; return $x+1; } print bump(${n});",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "List assignment copies the first argument to the local x.",
+          "hint": "List assignment copies the first argument to the local x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "subroutines-choose-1",
+          "kind": "mcq",
+          "code": "sub bump { my ($x)=@_; return ____; } print bump(${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. List assignment copies the first argument to the local x.",
+          "answer": "$x+1",
+          "options": [
+            "$x+1",
+            "$x",
+            "0"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "@_ contains the argument list for the current call.",
+          "hint": "@_ contains the argument list for the current call.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "subroutines-read-2",
+          "kind": "mcq",
+          "code": "sub add { my ($a,$b)=@_; return $a+$b; } print add(${n},${m});",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "@_ contains the argument list for the current call.",
+          "hint": "@_ contains the argument list for the current call.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "subroutines-choose-2",
+          "kind": "mcq",
+          "code": "sub add { my ($a,$b)=____; return $a+$b; } print add(${n},${m});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. @_ contains the argument list for the current call.",
+          "answer": "@_",
+          "options": [
+            "@_",
+            "@ARGV",
+            "()"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "return exits before the later expression.",
+          "hint": "return exits before the later expression.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "subroutines-read-3",
+          "kind": "mcq",
+          "code": "sub stop { return ${n}; ${m}; } print stop();",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "return exits before the later expression.",
+          "hint": "return exits before the later expression.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "subroutines-choose-3",
+          "kind": "mcq",
+          "code": "sub stop { ____ ${n}; ${m}; } print stop();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. return exits before the later expression.",
+          "answer": "return",
+          "options": [
+            "return",
+            "print",
+            "warn"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "The argument slot aliases the caller scalar in this call.",
+          "hint": "The argument slot aliases the caller scalar in this call.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "subroutines-read-4",
+          "kind": "mcq",
+          "code": "sub change { $_[0]=${m}; } my $x=${n}; change($x); print $x;",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "The argument slot aliases the caller scalar in this call.",
+          "hint": "The argument slot aliases the caller scalar in this call.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "subroutines-choose-4",
+          "kind": "mcq",
+          "code": "sub change { ____=${m}; } my $x=${n}; change($x); print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The argument slot aliases the caller scalar in this call.",
+          "answer": "$_[0]",
+          "options": [
+            "$_[0]",
+            "my $x",
+            "my $other"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "List assignment copies the first argument to the local x.",
+          "hint": "List assignment copies the first argument to the local x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "subroutines-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "sub bump { my ($x)=@_; return ____; } print bump(${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. List assignment copies the first argument to the local x. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "$x+1"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "@_ contains the argument list for the current call.",
+          "hint": "@_ contains the argument list for the current call.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "subroutines-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "sub add { my ($a,$b)=____; return $a+$b; } print add(${n},${m});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. @_ contains the argument list for the current call. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "@_"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "return exits before the later expression.",
+          "hint": "return exits before the later expression.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "subroutines-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "sub stop { ____ ${n}; ${m}; } print stop();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. return exits before the later expression. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "return"
+          ]
+        },
+        {
+          "concept": "Subroutines and arguments",
+          "explanation": "The argument slot aliases the caller scalar in this call.",
+          "hint": "The argument slot aliases the caller scalar in this call.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "subroutines-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "sub change { ____=${m}; } my $x=${n}; change($x); print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The argument slot aliases the caller scalar in this call. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "$_[0]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "collections",
+      "title": "Arrays, hashes, and sigils",
+      "section": "Intermediate",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. @ names an array and % a hash; a single element uses $. Arrays start at zero. Hash keys are strings; exists tests presence even if the value is undef.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "subroutines"
+      ],
+      "questions": [
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "A scalar array element uses $ and zero-based indexing.",
+          "hint": "A scalar array element uses $ and zero-based indexing.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-read-1",
+          "kind": "mcq",
+          "code": "my @a=(${n},${m}); print $a[0];",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "A scalar array element uses $ and zero-based indexing.",
+          "hint": "A scalar array element uses $ and zero-based indexing.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-choose-1",
+          "kind": "mcq",
+          "code": "my @a=(${n},${m}); print $a[____];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A scalar array element uses $ and zero-based indexing.",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "The fat comma pairs this key with its value.",
+          "hint": "The fat comma pairs this key with its value.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "collections-read-2",
+          "kind": "mcq",
+          "code": "my %h=(name => \"${word}\"); print $h{name};",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "name",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "The fat comma pairs this key with its value.",
+          "hint": "The fat comma pairs this key with its value.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "collections-choose-2",
+          "kind": "mcq",
+          "code": "my %h=(name ____ \"${word}\"); print $h{name};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The fat comma pairs this key with its value.",
+          "answer": "=>",
+          "options": [
+            "=>",
+            "=",
+            "=="
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "push appends to the array.",
+          "hint": "push appends to the array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-read-3",
+          "kind": "mcq",
+          "code": "my @a=(${n}); push @a, ${m}; print scalar @a;",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "push appends to the array.",
+          "hint": "push appends to the array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-choose-3",
+          "kind": "mcq",
+          "code": "my @a=(${n}); ____ @a, ${m}; print scalar @a;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. push appends to the array.",
+          "answer": "push",
+          "options": [
+            "push",
+            "shift",
+            "pop"
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "exists tests whether the hash entry is present.",
+          "hint": "exists tests whether the hash entry is present.",
+          "id": "collections-read-4",
+          "kind": "mcq",
+          "code": "my %h=(x=>undef); print(exists $h{x} ? \"yes\" : \"no\");",
+          "prompt": "What is the result?",
+          "answer": "yes",
+          "options": [
+            "yes",
+            "no",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "exists tests whether the hash entry is present.",
+          "hint": "exists tests whether the hash entry is present.",
+          "id": "collections-choose-4",
+          "kind": "mcq",
+          "code": "my %h=(x=>undef); print(____ $h{x} ? \"yes\" : \"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: yes. exists tests whether the hash entry is present.",
+          "answer": "exists",
+          "options": [
+            "exists",
+            "defined",
+            "ref"
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "A scalar array element uses $ and zero-based indexing.",
+          "hint": "A scalar array element uses $ and zero-based indexing.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my @a=(${n},${m}); print $a[____];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A scalar array element uses $ and zero-based indexing. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "The fat comma pairs this key with its value.",
+          "hint": "The fat comma pairs this key with its value.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "collections-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my %h=(name ____ \"${word}\"); print $h{name};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The fat comma pairs this key with its value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=>"
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "push appends to the array.",
+          "hint": "push appends to the array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "collections-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my @a=(${n}); ____ @a, ${m}; print scalar @a;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. push appends to the array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "push"
+          ]
+        },
+        {
+          "concept": "Arrays, hashes, and sigils",
+          "explanation": "exists tests whether the hash entry is present.",
+          "hint": "exists tests whether the hash entry is present.",
+          "id": "collections-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my %h=(x=>undef); print(____ $h{x} ? \"yes\" : \"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: yes. exists tests whether the hash entry is present. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "exists"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io",
+      "title": "Handles, lines, and conversion",
+      "section": "Intermediate",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. Use lexical filehandles and three-argument open. Check open failure and close handles. chomp removes a trailing input record separator; <> reads a record.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "collections"
+      ],
+      "questions": [
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "chomp removes the final newline from this scalar.",
+          "hint": "chomp removes the final newline from this scalar.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-1",
+          "kind": "mcq",
+          "code": "my $x=\"${word}\n\"; chomp $x; print $x;",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "${word}\n",
+            "Empty string"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "chomp removes the final newline from this scalar.",
+          "hint": "chomp removes the final newline from this scalar.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-1",
+          "kind": "mcq",
+          "code": "my $x=\"${word}\n\"; ____ $x; print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. chomp removes the final newline from this scalar.",
+          "answer": "chomp",
+          "options": [
+            "chomp",
+            "chop",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "int truncates the positive fractional quotient.",
+          "hint": "int truncates the positive fractional quotient.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mul": "n*m",
+            "rem": "n%m",
+            "div": "n//m"
+          },
+          "id": "io-read-2",
+          "kind": "mcq",
+          "code": "print int(${n} / ${m});",
+          "prompt": "What is the result?",
+          "answer": "${div}",
+          "options": [
+            "${div}",
+            "${rem}",
+            "${mul}"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "int truncates the positive fractional quotient.",
+          "hint": "int truncates the positive fractional quotient.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "io-choose-2",
+          "kind": "mcq",
+          "code": "print ____(${n} / ${m});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. int truncates the positive fractional quotient.",
+          "answer": "int",
+          "options": [
+            "int",
+            "length",
+            "uc"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "The explicit handle receives text and is then closed.",
+          "hint": "The explicit handle receives text and is then closed.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-3",
+          "kind": "mcq",
+          "code": "open my $fh, \">\", \"notes.txt\" or die $!;\nprint {$fh} \"${word}\";\nclose $fh;",
+          "prompt": "Assuming open succeeds, what happens?",
+          "answer": "Writes text and closes the handle",
+          "options": [
+            "Writes text and closes the handle",
+            "Only reads text",
+            "Prints to standard output"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "The explicit handle receives text and is then closed.",
+          "hint": "The explicit handle receives text and is then closed.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-3",
+          "kind": "mcq",
+          "code": "open my $fh, \">\", \"notes.txt\" or die $!;\nprint {$fh} \"${word}\";\n____ $fh;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text and closes the handle. The explicit handle receives text and is then closed.",
+          "answer": "close",
+          "options": [
+            "close",
+            "undef",
+            "readline"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "The defined-or fallback handles the EOF-like undef value.",
+          "hint": "The defined-or fallback handles the EOF-like undef value.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-4",
+          "kind": "mcq",
+          "code": "my $line=undef; print $line // \"${word}\";",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "undef",
+            "0"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "The defined-or fallback handles the EOF-like undef value.",
+          "hint": "The defined-or fallback handles the EOF-like undef value.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-4",
+          "kind": "mcq",
+          "code": "my $line=undef; print $line ____ \"${word}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The defined-or fallback handles the EOF-like undef value.",
+          "answer": "//",
+          "options": [
+            "//",
+            "&&",
+            "eq"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "chomp removes the final newline from this scalar.",
+          "hint": "chomp removes the final newline from this scalar.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=\"${word}\n\"; ____ $x; print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. chomp removes the final newline from this scalar. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "chomp"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "int truncates the positive fractional quotient.",
+          "hint": "int truncates the positive fractional quotient.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "io-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print ____(${n} / ${m});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. int truncates the positive fractional quotient. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "int"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "The explicit handle receives text and is then closed.",
+          "hint": "The explicit handle receives text and is then closed.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "open my $fh, \">\", \"notes.txt\" or die $!;\nprint {$fh} \"${word}\";\n____ $fh;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text and closes the handle. The explicit handle receives text and is then closed. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "close"
+          ]
+        },
+        {
+          "concept": "Handles, lines, and conversion",
+          "explanation": "The defined-or fallback handles the EOF-like undef value.",
+          "hint": "The defined-or fallback handles the EOF-like undef value.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $line=undef; print $line ____ \"${word}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The defined-or fallback handles the EOF-like undef value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "//"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modules",
+      "title": "Packages and lexical declarations",
+      "section": "Intermediate",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. package changes the namespace; my creates lexical variables and our declares package variables. use loads a module during compilation. Traditional modules return a true value.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "io"
+      ],
+      "questions": [
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "The qualified name accesses a package variable.",
+          "hint": "The qualified name accesses a package variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-read-1",
+          "kind": "mcq",
+          "code": "package Config; our $size=${n};\npackage main; print $Config::size;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "The qualified name accesses a package variable.",
+          "hint": "The qualified name accesses a package variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-1",
+          "kind": "mcq",
+          "code": "package Config; our $size=${n};\npackage main; print ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The qualified name accesses a package variable.",
+          "answer": "$Config::size",
+          "options": [
+            "$Config::size",
+            "$main::size",
+            "0"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "The inner lexical binding shadows the outer one temporarily.",
+          "hint": "The inner lexical binding shadows the outer one temporarily.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-read-2",
+          "kind": "mcq",
+          "code": "my $x=${n}; { my $x=${m}; } print $x;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "The inner lexical binding shadows the outer one temporarily.",
+          "hint": "The inner lexical binding shadows the outer one temporarily.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-2",
+          "kind": "mcq",
+          "code": "my $x=${n}; { my $x=${m}; } print ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The inner lexical binding shadows the outer one temporarily.",
+          "answer": "$x",
+          "options": [
+            "$x",
+            "${m}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "use strict catches undeclared symbolic usage and other unsafe constructs.",
+          "hint": "use strict catches undeclared symbolic usage and other unsafe constructs.",
+          "id": "modules-read-3",
+          "kind": "mcq",
+          "code": "use strict;",
+          "prompt": "What does this declaration do?",
+          "answer": "Enables compile-time restrictions",
+          "options": [
+            "Enables compile-time restrictions",
+            "Disables warnings",
+            "Creates a variable"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "use strict catches undeclared symbolic usage and other unsafe constructs.",
+          "hint": "use strict catches undeclared symbolic usage and other unsafe constructs.",
+          "id": "modules-choose-3",
+          "kind": "mcq",
+          "code": "____ strict;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Enables compile-time restrictions. use strict catches undeclared symbolic usage and other unsafe constructs.",
+          "answer": "use",
+          "options": [
+            "use",
+            "no",
+            "print"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "A traditional require-loaded module must finish with a true value.",
+          "hint": "A traditional require-loaded module must finish with a true value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-read-4",
+          "kind": "mcq",
+          "code": "package Config;\nsub size { ${n} }\n1;",
+          "prompt": "Why end a traditional module this way?",
+          "answer": "Returns a true module value",
+          "options": [
+            "Returns a true module value",
+            "Returns false",
+            "Prints one"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "A traditional require-loaded module must finish with a true value.",
+          "hint": "A traditional require-loaded module must finish with a true value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-4",
+          "kind": "mcq",
+          "code": "package Config;\nsub size { ${n} }\n____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Returns a true module value. A traditional require-loaded module must finish with a true value.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "The qualified name accesses a package variable.",
+          "hint": "The qualified name accesses a package variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "package Config; our $size=${n};\npackage main; print ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The qualified name accesses a package variable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "$Config::size"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "The inner lexical binding shadows the outer one temporarily.",
+          "hint": "The inner lexical binding shadows the outer one temporarily.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=${n}; { my $x=${m}; } print ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The inner lexical binding shadows the outer one temporarily. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "$x"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "use strict catches undeclared symbolic usage and other unsafe constructs.",
+          "hint": "use strict catches undeclared symbolic usage and other unsafe constructs.",
+          "id": "modules-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ strict;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Enables compile-time restrictions. use strict catches undeclared symbolic usage and other unsafe constructs. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "use"
+          ]
+        },
+        {
+          "concept": "Packages and lexical declarations",
+          "explanation": "A traditional require-loaded module must finish with a true value.",
+          "hint": "A traditional require-loaded module must finish with a true value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "package Config;\nsub size { ${n} }\n____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Returns a true module value. A traditional require-loaded module must finish with a true value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "errors",
+      "title": "die, eval, and error state",
+      "section": "Intermediate",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. die throws an exception. Block eval catches it and stores the message in $@. A successful final true expression distinguishes success from a false result.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "modules"
+      ],
+      "questions": [
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "A dying eval returns undef.",
+          "hint": "A dying eval returns undef.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-1",
+          "kind": "mcq",
+          "code": "my $ok=eval { die \"${word}\"; 1 }; print(defined $ok ? \"yes\" : \"no\");",
+          "prompt": "What is the result?",
+          "answer": "no",
+          "options": [
+            "no",
+            "yes",
+            "${word}"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "A dying eval returns undef.",
+          "hint": "A dying eval returns undef.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-1",
+          "kind": "mcq",
+          "code": "my $ok=eval { die \"${word}\"; 1 }; print(____ $ok ? \"yes\" : \"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. A dying eval returns undef.",
+          "answer": "defined",
+          "options": [
+            "defined",
+            "ref",
+            "length"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "After failure, $@ contains the exception text.",
+          "hint": "After failure, $@ contains the exception text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-2",
+          "kind": "mcq",
+          "code": "eval { die \"${word}\n\"; }; print $@;",
+          "prompt": "What is the result?",
+          "answer": "${word}\n",
+          "options": [
+            "${word}\n",
+            "Empty string",
+            "0"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "After failure, $@ contains the exception text.",
+          "hint": "After failure, $@ contains the exception text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-2",
+          "kind": "mcq",
+          "code": "eval { die \"${word}\n\"; }; print ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}\n. After failure, $@ contains the exception text.",
+          "answer": "$@",
+          "options": [
+            "$@",
+            "$!",
+            "$_"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "The final true value signals successful completion.",
+          "hint": "The final true value signals successful completion.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-read-3",
+          "kind": "mcq",
+          "code": "my $ok=eval { ${n}; 1 }; print $ok;",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "${n}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "The final true value signals successful completion.",
+          "hint": "The final true value signals successful completion.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-3",
+          "kind": "mcq",
+          "code": "my $ok=____ { ${n}; 1 }; print $ok;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. The final true value signals successful completion.",
+          "answer": "eval",
+          "options": [
+            "eval",
+            "do",
+            "sub"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "die interrupts normal control flow.",
+          "hint": "die interrupts normal control flow.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-4",
+          "kind": "mcq",
+          "code": "die \"${word}\n\";",
+          "prompt": "What happens without an enclosing eval?",
+          "answer": "Raises an exception",
+          "options": [
+            "Raises an exception",
+            "Prints to stdout and continues",
+            "Returns zero"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "die interrupts normal control flow.",
+          "hint": "die interrupts normal control flow.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-4",
+          "kind": "mcq",
+          "code": "____ \"${word}\n\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises an exception. die interrupts normal control flow.",
+          "answer": "die",
+          "options": [
+            "die",
+            "print",
+            "warn"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "A dying eval returns undef.",
+          "hint": "A dying eval returns undef.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $ok=eval { die \"${word}\"; 1 }; print(____ $ok ? \"yes\" : \"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. A dying eval returns undef. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "defined"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "After failure, $@ contains the exception text.",
+          "hint": "After failure, $@ contains the exception text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "eval { die \"${word}\n\"; }; print ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}\n. After failure, $@ contains the exception text. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "$@"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "The final true value signals successful completion.",
+          "hint": "The final true value signals successful completion.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $ok=____ { ${n}; 1 }; print $ok;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. The final true value signals successful completion. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "eval"
+          ]
+        },
+        {
+          "concept": "die, eval, and error state",
+          "explanation": "die interrupts normal control flow.",
+          "hint": "die interrupts normal control flow.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ \"${word}\n\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises an exception. die interrupts normal control flow. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "die"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "references",
+      "title": "References and dereferencing",
+      "section": "Advanced",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. Backslash creates a reference; -> dereferences for members. Anonymous [] and {} create references. Assignment of a reference shares the referent.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "errors"
+      ],
+      "questions": [
+        {
+          "concept": "References and dereferencing",
+          "explanation": "Arrow indexing dereferences the array reference.",
+          "hint": "Arrow indexing dereferences the array reference.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-read-1",
+          "kind": "mcq",
+          "code": "my $a=[${n},${m}]; print $a->[0];",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "Arrow indexing dereferences the array reference.",
+          "hint": "Arrow indexing dereferences the array reference.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-choose-1",
+          "kind": "mcq",
+          "code": "my $a=[${n},${m}]; print $a____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Arrow indexing dereferences the array reference.",
+          "answer": "->[0]",
+          "options": [
+            "->[0]",
+            "->[1]",
+            "->[2]"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "Arrow braces read a hash reference entry.",
+          "hint": "Arrow braces read a hash reference entry.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "references-read-2",
+          "kind": "mcq",
+          "code": "my $h={name=>\"${word}\"}; print $h->{name};",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "name",
+            "undef"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "Arrow braces read a hash reference entry.",
+          "hint": "Arrow braces read a hash reference entry.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "references-choose-2",
+          "kind": "mcq",
+          "code": "my $h={name=>\"${word}\"}; print $h____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Arrow braces read a hash reference entry.",
+          "answer": "->{name}",
+          "options": [
+            "->{name}",
+            "->{other}",
+            "->[0]"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "Both scalars contain references to the same array.",
+          "hint": "Both scalars contain references to the same array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-read-3",
+          "kind": "mcq",
+          "code": "my $a=[${n}]; my $b=$a; $b->[0]=${m}; print $a->[0];",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "Both scalars contain references to the same array.",
+          "hint": "Both scalars contain references to the same array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-choose-3",
+          "kind": "mcq",
+          "code": "my $a=[${n}]; my $b=____; $b->[0]=${m}; print $a->[0];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Both scalars contain references to the same array.",
+          "answer": "$a",
+          "options": [
+            "$a",
+            "[${n}]",
+            "[]"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "ref identifies the referent type.",
+          "hint": "ref identifies the referent type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "references-read-4",
+          "kind": "mcq",
+          "code": "my $a=[${n}]; print ref($a);",
+          "prompt": "What is the result?",
+          "answer": "ARRAY",
+          "options": [
+            "ARRAY",
+            "HASH",
+            "SCALAR"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "ref identifies the referent type.",
+          "hint": "ref identifies the referent type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "references-choose-4",
+          "kind": "mcq",
+          "code": "my $a=[${n}]; print ____($a);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ARRAY. ref identifies the referent type.",
+          "answer": "ref",
+          "options": [
+            "ref",
+            "length",
+            "scalar"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "Arrow indexing dereferences the array reference.",
+          "hint": "Arrow indexing dereferences the array reference.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $a=[${n},${m}]; print $a____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Arrow indexing dereferences the array reference. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "->[0]"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "Arrow braces read a hash reference entry.",
+          "hint": "Arrow braces read a hash reference entry.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "references-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $h={name=>\"${word}\"}; print $h____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Arrow braces read a hash reference entry. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "->{name}"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "Both scalars contain references to the same array.",
+          "hint": "Both scalars contain references to the same array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $a=[${n}]; my $b=____; $b->[0]=${m}; print $a->[0];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Both scalars contain references to the same array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "$a"
+          ]
+        },
+        {
+          "concept": "References and dereferencing",
+          "explanation": "ref identifies the referent type.",
+          "hint": "ref identifies the referent type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "references-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $a=[${n}]; print ____($a);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ARRAY. ref identifies the referent type. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ref"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "context",
+      "title": "Scalar and list context",
+      "section": "Advanced",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. Context changes how expressions produce values. An array in scalar context yields its length. List assignment, scalar assignment, and wantarray expose this distinction.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "references"
+      ],
+      "questions": [
+        {
+          "concept": "Scalar and list context",
+          "explanation": "Scalar assignment asks the array for its element count.",
+          "hint": "Scalar assignment asks the array for its element count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "context-read-1",
+          "kind": "mcq",
+          "code": "my @a=(${n},${m}); my $x=@a; print $x;",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "${n}",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "Scalar assignment asks the array for its element count.",
+          "hint": "Scalar assignment asks the array for its element count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "context-choose-1",
+          "kind": "mcq",
+          "code": "my @a=(${n},${m}); my $x=____; print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Scalar assignment asks the array for its element count.",
+          "answer": "@a",
+          "options": [
+            "@a",
+            "$a[0]",
+            "$a[1]"
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "List assignment copies the array elements.",
+          "hint": "List assignment copies the array elements.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "context-read-2",
+          "kind": "mcq",
+          "code": "my @a=(${n},${m}); my @b=@a; print $b[0];",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "2",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "List assignment copies the array elements.",
+          "hint": "List assignment copies the array elements.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "context-choose-2",
+          "kind": "mcq",
+          "code": "my @a=(${n},${m}); my @b=____; print $b[0];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. List assignment copies the array elements.",
+          "answer": "@a",
+          "options": [
+            "@a",
+            "scalar @a",
+            "()"
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "wantarray is false for a scalar-context call.",
+          "hint": "wantarray is false for a scalar-context call.",
+          "id": "context-read-3",
+          "kind": "mcq",
+          "code": "sub mode { return wantarray ? \"list\" : \"scalar\"; } my $x=mode(); print $x;",
+          "prompt": "What is the result?",
+          "answer": "scalar",
+          "options": [
+            "scalar",
+            "list",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "wantarray is false for a scalar-context call.",
+          "hint": "wantarray is false for a scalar-context call.",
+          "id": "context-choose-3",
+          "kind": "mcq",
+          "code": "sub mode { return ____ ? \"list\" : \"scalar\"; } my $x=mode(); print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: scalar. wantarray is false for a scalar-context call.",
+          "answer": "wantarray",
+          "options": [
+            "wantarray",
+            "1",
+            "\"yes\""
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "keys in scalar context gives the number of hash entries.",
+          "hint": "keys in scalar context gives the number of hash entries.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "context-read-4",
+          "kind": "mcq",
+          "code": "my %h=(a=>${n},b=>${m}); print scalar keys %h;",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "${add}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "keys in scalar context gives the number of hash entries.",
+          "hint": "keys in scalar context gives the number of hash entries.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "context-choose-4",
+          "kind": "mcq",
+          "code": "my %h=(a=>${n},b=>${m}); print scalar ____ %h;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. keys in scalar context gives the number of hash entries.",
+          "answer": "keys",
+          "options": [
+            "keys",
+            "each",
+            "values"
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "Scalar assignment asks the array for its element count.",
+          "hint": "Scalar assignment asks the array for its element count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "context-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my @a=(${n},${m}); my $x=____; print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Scalar assignment asks the array for its element count. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "@a"
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "List assignment copies the array elements.",
+          "hint": "List assignment copies the array elements.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "context-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my @a=(${n},${m}); my @b=____; print $b[0];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. List assignment copies the array elements. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "@a"
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "wantarray is false for a scalar-context call.",
+          "hint": "wantarray is false for a scalar-context call.",
+          "id": "context-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "sub mode { return ____ ? \"list\" : \"scalar\"; } my $x=mode(); print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: scalar. wantarray is false for a scalar-context call. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "wantarray"
+          ]
+        },
+        {
+          "concept": "Scalar and list context",
+          "explanation": "keys in scalar context gives the number of hash entries.",
+          "hint": "keys in scalar context gives the number of hash entries.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "context-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my %h=(a=>${n},b=>${m}); print scalar ____ %h;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. keys in scalar context gives the number of hash entries. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "keys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regex",
+      "title": "Regular expressions and captures",
+      "section": "Advanced",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. =~ binds a match or substitution to a string. Parentheses capture substrings, anchors constrain position, and /g repeats substitutions.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "context"
+      ],
+      "questions": [
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "The parenthesized digit pattern captures the numeric suffix.",
+          "hint": "The parenthesized digit pattern captures the numeric suffix.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "regex-read-1",
+          "kind": "mcq",
+          "code": "my $x=\"id${n}\"; $x =~ /id(\\d+)/; print $1;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "id",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "The parenthesized digit pattern captures the numeric suffix.",
+          "hint": "The parenthesized digit pattern captures the numeric suffix.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "regex-choose-1",
+          "kind": "mcq",
+          "code": "my $x=\"id${n}\"; $x =~ /id(____)/; print $1;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The parenthesized digit pattern captures the numeric suffix.",
+          "answer": "\\d+",
+          "options": [
+            "\\d+",
+            "[a-z]+",
+            "z+"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "^ matches the start, so the substitution inserts a prefix.",
+          "hint": "^ matches the start, so the substitution inserts a prefix.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "regex-read-2",
+          "kind": "mcq",
+          "code": "my $x=\"${word}\"; $x =~ s/^/pre-/; print $x;",
+          "prompt": "What is the result?",
+          "answer": "pre-${word}",
+          "options": [
+            "pre-${word}",
+            "${word}",
+            "pre-"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "^ matches the start, so the substitution inserts a prefix.",
+          "hint": "^ matches the start, so the substitution inserts a prefix.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "regex-choose-2",
+          "kind": "mcq",
+          "code": "my $x=\"${word}\"; $x =~ ____; print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: pre-${word}. ^ matches the start, so the substitution inserts a prefix.",
+          "answer": "s/^/pre-/",
+          "options": [
+            "s/^/pre-/",
+            "s/$/pre-/",
+            "s/./pre-/"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "The global modifier replaces both occurrences.",
+          "hint": "The global modifier replaces both occurrences.",
+          "id": "regex-read-3",
+          "kind": "mcq",
+          "code": "my $x=\"a-a\"; $x =~ s/a/b/g; print $x;",
+          "prompt": "What is the result?",
+          "answer": "b-b",
+          "options": [
+            "b-b",
+            "b-a",
+            "a-b"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "The global modifier replaces both occurrences.",
+          "hint": "The global modifier replaces both occurrences.",
+          "id": "regex-choose-3",
+          "kind": "mcq",
+          "code": "my $x=\"a-a\"; $x =~ s/a/b/____; print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: b-b. The global modifier replaces both occurrences.",
+          "answer": "g",
+          "options": [
+            "g",
+            "i",
+            "m"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "Both anchors require the entire string to contain only digits.",
+          "hint": "Both anchors require the entire string to contain only digits.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "regex-read-4",
+          "kind": "mcq",
+          "code": "print(\"x${n}\" =~ /^\\d+$/ ? \"yes\" : \"no\");",
+          "prompt": "What is the result?",
+          "answer": "no",
+          "options": [
+            "no",
+            "yes",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "Both anchors require the entire string to contain only digits.",
+          "hint": "Both anchors require the entire string to contain only digits.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "regex-choose-4",
+          "kind": "mcq",
+          "code": "print(\"x${n}\" =~ ____ ? \"yes\" : \"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. Both anchors require the entire string to contain only digits.",
+          "answer": "/^\\d+$/",
+          "options": [
+            "/^\\d+$/",
+            "/\\d+/",
+            "/x/"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "The parenthesized digit pattern captures the numeric suffix.",
+          "hint": "The parenthesized digit pattern captures the numeric suffix.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "regex-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=\"id${n}\"; $x =~ /id(____)/; print $1;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The parenthesized digit pattern captures the numeric suffix. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\\d+"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "^ matches the start, so the substitution inserts a prefix.",
+          "hint": "^ matches the start, so the substitution inserts a prefix.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "regex-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=\"${word}\"; $x =~ ____; print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: pre-${word}. ^ matches the start, so the substitution inserts a prefix. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "s/^/pre-/"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "The global modifier replaces both occurrences.",
+          "hint": "The global modifier replaces both occurrences.",
+          "id": "regex-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=\"a-a\"; $x =~ s/a/b/____; print $x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: b-b. The global modifier replaces both occurrences. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "g"
+          ]
+        },
+        {
+          "concept": "Regular expressions and captures",
+          "explanation": "Both anchors require the entire string to contain only digits.",
+          "hint": "Both anchors require the entire string to contain only digits.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "regex-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(\"x${n}\" =~ ____ ? \"yes\" : \"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. Both anchors require the entire string to contain only digits. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "/^\\d+$/"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "objects",
+      "title": "Objects, methods, and closures",
+      "section": "Advanced",
+      "intro": "Perl 5; strict and warnings enabled; snippets omit those declarations. bless associates a reference with a class. A method call passes the receiver first. Closures retain lexical state after the creating call returns.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "perl",
+        "perlref"
+      ],
+      "requires": [
+        "regex"
+      ],
+      "questions": [
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "bless turns this hash reference into an object of the requested class.",
+          "hint": "bless turns this hash reference into an object of the requested class.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-read-1",
+          "kind": "mcq",
+          "code": "package Box; sub new { my ($class)=@_; bless {x=>${n}}, $class }\npackage main; print Box->new->{x};",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undef",
+            "Box"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "bless turns this hash reference into an object of the requested class.",
+          "hint": "bless turns this hash reference into an object of the requested class.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-1",
+          "kind": "mcq",
+          "code": "package Box; sub new { my ($class)=@_; ____ {x=>${n}}, $class }\npackage main; print Box->new->{x};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. bless turns this hash reference into an object of the requested class.",
+          "answer": "bless",
+          "options": [
+            "bless",
+            "ref",
+            "scalar"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "Method syntax supplies the object as the first argument.",
+          "hint": "Method syntax supplies the object as the first argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-read-2",
+          "kind": "mcq",
+          "code": "package Box; sub size { my ($self)=@_; return $self->{x}; }\npackage main; my $b=bless {x=>${n}}, \"Box\"; print $b->size();",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undef",
+            "0"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "Method syntax supplies the object as the first argument.",
+          "hint": "Method syntax supplies the object as the first argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-2",
+          "kind": "mcq",
+          "code": "package Box; sub size { my ($self)=@_; return $self->{x}; }\npackage main; my $b=bless {x=>${n}}, \"Box\"; print $b____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Method syntax supplies the object as the first argument.",
+          "answer": "->size()",
+          "options": [
+            "->size()",
+            "->{size}",
+            "->{other}"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "An anonymous subroutine closes over the lexical x.",
+          "hint": "An anonymous subroutine closes over the lexical x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "objects-read-3",
+          "kind": "mcq",
+          "code": "my $x=${n}; my $f=sub { $x+1 }; print $f->();",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "An anonymous subroutine closes over the lexical x.",
+          "hint": "An anonymous subroutine closes over the lexical x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "objects-choose-3",
+          "kind": "mcq",
+          "code": "my $x=${n}; my $f=____; print $f->();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. An anonymous subroutine closes over the lexical x.",
+          "answer": "sub { $x+1 }",
+          "options": [
+            "sub { $x+1 }",
+            "sub { $x }",
+            "sub { 0 }"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "The closure observes the updated lexical variable.",
+          "hint": "The closure observes the updated lexical variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "objects-read-4",
+          "kind": "mcq",
+          "code": "my $x=${n}; my $f=sub { $x }; $x=${m}; print $f->();",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "undef"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "The closure observes the updated lexical variable.",
+          "hint": "The closure observes the updated lexical variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-4",
+          "kind": "mcq",
+          "code": "my $x=${n}; my $f=sub { $x }; $x=${m}; print ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The closure observes the updated lexical variable.",
+          "answer": "$f->()",
+          "options": [
+            "$f->()",
+            "$x+1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "bless turns this hash reference into an object of the requested class.",
+          "hint": "bless turns this hash reference into an object of the requested class.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "package Box; sub new { my ($class)=@_; ____ {x=>${n}}, $class }\npackage main; print Box->new->{x};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. bless turns this hash reference into an object of the requested class. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "bless"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "Method syntax supplies the object as the first argument.",
+          "hint": "Method syntax supplies the object as the first argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "package Box; sub size { my ($self)=@_; return $self->{x}; }\npackage main; my $b=bless {x=>${n}}, \"Box\"; print $b____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Method syntax supplies the object as the first argument. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "->size()"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "An anonymous subroutine closes over the lexical x.",
+          "hint": "An anonymous subroutine closes over the lexical x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "objects-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=${n}; my $f=____; print $f->();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. An anonymous subroutine closes over the lexical x. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "sub { $x+1 }"
+          ]
+        },
+        {
+          "concept": "Objects, methods, and closures",
+          "explanation": "The closure observes the updated lexical variable.",
+          "hint": "The closure observes the updated lexical variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "objects-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "my $x=${n}; my $f=sub { $x }; $x=${m}; print ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The closure observes the updated lexical variable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "$f->()"
+          ]
+        }
+      ]
+    }
+  ]
+}

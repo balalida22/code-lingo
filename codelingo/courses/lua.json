@@ -1,0 +1,4396 @@
+{
+  "schema_version": 2,
+  "id": "lua",
+  "title": "Lua",
+  "language": "Lua 5.4",
+  "version": "1.0",
+  "sources": [
+    {
+      "id": "lua",
+      "title": "Lua 5.4 Reference Manual",
+      "url": "https://www.lua.org/manual/5.4/",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "values",
+      "title": "Values and assignment",
+      "section": "Basics",
+      "intro": "Lua 5.4. A variable names a value. Assignment updates that variable; an earlier copied number does not follow later assignments. Read statements from top to bottom.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-read-1",
+          "kind": "mcq",
+          "code": "local x = ${n}\nprint(x)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-choose-1",
+          "kind": "mcq",
+          "code": "local x = ____\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-read-2",
+          "kind": "mcq",
+          "code": "local x = ${n}\nx = ${m}\nprint(x)",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-choose-2",
+          "kind": "mcq",
+          "code": "local x = ${n}\nx = ____\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal.",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "values-read-3",
+          "kind": "mcq",
+          "code": "local x = ${n}\nprint(x + ${m})",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-choose-3",
+          "kind": "mcq",
+          "code": "local x = ${n}\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable.",
+          "answer": "x + ${m}",
+          "options": [
+            "x + ${m}",
+            "x * ${m}",
+            "x"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "prev": "n-1"
+          },
+          "id": "values-read-4",
+          "kind": "mcq",
+          "code": "local x = ${n}\nx = x + 1\nprint(x)",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "${prev}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-choose-4",
+          "kind": "mcq",
+          "code": "local x = ${n}\nx = x + ____\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The declaration stores ${n}; the output reads that stored value.",
+          "hint": "The declaration stores ${n}; the output reads that stored value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "values-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = ____\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "The second assignment replaces the old value with ${m}.",
+          "hint": "The second assignment replaces the old value with ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "values-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = ${n}\nx = ____\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Adding ${m} computes a new value without changing the variable.",
+          "hint": "Adding ${m} computes a new value without changing the variable.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "values-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = ${n}\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x + ${m}"
+          ]
+        },
+        {
+          "concept": "Values and assignment",
+          "explanation": "Reading the old value and adding one updates the variable once.",
+          "hint": "Reading the old value and adding one updates the variable once.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "values-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = ${n}\nx = x + ____\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arithmetic",
+      "title": "Arithmetic and precedence",
+      "section": "Basics",
+      "intro": "Lua 5.4. Multiplication binds more tightly than addition. Parentheses group expressions. Integer quotient and remainder answer different questions; all operands here are positive.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "values"
+      ],
+      "questions": [
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mul": "n*m",
+            "n_plus_twom": "n+m*2",
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-read-1",
+          "kind": "mcq",
+          "code": "print(${n} + ${m} * 2)",
+          "prompt": "What is the result?",
+          "answer": "${n_plus_twom}",
+          "options": [
+            "${n_plus_twom}",
+            "${doubleadd}",
+            "${mul}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "n_plus_twom": "n+m*2"
+          },
+          "id": "arithmetic-choose-1",
+          "kind": "mcq",
+          "code": "print(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added.",
+          "answer": "${n} + ${m} * 2",
+          "options": [
+            "${n} + ${m} * 2",
+            "(${n} + ${m}) * 2",
+            "${n} * ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "n_plus_twom": "n+m*2",
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-read-2",
+          "kind": "mcq",
+          "code": "print((${n} + ${m}) * 2)",
+          "prompt": "What is the result?",
+          "answer": "${doubleadd}",
+          "options": [
+            "${doubleadd}",
+            "${n_plus_twom}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-choose-2",
+          "kind": "mcq",
+          "code": "print(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling.",
+          "answer": "(${n} + ${m}) * 2",
+          "options": [
+            "(${n} + ${m}) * 2",
+            "${n} + ${m} * 2",
+            "${n} + ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mul": "n*m",
+            "rem": "n%m",
+            "div": "n//m"
+          },
+          "id": "arithmetic-read-3",
+          "kind": "mcq",
+          "code": "print(${n} // ${m})",
+          "prompt": "What is the result?",
+          "answer": "${div}",
+          "options": [
+            "${div}",
+            "${rem}",
+            "${mul}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "arithmetic-choose-3",
+          "kind": "mcq",
+          "code": "print(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part.",
+          "answer": "${n} // ${m}",
+          "options": [
+            "${n} // ${m}",
+            "${n} % ${m}",
+            "${n} * ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m",
+            "rem": "n%m"
+          },
+          "id": "arithmetic-read-4",
+          "kind": "mcq",
+          "code": "print(${n} % ${m})",
+          "prompt": "What is the result?",
+          "answer": "${rem}",
+          "options": [
+            "${rem}",
+            "${mul}",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "rem": "n%m"
+          },
+          "id": "arithmetic-choose-4",
+          "kind": "mcq",
+          "code": "print(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}.",
+          "answer": "${n} % ${m}",
+          "options": [
+            "${n} % ${m}",
+            "${n} * ${m}",
+            "${n} + ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Multiplication happens first, then ${n} is added.",
+          "hint": "Multiplication happens first, then ${n} is added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "n_plus_twom": "n+m*2"
+          },
+          "id": "arithmetic-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} + ${m} * 2"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Parentheses force addition before doubling.",
+          "hint": "Parentheses force addition before doubling.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "doubleadd": "(n+m)*2"
+          },
+          "id": "arithmetic-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "(${n} + ${m}) * 2"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "hint": "This expression computes the positive integer quotient, discarding the fractional part.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "div": "n//m"
+          },
+          "id": "arithmetic-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} // ${m}"
+          ]
+        },
+        {
+          "concept": "Arithmetic and precedence",
+          "explanation": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "hint": "Remainder is what remains after dividing into complete groups of ${m}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "rem": "n%m"
+          },
+          "id": "arithmetic-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n} % ${m}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strings",
+      "title": "Strings and coercion",
+      "section": "Basics",
+      "intro": "Lua 5.4. Strings concatenate with .. and are indexed through string functions. # counts bytes, which match character counts in these ASCII examples.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "arithmetic"
+      ],
+      "questions": [
+        {
+          "concept": "Strings and coercion",
+          "explanation": "# returns this string byte length.",
+          "hint": "# returns this string byte length.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "strings-read-1",
+          "kind": "mcq",
+          "code": "print(#\"${word}\")",
+          "prompt": "What is the result?",
+          "answer": "${length}",
+          "options": [
+            "${length}",
+            "0",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": "# returns this string byte length.",
+          "hint": "# returns this string byte length.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "strings-choose-1",
+          "kind": "mcq",
+          "code": "print(____\"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. # returns this string byte length.",
+          "answer": "#",
+          "options": [
+            "#",
+            "-",
+            "not "
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": ".. concatenates the strings.",
+          "hint": ".. concatenates the strings.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "joined": "word+word"
+          },
+          "id": "strings-read-2",
+          "kind": "mcq",
+          "code": "print(\"${word}\" .. \"${word}\")",
+          "prompt": "What is the result?",
+          "answer": "${joined}",
+          "options": [
+            "${joined}",
+            "${word}",
+            "Error"
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": ".. concatenates the strings.",
+          "hint": ".. concatenates the strings.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "joined": "word+word"
+          },
+          "id": "strings-choose-2",
+          "kind": "mcq",
+          "code": "print(\"${word}\" ____ \"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${joined}. .. concatenates the strings.",
+          "answer": "..",
+          "options": [
+            "..",
+            "+",
+            "*"
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": "sub uses one-based inclusive string positions.",
+          "hint": "sub uses one-based inclusive string positions.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "strings-read-3",
+          "kind": "mcq",
+          "code": "print(string.sub(\"${word}\", 1, 1))",
+          "prompt": "What is the result?",
+          "answer": "${first}",
+          "options": [
+            "${first}",
+            "${word}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": "sub uses one-based inclusive string positions.",
+          "hint": "sub uses one-based inclusive string positions.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "strings-choose-3",
+          "kind": "mcq",
+          "code": "print(string.____(\"${word}\", 1, 1))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. sub uses one-based inclusive string positions.",
+          "answer": "sub",
+          "options": [
+            "sub",
+            "rep",
+            "find"
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": "upper creates uppercase text.",
+          "hint": "upper creates uppercase text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "strings-read-4",
+          "kind": "mcq",
+          "code": "print(string.upper(\"${word}\"))",
+          "prompt": "What is the result?",
+          "answer": "${upper}",
+          "options": [
+            "${upper}",
+            "${word}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": "upper creates uppercase text.",
+          "hint": "upper creates uppercase text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "strings-choose-4",
+          "kind": "mcq",
+          "code": "print(string.____(\"${word}\"))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${upper}. upper creates uppercase text.",
+          "answer": "upper",
+          "options": [
+            "upper",
+            "lower",
+            "len"
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": "# returns this string byte length.",
+          "hint": "# returns this string byte length.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "strings-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____\"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. # returns this string byte length. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "#"
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": ".. concatenates the strings.",
+          "hint": ".. concatenates the strings.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "joined": "word+word"
+          },
+          "id": "strings-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(\"${word}\" ____ \"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${joined}. .. concatenates the strings. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            ".."
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": "sub uses one-based inclusive string positions.",
+          "hint": "sub uses one-based inclusive string positions.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "strings-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(string.____(\"${word}\", 1, 1))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. sub uses one-based inclusive string positions. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "sub"
+          ]
+        },
+        {
+          "concept": "Strings and coercion",
+          "explanation": "upper creates uppercase text.",
+          "hint": "upper creates uppercase text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "strings-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(string.____(\"${word}\"))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${upper}. upper creates uppercase text. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "upper"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conditions",
+      "title": "Truthiness and expressions",
+      "section": "Basics",
+      "intro": "Lua 5.4. Only false and nil are falsey. Zero and empty strings are truthy. and/or return operands and short-circuit.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "strings"
+      ],
+      "questions": [
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "Zero is truthy in Lua.",
+          "hint": "Zero is truthy in Lua.",
+          "id": "conditions-read-1",
+          "kind": "mcq",
+          "code": "print(0 and \"yes\" or \"no\")",
+          "prompt": "What is the result?",
+          "answer": "yes",
+          "options": [
+            "yes",
+            "no",
+            "0"
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "Zero is truthy in Lua.",
+          "hint": "Zero is truthy in Lua.",
+          "id": "conditions-choose-1",
+          "kind": "mcq",
+          "code": "print(____ and \"yes\" or \"no\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: yes. Zero is truthy in Lua.",
+          "answer": "0",
+          "options": [
+            "0",
+            "nil",
+            "false"
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "or evaluates the fallback for a falsey left operand.",
+          "hint": "or evaluates the fallback for a falsey left operand.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-2",
+          "kind": "mcq",
+          "code": "print(nil or \"${word}\")",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "nil",
+            "false"
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "or evaluates the fallback for a falsey left operand.",
+          "hint": "or evaluates the fallback for a falsey left operand.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-2",
+          "kind": "mcq",
+          "code": "print(____ or \"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. or evaluates the fallback for a falsey left operand.",
+          "answer": "nil",
+          "options": [
+            "nil",
+            "true",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "== tests equality of these numbers.",
+          "hint": "== tests equality of these numbers.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-3",
+          "kind": "mcq",
+          "code": "print(${n} == ${n})",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "== tests equality of these numbers.",
+          "hint": "== tests equality of these numbers.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-3",
+          "kind": "mcq",
+          "code": "print(${n} ____ ${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. == tests equality of these numbers.",
+          "answer": "==",
+          "options": [
+            "==",
+            "~=",
+            "<"
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "not converts truthiness to the opposite boolean.",
+          "hint": "not converts truthiness to the opposite boolean.",
+          "id": "conditions-read-4",
+          "kind": "mcq",
+          "code": "print(not false)",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "not converts truthiness to the opposite boolean.",
+          "hint": "not converts truthiness to the opposite boolean.",
+          "id": "conditions-choose-4",
+          "kind": "mcq",
+          "code": "print(____ false)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. not converts truthiness to the opposite boolean.",
+          "answer": "not",
+          "options": [
+            "not",
+            "#",
+            "-"
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "Zero is truthy in Lua.",
+          "hint": "Zero is truthy in Lua.",
+          "id": "conditions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____ and \"yes\" or \"no\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: yes. Zero is truthy in Lua. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "or evaluates the fallback for a falsey left operand.",
+          "hint": "or evaluates the fallback for a falsey left operand.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____ or \"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. or evaluates the fallback for a falsey left operand. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "nil"
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "== tests equality of these numbers.",
+          "hint": "== tests equality of these numbers.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(${n} ____ ${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. == tests equality of these numbers. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        },
+        {
+          "concept": "Truthiness and expressions",
+          "explanation": "not converts truthiness to the opposite boolean.",
+          "hint": "not converts truthiness to the opposite boolean.",
+          "id": "conditions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____ false)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. not converts truthiness to the opposite boolean. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "not"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loops",
+      "title": "Numeric and generic loops",
+      "section": "Basics",
+      "intro": "Lua 5.4. Numeric for includes its endpoint. ipairs traverses sequential integer keys until the first absent value; break exits a loop.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "conditions"
+      ],
+      "questions": [
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "The numeric for loop includes both endpoints.",
+          "hint": "The numeric for loop includes both endpoints.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "prev": "n-1"
+          },
+          "id": "loops-read-1",
+          "kind": "mcq",
+          "code": "local x = 0\nfor i = 1, ${n} do x = x + 1 end\nprint(x)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${prev}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "The numeric for loop includes both endpoints.",
+          "hint": "The numeric for loop includes both endpoints.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "prev": "n-1"
+          },
+          "id": "loops-choose-1",
+          "kind": "mcq",
+          "code": "local x = 0\nfor i = 1, ____ do x = x + 1 end\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The numeric for loop includes both endpoints. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${prev}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "A step of two visits 1, 3, and 5.",
+          "hint": "A step of two visits 1, 3, and 5.",
+          "id": "loops-read-2",
+          "kind": "mcq",
+          "code": "local x = 0\nfor i = 1, 5, 2 do x = x + 1 end\nprint(x)",
+          "prompt": "What is the result?",
+          "answer": "3",
+          "options": [
+            "3",
+            "5",
+            "2"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "A step of two visits 1, 3, and 5.",
+          "hint": "A step of two visits 1, 3, and 5.",
+          "id": "loops-choose-2",
+          "kind": "mcq",
+          "code": "local x = 0\nfor i = 1, 5, ____ do x = x + 1 end\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. A step of two visits 1, 3, and 5.",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "5"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "ipairs yields each sequential index and its value.",
+          "hint": "ipairs yields each sequential index and its value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "loops-read-3",
+          "kind": "mcq",
+          "code": "local x = 0\nfor _, v in ipairs({${n}, ${m}}) do x = x + v end\nprint(x)",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "ipairs yields each sequential index and its value.",
+          "hint": "ipairs yields each sequential index and its value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "loops-choose-3",
+          "kind": "mcq",
+          "code": "local x = 0\nfor _, v in ____({${n}, ${m}}) do x = x + v end\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. ipairs yields each sequential index and its value.",
+          "answer": "ipairs",
+          "options": [
+            "ipairs",
+            "next",
+            "tonumber"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "break exits after one iteration.",
+          "hint": "break exits after one iteration.",
+          "id": "loops-read-4",
+          "kind": "mcq",
+          "code": "local x = 0\nwhile true do x = x + 1; break end\nprint(x)",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Never terminates"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "break exits after one iteration.",
+          "hint": "break exits after one iteration.",
+          "id": "loops-choose-4",
+          "kind": "mcq",
+          "code": "local x = 0\nwhile true do x = x + 1; ____ end\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. break exits after one iteration.",
+          "answer": "break",
+          "options": [
+            "break",
+            "return",
+            "goto"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "The numeric for loop includes both endpoints.",
+          "hint": "The numeric for loop includes both endpoints.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = 0\nfor i = 1, ____ do x = x + 1 end\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The numeric for loop includes both endpoints. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "A step of two visits 1, 3, and 5.",
+          "hint": "A step of two visits 1, 3, and 5.",
+          "id": "loops-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = 0\nfor i = 1, 5, ____ do x = x + 1 end\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. A step of two visits 1, 3, and 5. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "2"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "ipairs yields each sequential index and its value.",
+          "hint": "ipairs yields each sequential index and its value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "loops-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = 0\nfor _, v in ____({${n}, ${m}}) do x = x + v end\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. ipairs yields each sequential index and its value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ipairs"
+          ]
+        },
+        {
+          "concept": "Numeric and generic loops",
+          "explanation": "break exits after one iteration.",
+          "hint": "break exits after one iteration.",
+          "id": "loops-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = 0\nwhile true do x = x + 1; ____ end\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. break exits after one iteration. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "break"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "functions",
+      "title": "Functions and multiple returns",
+      "section": "Intermediate",
+      "intro": "Lua 5.4. Functions are values. They can return multiple results. Assignment fills missing results with nil; parentheses around a call reduce it to one result.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "loops"
+      ],
+      "questions": [
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "return passes the computed result to the caller.",
+          "hint": "return passes the computed result to the caller.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-read-1",
+          "kind": "mcq",
+          "code": "local function f(x) return x + 1 end\nprint(f(${n}))",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "return passes the computed result to the caller.",
+          "hint": "return passes the computed result to the caller.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-choose-1",
+          "kind": "mcq",
+          "code": "local function f(x) return ____ end\nprint(f(${n}))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. return passes the computed result to the caller.",
+          "answer": "x + 1",
+          "options": [
+            "x + 1",
+            "x",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "An unparenthesized final call supplies both results.",
+          "hint": "An unparenthesized final call supplies both results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-read-2",
+          "kind": "mcq",
+          "code": "local function f() return ${n}, ${m} end\nlocal a, b = f()\nprint(b)",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "An unparenthesized final call supplies both results.",
+          "hint": "An unparenthesized final call supplies both results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-choose-2",
+          "kind": "mcq",
+          "code": "local function f() return ${n}, ${m} end\nlocal a, b = ____\nprint(b)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. An unparenthesized final call supplies both results.",
+          "answer": "f()",
+          "options": [
+            "f()",
+            "(f())",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "Parentheses adjust the call to one result, leaving b nil.",
+          "hint": "Parentheses adjust the call to one result, leaving b nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-read-3",
+          "kind": "mcq",
+          "code": "local function f() return ${n}, ${m} end\nlocal a, b = (f())\nprint(b)",
+          "prompt": "What is the result?",
+          "answer": "nil",
+          "options": [
+            "nil",
+            "${m}",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "Parentheses adjust the call to one result, leaving b nil.",
+          "hint": "Parentheses adjust the call to one result, leaving b nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-choose-3",
+          "kind": "mcq",
+          "code": "local function f() return ${n}, ${m} end\nlocal a, b = ____\nprint(b)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. Parentheses adjust the call to one result, leaving b nil.",
+          "answer": "(f())",
+          "options": [
+            "(f())",
+            "f()",
+            "${n}, ${m}"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "select with # counts every supplied argument, including nil.",
+          "hint": "select with # counts every supplied argument, including nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-read-4",
+          "kind": "mcq",
+          "code": "local function count(...) return select(\"#\", ...) end\nprint(count(${n}, nil, ${m}))",
+          "prompt": "What is the result?",
+          "answer": "3",
+          "options": [
+            "3",
+            "2",
+            "1"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "select with # counts every supplied argument, including nil.",
+          "hint": "select with # counts every supplied argument, including nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-choose-4",
+          "kind": "mcq",
+          "code": "local function count(...) return ____(\"#\", ...) end\nprint(count(${n}, nil, ${m}))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. select with # counts every supplied argument, including nil.",
+          "answer": "select",
+          "options": [
+            "select",
+            "tonumber",
+            "type"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "return passes the computed result to the caller.",
+          "hint": "return passes the computed result to the caller.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local function f(x) return ____ end\nprint(f(${n}))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. return passes the computed result to the caller. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x + 1"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "An unparenthesized final call supplies both results.",
+          "hint": "An unparenthesized final call supplies both results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local function f() return ${n}, ${m} end\nlocal a, b = ____\nprint(b)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. An unparenthesized final call supplies both results. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "f()"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "Parentheses adjust the call to one result, leaving b nil.",
+          "hint": "Parentheses adjust the call to one result, leaving b nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local function f() return ${n}, ${m} end\nlocal a, b = ____\nprint(b)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. Parentheses adjust the call to one result, leaving b nil. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "(f())"
+          ]
+        },
+        {
+          "concept": "Functions and multiple returns",
+          "explanation": "select with # counts every supplied argument, including nil.",
+          "hint": "select with # counts every supplied argument, including nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local function count(...) return ____(\"#\", ...) end\nprint(count(${n}, nil, ${m}))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. select with # counts every supplied argument, including nil. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "select"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tables",
+      "title": "Tables and absent values",
+      "section": "Intermediate",
+      "intro": "Lua 5.4. Tables support named and integer keys. t.name abbreviates t[\"name\"]. Assigning nil removes a key. Avoid # on tables with holes.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "functions"
+      ],
+      "questions": [
+        {
+          "concept": "Tables and absent values",
+          "explanation": "Sequence entries start at index one.",
+          "hint": "Sequence entries start at index one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tables-read-1",
+          "kind": "mcq",
+          "code": "local t = {${n}, ${m}}\nprint(t[1])",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "Sequence entries start at index one.",
+          "hint": "Sequence entries start at index one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tables-choose-1",
+          "kind": "mcq",
+          "code": "local t = {${n}, ${m}}\nprint(t[____])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Sequence entries start at index one.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "Bracket syntax reads the string key name.",
+          "hint": "Bracket syntax reads the string key name.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "tables-read-2",
+          "kind": "mcq",
+          "code": "local t = {name=\"${word}\"}\nprint(t[\"name\"])",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "nil",
+            "name"
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "Bracket syntax reads the string key name.",
+          "hint": "Bracket syntax reads the string key name.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "tables-choose-2",
+          "kind": "mcq",
+          "code": "local t = {name=\"${word}\"}\nprint(t[____])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Bracket syntax reads the string key name. Use \"name\" as the replacement literal.",
+          "answer": "\"name\"",
+          "options": [
+            "\"name\"",
+            "1",
+            "\"other\""
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "Assigning nil removes the entry.",
+          "hint": "Assigning nil removes the entry.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tables-read-3",
+          "kind": "mcq",
+          "code": "local t = {x=${n}}\nt.x = nil\nprint(t.x)",
+          "prompt": "What is the result?",
+          "answer": "nil",
+          "options": [
+            "nil",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "Assigning nil removes the entry.",
+          "hint": "Assigning nil removes the entry.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tables-choose-3",
+          "kind": "mcq",
+          "code": "local t = {x=${n}}\nt.x = ____\nprint(t.x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. Assigning nil removes the entry.",
+          "answer": "nil",
+          "options": [
+            "nil",
+            "0",
+            "false"
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "insert appends to this contiguous sequence.",
+          "hint": "insert appends to this contiguous sequence.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tables-read-4",
+          "kind": "mcq",
+          "code": "local t = {${n}}\ntable.insert(t, ${m})\nprint(#t)",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "insert appends to this contiguous sequence.",
+          "hint": "insert appends to this contiguous sequence.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tables-choose-4",
+          "kind": "mcq",
+          "code": "local t = {${n}}\ntable.____(t, ${m})\nprint(#t)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. insert appends to this contiguous sequence.",
+          "answer": "insert",
+          "options": [
+            "insert",
+            "remove",
+            "concat"
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "Sequence entries start at index one.",
+          "hint": "Sequence entries start at index one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tables-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local t = {${n}, ${m}}\nprint(t[____])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Sequence entries start at index one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1"
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "Bracket syntax reads the string key name.",
+          "hint": "Bracket syntax reads the string key name.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "tables-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local t = {name=\"${word}\"}\nprint(t[____])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Bracket syntax reads the string key name. Use \"name\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"name\""
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "Assigning nil removes the entry.",
+          "hint": "Assigning nil removes the entry.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tables-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local t = {x=${n}}\nt.x = ____\nprint(t.x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. Assigning nil removes the entry. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "nil"
+          ]
+        },
+        {
+          "concept": "Tables and absent values",
+          "explanation": "insert appends to this contiguous sequence.",
+          "hint": "insert appends to this contiguous sequence.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tables-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local t = {${n}}\ntable.____(t, ${m})\nprint(#t)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. insert appends to this contiguous sequence. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "insert"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io",
+      "title": "Input, files, and conversion",
+      "section": "Intermediate",
+      "intro": "Lua 5.4. io.read may return nil at EOF. tonumber converts numeric strings; tostring converts values to text. Always close handles you open.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "tables"
+      ],
+      "questions": [
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "tonumber explicitly converts digit text to a number.",
+          "hint": "tonumber explicitly converts digit text to a number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "io-read-1",
+          "kind": "mcq",
+          "code": "print(tonumber(\"${n}\") + ${m})",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${n}${m}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "tonumber explicitly converts digit text to a number.",
+          "hint": "tonumber explicitly converts digit text to a number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "io-choose-1",
+          "kind": "mcq",
+          "code": "print(____(\"${n}\") + ${m})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. tonumber explicitly converts digit text to a number.",
+          "answer": "tonumber",
+          "options": [
+            "tonumber",
+            "type",
+            "string.len"
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "Invalid numeric text converts to nil.",
+          "hint": "Invalid numeric text converts to nil.",
+          "id": "io-read-2",
+          "kind": "mcq",
+          "code": "print(tonumber(\"bad\"))",
+          "prompt": "What is the result?",
+          "answer": "nil",
+          "options": [
+            "nil",
+            "0",
+            "Error"
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "Invalid numeric text converts to nil.",
+          "hint": "Invalid numeric text converts to nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "io-choose-2",
+          "kind": "mcq",
+          "code": "print(tonumber(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. Invalid numeric text converts to nil. Use \"bad\" as the replacement literal.",
+          "answer": "\"bad\"",
+          "options": [
+            "\"bad\"",
+            "\"${n}\"",
+            "\"0\""
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "close releases the opened file handle.",
+          "hint": "close releases the opened file handle.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-3",
+          "kind": "mcq",
+          "code": "local f = assert(io.open(\"notes.txt\", \"w\"))\nf:write(\"${word}\")\nf:close()",
+          "prompt": "Assuming open succeeds, what happens?",
+          "answer": "Writes text and closes the handle",
+          "options": [
+            "Writes text and closes the handle",
+            "Reads text only",
+            "Deletes the file"
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "close releases the opened file handle.",
+          "hint": "close releases the opened file handle.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-3",
+          "kind": "mcq",
+          "code": "local f = assert(io.open(\"notes.txt\", \"w\"))\nf:write(\"${word}\")\nf:____()",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text and closes the handle. close releases the opened file handle.",
+          "answer": "close",
+          "options": [
+            "close",
+            "flush",
+            "read"
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "or handles the nil value returned at EOF.",
+          "hint": "or handles the nil value returned at EOF.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-4",
+          "kind": "mcq",
+          "code": "local line = nil\nprint(line or \"${word}\")",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "nil",
+            "false"
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "or handles the nil value returned at EOF.",
+          "hint": "or handles the nil value returned at EOF.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-4",
+          "kind": "mcq",
+          "code": "local line = nil\nprint(line ____ \"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. or handles the nil value returned at EOF.",
+          "answer": "or",
+          "options": [
+            "or",
+            "and",
+            "=="
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "tonumber explicitly converts digit text to a number.",
+          "hint": "tonumber explicitly converts digit text to a number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "io-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(____(\"${n}\") + ${m})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. tonumber explicitly converts digit text to a number. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "tonumber"
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "Invalid numeric text converts to nil.",
+          "hint": "Invalid numeric text converts to nil.",
+          "id": "io-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "print(tonumber(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. Invalid numeric text converts to nil. Use \"bad\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"bad\""
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "close releases the opened file handle.",
+          "hint": "close releases the opened file handle.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local f = assert(io.open(\"notes.txt\", \"w\"))\nf:write(\"${word}\")\nf:____()",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text and closes the handle. close releases the opened file handle. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "close"
+          ]
+        },
+        {
+          "concept": "Input, files, and conversion",
+          "explanation": "or handles the nil value returned at EOF.",
+          "hint": "or handles the nil value returned at EOF.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local line = nil\nprint(line ____ \"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. or handles the nil value returned at EOF. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "or"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scope",
+      "title": "Local scope and modules",
+      "section": "Intermediate",
+      "intro": "Lua 5.4. local limits a binding to its lexical scope. A module commonly returns a table. require caches loaded module results.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "io"
+      ],
+      "questions": [
+        {
+          "concept": "Local scope and modules",
+          "explanation": "The inner local shadows rather than replaces the outer local.",
+          "hint": "The inner local shadows rather than replaces the outer local.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scope-read-1",
+          "kind": "mcq",
+          "code": "local x = ${n}\ndo local x = ${m} end\nprint(x)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "The inner local shadows rather than replaces the outer local.",
+          "hint": "The inner local shadows rather than replaces the outer local.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scope-choose-1",
+          "kind": "mcq",
+          "code": "local x = ${n}\ndo local x = ${m} end\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The inner local shadows rather than replaces the outer local.",
+          "answer": "x",
+          "options": [
+            "x",
+            "nil",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "return provides the module value to its loader.",
+          "hint": "return provides the module value to its loader.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scope-read-2",
+          "kind": "mcq",
+          "code": "local M = {}\nM.size = ${n}\nreturn M",
+          "prompt": "What does the last line do in a module chunk?",
+          "answer": "Exports the table as the chunk result",
+          "options": [
+            "Exports the table as the chunk result",
+            "Creates a global named M",
+            "Prints the table"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "return provides the module value to its loader.",
+          "hint": "return provides the module value to its loader.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scope-choose-2",
+          "kind": "mcq",
+          "code": "local M = {}\nM.size = ${n}\n____ M",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Exports the table as the chunk result. return provides the module value to its loader.",
+          "answer": "return",
+          "options": [
+            "return",
+            "print",
+            "local"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "require consults package.loaded before loading again.",
+          "hint": "require consults package.loaded before loading again.",
+          "id": "scope-read-3",
+          "kind": "mcq",
+          "code": "local config = require(\"config\")",
+          "prompt": "What behavior does this call provide?",
+          "answer": "Loads or retrieves the cached module",
+          "options": [
+            "Loads or retrieves the cached module",
+            "Always reruns the file",
+            "Declares a global"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "require consults package.loaded before loading again.",
+          "hint": "require consults package.loaded before loading again.",
+          "id": "scope-choose-3",
+          "kind": "mcq",
+          "code": "local config = ____(\"config\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads or retrieves the cached module. require consults package.loaded before loading again.",
+          "answer": "require",
+          "options": [
+            "require",
+            "dofile",
+            "loadfile"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "A closure reads its captured local variable after reassignment.",
+          "hint": "A closure reads its captured local variable after reassignment.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scope-read-4",
+          "kind": "mcq",
+          "code": "local x = ${n}\nlocal function f() return x end\nx = ${m}\nprint(f())",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "A closure reads its captured local variable after reassignment.",
+          "hint": "A closure reads its captured local variable after reassignment.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scope-choose-4",
+          "kind": "mcq",
+          "code": "local x = ${n}\nlocal function f() return x end\nx = ${m}\nprint(f____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. A closure reads its captured local variable after reassignment.",
+          "answer": "()",
+          "options": [
+            "()",
+            "[1]"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "The inner local shadows rather than replaces the outer local.",
+          "hint": "The inner local shadows rather than replaces the outer local.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scope-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = ${n}\ndo local x = ${m} end\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The inner local shadows rather than replaces the outer local. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "return provides the module value to its loader.",
+          "hint": "return provides the module value to its loader.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scope-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local M = {}\nM.size = ${n}\n____ M",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Exports the table as the chunk result. return provides the module value to its loader. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "return"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "require consults package.loaded before loading again.",
+          "hint": "require consults package.loaded before loading again.",
+          "id": "scope-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local config = ____(\"config\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads or retrieves the cached module. require consults package.loaded before loading again. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "require"
+          ]
+        },
+        {
+          "concept": "Local scope and modules",
+          "explanation": "A closure reads its captured local variable after reassignment.",
+          "hint": "A closure reads its captured local variable after reassignment.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scope-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = ${n}\nlocal function f() return x end\nx = ${m}\nprint(f____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. A closure reads its captured local variable after reassignment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "errors",
+      "title": "Protected calls and assertions",
+      "section": "Intermediate",
+      "intro": "Lua 5.4. error raises; pcall catches and returns a success flag followed by results or an error. assert raises for false or nil.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "scope"
+      ],
+      "questions": [
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "pcall reports a caught error with false.",
+          "hint": "pcall reports a caught error with false.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-1",
+          "kind": "mcq",
+          "code": "local ok = pcall(function() error(\"${word}\") end)\nprint(ok)",
+          "prompt": "What is the result?",
+          "answer": "false",
+          "options": [
+            "false",
+            "true",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "pcall reports a caught error with false.",
+          "hint": "pcall reports a caught error with false.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-1",
+          "kind": "mcq",
+          "code": "local ok = ____(function() error(\"${word}\") end)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. pcall reports a caught error with false.",
+          "answer": "pcall",
+          "options": [
+            "pcall",
+            "type",
+            "tostring"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "A successful protected call returns true followed by results.",
+          "hint": "A successful protected call returns true followed by results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-read-2",
+          "kind": "mcq",
+          "code": "local ok, value = pcall(function() return ${n} end)\nprint(value)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "true",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "A successful protected call returns true followed by results.",
+          "hint": "A successful protected call returns true followed by results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-2",
+          "kind": "mcq",
+          "code": "local ok, value = pcall(function() return ____ end)\nprint(value)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A successful protected call returns true followed by results. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "false"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "assert raises when its first argument is falsey.",
+          "hint": "assert raises when its first argument is falsey.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-3",
+          "kind": "mcq",
+          "code": "assert(false, \"${word}\")",
+          "prompt": "What happens?",
+          "answer": "Raises an error",
+          "options": [
+            "Raises an error",
+            "Returns false",
+            "Returns nil"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "assert raises when its first argument is falsey.",
+          "hint": "assert raises when its first argument is falsey.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-3",
+          "kind": "mcq",
+          "code": "____(false, \"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises an error. assert raises when its first argument is falsey.",
+          "answer": "assert",
+          "options": [
+            "assert",
+            "print",
+            "type"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "The function completes normally, so the success flag is true.",
+          "hint": "The function completes normally, so the success flag is true.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-read-4",
+          "kind": "mcq",
+          "code": "local ok, value = pcall(function() return ${n} end)\nprint(ok)",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "The function completes normally, so the success flag is true.",
+          "hint": "The function completes normally, so the success flag is true.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-4",
+          "kind": "mcq",
+          "code": "local ok, value = ____(function() return ${n} end)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The function completes normally, so the success flag is true.",
+          "answer": "pcall",
+          "options": [
+            "pcall",
+            "tonumber",
+            "tostring"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "pcall reports a caught error with false.",
+          "hint": "pcall reports a caught error with false.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local ok = ____(function() error(\"${word}\") end)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. pcall reports a caught error with false. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "pcall"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "A successful protected call returns true followed by results.",
+          "hint": "A successful protected call returns true followed by results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local ok, value = pcall(function() return ____ end)\nprint(value)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A successful protected call returns true followed by results. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "assert raises when its first argument is falsey.",
+          "hint": "assert raises when its first argument is falsey.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____(false, \"${word}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises an error. assert raises when its first argument is falsey. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "assert"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "The function completes normally, so the success flag is true.",
+          "hint": "The function completes normally, so the success flag is true.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local ok, value = ____(function() return ${n} end)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The function completes normally, so the success flag is true. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "pcall"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "references",
+      "title": "References and table mutation",
+      "section": "Advanced",
+      "intro": "Lua 5.4. Assigning a table copies its reference, not its contents. rawequal compares identity without equality metamethods.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "errors"
+      ],
+      "questions": [
+        {
+          "concept": "References and table mutation",
+          "explanation": "Both variables reference the same table.",
+          "hint": "Both variables reference the same table.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-read-1",
+          "kind": "mcq",
+          "code": "local a = {x=${n}}\nlocal b = a\nb.x = ${m}\nprint(a.x)",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "Both variables reference the same table.",
+          "hint": "Both variables reference the same table.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-choose-1",
+          "kind": "mcq",
+          "code": "local a = {x=${n}}\nlocal b = ____\nb.x = ${m}\nprint(a.x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Both variables reference the same table.",
+          "answer": "a",
+          "options": [
+            "a",
+            "{}",
+            "{x=${n}}"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "This creates a separate table with a copied numeric field.",
+          "hint": "This creates a separate table with a copied numeric field.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-read-2",
+          "kind": "mcq",
+          "code": "local a = {x=${n}}\nlocal b = {x=a.x}\nb.x = ${m}\nprint(a.x)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "This creates a separate table with a copied numeric field.",
+          "hint": "This creates a separate table with a copied numeric field.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-choose-2",
+          "kind": "mcq",
+          "code": "local a = {x=${n}}\nlocal b = ____\nb.x = ${m}\nprint(a.x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. This creates a separate table with a copied numeric field.",
+          "answer": "{x=a.x}",
+          "options": [
+            "{x=a.x}",
+            "a",
+            "nil"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "The same table reference has identical identity.",
+          "hint": "The same table reference has identical identity.",
+          "id": "references-read-3",
+          "kind": "mcq",
+          "code": "local a = {}\nprint(rawequal(a, a))",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "nil"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "The same table reference has identical identity.",
+          "hint": "The same table reference has identical identity.",
+          "id": "references-choose-3",
+          "kind": "mcq",
+          "code": "local a = {}\nprint(____(a, a))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The same table reference has identical identity.",
+          "answer": "rawequal",
+          "options": [
+            "rawequal",
+            "tonumber",
+            "string.sub"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "The outer tables differ but share the nested child.",
+          "hint": "The outer tables differ but share the nested child.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-read-4",
+          "kind": "mcq",
+          "code": "local a = {child={x=${n}}}\nlocal b = {child=a.child}\nb.child.x = ${m}\nprint(a.child.x)",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "The outer tables differ but share the nested child.",
+          "hint": "The outer tables differ but share the nested child.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-choose-4",
+          "kind": "mcq",
+          "code": "local a = {child={x=${n}}}\nlocal b = {child=a.child}\nb.child.x = ____\nprint(a.child.x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The outer tables differ but share the nested child. Use ${m} as the replacement literal.",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "Both variables reference the same table.",
+          "hint": "Both variables reference the same table.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local a = {x=${n}}\nlocal b = ____\nb.x = ${m}\nprint(a.x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Both variables reference the same table. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "a"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "This creates a separate table with a copied numeric field.",
+          "hint": "This creates a separate table with a copied numeric field.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local a = {x=${n}}\nlocal b = ____\nb.x = ${m}\nprint(a.x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. This creates a separate table with a copied numeric field. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "{x=a.x}"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "The same table reference has identical identity.",
+          "hint": "The same table reference has identical identity.",
+          "id": "references-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local a = {}\nprint(____(a, a))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The same table reference has identical identity. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "rawequal"
+          ]
+        },
+        {
+          "concept": "References and table mutation",
+          "explanation": "The outer tables differ but share the nested child.",
+          "hint": "The outer tables differ but share the nested child.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "references-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local a = {child={x=${n}}}\nlocal b = {child=a.child}\nb.child.x = ____\nprint(a.child.x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The outer tables differ but share the nested child. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${m}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "metatables",
+      "title": "Metatables and fallback lookup",
+      "section": "Advanced",
+      "intro": "Lua 5.4. Metatables customize operations. __index provides missing fields; __newindex handles assignment to absent keys. Raw operations bypass these hooks.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "references"
+      ],
+      "questions": [
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "__index supplies a fallback for the absent size key.",
+          "hint": "__index supplies a fallback for the absent size key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "metatables-read-1",
+          "kind": "mcq",
+          "code": "local t = setmetatable({}, {__index={size=${n}}})\nprint(t.size)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "0"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "__index supplies a fallback for the absent size key.",
+          "hint": "__index supplies a fallback for the absent size key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "metatables-choose-1",
+          "kind": "mcq",
+          "code": "local t = setmetatable({}, {____={size=${n}}})\nprint(t.size)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. __index supplies a fallback for the absent size key.",
+          "answer": "__index",
+          "options": [
+            "__index",
+            "__newindex",
+            "__len"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "rawget reads the actual table entry directly.",
+          "hint": "rawget reads the actual table entry directly.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "metatables-read-2",
+          "kind": "mcq",
+          "code": "local t = setmetatable({size=${m}}, {__index={size=${n}}})\nprint(rawget(t, \"size\"))",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "rawget reads the actual table entry directly.",
+          "hint": "rawget reads the actual table entry directly.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "metatables-choose-2",
+          "kind": "mcq",
+          "code": "local t = setmetatable({size=${m}}, {__index={size=${n}}})\nprint(____(t, \"size\"))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. rawget reads the actual table entry directly.",
+          "answer": "rawget",
+          "options": [
+            "rawget",
+            "rawset",
+            "setmetatable"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "__len overrides the length operation for this table.",
+          "hint": "__len overrides the length operation for this table.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "metatables-read-3",
+          "kind": "mcq",
+          "code": "local t = setmetatable({}, {__len=function() return ${n} end})\nprint(#t)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "__len overrides the length operation for this table.",
+          "hint": "__len overrides the length operation for this table.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "metatables-choose-3",
+          "kind": "mcq",
+          "code": "local t = setmetatable({}, {____=function() return ${n} end})\nprint(#t)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. __len overrides the length operation for this table.",
+          "answer": "__len",
+          "options": [
+            "__len",
+            "__index",
+            "__call"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "__call lets a table behave as a callable object.",
+          "hint": "__call lets a table behave as a callable object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "metatables-read-4",
+          "kind": "mcq",
+          "code": "local t = setmetatable({}, {__call=function(_, x) return x+1 end})\nprint(t(${n}))",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "__call lets a table behave as a callable object.",
+          "hint": "__call lets a table behave as a callable object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "metatables-choose-4",
+          "kind": "mcq",
+          "code": "local t = setmetatable({}, {____=function(_, x) return x+1 end})\nprint(t(${n}))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. __call lets a table behave as a callable object.",
+          "answer": "__call",
+          "options": [
+            "__call",
+            "__len",
+            "__index"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "__index supplies a fallback for the absent size key.",
+          "hint": "__index supplies a fallback for the absent size key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "metatables-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local t = setmetatable({}, {____={size=${n}}})\nprint(t.size)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. __index supplies a fallback for the absent size key. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "__index"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "rawget reads the actual table entry directly.",
+          "hint": "rawget reads the actual table entry directly.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "metatables-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local t = setmetatable({size=${m}}, {__index={size=${n}}})\nprint(____(t, \"size\"))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. rawget reads the actual table entry directly. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "rawget"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "__len overrides the length operation for this table.",
+          "hint": "__len overrides the length operation for this table.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "metatables-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local t = setmetatable({}, {____=function() return ${n} end})\nprint(#t)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. __len overrides the length operation for this table. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "__len"
+          ]
+        },
+        {
+          "concept": "Metatables and fallback lookup",
+          "explanation": "__call lets a table behave as a callable object.",
+          "hint": "__call lets a table behave as a callable object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "metatables-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local t = setmetatable({}, {____=function(_, x) return x+1 end})\nprint(t(${n}))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. __call lets a table behave as a callable object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "__call"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "methods",
+      "title": "Colon methods and closures",
+      "section": "Advanced",
+      "intro": "Lua 5.4. Colon calls pass the receiver as self. Dot calls require that receiver explicitly. Factory functions can encapsulate state in an upvalue.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "metatables"
+      ],
+      "questions": [
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "Colon syntax supplies t as self.",
+          "hint": "Colon syntax supplies t as self.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "methods-read-1",
+          "kind": "mcq",
+          "code": "local t = {x=${n}}\nfunction t:get() return self.x end\nprint(t:get())",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "Error"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "Colon syntax supplies t as self.",
+          "hint": "Colon syntax supplies t as self.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "methods-choose-1",
+          "kind": "mcq",
+          "code": "local t = {x=${n}}\nfunction t:get() return self.x end\nprint(t____get())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Colon syntax supplies t as self.",
+          "answer": ":",
+          "options": [
+            ":",
+            ".",
+            "->"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "A dot call passes the receiver explicitly here.",
+          "hint": "A dot call passes the receiver explicitly here.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "methods-read-2",
+          "kind": "mcq",
+          "code": "local t = {x=${n}}\nfunction t.get(self) return self.x end\nprint(t.get(t))",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "Error"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "A dot call passes the receiver explicitly here.",
+          "hint": "A dot call passes the receiver explicitly here.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "methods-choose-2",
+          "kind": "mcq",
+          "code": "local t = {x=${n}}\nfunction t.get(self) return self.x end\nprint(t.get(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A dot call passes the receiver explicitly here.",
+          "answer": "t",
+          "options": [
+            "t",
+            "nil",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "The returned closure retains the private counter.",
+          "hint": "The returned closure retains the private counter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "methods-read-3",
+          "kind": "mcq",
+          "code": "local function make()\n local x = ${n}\n return function() x=x+1; return x end\nend\nlocal f = make()\nprint(f())",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "The returned closure retains the private counter.",
+          "hint": "The returned closure retains the private counter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "methods-choose-3",
+          "kind": "mcq",
+          "code": "local function make()\n local x = ${n}\n return function() x=x+1; return x end\nend\nlocal f = ____\nprint(f())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The returned closure retains the private counter.",
+          "answer": "make()",
+          "options": [
+            "make()",
+            "make",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "The closure updates the captured local binding.",
+          "hint": "The closure updates the captured local binding.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "methods-read-4",
+          "kind": "mcq",
+          "code": "local x = ${n}\nlocal function f() x=x+1 end\nf()\nprint(x)",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "The closure updates the captured local binding.",
+          "hint": "The closure updates the captured local binding.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "methods-choose-4",
+          "kind": "mcq",
+          "code": "local x = ${n}\nlocal function f() x=x+1 end\n____\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The closure updates the captured local binding.",
+          "answer": "f()",
+          "options": [
+            "f()",
+            "print(f)",
+            "type(f)"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "Colon syntax supplies t as self.",
+          "hint": "Colon syntax supplies t as self.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "methods-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local t = {x=${n}}\nfunction t:get() return self.x end\nprint(t____get())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Colon syntax supplies t as self. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            ":"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "A dot call passes the receiver explicitly here.",
+          "hint": "A dot call passes the receiver explicitly here.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "methods-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local t = {x=${n}}\nfunction t.get(self) return self.x end\nprint(t.get(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A dot call passes the receiver explicitly here. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "t"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "The returned closure retains the private counter.",
+          "hint": "The returned closure retains the private counter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "methods-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local function make()\n local x = ${n}\n return function() x=x+1; return x end\nend\nlocal f = ____\nprint(f())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The returned closure retains the private counter. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "make()"
+          ]
+        },
+        {
+          "concept": "Colon methods and closures",
+          "explanation": "The closure updates the captured local binding.",
+          "hint": "The closure updates the captured local binding.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "methods-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local x = ${n}\nlocal function f() x=x+1 end\n____\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The closure updates the captured local binding. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "f()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coroutines",
+      "title": "Coroutines and suspended execution",
+      "section": "Advanced",
+      "intro": "Lua 5.4. create makes a suspended coroutine; resume runs it; yield pauses with values. resume returns a success flag before yielded or returned results.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua"
+      ],
+      "requires": [
+        "methods"
+      ],
+      "questions": [
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "Creating a coroutine does not execute its body.",
+          "hint": "Creating a coroutine does not execute its body.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "coroutines-read-1",
+          "kind": "mcq",
+          "code": "local co = coroutine.create(function() return ${n} end)\nprint(coroutine.status(co))",
+          "prompt": "What is the result?",
+          "answer": "suspended",
+          "options": [
+            "suspended",
+            "running",
+            "dead"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "Creating a coroutine does not execute its body.",
+          "hint": "Creating a coroutine does not execute its body.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "coroutines-choose-1",
+          "kind": "mcq",
+          "code": "local co = coroutine.____(function() return ${n} end)\nprint(coroutine.status(co))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: suspended. Creating a coroutine does not execute its body.",
+          "answer": "create",
+          "options": [
+            "create",
+            "wrap",
+            "resume"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "yield pauses the coroutine and provides the first result value.",
+          "hint": "yield pauses the coroutine and provides the first result value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "coroutines-read-2",
+          "kind": "mcq",
+          "code": "local co = coroutine.create(function() coroutine.yield(${n}); return ${m} end)\nlocal ok, x = coroutine.resume(co)\nprint(x)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "true"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "yield pauses the coroutine and provides the first result value.",
+          "hint": "yield pauses the coroutine and provides the first result value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "coroutines-choose-2",
+          "kind": "mcq",
+          "code": "local co = coroutine.create(function() coroutine.____(${n}); return ${m} end)\nlocal ok, x = coroutine.resume(co)\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. yield pauses the coroutine and provides the first result value.",
+          "answer": "yield",
+          "options": [
+            "yield",
+            "resume",
+            "status"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "A coroutine that returns normally is dead.",
+          "hint": "A coroutine that returns normally is dead.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "coroutines-read-3",
+          "kind": "mcq",
+          "code": "local co = coroutine.create(function() return ${n} end)\ncoroutine.resume(co)\nprint(coroutine.status(co))",
+          "prompt": "What is the result?",
+          "answer": "dead",
+          "options": [
+            "dead",
+            "suspended",
+            "running"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "A coroutine that returns normally is dead.",
+          "hint": "A coroutine that returns normally is dead.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "coroutines-choose-3",
+          "kind": "mcq",
+          "code": "local co = coroutine.create(function() return ${n} end)\ncoroutine.____(co)\nprint(coroutine.status(co))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: dead. A coroutine that returns normally is dead.",
+          "answer": "resume",
+          "options": [
+            "resume",
+            "status",
+            "isyieldable"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "resume reports an error with a false success flag.",
+          "hint": "resume reports an error with a false success flag.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coroutines-read-4",
+          "kind": "mcq",
+          "code": "local co = coroutine.create(function() error(\"${word}\") end)\nlocal ok = coroutine.resume(co)\nprint(ok)",
+          "prompt": "What is the result?",
+          "answer": "false",
+          "options": [
+            "false",
+            "true",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "resume reports an error with a false success flag.",
+          "hint": "resume reports an error with a false success flag.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coroutines-choose-4",
+          "kind": "mcq",
+          "code": "local co = coroutine.create(function() error(\"${word}\") end)\nlocal ok = coroutine.____(co)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. resume reports an error with a false success flag.",
+          "answer": "resume",
+          "options": [
+            "resume",
+            "status",
+            "running"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "Creating a coroutine does not execute its body.",
+          "hint": "Creating a coroutine does not execute its body.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "coroutines-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local co = coroutine.____(function() return ${n} end)\nprint(coroutine.status(co))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: suspended. Creating a coroutine does not execute its body. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "create"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "yield pauses the coroutine and provides the first result value.",
+          "hint": "yield pauses the coroutine and provides the first result value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "coroutines-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local co = coroutine.create(function() coroutine.____(${n}); return ${m} end)\nlocal ok, x = coroutine.resume(co)\nprint(x)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. yield pauses the coroutine and provides the first result value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "yield"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "A coroutine that returns normally is dead.",
+          "hint": "A coroutine that returns normally is dead.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "coroutines-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local co = coroutine.create(function() return ${n} end)\ncoroutine.____(co)\nprint(coroutine.status(co))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: dead. A coroutine that returns normally is dead. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "resume"
+          ]
+        },
+        {
+          "concept": "Coroutines and suspended execution",
+          "explanation": "resume reports an error with a false success flag.",
+          "hint": "resume reports an error with a false success flag.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coroutines-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local co = coroutine.create(function() error(\"${word}\") end)\nlocal ok = coroutine.____(co)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. resume reports an error with a false success flag. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "resume"
+          ]
+        }
+      ]
+    }
+  ]
+}

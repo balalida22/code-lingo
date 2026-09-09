@@ -1,0 +1,3948 @@
+{
+  "schema_version": 2,
+  "id": "web",
+  "title": "Vanilla HTML + CSS + JavaScript",
+  "language": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions",
+  "version": "1.0",
+  "sources": [
+    {
+      "id": "mdn",
+      "title": "MDN core learning modules",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "js",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "html",
+      "title": "HTML structure and semantics",
+      "section": "Basics",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. HTML marks up content and meaning. Tags form elements; attributes configure them. A document has metadata in head and visible content in body. These are vanilla browser examples.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "h1 identifies the page primary heading.",
+          "hint": "h1 identifies the page primary heading.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-read-1",
+          "kind": "mcq",
+          "code": "<h1>${word}</h1>",
+          "prompt": "What semantic element is this?",
+          "answer": "A top-level heading",
+          "options": [
+            "A top-level heading",
+            "A paragraph",
+            "A link"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "h1 identifies the page primary heading.",
+          "hint": "h1 identifies the page primary heading.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-choose-1",
+          "kind": "mcq",
+          "code": "<____>${word}</h1>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A top-level heading. h1 identifies the page primary heading.",
+          "answer": "h1",
+          "options": [
+            "h1",
+            "p",
+            "span"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "href specifies the link destination.",
+          "hint": "href specifies the link destination.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-read-2",
+          "kind": "mcq",
+          "code": "<a href=\"/guide\">${word}</a>",
+          "prompt": "What does this element provide?",
+          "answer": "A link to /guide",
+          "options": [
+            "A link to /guide",
+            "An image",
+            "A text input"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "href specifies the link destination.",
+          "hint": "href specifies the link destination.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-choose-2",
+          "kind": "mcq",
+          "code": "<a ____=\"/guide\">${word}</a>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A link to /guide. href specifies the link destination.",
+          "answer": "href",
+          "options": [
+            "href",
+            "src",
+            "alt"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "alt supplies a textual alternative for the image.",
+          "hint": "alt supplies a textual alternative for the image.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-read-3",
+          "kind": "mcq",
+          "code": "<img src=\"icon.png\" alt=\"${word}\">",
+          "prompt": "What accessibility information is provided?",
+          "answer": "A text alternative of ${word}",
+          "options": [
+            "A text alternative of ${word}",
+            "A tooltip only",
+            "An image width"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "alt supplies a textual alternative for the image.",
+          "hint": "alt supplies a textual alternative for the image.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-choose-3",
+          "kind": "mcq",
+          "code": "<img src=\"icon.png\" ____=\"${word}\">",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A text alternative of ${word}. alt supplies a textual alternative for the image.",
+          "answer": "alt",
+          "options": [
+            "alt",
+            "title",
+            "width"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "title belongs in head and names the document for browser UI.",
+          "hint": "title belongs in head and names the document for browser UI.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-read-4",
+          "kind": "mcq",
+          "code": "<title>${word}</title>",
+          "prompt": "What does this head element define?",
+          "answer": "The document title",
+          "options": [
+            "The document title",
+            "A visible main heading",
+            "A CSS selector"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "title belongs in head and names the document for browser UI.",
+          "hint": "title belongs in head and names the document for browser UI.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-choose-4",
+          "kind": "mcq",
+          "code": "<____>${word}</title>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: The document title. title belongs in head and names the document for browser UI.",
+          "answer": "title",
+          "options": [
+            "title",
+            "h1",
+            "p"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "h1 identifies the page primary heading.",
+          "hint": "h1 identifies the page primary heading.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<____>${word}</h1>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A top-level heading. h1 identifies the page primary heading. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "h1"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "href specifies the link destination.",
+          "hint": "href specifies the link destination.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<a ____=\"/guide\">${word}</a>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A link to /guide. href specifies the link destination. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "href"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "alt supplies a textual alternative for the image.",
+          "hint": "alt supplies a textual alternative for the image.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<img src=\"icon.png\" ____=\"${word}\">",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A text alternative of ${word}. alt supplies a textual alternative for the image. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "alt"
+          ]
+        },
+        {
+          "concept": "HTML structure and semantics",
+          "explanation": "title belongs in head and names the document for browser UI.",
+          "hint": "title belongs in head and names the document for browser UI.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "html-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<____>${word}</title>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: The document title. title belongs in head and names the document for browser UI. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "title"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forms",
+      "title": "Forms and accessible controls",
+      "section": "Basics",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Labels connect to controls by id. name supplies the submitted field name. button type matters inside forms; required enables browser constraint validation.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "html"
+      ],
+      "questions": [
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "for matches the control id to associate its label.",
+          "hint": "for matches the control id to associate its label.",
+          "id": "forms-read-1",
+          "kind": "mcq",
+          "code": "<label for=\"name\">Name</label><input id=\"name\" name=\"user\">",
+          "prompt": "What is the label association?",
+          "answer": "The label targets input id name",
+          "options": [
+            "The label targets input id name",
+            "Submits a field called for",
+            "Creates a placeholder"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "for matches the control id to associate its label.",
+          "hint": "for matches the control id to associate its label.",
+          "id": "forms-choose-1",
+          "kind": "mcq",
+          "code": "<label ____=\"name\">Name</label><input id=\"name\" name=\"user\">",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: The label targets input id name. for matches the control id to associate its label.",
+          "answer": "for",
+          "options": [
+            "for",
+            "name",
+            "href"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "name identifies the key submitted with this successful control.",
+          "hint": "name identifies the key submitted with this successful control.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "forms-read-2",
+          "kind": "mcq",
+          "code": "<input name=\"user\" value=\"${word}\">",
+          "prompt": "What name-value pair is submitted?",
+          "answer": "user=${word}",
+          "options": [
+            "user=${word}",
+            "value=${word}",
+            "name=user"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "name identifies the key submitted with this successful control.",
+          "hint": "name identifies the key submitted with this successful control.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "forms-choose-2",
+          "kind": "mcq",
+          "code": "<input ____=\"user\" value=\"${word}\">",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: user=${word}. name identifies the key submitted with this successful control.",
+          "answer": "name",
+          "options": [
+            "name",
+            "id",
+            "class"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "An explicit button type avoids the default submit behavior.",
+          "hint": "An explicit button type avoids the default submit behavior.",
+          "id": "forms-read-3",
+          "kind": "mcq",
+          "code": "<form><button type=\"button\">Open help</button></form>",
+          "prompt": "What is the default action of this button?",
+          "answer": "No default form submission",
+          "options": [
+            "No default form submission",
+            "Submits the form",
+            "Resets the form"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "An explicit button type avoids the default submit behavior.",
+          "hint": "An explicit button type avoids the default submit behavior.",
+          "id": "forms-choose-3",
+          "kind": "mcq",
+          "code": "<form><button type=\"____\">Open help</button></form>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: No default form submission. An explicit button type avoids the default submit behavior.",
+          "answer": "button",
+          "options": [
+            "button",
+            "submit",
+            "reset"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "required makes an empty text field invalid for normal validated submission.",
+          "hint": "required makes an empty text field invalid for normal validated submission.",
+          "id": "forms-read-4",
+          "kind": "mcq",
+          "code": "<input type=\"text\" required>",
+          "prompt": "Which validation behavior applies?",
+          "answer": "Empty input fails constraint validation",
+          "options": [
+            "Empty input fails constraint validation",
+            "Empty input is always accepted",
+            "Input is read-only"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "required makes an empty text field invalid for normal validated submission.",
+          "hint": "required makes an empty text field invalid for normal validated submission.",
+          "id": "forms-choose-4",
+          "kind": "mcq",
+          "code": "<input type=\"text\" ____>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Empty input fails constraint validation. required makes an empty text field invalid for normal validated submission.",
+          "answer": "required",
+          "options": [
+            "required",
+            "readonly",
+            "disabled"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "for matches the control id to associate its label.",
+          "hint": "for matches the control id to associate its label.",
+          "id": "forms-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<label ____=\"name\">Name</label><input id=\"name\" name=\"user\">",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: The label targets input id name. for matches the control id to associate its label. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "for"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "name identifies the key submitted with this successful control.",
+          "hint": "name identifies the key submitted with this successful control.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "forms-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<input ____=\"user\" value=\"${word}\">",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: user=${word}. name identifies the key submitted with this successful control. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "name"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "An explicit button type avoids the default submit behavior.",
+          "hint": "An explicit button type avoids the default submit behavior.",
+          "id": "forms-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<form><button type=\"____\">Open help</button></form>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: No default form submission. An explicit button type avoids the default submit behavior. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "button"
+          ]
+        },
+        {
+          "concept": "Forms and accessible controls",
+          "explanation": "required makes an empty text field invalid for normal validated submission.",
+          "hint": "required makes an empty text field invalid for normal validated submission.",
+          "id": "forms-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<input type=\"text\" ____>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Empty input fails constraint validation. required makes an empty text field invalid for normal validated submission. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "required"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "css",
+      "title": "Selectors and the cascade",
+      "section": "Basics",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. CSS selectors choose elements. For competing declarations of the same origin, importance, and layer, specificity precedes source order. Class selectors use a dot and ID selectors use #.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "forms"
+      ],
+      "questions": [
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "A dot selector matches the class attribute.",
+          "hint": "A dot selector matches the class attribute.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-read-1",
+          "kind": "mcq",
+          "code": "<p class=\"note\">${word}</p>\n<style>.note {color: red;}</style>",
+          "prompt": "What does this rule do?",
+          "answer": "The paragraph text is red",
+          "options": [
+            "The paragraph text is red",
+            "The page background is red",
+            "The rule matches nothing"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "A dot selector matches the class attribute.",
+          "hint": "A dot selector matches the class attribute.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-choose-1",
+          "kind": "mcq",
+          "code": "<p class=\"note\">${word}</p>\n<style>____ {color: red;}</style>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: The paragraph text is red. A dot selector matches the class attribute.",
+          "answer": ".note",
+          "options": [
+            ".note",
+            "#note",
+            "note"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "The ID selector outranks the class selector in this cascade.",
+          "hint": "The ID selector outranks the class selector in this cascade.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-read-2",
+          "kind": "mcq",
+          "code": "<p id=\"item\" class=\"note\">${word}</p>\n<style>.note{color:blue} #item{color:red}</style>",
+          "prompt": "What text color wins?",
+          "answer": "red",
+          "options": [
+            "red",
+            "blue",
+            "Default color"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "The ID selector outranks the class selector in this cascade.",
+          "hint": "The ID selector outranks the class selector in this cascade.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-choose-2",
+          "kind": "mcq",
+          "code": "<p id=\"item\" class=\"note\">${word}</p>\n<style>.note{color:blue} ____{color:red}</style>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: red. The ID selector outranks the class selector in this cascade.",
+          "answer": "#item",
+          "options": [
+            "#item",
+            "item",
+            ".item"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "Equal-specificity rules use the later declaration.",
+          "hint": "Equal-specificity rules use the later declaration.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-read-3",
+          "kind": "mcq",
+          "code": "<p>${word}</p>\n<style>p{color:blue} p{color:red}</style>",
+          "prompt": "What color wins?",
+          "answer": "red",
+          "options": [
+            "red",
+            "blue",
+            "Default color"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "Equal-specificity rules use the later declaration.",
+          "hint": "Equal-specificity rules use the later declaration.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-choose-3",
+          "kind": "mcq",
+          "code": "<p>${word}</p>\n<style>p{color:blue} p{color:____}</style>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: red. Equal-specificity rules use the later declaration.",
+          "answer": "red",
+          "options": [
+            "red",
+            "green",
+            "black"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "The space is a descendant combinator.",
+          "hint": "The space is a descendant combinator.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-read-4",
+          "kind": "mcq",
+          "code": "<div class=\"card\"><p>${word}</p></div>\n<style>.card p{color:red}</style>",
+          "prompt": "What does this selector match?",
+          "answer": "Matches p descendants of .card",
+          "options": [
+            "Matches p descendants of .card",
+            "Matches only .card itself",
+            "Matches preceding paragraphs"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "The space is a descendant combinator.",
+          "hint": "The space is a descendant combinator.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-choose-4",
+          "kind": "mcq",
+          "code": "<div class=\"card\"><p>${word}</p></div>\n<style>____{color:red}</style>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Matches p descendants of .card. The space is a descendant combinator.",
+          "answer": ".card p",
+          "options": [
+            ".card p",
+            ".card+p",
+            "p .card"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "A dot selector matches the class attribute.",
+          "hint": "A dot selector matches the class attribute.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<p class=\"note\">${word}</p>\n<style>____ {color: red;}</style>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: The paragraph text is red. A dot selector matches the class attribute. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            ".note"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "The ID selector outranks the class selector in this cascade.",
+          "hint": "The ID selector outranks the class selector in this cascade.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<p id=\"item\" class=\"note\">${word}</p>\n<style>.note{color:blue} ____{color:red}</style>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: red. The ID selector outranks the class selector in this cascade. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "#item"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "Equal-specificity rules use the later declaration.",
+          "hint": "Equal-specificity rules use the later declaration.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<p>${word}</p>\n<style>p{color:blue} p{color:____}</style>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: red. Equal-specificity rules use the later declaration. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "red"
+          ]
+        },
+        {
+          "concept": "Selectors and the cascade",
+          "explanation": "The space is a descendant combinator.",
+          "hint": "The space is a descendant combinator.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "css-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<div class=\"card\"><p>${word}</p></div>\n<style>____{color:red}</style>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Matches p descendants of .card. The space is a descendant combinator. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            ".card p"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layout",
+      "title": "Box model and flex layout",
+      "section": "Basics",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. content-box widths exclude padding and borders; border-box widths include them. Flexbox lays out children along a main axis. gap adds spacing between items.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "css"
+      ],
+      "questions": [
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "Content width plus two paddings and two borders gives the outer width.",
+          "hint": "Content width plus two paddings and two borders gives the outer width.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "plus2": "n+2",
+            "boxwidth": "n+6"
+          },
+          "id": "layout-read-1",
+          "kind": "mcq",
+          "code": ".box {width: ${n}px; padding: 2px; border: 1px solid; box-sizing: content-box;}",
+          "prompt": "What is the outer width, ignoring margin?",
+          "answer": "${boxwidth}px",
+          "options": [
+            "${boxwidth}px",
+            "${n}px",
+            "${plus2}px"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "Content width plus two paddings and two borders gives the outer width.",
+          "hint": "Content width plus two paddings and two borders gives the outer width.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "boxwidth": "n+6"
+          },
+          "id": "layout-choose-1",
+          "kind": "mcq",
+          "code": ".box {width: ${n}px; padding: 2px; border: 1px solid; box-sizing: ____;}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${boxwidth}px. Content width plus two paddings and two borders gives the outer width.",
+          "answer": "content-box",
+          "options": [
+            "content-box",
+            "border-box",
+            "inherit"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "border-box includes padding and border inside the declared width.",
+          "hint": "border-box includes padding and border inside the declared width.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "nwide": "n+10",
+            "wideplus6": "n+16"
+          },
+          "id": "layout-read-2",
+          "kind": "mcq",
+          "code": ".box {width: ${nwide}px; padding: 2px; border: 1px solid; box-sizing: border-box;}",
+          "prompt": "What is the outer width, ignoring margin?",
+          "answer": "${nwide}px",
+          "options": [
+            "${nwide}px",
+            "${wideplus6}px",
+            "${n}px"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "border-box includes padding and border inside the declared width.",
+          "hint": "border-box includes padding and border inside the declared width.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "nwide": "n+10"
+          },
+          "id": "layout-choose-2",
+          "kind": "mcq",
+          "code": ".box {width: ${nwide}px; padding: 2px; border: 1px solid; box-sizing: ____;}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${nwide}px. border-box includes padding and border inside the declared width.",
+          "answer": "border-box",
+          "options": [
+            "border-box",
+            "content-box",
+            "initial"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "A row flex container lays out items along its horizontal main axis in normal horizontal writing mode.",
+          "hint": "A row flex container lays out items along its horizontal main axis in normal horizontal writing mode.",
+          "id": "layout-read-3",
+          "kind": "mcq",
+          "code": ".row {display: flex; flex-direction: row;}",
+          "prompt": "What layout is established?",
+          "answer": "Children use a horizontal main axis",
+          "options": [
+            "Children use a horizontal main axis",
+            "Children become absolutely positioned",
+            "Children disappear"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "A row flex container lays out items along its horizontal main axis in normal horizontal writing mode.",
+          "hint": "A row flex container lays out items along its horizontal main axis in normal horizontal writing mode.",
+          "id": "layout-choose-3",
+          "kind": "mcq",
+          "code": ".row {display: ____; flex-direction: row;}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Children use a horizontal main axis. A row flex container lays out items along its horizontal main axis in normal horizontal writing mode.",
+          "answer": "flex",
+          "options": [
+            "flex",
+            "block",
+            "none"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "gap inserts spacing between items, not an outer margin.",
+          "hint": "gap inserts spacing between items, not an outer margin.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "layout-read-4",
+          "kind": "mcq",
+          "code": ".row {display:flex; gap: ${n}px;}",
+          "prompt": "What spacing is requested?",
+          "answer": "${n}px between adjacent flex items",
+          "options": [
+            "${n}px between adjacent flex items",
+            "${n}px around every outer edge",
+            "${n}px text size"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "gap inserts spacing between items, not an outer margin.",
+          "hint": "gap inserts spacing between items, not an outer margin.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "layout-choose-4",
+          "kind": "mcq",
+          "code": ".row {display:flex; ____: ${n}px;}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}px between adjacent flex items. gap inserts spacing between items, not an outer margin.",
+          "answer": "gap",
+          "options": [
+            "gap",
+            "padding",
+            "font-size"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "Content width plus two paddings and two borders gives the outer width.",
+          "hint": "Content width plus two paddings and two borders gives the outer width.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "boxwidth": "n+6"
+          },
+          "id": "layout-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": ".box {width: ${n}px; padding: 2px; border: 1px solid; box-sizing: ____;}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${boxwidth}px. Content width plus two paddings and two borders gives the outer width. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "content-box"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "border-box includes padding and border inside the declared width.",
+          "hint": "border-box includes padding and border inside the declared width.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "nwide": "n+10"
+          },
+          "id": "layout-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": ".box {width: ${nwide}px; padding: 2px; border: 1px solid; box-sizing: ____;}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${nwide}px. border-box includes padding and border inside the declared width. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "border-box"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "A row flex container lays out items along its horizontal main axis in normal horizontal writing mode.",
+          "hint": "A row flex container lays out items along its horizontal main axis in normal horizontal writing mode.",
+          "id": "layout-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": ".row {display: ____; flex-direction: row;}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Children use a horizontal main axis. A row flex container lays out items along its horizontal main axis in normal horizontal writing mode. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "flex"
+          ]
+        },
+        {
+          "concept": "Box model and flex layout",
+          "explanation": "gap inserts spacing between items, not an outer margin.",
+          "hint": "gap inserts spacing between items, not an outer margin.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "layout-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": ".row {display:flex; ____: ${n}px;}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}px between adjacent flex items. gap inserts spacing between items, not an outer margin. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "gap"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "javascript",
+      "title": "JavaScript values and branches",
+      "section": "Basics",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. JavaScript adds behavior. let permits reassignment; const fixes a binding. + adds numbers or concatenates strings. === compares without coercion.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "layout"
+      ],
+      "questions": [
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "The later assignment replaces x.",
+          "hint": "The later assignment replaces x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "javascript-read-1",
+          "kind": "mcq",
+          "code": "let x=${n}; x=${m}; console.log(x);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "The later assignment replaces x.",
+          "hint": "The later assignment replaces x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "javascript-choose-1",
+          "kind": "mcq",
+          "code": "let x=${n}; x=____; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The later assignment replaces x. Use ${m} as the replacement literal.",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "Two numbers are added.",
+          "hint": "Two numbers are added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "javascript-read-2",
+          "kind": "mcq",
+          "code": "console.log(${n}+${m});",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "${n}${m}"
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "Two numbers are added.",
+          "hint": "Two numbers are added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "javascript-choose-2",
+          "kind": "mcq",
+          "code": "console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Two numbers are added.",
+          "answer": "${n}+${m}",
+          "options": [
+            "${n}+${m}",
+            "${n}*${m}",
+            "\"${n}\"+${m}"
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "Strict equality distinguishes number from string.",
+          "hint": "Strict equality distinguishes number from string.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "javascript-read-3",
+          "kind": "mcq",
+          "code": "console.log(${n} === \"${n}\");",
+          "prompt": "What is the result?",
+          "answer": "false",
+          "options": [
+            "false",
+            "true",
+            "Throws"
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "Strict equality distinguishes number from string.",
+          "hint": "Strict equality distinguishes number from string.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "javascript-choose-3",
+          "kind": "mcq",
+          "code": "console.log(${n} ____ \"${n}\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. Strict equality distinguishes number from string.",
+          "answer": "===",
+          "options": [
+            "===",
+            "==",
+            "!="
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "Nullish coalescing uses the fallback for null.",
+          "hint": "Nullish coalescing uses the fallback for null.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "javascript-read-4",
+          "kind": "mcq",
+          "code": "console.log(null ?? \"${word}\");",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "null",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "Nullish coalescing uses the fallback for null.",
+          "hint": "Nullish coalescing uses the fallback for null.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "javascript-choose-4",
+          "kind": "mcq",
+          "code": "console.log(____ ?? \"${word}\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Nullish coalescing uses the fallback for null.",
+          "answer": "null",
+          "options": [
+            "null",
+            "0",
+            "false"
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "The later assignment replaces x.",
+          "hint": "The later assignment replaces x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "javascript-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x=${n}; x=____; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The later assignment replaces x. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${m}"
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "Two numbers are added.",
+          "hint": "Two numbers are added.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "javascript-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Two numbers are added. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}+${m}"
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "Strict equality distinguishes number from string.",
+          "hint": "Strict equality distinguishes number from string.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "javascript-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "console.log(${n} ____ \"${n}\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. Strict equality distinguishes number from string. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "==="
+          ]
+        },
+        {
+          "concept": "JavaScript values and branches",
+          "explanation": "Nullish coalescing uses the fallback for null.",
+          "hint": "Nullish coalescing uses the fallback for null.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "javascript-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "console.log(____ ?? \"${word}\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Nullish coalescing uses the fallback for null. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "null"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "functions",
+      "title": "Functions, scope, and loops",
+      "section": "Intermediate",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Functions package behavior and return values. let has block scope. for...of visits values. Arrow functions can return a single expression implicitly.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "javascript"
+      ],
+      "questions": [
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "return supplies the computed value to the caller.",
+          "hint": "return supplies the computed value to the caller.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-read-1",
+          "kind": "mcq",
+          "code": "function bump(x){return x+1;} console.log(bump(${n}));",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "return supplies the computed value to the caller.",
+          "hint": "return supplies the computed value to the caller.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-choose-1",
+          "kind": "mcq",
+          "code": "function bump(x){return ____;} console.log(bump(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. return supplies the computed value to the caller.",
+          "answer": "x+1",
+          "options": [
+            "x+1",
+            "x",
+            "0"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "The arrow expression returns the doubled argument.",
+          "hint": "The arrow expression returns the doubled argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "functions-read-2",
+          "kind": "mcq",
+          "code": "const twice=x=>x*2; console.log(twice(${n}));",
+          "prompt": "What is the result?",
+          "answer": "${double}",
+          "options": [
+            "${double}",
+            "${n}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "The arrow expression returns the doubled argument.",
+          "hint": "The arrow expression returns the doubled argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "functions-choose-2",
+          "kind": "mcq",
+          "code": "const twice=x____x*2; console.log(twice(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. The arrow expression returns the doubled argument.",
+          "answer": "=>",
+          "options": [
+            "=>",
+            "=",
+            "->"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "The inner block-scoped binding shadows the outer one.",
+          "hint": "The inner block-scoped binding shadows the outer one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-read-3",
+          "kind": "mcq",
+          "code": "let x=${n}; {let x=${m};} console.log(x);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "Syntax error"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "The inner block-scoped binding shadows the outer one.",
+          "hint": "The inner block-scoped binding shadows the outer one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-choose-3",
+          "kind": "mcq",
+          "code": "let x=${n}; {____ x=${m};} console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The inner block-scoped binding shadows the outer one.",
+          "answer": "let",
+          "options": [
+            "let",
+            "var",
+            "function"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "for...of yields both array values.",
+          "hint": "for...of yields both array values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mul": "n*m"
+          },
+          "id": "functions-read-4",
+          "kind": "mcq",
+          "code": "let x=0; for(const v of [${n},${m}]) x+=v; console.log(x);",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${mul}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "for...of yields both array values.",
+          "hint": "for...of yields both array values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "functions-choose-4",
+          "kind": "mcq",
+          "code": "let x=0; for(const v ____ [${n},${m}]) x+=v; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. for...of yields both array values.",
+          "answer": "of",
+          "options": [
+            "of",
+            "in",
+            "as"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "return supplies the computed value to the caller.",
+          "hint": "return supplies the computed value to the caller.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "functions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function bump(x){return ____;} console.log(bump(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. return supplies the computed value to the caller. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x+1"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "The arrow expression returns the doubled argument.",
+          "hint": "The arrow expression returns the doubled argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "functions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const twice=x____x*2; console.log(twice(${n}));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. The arrow expression returns the doubled argument. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=>"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "The inner block-scoped binding shadows the outer one.",
+          "hint": "The inner block-scoped binding shadows the outer one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "functions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x=${n}; {____ x=${m};} console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The inner block-scoped binding shadows the outer one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "let"
+          ]
+        },
+        {
+          "concept": "Functions, scope, and loops",
+          "explanation": "for...of yields both array values.",
+          "hint": "for...of yields both array values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "functions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let x=0; for(const v ____ [${n},${m}]) x+=v; console.log(x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. for...of yields both array values. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "of"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dom",
+      "title": "DOM selection and safe text updates",
+      "section": "Intermediate",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. The DOM exposes elements as objects. querySelector returns the first match or null. textContent inserts text without parsing markup; classList manipulates class tokens.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "functions"
+      ],
+      "questions": [
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "querySelector finds the paragraph and textContent replaces its text.",
+          "hint": "querySelector finds the paragraph and textContent replaces its text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "dom-read-1",
+          "kind": "mcq",
+          "code": "<p id=\"msg\">old</p>\n<script>document.querySelector(\"#msg\").textContent=\"${word}\";</script>",
+          "prompt": "What text is visible?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "old",
+            "#msg"
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "querySelector finds the paragraph and textContent replaces its text.",
+          "hint": "querySelector finds the paragraph and textContent replaces its text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "dom-choose-1",
+          "kind": "mcq",
+          "code": "<p id=\"msg\">old</p>\n<script>document.____(\"#msg\").textContent=\"${word}\";</script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. querySelector finds the paragraph and textContent replaces its text.",
+          "answer": "querySelector",
+          "options": [
+            "querySelector",
+            "getElementById",
+            "getElementsByClassName"
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "textContent treats the angle brackets as text rather than HTML.",
+          "hint": "textContent treats the angle brackets as text rather than HTML.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "dom-read-2",
+          "kind": "mcq",
+          "code": "<p id=\"msg\"></p>\n<script>document.querySelector(\"#msg\").textContent=\"<b>${word}</b>\";</script>",
+          "prompt": "What does the paragraph show?",
+          "answer": "Literal text <b>${word}</b>",
+          "options": [
+            "Literal text <b>${word}</b>",
+            "Bold ${word}",
+            "Nothing"
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "textContent treats the angle brackets as text rather than HTML.",
+          "hint": "textContent treats the angle brackets as text rather than HTML.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "dom-choose-2",
+          "kind": "mcq",
+          "code": "<p id=\"msg\"></p>\n<script>document.querySelector(\"#msg\").____=\"<b>${word}</b>\";</script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Literal text <b>${word}</b>. textContent treats the angle brackets as text rather than HTML.",
+          "answer": "textContent",
+          "options": [
+            "textContent",
+            "innerHTML",
+            "outerHTML"
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "A selector with no match returns null.",
+          "hint": "A selector with no match returns null.",
+          "id": "dom-read-3",
+          "kind": "mcq",
+          "code": "const el=document.querySelector(\"#missing\"); console.log(el === null);",
+          "prompt": "Assume #missing does not exist. What is logged?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "Throws"
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "A selector with no match returns null.",
+          "hint": "A selector with no match returns null.",
+          "id": "dom-choose-3",
+          "kind": "mcq",
+          "code": "const el=document.querySelector(\"#missing\"); console.log(el ____ null);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. A selector with no match returns null.",
+          "answer": "===",
+          "options": [
+            "===",
+            "!==",
+            ">"
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "classList.add adds one class token.",
+          "hint": "classList.add adds one class token.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "dom-read-4",
+          "kind": "mcq",
+          "code": "const el=document.createElement(\"p\"); el.classList.add(\"${word}\"); console.log(el.className);",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Empty string",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "classList.add adds one class token.",
+          "hint": "classList.add adds one class token.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "dom-choose-4",
+          "kind": "mcq",
+          "code": "const el=document.createElement(\"p\"); el.classList.____(\"${word}\"); console.log(el.className);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. classList.add adds one class token.",
+          "answer": "add",
+          "options": [
+            "add",
+            "remove",
+            "contains"
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "querySelector finds the paragraph and textContent replaces its text.",
+          "hint": "querySelector finds the paragraph and textContent replaces its text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "dom-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<p id=\"msg\">old</p>\n<script>document.____(\"#msg\").textContent=\"${word}\";</script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. querySelector finds the paragraph and textContent replaces its text. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "querySelector"
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "textContent treats the angle brackets as text rather than HTML.",
+          "hint": "textContent treats the angle brackets as text rather than HTML.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "dom-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<p id=\"msg\"></p>\n<script>document.querySelector(\"#msg\").____=\"<b>${word}</b>\";</script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Literal text <b>${word}</b>. textContent treats the angle brackets as text rather than HTML. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "textContent"
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "A selector with no match returns null.",
+          "hint": "A selector with no match returns null.",
+          "id": "dom-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const el=document.querySelector(\"#missing\"); console.log(el ____ null);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. A selector with no match returns null. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "==="
+          ]
+        },
+        {
+          "concept": "DOM selection and safe text updates",
+          "explanation": "classList.add adds one class token.",
+          "hint": "classList.add adds one class token.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "dom-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const el=document.createElement(\"p\"); el.classList.____(\"${word}\"); console.log(el.className);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. classList.add adds one class token. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "add"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": "Events and default actions",
+      "section": "Intermediate",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. addEventListener registers a callback. target identifies the originating element; currentTarget identifies the current listener element. preventDefault and stopPropagation have different roles.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "dom"
+      ],
+      "questions": [
+        {
+          "concept": "Events and default actions",
+          "explanation": "The listener callback runs on a click.",
+          "hint": "The listener callback runs on a click.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "events-read-1",
+          "kind": "mcq",
+          "code": "button.addEventListener(\"click\",()=>console.log(\"${word}\"));",
+          "prompt": "After registering on an existing button, what does one click log?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Nothing",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "The listener callback runs on a click.",
+          "hint": "The listener callback runs on a click.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "events-choose-1",
+          "kind": "mcq",
+          "code": "button.____(\"click\",()=>console.log(\"${word}\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The listener callback runs on a click.",
+          "answer": "addEventListener",
+          "options": [
+            "addEventListener",
+            "removeEventListener",
+            "dispatchEvent"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "preventDefault cancels the event default action when cancelable.",
+          "hint": "preventDefault cancels the event default action when cancelable.",
+          "id": "events-read-2",
+          "kind": "mcq",
+          "code": "form.addEventListener(\"submit\",event=>event.preventDefault());",
+          "prompt": "What does this call request?",
+          "answer": "Cancels the default form submission",
+          "options": [
+            "Cancels the default form submission",
+            "Stops all bubbling only",
+            "Removes the form"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "preventDefault cancels the event default action when cancelable.",
+          "hint": "preventDefault cancels the event default action when cancelable.",
+          "id": "events-choose-2",
+          "kind": "mcq",
+          "code": "form.addEventListener(\"submit\",event=>event.____());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Cancels the default form submission. preventDefault cancels the event default action when cancelable.",
+          "answer": "preventDefault",
+          "options": [
+            "preventDefault",
+            "stopPropagation",
+            "stopImmediatePropagation"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "target remains the element that originated the bubbling event.",
+          "hint": "target remains the element that originated the bubbling event.",
+          "id": "events-read-3",
+          "kind": "mcq",
+          "code": "parent.addEventListener(\"click\",event=>console.log(event.target.id));",
+          "prompt": "A child with id child is clicked inside parent. What is logged?",
+          "answer": "child",
+          "options": [
+            "child",
+            "parent",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "target remains the element that originated the bubbling event.",
+          "hint": "target remains the element that originated the bubbling event.",
+          "id": "events-choose-3",
+          "kind": "mcq",
+          "code": "parent.addEventListener(\"click\",event=>console.log(event.____.id));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: child. target remains the element that originated the bubbling event.",
+          "answer": "target",
+          "options": [
+            "target",
+            "currentTarget",
+            "type"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "stopPropagation prevents the event from continuing along the propagation path.",
+          "hint": "stopPropagation prevents the event from continuing along the propagation path.",
+          "id": "events-read-4",
+          "kind": "mcq",
+          "code": "child.addEventListener(\"click\",event=>event.stopPropagation());",
+          "prompt": "What does this call do?",
+          "answer": "Prevents further ancestor propagation",
+          "options": [
+            "Prevents further ancestor propagation",
+            "Cancels every default action",
+            "Removes all listeners"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "stopPropagation prevents the event from continuing along the propagation path.",
+          "hint": "stopPropagation prevents the event from continuing along the propagation path.",
+          "id": "events-choose-4",
+          "kind": "mcq",
+          "code": "child.addEventListener(\"click\",event=>event.____());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Prevents further ancestor propagation. stopPropagation prevents the event from continuing along the propagation path.",
+          "answer": "stopPropagation",
+          "options": [
+            "stopPropagation",
+            "preventDefault",
+            "composedPath"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "The listener callback runs on a click.",
+          "hint": "The listener callback runs on a click.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "events-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "button.____(\"click\",()=>console.log(\"${word}\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The listener callback runs on a click. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "addEventListener"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "preventDefault cancels the event default action when cancelable.",
+          "hint": "preventDefault cancels the event default action when cancelable.",
+          "id": "events-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "form.addEventListener(\"submit\",event=>event.____());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Cancels the default form submission. preventDefault cancels the event default action when cancelable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "preventDefault"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "target remains the element that originated the bubbling event.",
+          "hint": "target remains the element that originated the bubbling event.",
+          "id": "events-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "parent.addEventListener(\"click\",event=>console.log(event.____.id));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: child. target remains the element that originated the bubbling event. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "target"
+          ]
+        },
+        {
+          "concept": "Events and default actions",
+          "explanation": "stopPropagation prevents the event from continuing along the propagation path.",
+          "hint": "stopPropagation prevents the event from continuing along the propagation path.",
+          "id": "events-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "child.addEventListener(\"click\",event=>event.____());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Prevents further ancestor propagation. stopPropagation prevents the event from continuing along the propagation path. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "stopPropagation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "title": "Objects, arrays, and JSON",
+      "section": "Intermediate",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Objects hold named properties. Array operations work on values. Spread makes shallow copies; JSON is a text format and parsing it does not validate its shape.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "events"
+      ],
+      "questions": [
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "Dot access reads the named property.",
+          "hint": "Dot access reads the named property.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "data-read-1",
+          "kind": "mcq",
+          "code": "const x={name:\"${word}\"}; console.log(x.name);",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "undefined",
+            "name"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "Dot access reads the named property.",
+          "hint": "Dot access reads the named property.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "data-choose-1",
+          "kind": "mcq",
+          "code": "const x={name:\"${word}\"}; console.log(x.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Dot access reads the named property.",
+          "answer": "name",
+          "options": [
+            "name",
+            "value",
+            "length"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "map creates an array of transformed values.",
+          "hint": "map creates an array of transformed values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "double": "n*2",
+            "m_double": "m*2"
+          },
+          "id": "data-read-2",
+          "kind": "mcq",
+          "code": "const a=[${n},${m}]; console.log(a.map(x=>x*2).join(\",\"));",
+          "prompt": "What is the result?",
+          "answer": "${double},${m_double}",
+          "options": [
+            "${double},${m_double}",
+            "${n},${m}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "map creates an array of transformed values.",
+          "hint": "map creates an array of transformed values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "double": "n*2",
+            "m_double": "m*2"
+          },
+          "id": "data-choose-2",
+          "kind": "mcq",
+          "code": "const a=[${n},${m}]; console.log(a.____(x=>x*2).join(\",\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double},${m_double}. map creates an array of transformed values.",
+          "answer": "map",
+          "options": [
+            "map",
+            "filter",
+            "forEach"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "JSON.parse converts valid JSON text into a JavaScript value.",
+          "hint": "JSON.parse converts valid JSON text into a JavaScript value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "data-read-3",
+          "kind": "mcq",
+          "code": "const x=JSON.parse('{\"size\":${n}}'); console.log(x.size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "String text"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "JSON.parse converts valid JSON text into a JavaScript value.",
+          "hint": "JSON.parse converts valid JSON text into a JavaScript value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "data-choose-3",
+          "kind": "mcq",
+          "code": "const x=JSON.____('{\"size\":${n}}'); console.log(x.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. JSON.parse converts valid JSON text into a JavaScript value.",
+          "answer": "parse",
+          "options": [
+            "parse",
+            "stringify",
+            "rawJSON"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "Spread copies the numeric property into a new outer object.",
+          "hint": "Spread copies the numeric property into a new outer object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "data-read-4",
+          "kind": "mcq",
+          "code": "const a={size:${n}}; const b={...a}; b.size=${m}; console.log(a.size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "Spread copies the numeric property into a new outer object.",
+          "hint": "Spread copies the numeric property into a new outer object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "data-choose-4",
+          "kind": "mcq",
+          "code": "const a={size:${n}}; const b=____; b.size=${m}; console.log(a.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Spread copies the numeric property into a new outer object.",
+          "answer": "{...a}",
+          "options": [
+            "{...a}",
+            "a",
+            "null"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "Dot access reads the named property.",
+          "hint": "Dot access reads the named property.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "data-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const x={name:\"${word}\"}; console.log(x.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Dot access reads the named property. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "name"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "map creates an array of transformed values.",
+          "hint": "map creates an array of transformed values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "double": "n*2",
+            "m_double": "m*2"
+          },
+          "id": "data-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const a=[${n},${m}]; console.log(a.____(x=>x*2).join(\",\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double},${m_double}. map creates an array of transformed values. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "map"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "JSON.parse converts valid JSON text into a JavaScript value.",
+          "hint": "JSON.parse converts valid JSON text into a JavaScript value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "data-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const x=JSON.____('{\"size\":${n}}'); console.log(x.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. JSON.parse converts valid JSON text into a JavaScript value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "parse"
+          ]
+        },
+        {
+          "concept": "Objects, arrays, and JSON",
+          "explanation": "Spread copies the numeric property into a new outer object.",
+          "hint": "Spread copies the numeric property into a new outer object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "data-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const a={size:${n}}; const b=____; b.size=${m}; console.log(a.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Spread copies the numeric property into a new outer object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "{...a}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "responsive",
+      "title": "Responsive CSS and states",
+      "section": "Intermediate",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Media queries conditionally apply rules. Relative units adapt to context. :focus-visible supports keyboard focus styling. Prefer native interactive elements for built-in keyboard behavior.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "data"
+      ],
+      "questions": [
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "max-width applies when the viewport is no wider than 600 CSS pixels.",
+          "hint": "max-width applies when the viewport is no wider than 600 CSS pixels.",
+          "id": "responsive-read-1",
+          "kind": "mcq",
+          "code": "@media (max-width: 600px) {.card{display:none}}",
+          "prompt": "At viewport width 500px and height 800px, what happens?",
+          "answer": "Hidden at a 500px viewport",
+          "options": [
+            "Hidden at a 500px viewport",
+            "Hidden only above 600px",
+            "Always visible"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "max-width applies when the viewport is no wider than 600 CSS pixels.",
+          "hint": "max-width applies when the viewport is no wider than 600 CSS pixels.",
+          "id": "responsive-choose-1",
+          "kind": "mcq",
+          "code": "@media (____: 600px) {.card{display:none}}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Hidden at a 500px viewport. max-width applies when the viewport is no wider than 600 CSS pixels.",
+          "answer": "max-width",
+          "options": [
+            "max-width",
+            "min-width",
+            "min-height"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "rem uses the root font size.",
+          "hint": "rem uses the root font size.",
+          "id": "responsive-read-2",
+          "kind": "mcq",
+          "code": "html{font-size:10px} .card{padding:2rem}",
+          "prompt": "What is the computed padding?",
+          "answer": "20px",
+          "options": [
+            "20px",
+            "2px",
+            "10px"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "rem uses the root font size.",
+          "hint": "rem uses the root font size.",
+          "id": "responsive-choose-2",
+          "kind": "mcq",
+          "code": "html{font-size:10px} .card{padding:____}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 20px. rem uses the root font size.",
+          "answer": "2rem",
+          "options": [
+            "2rem",
+            "2px",
+            "1rem"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "focus-visible matches focus when the browser determines an indicator should be shown.",
+          "hint": "focus-visible matches focus when the browser determines an indicator should be shown.",
+          "id": "responsive-read-3",
+          "kind": "mcq",
+          "code": "button:focus-visible {outline:2px solid blue}",
+          "prompt": "What state does this selector address?",
+          "answer": "Styles visible keyboard-focus indication",
+          "options": [
+            "Styles visible keyboard-focus indication",
+            "Styles every visited link",
+            "Styles only disabled controls"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "focus-visible matches focus when the browser determines an indicator should be shown.",
+          "hint": "focus-visible matches focus when the browser determines an indicator should be shown.",
+          "id": "responsive-choose-3",
+          "kind": "mcq",
+          "code": "button:____ {outline:2px solid blue}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Styles visible keyboard-focus indication. focus-visible matches focus when the browser determines an indicator should be shown.",
+          "answer": "focus-visible",
+          "options": [
+            "focus-visible",
+            "visited",
+            "disabled"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "button provides native button semantics and keyboard activation.",
+          "hint": "button provides native button semantics and keyboard activation.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "responsive-read-4",
+          "kind": "mcq",
+          "code": "<button type=\"button\">${word}</button>",
+          "prompt": "What semantics does this element provide?",
+          "answer": "Native keyboard-activatable button",
+          "options": [
+            "Native keyboard-activatable button",
+            "Noninteractive generic container",
+            "Link to another page"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "button provides native button semantics and keyboard activation.",
+          "hint": "button provides native button semantics and keyboard activation.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "responsive-choose-4",
+          "kind": "mcq",
+          "code": "<____ type=\"button\">${word}</button>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Native keyboard-activatable button. button provides native button semantics and keyboard activation.",
+          "answer": "button",
+          "options": [
+            "button",
+            "div",
+            "span"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "max-width applies when the viewport is no wider than 600 CSS pixels.",
+          "hint": "max-width applies when the viewport is no wider than 600 CSS pixels.",
+          "id": "responsive-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "@media (____: 600px) {.card{display:none}}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Hidden at a 500px viewport. max-width applies when the viewport is no wider than 600 CSS pixels. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "max-width"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "rem uses the root font size.",
+          "hint": "rem uses the root font size.",
+          "id": "responsive-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "html{font-size:10px} .card{padding:____}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 20px. rem uses the root font size. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "2rem"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "focus-visible matches focus when the browser determines an indicator should be shown.",
+          "hint": "focus-visible matches focus when the browser determines an indicator should be shown.",
+          "id": "responsive-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "button:____ {outline:2px solid blue}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Styles visible keyboard-focus indication. focus-visible matches focus when the browser determines an indicator should be shown. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "focus-visible"
+          ]
+        },
+        {
+          "concept": "Responsive CSS and states",
+          "explanation": "button provides native button semantics and keyboard activation.",
+          "hint": "button provides native button semantics and keyboard activation.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "responsive-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<____ type=\"button\">${word}</button>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Native keyboard-activatable button. button provides native button semantics and keyboard activation. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "button"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "async",
+      "title": "Promises and async execution",
+      "section": "Advanced",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Promise callbacks run after current synchronous code. async functions return promises; await suspends the async function until settlement. Rejections can be caught.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "responsive"
+      ],
+      "questions": [
+        {
+          "concept": "Promises and async execution",
+          "explanation": "The promise callback runs after the current synchronous code finishes.",
+          "hint": "The promise callback runs after the current synchronous code finishes.",
+          "id": "async-read-1",
+          "kind": "mcq",
+          "code": "console.log(\"a\"); Promise.resolve().then(()=>console.log(\"b\")); console.log(\"c\");",
+          "prompt": "What is the result?",
+          "answer": "a\nc\nb",
+          "options": [
+            "a\nc\nb",
+            "a\nb\nc",
+            "b\na\nc"
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "The promise callback runs after the current synchronous code finishes.",
+          "hint": "The promise callback runs after the current synchronous code finishes.",
+          "id": "async-choose-1",
+          "kind": "mcq",
+          "code": "console.log(\"a\"); Promise.resolve().____(()=>console.log(\"b\")); console.log(\"c\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: a\nc\nb. The promise callback runs after the current synchronous code finishes.",
+          "answer": "then",
+          "options": [
+            "then",
+            "catch",
+            "finally"
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "await obtains the fulfilled number before addition.",
+          "hint": "await obtains the fulfilled number before addition.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "async-read-2",
+          "kind": "mcq",
+          "code": "async function run(){const x=await Promise.resolve(${n}); console.log(x+1);} run();",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "[object Promise]"
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "await obtains the fulfilled number before addition.",
+          "hint": "await obtains the fulfilled number before addition.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "async-choose-2",
+          "kind": "mcq",
+          "code": "async function run(){const x=____ Promise.resolve(${n}); console.log(x+1);} run();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. await obtains the fulfilled number before addition.",
+          "answer": "await",
+          "options": [
+            "await",
+            "void",
+            "typeof"
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "catch handles the rejection and reads its message.",
+          "hint": "catch handles the rejection and reads its message.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-read-3",
+          "kind": "mcq",
+          "code": "Promise.reject(new Error(\"${word}\")).catch(e=>console.log(e.message));",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Uncaught rejection",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "catch handles the rejection and reads its message.",
+          "hint": "catch handles the rejection and reads its message.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-choose-3",
+          "kind": "mcq",
+          "code": "Promise.reject(new Error(\"${word}\")).____(e=>console.log(e.message));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. catch handles the rejection and reads its message.",
+          "answer": "catch",
+          "options": [
+            "catch",
+            "then",
+            "finally"
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "An async function always returns a Promise.",
+          "hint": "An async function always returns a Promise.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "async-read-4",
+          "kind": "mcq",
+          "code": "async function value(){return ${n};} console.log(value() instanceof Promise);",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "An async function always returns a Promise.",
+          "hint": "An async function always returns a Promise.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "async-choose-4",
+          "kind": "mcq",
+          "code": "async function value(){return ${n};} console.log(value() ____ Promise);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. An async function always returns a Promise.",
+          "answer": "instanceof",
+          "options": [
+            "instanceof",
+            "===",
+            "!=="
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "The promise callback runs after the current synchronous code finishes.",
+          "hint": "The promise callback runs after the current synchronous code finishes.",
+          "id": "async-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "console.log(\"a\"); Promise.resolve().____(()=>console.log(\"b\")); console.log(\"c\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: a\nc\nb. The promise callback runs after the current synchronous code finishes. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "then"
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "await obtains the fulfilled number before addition.",
+          "hint": "await obtains the fulfilled number before addition.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "async-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "async function run(){const x=____ Promise.resolve(${n}); console.log(x+1);} run();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. await obtains the fulfilled number before addition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "await"
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "catch handles the rejection and reads its message.",
+          "hint": "catch handles the rejection and reads its message.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "Promise.reject(new Error(\"${word}\")).____(e=>console.log(e.message));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. catch handles the rejection and reads its message. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "catch"
+          ]
+        },
+        {
+          "concept": "Promises and async execution",
+          "explanation": "An async function always returns a Promise.",
+          "hint": "An async function always returns a Promise.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "async-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "async function value(){return ${n};} console.log(value() ____ Promise);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. An async function always returns a Promise. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "instanceof"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fetch",
+      "title": "Fetch and response handling",
+      "section": "Advanced",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. fetch resolves to a Response for HTTP errors too; network failures reject. Check ok before parsing. response.json is asynchronous. These examples assume the stated server response.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "async"
+      ],
+      "questions": [
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "ok is false for HTTP 404 even though fetch resolves normally.",
+          "hint": "ok is false for HTTP 404 even though fetch resolves normally.",
+          "id": "fetch-read-1",
+          "kind": "mcq",
+          "code": "const response=await fetch(\"/items\"); console.log(response.ok);",
+          "prompt": "Assume status 404, no redirect, unread body. What is logged?",
+          "answer": "false",
+          "options": [
+            "false",
+            "true",
+            "Fetch automatically throws"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "ok is false for HTTP 404 even though fetch resolves normally.",
+          "hint": "ok is false for HTTP 404 even though fetch resolves normally.",
+          "id": "fetch-choose-1",
+          "kind": "mcq",
+          "code": "const response=await fetch(\"/items\"); console.log(response.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. ok is false for HTTP 404 even though fetch resolves normally.",
+          "answer": "ok",
+          "options": [
+            "ok",
+            "redirected",
+            "bodyUsed"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "json parses the response body asynchronously.",
+          "hint": "json parses the response body asynchronously.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "fetch-read-2",
+          "kind": "mcq",
+          "code": "const response=await fetch(\"/item\"); const data=await response.json(); console.log(data.size);",
+          "prompt": "Assume a JSON body {\"size\":${n}}. What is logged?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "[object Promise]"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "json parses the response body asynchronously.",
+          "hint": "json parses the response body asynchronously.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "fetch-choose-2",
+          "kind": "mcq",
+          "code": "const response=await fetch(\"/item\"); const data=await response.____; console.log(data.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. json parses the response body asynchronously.",
+          "answer": "json()",
+          "options": [
+            "json()",
+            "text()",
+            "blob()"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "method configures the HTTP request method.",
+          "hint": "method configures the HTTP request method.",
+          "id": "fetch-read-3",
+          "kind": "mcq",
+          "code": "const response=await fetch(\"/item\",{method:\"POST\"});",
+          "prompt": "What does this option do?",
+          "answer": "Sends an HTTP POST request",
+          "options": [
+            "Sends an HTTP POST request",
+            "Sends GET with a query parameter",
+            "Changes only the response"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "method configures the HTTP request method.",
+          "hint": "method configures the HTTP request method.",
+          "id": "fetch-choose-3",
+          "kind": "mcq",
+          "code": "const response=await fetch(\"/item\",{____:\"POST\"});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Sends an HTTP POST request. method configures the HTTP request method.",
+          "answer": "method",
+          "options": [
+            "method",
+            "mode",
+            "cache"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "abort signals cancellation to the associated request.",
+          "hint": "abort signals cancellation to the associated request.",
+          "id": "fetch-read-4",
+          "kind": "mcq",
+          "code": "const controller=new AbortController(); fetch(\"/item\",{signal:controller.signal}).catch(()=>{}); controller.abort();",
+          "prompt": "What does the final call request?",
+          "answer": "Requests cancellation of the fetch",
+          "options": [
+            "Requests cancellation of the fetch",
+            "Caches the response",
+            "Submits another request"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "abort signals cancellation to the associated request.",
+          "hint": "abort signals cancellation to the associated request.",
+          "id": "fetch-choose-4",
+          "kind": "mcq",
+          "code": "const controller=new AbortController(); fetch(\"/item\",{signal:controller.signal}).catch(()=>{}); controller.____();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests cancellation of the fetch. abort signals cancellation to the associated request.",
+          "answer": "abort",
+          "options": [
+            "abort",
+            "dispatchEvent",
+            "toString"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "ok is false for HTTP 404 even though fetch resolves normally.",
+          "hint": "ok is false for HTTP 404 even though fetch resolves normally.",
+          "id": "fetch-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const response=await fetch(\"/items\"); console.log(response.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. ok is false for HTTP 404 even though fetch resolves normally. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ok"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "json parses the response body asynchronously.",
+          "hint": "json parses the response body asynchronously.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "fetch-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const response=await fetch(\"/item\"); const data=await response.____; console.log(data.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. json parses the response body asynchronously. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "json()"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "method configures the HTTP request method.",
+          "hint": "method configures the HTTP request method.",
+          "id": "fetch-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const response=await fetch(\"/item\",{____:\"POST\"});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Sends an HTTP POST request. method configures the HTTP request method. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "method"
+          ]
+        },
+        {
+          "concept": "Fetch and response handling",
+          "explanation": "abort signals cancellation to the associated request.",
+          "hint": "abort signals cancellation to the associated request.",
+          "id": "fetch-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const controller=new AbortController(); fetch(\"/item\",{signal:controller.signal}).catch(()=>{}); controller.____();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests cancellation of the fetch. abort signals cancellation to the associated request. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "abort"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modules",
+      "title": "Modules and closure state",
+      "section": "Advanced",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Browser modules use type=\"module\" and explicit exports. Module bindings have their own scope. Closures retain lexical variables; a const binding can still refer to a mutable object.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "fetch"
+      ],
+      "questions": [
+        {
+          "concept": "Modules and closure state",
+          "explanation": "type module enables module scope and import/export syntax.",
+          "hint": "type module enables module scope and import/export syntax.",
+          "id": "modules-read-1",
+          "kind": "mcq",
+          "code": "<script type=\"module\" src=\"app.js\"></script>",
+          "prompt": "How is the script interpreted?",
+          "answer": "Loads app.js as an ES module",
+          "options": [
+            "Loads app.js as an ES module",
+            "Loads a classic global script",
+            "Treats the file as JSON"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "type module enables module scope and import/export syntax.",
+          "hint": "type module enables module scope and import/export syntax.",
+          "id": "modules-choose-1",
+          "kind": "mcq",
+          "code": "<script type=\"____\" src=\"app.js\"></script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads app.js as an ES module. type module enables module scope and import/export syntax.",
+          "answer": "module",
+          "options": [
+            "module",
+            "text/javascript",
+            "application/json"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "The named export makes size available to the importing module.",
+          "hint": "The named export makes size available to the importing module.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-read-2",
+          "kind": "mcq",
+          "code": "// config.js\nexport const size=${n};\n// app.js\nimport {size} from \"./config.js\"; console.log(size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "Syntax error"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "The named export makes size available to the importing module.",
+          "hint": "The named export makes size available to the importing module.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-2",
+          "kind": "mcq",
+          "code": "// config.js\n____ const size=${n};\n// app.js\nimport {size} from \"./config.js\"; console.log(size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The named export makes size available to the importing module.",
+          "answer": "export",
+          "options": [
+            "export",
+            "default",
+            "return"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "The closure retains and increments its private counter.",
+          "hint": "The closure retains and increments its private counter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "modules-read-3",
+          "kind": "mcq",
+          "code": "function make(){let x=${n}; return ()=>++x;} const next=make(); console.log(next());",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "The closure retains and increments its private counter.",
+          "hint": "The closure retains and increments its private counter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "modules-choose-3",
+          "kind": "mcq",
+          "code": "function make(){let x=${n}; return ()=>____;} const next=make(); console.log(next());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The closure retains and increments its private counter.",
+          "answer": "++x",
+          "options": [
+            "++x",
+            "x",
+            "x--"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "const fixes the object binding but permits property mutation.",
+          "hint": "const fixes the object binding but permits property mutation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-read-4",
+          "kind": "mcq",
+          "code": "const x={size:${n}}; x.size=${m}; console.log(x.size);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "TypeError"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "const fixes the object binding but permits property mutation.",
+          "hint": "const fixes the object binding but permits property mutation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-4",
+          "kind": "mcq",
+          "code": "const x={size:${n}}; x.size=____; console.log(x.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. const fixes the object binding but permits property mutation. Use ${m} as the replacement literal.",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "type module enables module scope and import/export syntax.",
+          "hint": "type module enables module scope and import/export syntax.",
+          "id": "modules-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<script type=\"____\" src=\"app.js\"></script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads app.js as an ES module. type module enables module scope and import/export syntax. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "module"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "The named export makes size available to the importing module.",
+          "hint": "The named export makes size available to the importing module.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "// config.js\n____ const size=${n};\n// app.js\nimport {size} from \"./config.js\"; console.log(size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The named export makes size available to the importing module. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "export"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "The closure retains and increments its private counter.",
+          "hint": "The closure retains and increments its private counter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "modules-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function make(){let x=${n}; return ()=>____;} const next=make(); console.log(next());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The closure retains and increments its private counter. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "++x"
+          ]
+        },
+        {
+          "concept": "Modules and closure state",
+          "explanation": "const fixes the object binding but permits property mutation.",
+          "hint": "const fixes the object binding but permits property mutation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const x={size:${n}}; x.size=____; console.log(x.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. const fixes the object binding but permits property mutation. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${m}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "integration",
+      "title": "DOM lifecycle and browser boundaries",
+      "section": "Advanced",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. defer runs a classic external script after parsing and before DOMContentLoaded. localStorage stores strings. Delegated handlers can use closest. Browser code is constrained by origin policies.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js"
+      ],
+      "requires": [
+        "modules"
+      ],
+      "questions": [
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "defer delays execution of a classic external script until document parsing completes.",
+          "hint": "defer delays execution of a classic external script until document parsing completes.",
+          "id": "integration-read-1",
+          "kind": "mcq",
+          "code": "<script defer src=\"app.js\"></script>",
+          "prompt": "When does the classic script execute?",
+          "answer": "Runs after parsing, before DOMContentLoaded",
+          "options": [
+            "Runs after parsing, before DOMContentLoaded",
+            "Always runs before parsing completes",
+            "Runs only on click"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "defer delays execution of a classic external script until document parsing completes.",
+          "hint": "defer delays execution of a classic external script until document parsing completes.",
+          "id": "integration-choose-1",
+          "kind": "mcq",
+          "code": "<script ____ src=\"app.js\"></script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Runs after parsing, before DOMContentLoaded. defer delays execution of a classic external script until document parsing completes.",
+          "answer": "defer",
+          "options": [
+            "defer",
+            "async",
+            "nomodule"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "localStorage retrieves stored values as strings.",
+          "hint": "localStorage retrieves stored values as strings.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "integration-read-2",
+          "kind": "mcq",
+          "code": "localStorage.setItem(\"size\",String(${n})); console.log(typeof localStorage.getItem(\"size\"));",
+          "prompt": "What is the result?",
+          "answer": "string",
+          "options": [
+            "string",
+            "number",
+            "object"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "localStorage retrieves stored values as strings.",
+          "hint": "localStorage retrieves stored values as strings.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "integration-choose-2",
+          "kind": "mcq",
+          "code": "localStorage.setItem(\"size\",String(${n})); console.log(typeof localStorage.____(\"size\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: string. localStorage retrieves stored values as strings.",
+          "answer": "getItem",
+          "options": [
+            "getItem",
+            "key",
+            "removeItem"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "closest finds the nearest matching ancestor or the element itself.",
+          "hint": "closest finds the nearest matching ancestor or the element itself.",
+          "id": "integration-read-3",
+          "kind": "mcq",
+          "code": "list.addEventListener(\"click\",e=>{const button=e.target.closest(\"button\"); if(button) console.log(button.id);});",
+          "prompt": "Click a span id icon inside a button id save inside list. What is logged?",
+          "answer": "save",
+          "options": [
+            "save",
+            "icon",
+            "list"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "closest finds the nearest matching ancestor or the element itself.",
+          "hint": "closest finds the nearest matching ancestor or the element itself.",
+          "id": "integration-choose-3",
+          "kind": "mcq",
+          "code": "list.addEventListener(\"click\",e=>{const button=e.target.____(\"button\"); if(button) console.log(button.id);});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: save. closest finds the nearest matching ancestor or the element itself.",
+          "answer": "closest",
+          "options": [
+            "closest",
+            "querySelector",
+            "matches"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "cors requests cross-origin access subject to the server CORS response headers.",
+          "hint": "cors requests cross-origin access subject to the server CORS response headers.",
+          "id": "integration-read-4",
+          "kind": "mcq",
+          "code": "const response=await fetch(\"https://other.example/data\",{mode:\"cors\"});",
+          "prompt": "What access rule applies?",
+          "answer": "Requires the other origin to permit access with CORS",
+          "options": [
+            "Requires the other origin to permit access with CORS",
+            "Bypasses all origin checks",
+            "Makes every response readable"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "cors requests cross-origin access subject to the server CORS response headers.",
+          "hint": "cors requests cross-origin access subject to the server CORS response headers.",
+          "id": "integration-choose-4",
+          "kind": "mcq",
+          "code": "const response=await fetch(\"https://other.example/data\",{mode:\"____\"});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requires the other origin to permit access with CORS. cors requests cross-origin access subject to the server CORS response headers.",
+          "answer": "cors",
+          "options": [
+            "cors",
+            "no-cors",
+            "same-origin"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "defer delays execution of a classic external script until document parsing completes.",
+          "hint": "defer delays execution of a classic external script until document parsing completes.",
+          "id": "integration-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<script ____ src=\"app.js\"></script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Runs after parsing, before DOMContentLoaded. defer delays execution of a classic external script until document parsing completes. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "defer"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "localStorage retrieves stored values as strings.",
+          "hint": "localStorage retrieves stored values as strings.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "integration-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "localStorage.setItem(\"size\",String(${n})); console.log(typeof localStorage.____(\"size\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: string. localStorage retrieves stored values as strings. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "getItem"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "closest finds the nearest matching ancestor or the element itself.",
+          "hint": "closest finds the nearest matching ancestor or the element itself.",
+          "id": "integration-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "list.addEventListener(\"click\",e=>{const button=e.target.____(\"button\"); if(button) console.log(button.id);});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: save. closest finds the nearest matching ancestor or the element itself. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "closest"
+          ]
+        },
+        {
+          "concept": "DOM lifecycle and browser boundaries",
+          "explanation": "cors requests cross-origin access subject to the server CORS response headers.",
+          "hint": "cors requests cross-origin access subject to the server CORS response headers.",
+          "id": "integration-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const response=await fetch(\"https://other.example/data\",{mode:\"____\"});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requires the other origin to permit access with CORS. cors requests cross-origin access subject to the server CORS response headers. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "cors"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,3 +1,14 @@
+# Code Lingo v1.1.2 — prepared update
+
+C/C++ writing answers now accept formatting such as `x + 6` and `x+6` as the
+same construction. Whitespace within literals and changes to tokens still
+matter. No learner code is compiled or executed. Commands and preprocessor
+fragments keep exact matching. Existing progress and question IDs are retained.
+
+84 automated tests pass, including grading and heart-deduction regressions.
+
+---
+
 # Code Lingo v1.1.1 — prepared update
 
 - Routine prompts and navigation are dimmed; lesson explanations are bold cyan.

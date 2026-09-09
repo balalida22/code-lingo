@@ -1,11 +1,11 @@
-# Code Lingo 1.1.1
+# Code Lingo 1.1.2
 
 **Read code. Build fluency. A little every day.**
 
 A programming language tutor with an arrow-key terminal interface, daily progress,
 randomized exercises, spaced mistake review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.1.1 update and
+See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.1.2 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
 
 ## Run with uv
@@ -302,7 +302,7 @@ uv run python tools/verify_native.py
 uv run python tools/verify_rust.py
 ```
 
-78 tests cover all new lesson and exam completion paths, 30 sampled variants of
+84 tests cover all new lesson and exam completion paths, 30 sampled variants of
 every new template, language selection and persistence, independent mistakes,
 SQLite query results, and the existing Python/gameplay/UI regression suite.
 Separate compiler/interpreter checks passed for 870 sampled authored predictions
@@ -323,9 +323,12 @@ The generated banks are intentionally scaffolded: each lesson studies four
 scenarios through prediction, choosing a missing code fragment, and writing a
 fragment. Those stages sample literals independently. Error-reading scenarios
 in Rust and the nine expanded courses lead to writing repairs of the broken code.
-Fixed conceptual cards remain fixed when random numbers would not improve the question. Non-Python
-writing uses exact fragments (outer whitespace is ignored); it does not attempt
-to accept every semantically equivalent program. The app never executes learner
+Fixed conceptual cards remain fixed when random numbers would not improve the question.
+C/C++ code writing compares tokens: `x + 6` and `x+6` both pass. Literal contents,
+identifier boundaries, and compound operators remain significant. Commands and
+preprocessor fragments retain exact matching. Other non-Python writing uses
+exact fragments (outer whitespace is ignored). These checks do not attempt to
+accept every semantically equivalent program. The app never executes learner
 input and does not need the taught languages installed.
 
 The code remains separated into course/templates, persistence, exams, line CLI,

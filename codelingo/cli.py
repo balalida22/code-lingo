@@ -211,7 +211,11 @@ class App:
             for i, option in enumerate(options):
                 print(f"  {chr(65 + i)}. {option}")
         else:
-            self.ui.prose("Enter only the requested fragment. Preserve spelling, internal spaces, and punctuation." if q.get("checker") == "exact" else "Enter only the requested fragment. Spaces and quote style may vary; use the named construction.")
+            instruction={
+                'exact':'Enter only the requested fragment. Preserve spelling, internal spaces, and punctuation.',
+                'c_tokens':'Enter only the requested fragment. Whitespace between tokens may vary; preserve literals, spelling, and punctuation.',
+            }.get(q.get('checker'),'Enter only the requested fragment. Spaces and quote style may vary; use the named construction.')
+            self.ui.prose(instruction)
         print(self.ui.style("? hint   :skip reveal & lose a heart   :q save & leave", "2"))
         revealed = False
         while True:

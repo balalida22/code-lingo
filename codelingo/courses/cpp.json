@@ -194,9 +194,9 @@
           "hint": "static_assert requires a compile-time boolean condition.",
           "id": "build-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____(sizeof(char)==1);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Checks the invariant at compile time. static_assert requires a compile-time boolean condition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Checks the invariant at compile time. static_assert requires a compile-time boolean condition. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "static_assert"
           ]
@@ -452,9 +452,9 @@
           "derived": {},
           "id": "values-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x = ____;\nstd::cout << x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${n}"
           ]
@@ -478,9 +478,9 @@
           "derived": {},
           "id": "values-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x = ${n};\nx = ____;\nstd::cout << x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${m}"
           ]
@@ -506,9 +506,9 @@
           },
           "id": "values-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x = ${n};\nstd::cout << ____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x + ${m}"
           ]
@@ -529,9 +529,9 @@
           },
           "id": "values-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x = ${n};\nx = x + ____;\nstd::cout << x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "1"
           ]
@@ -745,9 +745,9 @@
           "hint": "Use an integer initializer when the intended value is exactly two.",
           "id": "initialization-write-repair-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int n____; std::cout<<n;",
-          "prompt": "Repair the code by filling ____. Use an integer initializer when the intended value is exactly two. Target result: 2. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Use an integer initializer when the intended value is exactly two. Target result: 2. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "{2}"
           ],
@@ -767,9 +767,9 @@
           "derived": {},
           "id": "initialization-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int n=${n}; ____ copy=n; ++copy; std::cout<<n;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. auto creates an independent integer value here. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. auto creates an independent integer value here. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "auto"
           ]
@@ -790,9 +790,9 @@
           },
           "id": "initialization-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int n=${n}; ____ alias=n; ++alias; std::cout<<n;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The reference aliases n, so incrementing it changes n. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The reference aliases n, so incrementing it changes n. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "auto&"
           ]
@@ -818,9 +818,9 @@
           },
           "id": "initialization-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::string text=\"${word}\"; ____ view=text; std::cout<<view.size();",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. A const reference reads the existing string without copying it. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. A const reference reads the existing string without copying it. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "const auto&"
           ]
@@ -1109,9 +1109,9 @@
           },
           "id": "arithmetic-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::cout << ____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${n} + ${m} * 2"
           ]
@@ -1137,9 +1137,9 @@
           },
           "id": "arithmetic-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::cout << ____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "(${n} + ${m}) * 2"
           ]
@@ -1165,9 +1165,9 @@
           },
           "id": "arithmetic-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::cout << ____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${n} / ${m}"
           ]
@@ -1193,9 +1193,9 @@
           },
           "id": "arithmetic-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::cout << ____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${n} % ${m}"
           ]
@@ -1479,9 +1479,9 @@
           },
           "id": "strings-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::string s=\"${word}\"; std::cout << s.____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. size reports the number of characters in this string. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. size reports the number of characters in this string. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "size()"
           ]
@@ -1507,9 +1507,9 @@
           },
           "id": "strings-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::string s=\"${word}\"; std::cout << s ____ s;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${joined}. + concatenates two strings. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${joined}. + concatenates two strings. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "+"
           ]
@@ -1535,9 +1535,9 @@
           },
           "id": "strings-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::string s=\"${word}\"; std::cout << s[____];",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. Index zero reads the first character. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. Index zero reads the first character. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "0"
           ]
@@ -1561,9 +1561,9 @@
           "derived": {},
           "id": "strings-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::string a=\"${word}\"; auto b=a; b[0]=____; std::cout << a;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Copying std::string creates independent value storage. Use 'X' as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Copying std::string creates independent value storage. Use 'X' as the replacement literal. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "'X'"
           ]
@@ -1775,9 +1775,9 @@
           "derived": {},
           "id": "conditions-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::cout << (${n} ____ ${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Without boolalpha, true is printed as one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Without boolalpha, true is printed as one. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "=="
           ]
@@ -1788,9 +1788,9 @@
           "hint": "Short-circuit evaluation avoids dereferencing the null pointer.",
           "id": "conditions-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int *p=nullptr; std::cout << (p ____ *p>0);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Short-circuit evaluation avoids dereferencing the null pointer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Short-circuit evaluation avoids dereferencing the null pointer. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "&&"
           ]
@@ -1809,9 +1809,9 @@
           "derived": {},
           "id": "conditions-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "if(int x=${n}; x>0) std::cout << ____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The initializer variable is available in the condition and branch. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The initializer variable is available in the condition and branch. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x"
           ]
@@ -1835,9 +1835,9 @@
           "derived": {},
           "id": "conditions-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::cout << (____ ? ${n} : ${m});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. A false condition selects the expression after the colon. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. A false condition selects the expression after the colon. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "false"
           ]
@@ -2060,9 +2060,9 @@
           "derived": {},
           "id": "loops-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=0; for(int i=0;i____${n};++i) ++x; std::cout<<x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The exclusive upper bound gives ${n} iterations. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The exclusive upper bound gives ${n} iterations. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "<"
           ]
@@ -2088,9 +2088,9 @@
           },
           "id": "loops-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int a[]={${n},${m}}; int x=0; for(auto v ____ a) x+=v; std::cout<<x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Range-for visits both values. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Range-for visits both values. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             ":"
           ]
@@ -2111,9 +2111,9 @@
           },
           "id": "loops-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int a[]={${n}}; for(____ v:a) ++v; std::cout<<a[0];",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The reference binds directly to the array element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The reference binds directly to the array element. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "auto&"
           ]
@@ -2124,9 +2124,9 @@
           "hint": "continue skips only the middle increment.",
           "id": "loops-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=0; for(int i=0;i<3;++i) {if(i==1) ____; ++x;} std::cout<<x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips only the middle increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips only the middle increment. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "continue"
           ]
@@ -2354,9 +2354,9 @@
           },
           "id": "functions-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int bump(int x) {return ____;}\n// in main\nstd::cout<<bump(${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The return expression computes one more than the argument. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The return expression computes one more than the argument. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x+1"
           ]
@@ -2377,9 +2377,9 @@
           },
           "id": "functions-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "void bump(____ x) {++x;}\n// in main\nint x=${n}; bump(x); std::cout<<x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. A reference parameter updates the caller object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. A reference parameter updates the caller object. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "int&"
           ]
@@ -2398,9 +2398,9 @@
           "derived": {},
           "id": "functions-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int value(int x=${n}) {return x;}\n// in main\nstd::cout<<____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The omitted argument uses the default. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The omitted argument uses the default. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "value()"
           ]
@@ -2419,9 +2419,9 @@
           "derived": {},
           "id": "functions-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int f(int) {return 1;} int f(double) {return 2;}\n// in main\nstd::cout<<f(____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. A double literal selects the double overload. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. A double literal selects the double overload. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${n}.0"
           ]
@@ -2665,9 +2665,9 @@
           "derived": {},
           "id": "containers-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::vector<int> a={${n},${m}}; std::cout<<a.at(____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. at(1) selects the second element with bounds checking. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. at(1) selects the second element with bounds checking. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "1"
           ]
@@ -2691,9 +2691,9 @@
           "derived": {},
           "id": "containers-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::vector<int> a={${n}}; a.____(${m}); std::cout<<a.size();",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. push_back appends one element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. push_back appends one element. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "push_back"
           ]
@@ -2712,9 +2712,9 @@
           "derived": {},
           "id": "containers-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::array<int,3> a{${n}}; std::cout<<a[____];",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Remaining aggregate-initialized integer elements are zero. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Remaining aggregate-initialized integer elements are zero. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "2"
           ]
@@ -2733,9 +2733,9 @@
           "derived": {},
           "id": "containers-write-repair-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::vector<int> a={${n}}; std::cout<<a.____;",
-          "prompt": "Repair the code by filling ____. Use the valid index zero for this one-element vector. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Use the valid index zero for this one-element vector. Target result: ${n}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "at(0)"
           ],
@@ -2969,9 +2969,9 @@
           "derived": {},
           "id": "names-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "namespace cfg {constexpr int size=${n};}\n// in main\nstd::cout<<cfg____size;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. :: resolves a namespace member. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. :: resolves a namespace member. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "::"
           ]
@@ -2990,9 +2990,9 @@
           "derived": {},
           "id": "names-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____ Count=int; Count x=${n}; std::cout<<x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. using introduces the alias Count for int. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. using introduces the alias Count for int. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "using"
           ]
@@ -3013,9 +3013,9 @@
           },
           "id": "names-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____ x=${n}; std::cout<<x+1;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. auto deduces int from the integer initializer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. auto deduces int from the integer initializer. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "auto"
           ]
@@ -3039,9 +3039,9 @@
           "derived": {},
           "id": "names-write-repair-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____ x=${n}; x=${m}; std::cout<<x;",
-          "prompt": "Repair the code by filling ____. Use a mutable integer when reassignment is required. Target result: ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Use a mutable integer when reassignment is required. Target result: ${m}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "int"
           ],
@@ -3270,9 +3270,9 @@
           "derived": {},
           "id": "classes-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "class Box {int x; public: Box(int n):____{} int get() const{return x;} };\n// in main\nstd::cout<<Box(${n}).get();",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The member initializer initializes x before the constructor body. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The member initializer initializes x before the constructor body. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x(n)"
           ]
@@ -3291,9 +3291,9 @@
           "derived": {},
           "id": "classes-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "struct Box {int x; int get() ____ {return x;}};\n// in main\nconst Box b{${n}}; std::cout<<b.get();",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A const member function can be called on a const object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A const member function can be called on a const object. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "const"
           ]
@@ -3312,9 +3312,9 @@
           "derived": {},
           "id": "classes-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "class Box {____: int x=${n};};\n// in main\nstd::cout<<Box{}.x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. public makes this field accessible from outside the class. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. public makes this field accessible from outside the class. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "public"
           ]
@@ -3338,9 +3338,9 @@
           "derived": {},
           "id": "classes-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "struct Box {int x;}; Box a{${n}}; auto b=a; b.x=____; std::cout<<a.x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Copying this value object copies its integer field. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Copying this value object copies its integer field. Use ${m} as the replacement literal. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${m}"
           ]
@@ -3558,9 +3558,9 @@
           "derived": {},
           "id": "ownership-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "auto p=std::____(${n}); std::cout<<*p;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. make_unique allocates an integer with exclusive automatic ownership. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. make_unique allocates an integer with exclusive automatic ownership. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "make_unique<int>"
           ]
@@ -3579,9 +3579,9 @@
           "derived": {},
           "id": "ownership-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "auto p=std::make_unique<int>(${n}); auto q=____; std::cout<<(p==nullptr);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Moving unique_ptr transfers ownership and leaves p empty. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Moving unique_ptr transfers ownership and leaves p empty. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "std::move(p)"
           ]
@@ -3600,9 +3600,9 @@
           "derived": {},
           "id": "ownership-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "auto p=std::make_shared<int>(${n}); auto q=p; std::cout<<p.____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Two shared_ptr objects now share ownership. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Two shared_ptr objects now share ownership. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "use_count()"
           ]
@@ -3621,9 +3621,9 @@
           "derived": {},
           "id": "ownership-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "auto p=std::make_unique<int>(${n}); p.____; std::cout<<(p==nullptr);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. reset destroys the owned object and empties the pointer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. reset destroys the owned object and empties the pointer. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "reset()"
           ]
@@ -3853,9 +3853,9 @@
           "derived": {},
           "id": "value-semantics-write-repair-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "auto a=std::make_unique<int>(${n}); auto b=____; std::cout<<*b;",
-          "prompt": "Repair the code by filling ____. Transfer exclusive ownership rather than attempting to copy it. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Transfer exclusive ownership rather than attempting to copy it. Target result: ${n}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "std::move(a)"
           ],
@@ -3875,9 +3875,9 @@
           "derived": {},
           "id": "value-semantics-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "auto a=std::make_unique<int>(${n}); auto b=____; std::cout<<*b;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Move construction transfers ownership into b. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Move construction transfers ownership into b. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "std::move(a)"
           ]
@@ -3896,9 +3896,9 @@
           "derived": {},
           "id": "value-semantics-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "auto a=std::make_unique<int>(${n}); auto b=std::move(a); std::cout<<(a ____ nullptr);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. unique_ptr specifies that the moved-from pointer is empty. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. unique_ptr specifies that the moved-from pointer is empty. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "=="
           ]
@@ -3922,9 +3922,9 @@
           "derived": {},
           "id": "value-semantics-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "struct Note {____ text;};\n// in main\nNote a{\"${word}\"}; auto b=a; b.text[0]='X'; std::cout<<a.text;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The generated copy operation uses string value semantics; no manual destructor is needed. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The generated copy operation uses string value semantics; no manual destructor is needed. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "std::string"
           ]
@@ -4146,9 +4146,9 @@
           "derived": {},
           "id": "io-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=0; std::cin ____ x; std::cout<<x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Formatted extraction parses an integer into x. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Formatted extraction parses an integer into x. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             ">>"
           ]
@@ -4172,9 +4172,9 @@
           "derived": {},
           "id": "io-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::string s; std::____(std::cin,s); std::cout<<s;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. getline reads text up to the newline into s. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. getline reads text up to the newline into s. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "getline"
           ]
@@ -4185,9 +4185,9 @@
           "hint": "Invalid integer extraction sets the failure state.",
           "id": "io-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::istringstream in(\"bad\"); int x=0; in>>x; std::cout<<in.____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Invalid integer extraction sets the failure state. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Invalid integer extraction sets the failure state. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "fail()"
           ]
@@ -4211,9 +4211,9 @@
           "derived": {},
           "id": "io-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "{ std::ofstream f(\"notes.txt\"); f ____ \"${word}\"; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text; destruction closes the file. The stream owns its resource and closes it at scope exit; assume opening succeeds. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text; destruction closes the file. The stream owns its resource and closes it at scope exit; assume opening succeeds. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "<<"
           ]
@@ -4441,9 +4441,9 @@
           "derived": {},
           "id": "exceptions-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "try {throw std::runtime_error(\"${word}\");} ____ (const std::exception& e) {std::cout<<e.what();}",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The base exception reference handles this derived exception. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The base exception reference handles this derived exception. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "catch"
           ]
@@ -4467,9 +4467,9 @@
           "derived": {},
           "id": "exceptions-write-repair-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "try {throw std::invalid_argument(\"${word}\");} catch (____) {std::cout<<e.what();}",
-          "prompt": "Repair the code by filling ____. Catch the specific exception by const reference at the boundary. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Catch the specific exception by const reference at the boundary. Target result: ${word}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "const std::invalid_argument& e"
           ],
@@ -4489,9 +4489,9 @@
           "derived": {},
           "id": "exceptions-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "try {std::vector<int> a; a.at(0);} catch(const ____&) {std::cout<<${n};}",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The checked access throws out_of_range. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The checked access throws out_of_range. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "std::out_of_range"
           ]
@@ -4502,9 +4502,9 @@
           "hint": "The destructor runs when the automatic object leaves scope.",
           "id": "exceptions-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "struct Guard {____{std::cout<<\"closed\";} };\n// in main\n{ Guard g; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: closed. The destructor runs when the automatic object leaves scope. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: closed. The destructor runs when the automatic object leaves scope. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "~Guard()"
           ]
@@ -4752,9 +4752,9 @@
           },
           "id": "templates-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "template<class T> T twice(T x){return ____;}\n// in main\nstd::cout<<twice(${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. The template is instantiated for int and adds two copies. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. The template is instantiated for int and adds two copies. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x+x"
           ]
@@ -4778,9 +4778,9 @@
           "derived": {},
           "id": "templates-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=${n}; auto f=[____]{return x;}; x=${m}; std::cout<<f();",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Value capture retains the integer from lambda creation. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Value capture retains the integer from lambda creation. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x"
           ]
@@ -4804,9 +4804,9 @@
           "derived": {},
           "id": "templates-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=${n}; auto f=[____]{return x;}; x=${m}; std::cout<<f();",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Reference capture observes the later reassignment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Reference capture observes the later reassignment. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "&x"
           ]
@@ -4827,9 +4827,9 @@
           },
           "id": "templates-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "auto f=[](auto x){return ____;}; std::cout<<f(${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. A generic lambda deduces its parameter type for the call. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. A generic lambda deduces its parameter type for the call. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x+1"
           ]
@@ -5102,9 +5102,9 @@
           },
           "id": "views-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::string owner=\"${word}\"; std::string_view view=owner; std::cout<<view.____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. The substring view refers to the first character of the live owner. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. The substring view refers to the first character of the live owner. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "substr(0,1)"
           ]
@@ -5130,9 +5130,9 @@
           },
           "id": "views-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int values[]={${n},${m}}; std::span<int> view=values; view[0]____; std::cout<<values[0];",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. span borrows the array; modifying its element updates the array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. span borrows the array; modifying its element updates the array. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "+=1"
           ]
@@ -5156,9 +5156,9 @@
           "derived": {},
           "id": "views-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int values[]={${n},${m}}; std::span<const int> view=values; std::cout<<view.____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. span retains the number of elements in its view. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. span retains the number of elements in its view. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "size()"
           ]
@@ -5182,9 +5182,9 @@
           "derived": {},
           "id": "views-write-repair-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____ owner=\"${word}\"; std::string_view view=owner; std::cout<<view;",
-          "prompt": "Repair the code by filling ____. Keep an owning string alive while the view is used. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Keep an owning string alive while the view is used. Target result: ${word}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "std::string"
           ],
@@ -5401,9 +5401,9 @@
           "derived": {},
           "id": "variants-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::variant<int,std::string> value=${n}; auto p=std::____(&value); std::cout<<*p;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. get_if returns a pointer because int is the active alternative. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. get_if returns a pointer because int is the active alternative. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "get_if<int>"
           ]
@@ -5427,9 +5427,9 @@
           "derived": {},
           "id": "variants-write-repair-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::variant<int,std::string> value=\"${word}\"; std::cout<<std::____(value);",
-          "prompt": "Repair the code by filling ____. Select the active string alternative. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Select the active string alternative. Target result: ${word}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "get<std::string>"
           ],
@@ -5451,9 +5451,9 @@
           },
           "id": "variants-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "template<std::____ T> T next(T n){return n+1;}\n// in main\nstd::cout<<next(${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. integral constrains T to integer types. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. integral constrains T to integer types. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "integral"
           ]
@@ -5464,9 +5464,9 @@
           "hint": "Scoped enum values are named through the enum type.",
           "id": "variants-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "enum class State {idle,ready}; auto state=State::____; std::cout<<(state==State::ready);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Scoped enum values are named through the enum type. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Scoped enum values are named through the enum type. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "ready"
           ]
@@ -5678,9 +5678,9 @@
           "derived": {},
           "id": "polymorphism-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "struct Base {virtual int get() const{return 1;}}; struct Child:Base {int get() const ____ {return ${n};}};\n// in main\nChild c; Base& b=c; std::cout<<b.get();",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Virtual dispatch invokes the overriding Child method. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Virtual dispatch invokes the overriding Child method. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "override"
           ]
@@ -5699,9 +5699,9 @@
           "derived": {},
           "id": "polymorphism-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::optional<int> x; std::cout<<x.____(${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. value_or supplies a fallback for an empty optional. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. value_or supplies a fallback for an empty optional. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "value_or"
           ]
@@ -5725,9 +5725,9 @@
           "derived": {},
           "id": "polymorphism-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::optional<int> x=${n}; std::cout<<x.____(${m});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. An engaged optional returns its own value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. An engaged optional returns its own value. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "value_or"
           ]
@@ -5738,9 +5738,9 @@
           "hint": "A virtual destructor enables correct polymorphic destruction.",
           "id": "polymorphism-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "struct Base {____ ~Base()=default;};",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Supports destruction through a base pointer. A virtual destructor enables correct polymorphic destruction. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Supports destruction through a base pointer. A virtual destructor enables correct polymorphic destruction. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "virtual"
           ]
@@ -5930,9 +5930,9 @@
           "derived": {},
           "id": "concurrency-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int value=0; {std::jthread worker([&]{value=${n};});} std::cout<<____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The jthread destructor joins before the final read. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The jthread destructor joins before the final read. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "value"
           ]
@@ -5953,9 +5953,9 @@
           },
           "id": "concurrency-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::atomic<int> value{${n}}; value.____(1); std::cout<<value.load();",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. fetch_add atomically increments this integer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. fetch_add atomically increments this integer. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "fetch_add"
           ]
@@ -5966,9 +5966,9 @@
           "hint": "The RAII guard releases its lock at the closing brace.",
           "id": "concurrency-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "std::mutex mutex; {std::____ guard(mutex);}",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Releases the mutex when guard leaves scope. The RAII guard releases its lock at the closing brace. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Releases the mutex when guard leaves scope. The RAII guard releases its lock at the closing brace. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "scoped_lock"
           ]
@@ -5979,9 +5979,9 @@
           "hint": "Use an atomic counter and join both threads before reading its result.",
           "id": "concurrency-write-repair-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____ value{0}; {std::jthread a([&]{++value;}); std::jthread b([&]{++value;});} std::cout<<value.load();",
-          "prompt": "Repair the code by filling ____. Use an atomic counter and join both threads before reading its result. Target result: 2. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Use an atomic counter and join both threads before reading its result. Target result: 2. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "std::atomic<int>"
           ],

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.2 — prepared, not published
+
+- Accept whitespace differences between tokens in C/C++ writing answers.
+- Preserve literal contents, identifiers, operators, and exact command/directive checks.
+- Keep question IDs and history; update writing instructions.
+- Six new regressions cover spacing, token boundaries, literals, and heart deductions.
+
 ## 1.1.1 — prepared, not published
 
 - Dim routine prompts and navigation, and highlight lesson explanations in bold cyan.

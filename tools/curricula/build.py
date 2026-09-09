@@ -51,6 +51,9 @@ def emit(cid,title,baseline,sources,lessons,version='1.0'):
             goal=s.get('goal',goal)
             qs.append(dict(base,id=f"{l['id']}-choose-{stem}",kind='mcq',code=s['blank'],prompt=goal,answer=s['fragment'],options=[s['fragment']]+s['bad']))
             card=dict(base,id=f"{l['id']}-write-{stem}",kind='write',checker='exact',code=s['blank'],prompt=goal+' Enter only the missing fragment, preserving its spelling, spaces, and punctuation.',accepted=[s['fragment']])
+            if cid in ('c','cpp') and not s['code'].lstrip().startswith('$') and '#' not in s['fragment']:
+                card['checker']='c_tokens'
+                card['prompt']=goal+' Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.'
             if cid not in ('rust','python') and stem.startswith('repair-'):
                 card['target_answer']=s['answer']
             writes.append(card)

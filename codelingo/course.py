@@ -5,6 +5,7 @@ import json
 import random
 from pathlib import Path
 from .templates import render
+from .c_tokens import equivalent as c_equivalent
 
 
 def syntax_tree(text):
@@ -23,6 +24,8 @@ def check_answer(question, answer):
         return answer == question["answer"]
     if question.get("checker", "python_ast") == "exact":
         return answer.strip() in question["accepted"]
+    if question.get('checker')=='c_tokens':
+        return any(c_equivalent(answer,a) for a in question['accepted'])
     try:
         submitted = syntax_tree(answer)
         return any(submitted == syntax_tree(a) for a in question["accepted"])
@@ -84,7 +87,7 @@ class Course:
                 else:
                     writing = True
                     require(bool(q.get("accepted")), "missing accepted answers")
-                    require(q.get("checker", "python_ast") in {"python_ast", "exact"}, "checker")
+                    require(q.get("checker", "python_ast") in {"python_ast", "exact", "c_tokens"}, "checker")
                     if q.get("checker", "python_ast") == "python_ast":
                         for a in q["accepted"]:
                             syntax_tree(a)

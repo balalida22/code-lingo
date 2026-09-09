@@ -25,7 +25,15 @@ class NativeRevisionTests(unittest.TestCase):
                     self.assertIn(new_id,c.questions,(cid,qid))
                     continue
                 q=c.questions[qid]
-                actual=hashlib.sha256(json.dumps({k:q[k] for k in FIELDS if k in q},sort_keys=True).encode()).hexdigest()
+                contract={k:q[k] for k in FIELDS if k in q}
+                # 1.1.2 intentionally relaxes C/C++ formatting, without changing
+                # code, accepted tokens, IDs, or the meaning of old successes.
+                if cid in ('c','cpp') and q.get('checker')=='c_tokens':
+                    contract['checker']='exact'
+                    contract['prompt']=contract['prompt'].replace(
+                        ' Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.',
+                        ' Enter only the missing fragment, preserving its spelling, spaces, and punctuation.')
+                actual=hashlib.sha256(json.dumps(contract,sort_keys=True).encode()).hexdigest()
                 self.assertEqual(actual,digest,(cid,qid))
 
     def test_error_reading_leads_to_a_successful_repair(self):

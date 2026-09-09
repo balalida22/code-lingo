@@ -201,3 +201,19 @@ lesson identities. Changed contracts should receive new IDs, not rewritten
 history or silently repurposed prior successes. Native validation is optional:
 `uv run python tools/verify_native_revision.py` runs trusted fixtures, reports
 missing runtimes, and excludes undefined behavior and host-dependent examples.
+
+
+## C/C++ whitespace matching (1.1.2)
+
+Use `checker: "c_tokens"` for C/C++ code fragments. It compares lexical tokens
+without executing submissions, ignoring whitespace between tokens while retaining
+literal contents and compound operators. `x + 6` and `x+6` match, whereas `x++6`
+and `x + +6`, or `"a b"` and `"ab"`, do not. This is a conservative fragment
+checker, not a full C/C++ parser or semantic equivalence engine. Comments,
+preprocessor directives, and line splices fall back to exact matching.
+
+The builder assigns this checker to C/C++ writing cards, except command-line
+and preprocessor fragments. Existing question IDs and stored history remain
+unchanged: this intentionally broadens accepted formatting rather than changing
+the target construction. The v1 compatibility regression allows only this
+specific checker/prompt change; it still protects the original code and answers.

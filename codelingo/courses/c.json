@@ -210,9 +210,9 @@
           "derived": {},
           "id": "build-write-repair-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____\n/* in main */ printf(\"%d\",size());",
-          "prompt": "Repair the code by filling ____. Provide a function definition with the declared signature so the call can be linked. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Provide a function definition with the declared signature so the call can be linked. Target result: ${n}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "int size(void){return ${n};}"
           ],
@@ -484,9 +484,9 @@
           "derived": {},
           "id": "values-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x = ____;\nprintf(\"%d\", x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The declaration stores ${n}; the output reads that stored value. Use ${n} as the replacement literal. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${n}"
           ]
@@ -510,9 +510,9 @@
           "derived": {},
           "id": "values-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x = ${n};\nx = ____;\nprintf(\"%d\", x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The second assignment replaces the old value with ${m}. Use ${m} as the replacement literal. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${m}"
           ]
@@ -538,9 +538,9 @@
           },
           "id": "values-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x = ${n};\nprintf(\"%d\", ____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. Adding ${m} computes a new value without changing the variable. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x + ${m}"
           ]
@@ -561,9 +561,9 @@
           },
           "id": "values-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x = ${n};\nx = x + ____;\nprintf(\"%d\", x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Reading the old value and adding one updates the variable once. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "1"
           ]
@@ -709,9 +709,9 @@
           "hint": "sizeof measures C bytes, and char occupies exactly one.",
           "id": "integer-model-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(\"%zu\", ____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. sizeof measures C bytes, and char occupies exactly one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. sizeof measures C bytes, and char occupies exactly one. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "sizeof(char)"
           ]
@@ -722,9 +722,9 @@
           "hint": "The signed -1 converts to unsigned int for this comparison and becomes a large value.",
           "id": "integer-model-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(\"%d\", -1 ____ 1u);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. The signed -1 converts to unsigned int for this comparison and becomes a large value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. The signed -1 converts to unsigned int for this comparison and becomes a large value. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "<"
           ]
@@ -735,9 +735,9 @@
           "hint": "Converting an operand before division selects floating-point division.",
           "id": "integer-model-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(\"%.1f\", ____ / 2);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2.5. Converting an operand before division selects floating-point division. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2.5. Converting an operand before division selects floating-point division. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "(double)5"
           ]
@@ -748,9 +748,9 @@
           "hint": "Check that a signed increment is in range before performing it.",
           "id": "integer-model-write-repair-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=INT_MAX; if (____) ++x; printf(\"%d\",x==INT_MAX);",
-          "prompt": "Repair the code by filling ____. Check that a signed increment is in range before performing it. Target result: 1. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Check that a signed increment is in range before performing it. Target result: 1. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x < INT_MAX"
           ],
@@ -1042,9 +1042,9 @@
           },
           "id": "arithmetic-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(\"%d\", ____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n_plus_twom}. Multiplication happens first, then ${n} is added. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${n} + ${m} * 2"
           ]
@@ -1070,9 +1070,9 @@
           },
           "id": "arithmetic-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(\"%d\", ____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${doubleadd}. Parentheses force addition before doubling. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "(${n} + ${m}) * 2"
           ]
@@ -1098,9 +1098,9 @@
           },
           "id": "arithmetic-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(\"%d\", ____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${div}. This expression computes the positive integer quotient, discarding the fractional part. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${n} / ${m}"
           ]
@@ -1126,9 +1126,9 @@
           },
           "id": "arithmetic-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(\"%d\", ____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${rem}. Remainder is what remains after dividing into complete groups of ${m}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${n} % ${m}"
           ]
@@ -1316,9 +1316,9 @@
           "derived": {},
           "id": "conditions-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(\"%d\", ${n} ____ ${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Equality of the identical integers yields one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Equality of the identical integers yields one. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "=="
           ]
@@ -1337,9 +1337,9 @@
           "derived": {},
           "id": "conditions-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=0;\nif (____) x=1;\nprintf(\"%d\", x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A nonzero condition enters the branch. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A nonzero condition enters the branch. Use ${n} as the replacement literal. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "${n}"
           ]
@@ -1350,9 +1350,9 @@
           "hint": "&& skips the dereference when p is null.",
           "id": "conditions-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int *p=NULL;\nif (p ____ *p > 0) puts(\"yes\"); else puts(\"no\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: no. && skips the dereference when p is null. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. && skips the dereference when p is null. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "&&"
           ]
@@ -1363,9 +1363,9 @@
           "hint": "Logical negation of zero yields one.",
           "id": "conditions-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(\"%d\", ____0);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Logical negation of zero yields one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Logical negation of zero yields one. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "!"
           ]
@@ -1539,9 +1539,9 @@
           "derived": {},
           "id": "loops-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=0; for(int i=0;i____${n};i++) x++; printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Starting at zero with an exclusive limit gives ${n} iterations. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Starting at zero with an exclusive limit gives ${n} iterations. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "<"
           ]
@@ -1552,9 +1552,9 @@
           "hint": "continue skips the middle increment.",
           "id": "loops-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=0; for(int i=0;i<3;i++) { if(i==1) ____; x++; } printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips the middle increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips the middle increment. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "continue"
           ]
@@ -1565,9 +1565,9 @@
           "hint": "break exits after one increment.",
           "id": "loops-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=0; while(1) { x++; ____; } printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. break exits after one increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. break exits after one increment. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "break"
           ]
@@ -1578,9 +1578,9 @@
           "hint": "A do loop runs its body before testing its condition.",
           "id": "loops-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=0; ____ { x++; } while(0); printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A do loop runs its body before testing its condition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A do loop runs its body before testing its condition. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "do"
           ]
@@ -1865,9 +1865,9 @@
           },
           "id": "strings-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "char s[]=\"${word}\";\nprintf(\"%zu\", ____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. strlen counts bytes before the zero terminator. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. strlen counts bytes before the zero terminator. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "strlen(s)"
           ]
@@ -1893,9 +1893,9 @@
           },
           "id": "strings-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "char s[]=\"${word}\";\nprintf(\"%c\", s[____]);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. Array index zero selects the first character. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. Array index zero selects the first character. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "0"
           ]
@@ -1921,9 +1921,9 @@
           },
           "id": "strings-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "char s[]=\"${word}\";\nprintf(\"%zu\", ____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length1}. The array has one extra byte for its terminating zero. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length1}. The array has one extra byte for its terminating zero. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "sizeof(s)"
           ]
@@ -1949,9 +1949,9 @@
           },
           "id": "strings-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "char s[]=\"${word}\";\ns[0]=____;\nprintf(\"%s\", s);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: X${tail}. A writable array permits replacing its first character. Use 'X' as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: X${tail}. A writable array permits replacing its first character. Use 'X' as the replacement literal. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "'X'"
           ]
@@ -2207,9 +2207,9 @@
           "derived": {},
           "id": "arrays-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int a[]={${n},${m}}; printf(\"%d\",a[____]);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Index one selects the second element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Index one selects the second element. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "1"
           ]
@@ -2233,9 +2233,9 @@
           "derived": {},
           "id": "arrays-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int a[]={${n},${m}}; printf(\"%zu\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Total array bytes divided by element bytes gives the count. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Total array bytes divided by element bytes gives the count. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "sizeof(a)/sizeof(a[0])"
           ]
@@ -2254,9 +2254,9 @@
           "derived": {},
           "id": "arrays-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int a[3]={${n}}; printf(\"%d\",a[____]);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Unspecified entries in this initializer are zero-initialized. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Unspecified entries in this initializer are zero-initialized. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "2"
           ]
@@ -2280,9 +2280,9 @@
           "derived": {},
           "id": "arrays-write-repair-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int a[]={${n},${m}}; printf(\"%d\",____);",
-          "prompt": "Repair the code by filling ____. Use the valid second-element index of this two-element array. Target result: ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Use the valid second-element index of this two-element array. Target result: ${m}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "a[1]"
           ],
@@ -2529,9 +2529,9 @@
           "derived": {},
           "id": "pointers-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=${n}; int *p=____; *p=${m}; printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. p points to x, so dereferencing p updates x. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. p points to x, so dereferencing p updates x. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "&x"
           ]
@@ -2555,9 +2555,9 @@
           "derived": {},
           "id": "pointers-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int a[]={${n},${m}}; int *p=a; printf(\"%d\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Pointer arithmetic advances by one int element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Pointer arithmetic advances by one int element. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "*(p+1)"
           ]
@@ -2576,9 +2576,9 @@
           "derived": {},
           "id": "pointers-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x=${n}; ____p=&x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Cannot assign through *p. The pointed-to type is const; the pointer itself is not const. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Cannot assign through *p. The pointed-to type is const; the pointer itself is not const. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "const int *"
           ]
@@ -2597,9 +2597,9 @@
           "derived": {},
           "id": "pointers-write-repair-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int good(void) { int x=${n}; return ____; }\n/* in main */ printf(\"%d\",good());",
-          "prompt": "Repair the code by filling ____. Return the integer value rather than a pointer to an expired local. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Return the integer value rather than a pointer to an expired local. Target result: ${n}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x"
           ],
@@ -2856,9 +2856,9 @@
           },
           "id": "functions-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int bump(int x) { return ____; }\n/* in main */ printf(\"%d\",bump(${n}));",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The function returns its computed expression. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The function returns its computed expression. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "x+1"
           ]
@@ -2882,9 +2882,9 @@
           "derived": {},
           "id": "functions-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "void change(int x) { x=${m}; }\n/* in main */ int x=${n}; ____; printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Changing the value parameter does not update the caller variable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Changing the value parameter does not update the caller variable. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "change(x)"
           ]
@@ -2908,9 +2908,9 @@
           "derived": {},
           "id": "functions-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "void change(int *p) { *p=${m}; }\n/* in main */ int x=${n}; change(____); printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Passing the address lets the function modify x through the pointer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Passing the address lets the function modify x through the pointer. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "&x"
           ]
@@ -2934,9 +2934,9 @@
           "derived": {},
           "id": "functions-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int stop(void) { ____ ${n}; return ${m}; }\n/* in main */ printf(\"%d\",stop());",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. return exits before the later statement. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. return exits before the later statement. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "return"
           ]
@@ -3140,9 +3140,9 @@
           "derived": {},
           "id": "records-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "struct Box { int size; }; struct Box b={${n}}; printf(\"%d\",b____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Dot selects a field from the structure value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Dot selects a field from the structure value. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             ".size"
           ]
@@ -3161,9 +3161,9 @@
           "derived": {},
           "id": "records-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "struct Box { int size; }; struct Box b={${n}}; struct Box *p=&b; printf(\"%d\",p____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Arrow selects a field through a structure pointer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Arrow selects a field through a structure pointer. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "->size"
           ]
@@ -3174,9 +3174,9 @@
           "hint": "Implicit enum values start at zero and increment.",
           "id": "records-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "enum State { OFF, ON }; printf(\"%d\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Implicit enum values start at zero and increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Implicit enum values start at zero and increment. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "ON"
           ]
@@ -3195,9 +3195,9 @@
           "derived": {},
           "id": "records-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____ struct { int size; } Box; Box b={${n}}; printf(\"%d\",b.size);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. typedef gives this structure type the alias Box. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. typedef gives this structure type the alias Box. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "typedef"
           ]
@@ -3441,9 +3441,9 @@
           "derived": {},
           "id": "io-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int x; if(scanf(\"%d\", ____)==1) printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. For input ${n}, scanf stores one integer at the supplied address. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. For input ${n}, scanf stores one integer at the supplied address. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "&x"
           ]
@@ -3467,9 +3467,9 @@
           "derived": {},
           "id": "io-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(____, \"${word}\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. %s formats a zero-terminated character string. Use \"%s\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. %s formats a zero-terminated character string. Use \"%s\" as the replacement literal. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "\"%s\""
           ]
@@ -3490,9 +3490,9 @@
           },
           "id": "io-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "char b[${n}]; ____(b,sizeof b,stdin);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: At most ${prev} input bytes plus a terminator. On success fgets reserves one byte for a zero terminator. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: At most ${prev} input bytes plus a terminator. On success fgets reserves one byte for a zero terminator. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "fgets"
           ]
@@ -3516,9 +3516,9 @@
           "derived": {},
           "id": "io-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "FILE *f=fopen(\"notes.txt\",\"w\"); if(f) { fputs(\"${word}\",f); ____(f); }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes and closes when open succeeds. fclose releases the file resource after writing. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes and closes when open succeeds. fclose releases the file resource after writing. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "fclose"
           ]
@@ -3786,9 +3786,9 @@
           "derived": {},
           "id": "buffers-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "char b[4]; int needed=snprintf(b,sizeof b,\"%s\",\"${word}\"); printf(\"%d\", ____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Every sampled word has at least five bytes, so the four-byte buffer truncates. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Every sampled word has at least five bytes, so the four-byte buffer truncates. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "needed >= (int)sizeof b"
           ]
@@ -3812,9 +3812,9 @@
           "derived": {},
           "id": "buffers-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "char b[4]; snprintf(b,sizeof b,\"%s\",\"${word}\"); printf(\"%zu\", ____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. Three bytes of text and one terminator fit in this buffer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. Three bytes of text and one terminator fit in this buffer. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "strlen(b)"
           ]
@@ -3840,9 +3840,9 @@
           },
           "id": "buffers-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "char b[]=\"${word}\"; ____(b,b+1,strlen(b)); printf(\"%s\",b);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${tail}. memmove supports overlap; this count includes the source terminator after shifting left. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${tail}. memmove supports overlap; this count includes the source terminator after shifting left. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "memmove"
           ]
@@ -3866,9 +3866,9 @@
           "derived": {},
           "id": "buffers-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "char b[]=\"${word}\"; printf(\"%d\", b[sizeof b-1] ____ '\\0');",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. String initialization places the zero terminator after the text. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. String initialization places the zero terminator after the text. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "=="
           ]
@@ -4062,9 +4062,9 @@
           },
           "id": "units-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "#define DOUBLE(x) (____)\n/* in main */ printf(\"%d\",DOUBLE(${n}));",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. The macro adds its parenthesized argument twice. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${double}. The macro adds its parenthesized argument twice. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "(x)+(x)"
           ]
@@ -4083,9 +4083,9 @@
           "derived": {},
           "id": "units-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____ int size=${n};",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Internal linkage within this translation unit. File-scope static restricts this name to its translation unit. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Internal linkage within this translation unit. File-scope static restricts this name to its translation unit. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "static"
           ]
@@ -4109,9 +4109,9 @@
           "hint": "An extern declaration without an initializer refers to an external definition.",
           "id": "units-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____ int shared;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Declares an object defined elsewhere. An extern declaration without an initializer refers to an external definition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Declares an object defined elsewhere. An extern declaration without an initializer refers to an external definition. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "extern"
           ]
@@ -4298,9 +4298,9 @@
           "hint": "The static local is initialized once and retains the first increment.",
           "id": "storage-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int next(void){static int n=0; return ____;}\n/* in main */ next(); printf(\"%d\",next());",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The static local is initialized once and retains the first increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The static local is initialized once and retains the first increment. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "++n"
           ]
@@ -4324,9 +4324,9 @@
           "derived": {},
           "id": "storage-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int a=${n},b=${m}; int *const p=&a; ____; printf(\"%d\",a);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The pointer target can change even though p cannot be reseated. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The pointer target can change even though p cannot be reseated. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "*p=b"
           ]
@@ -4337,9 +4337,9 @@
           "hint": "The caller supplies the element count; a is a pointer inside the function.",
           "id": "storage-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "size_t count(int a[],size_t n){return ____;}\n/* in main */ int a[3]={0}; printf(\"%zu\",count(a,3));",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. The caller supplies the element count; a is a pointer inside the function. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. The caller supplies the element count; a is a pointer inside the function. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "n"
           ]
@@ -4358,9 +4358,9 @@
           "derived": {},
           "id": "storage-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int value(void){int local=${n}; return ____;}\n/* in main */ printf(\"%d\",value());",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Returning the integer copies its value before the local lifetime ends. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Returning the integer copies its value before the local lifetime ends. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "local"
           ]
@@ -4525,9 +4525,9 @@
           "hint": "calloc zero-initializes the allocated integer storage.",
           "id": "memory-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int *p=____(1,sizeof *p); if(p) { printf(\"%d\",*p); free(p); }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. calloc zero-initializes the allocated integer storage. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. calloc zero-initializes the allocated integer storage. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "calloc"
           ]
@@ -4546,9 +4546,9 @@
           "derived": {},
           "id": "memory-write-repair-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; printf(\"%d\",____); free(p); }",
-          "prompt": "Repair the code by filling ____. Read the live object before releasing its storage. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Read the live object before releasing its storage. Target result: ${n}. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "*p"
           ],
@@ -4560,9 +4560,9 @@
           "hint": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
           "id": "memory-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int *tmp=____(p,new_bytes); if(tmp) p=tmp;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Preserves the old allocation if resizing fails. Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Preserves the old allocation if resizing fails. Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "realloc"
           ]
@@ -4573,9 +4573,9 @@
           "hint": "free accepts a null pointer and does nothing.",
           "id": "memory-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int *p=NULL; ____(p);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: No effect. free accepts a null pointer and does nothing. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: No effect. free accepts a null pointer and does nothing. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "free"
           ]
@@ -4739,9 +4739,9 @@
           "hint": "A failed fopen returns NULL, so this comparison detects failure.",
           "id": "errors-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "FILE *f=fopen(\"missing.txt\",\"r\"); if(f ____ NULL) puts(\"failed\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: failed. A failed fopen returns NULL, so this comparison detects failure. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: failed. A failed fopen returns NULL, so this comparison detects failure. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "=="
           ]
@@ -4760,9 +4760,9 @@
           "derived": {},
           "id": "errors-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; printf(\"%d\",*p); ____(p); }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. On successful allocation, the value is used and storage is released. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. On successful allocation, the value is used and storage is released. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "free"
           ]
@@ -4773,9 +4773,9 @@
           "hint": "A documented negative sentinel can be tested explicitly.",
           "id": "errors-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int rc=-1; if(rc ____ 0) puts(\"failed\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: failed. A documented negative sentinel can be tested explicitly. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: failed. A documented negative sentinel can be tested explicitly. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "<"
           ]
@@ -4786,9 +4786,9 @@
           "hint": "perror reports the current error description with the supplied prefix.",
           "id": "errors-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "if(fopen(\"missing.txt\",\"r\")==NULL) ____(\"open\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes an errno-based diagnostic to stderr. perror reports the current error description with the supplied prefix. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes an errno-based diagnostic to stderr. perror reports the current error description with the supplied prefix. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "perror"
           ]
@@ -4949,9 +4949,9 @@
           "hint": "Binary 101 AND 001 keeps only the low bit.",
           "id": "bits-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "unsigned flags=5u; printf(\"%u\", flags ____ 1u);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Binary 101 AND 001 keeps only the low bit. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Binary 101 AND 001 keeps only the low bit. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "&"
           ]
@@ -4962,9 +4962,9 @@
           "hint": "XOR toggles the selected low bit off.",
           "id": "bits-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "unsigned flags=5u; printf(\"%u\", flags ____ 1u);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 4. XOR toggles the selected low bit off. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 4. XOR toggles the selected low bit off. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "^"
           ]
@@ -4975,9 +4975,9 @@
           "hint": "Shifting unsigned one by three produces eight; this count fits every unsigned int.",
           "id": "bits-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "printf(\"%u\", 1u ____ 3);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 8. Shifting unsigned one by three produces eight; this count fits every unsigned int. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 8. Shifting unsigned one by three produces eight; this count fits every unsigned int. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "<<"
           ]
@@ -4996,9 +4996,9 @@
           "derived": {},
           "id": "bits-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int value=${n}; const ____ *bytes=(const unsigned char *)&value;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: May inspect the object representation byte by byte. Character-type access can inspect representations, but size and byte order remain platform-dependent. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: May inspect the object representation byte by byte. Character-type access can inspect representations, but size and byte order remain platform-dependent. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "unsigned char"
           ]
@@ -5202,9 +5202,9 @@
           },
           "id": "callbacks-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int bump(int x) { return x+1; }\n/* in main */ int (*f)(int)=____; printf(\"%d\",f(${n}));",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. f stores a pointer to a function with the matching signature. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. f stores a pointer to a function with the matching signature. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "bump"
           ]
@@ -5215,9 +5215,9 @@
           "hint": "Unsigned subtraction wraps to the maximum representable unsigned value.",
           "id": "callbacks-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "unsigned int x=0; printf(\"%d\", (x-1) ____ UINT_MAX);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Unsigned subtraction wraps to the maximum representable unsigned value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Unsigned subtraction wraps to the maximum representable unsigned value. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "=="
           ]
@@ -5228,9 +5228,9 @@
           "hint": "volatile preserves observable accesses; it is not an atomic synchronization mechanism.",
           "id": "callbacks-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____ int flag;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Accesses must follow volatile access rules. volatile preserves observable accesses; it is not an atomic synchronization mechanism. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Accesses must follow volatile access rules. volatile preserves observable accesses; it is not an atomic synchronization mechanism. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "volatile"
           ]
@@ -5254,9 +5254,9 @@
           "derived": {},
           "id": "callbacks-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "int a=${n}; int b=${m}; int *p=&a; p=____; printf(\"%d\",*p);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Reassigning a pointer changes its target, not either integer value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Reassigning a pointer changes its target, not either integer value. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "&b"
           ]
@@ -5482,9 +5482,9 @@
           "derived": {},
           "id": "cli-write-1",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "/* Inside main(int argc,char **argv); invocation: app ${word} */\nprintf(\"%s\",argv[____]);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. With this invocation the first user argument is argv[1]. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. With this invocation the first user argument is argv[1]. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "1"
           ]
@@ -5503,9 +5503,9 @@
           "derived": {},
           "id": "cli-write-2",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "char *end; long n=strtol(\"${n}x\",&end,10); printf(\"%c\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: x. strtol stops at x, allowing the caller to reject a trailing suffix. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: x. strtol stops at x, allowing the caller to reject a trailing suffix. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "*end"
           ]
@@ -5529,9 +5529,9 @@
           "derived": {},
           "id": "cli-write-3",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "____(stderr,\"invalid ${word}\\n\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes a diagnostic to stderr. The explicit stream keeps diagnostics separate from normal output. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes a diagnostic to stderr. The explicit stream keeps diagnostics separate from normal output. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "fprintf"
           ]
@@ -5542,9 +5542,9 @@
           "hint": "EXIT_FAILURE is the portable failure status macro.",
           "id": "cli-write-4",
           "kind": "write",
-          "checker": "exact",
+          "checker": "c_tokens",
           "code": "/* At the end of main after an input error */\nreturn ____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Reports an unsuccessful process exit. EXIT_FAILURE is the portable failure status macro. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Reports an unsuccessful process exit. EXIT_FAILURE is the portable failure status macro. Enter only the missing fragment. Whitespace between C/C++ tokens may vary; preserve spelling, literals, and punctuation.",
           "accepted": [
             "EXIT_FAILURE"
           ]

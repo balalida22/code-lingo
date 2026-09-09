@@ -1,11 +1,11 @@
-# Code Lingo 1.0.0
+# Code Lingo 1.1.1
 
 **Read code. Build fluency. A little every day.**
 
 A programming language tutor with an arrow-key terminal interface, daily progress,
 randomized exercises, spaced mistake review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](RELEASE_NOTES.md) for v1.0.0 and
+See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.1.1 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
 
 ## Run with uv
@@ -38,6 +38,10 @@ terminal. Use **↑/↓** to select, **Enter** to confirm, and **Esc** to go bac
 - **PgUp/PgDn:** scroll long code, teaching notes, or explanations.
 - **Writing:** type the requested fragment; left/right, Home/End, Delete, and
   Backspace edit it.
+- **Reading emphasis:** routine instructions and navigation are dimmed; answer
+  explanations use bold cyan, with green/red feedback titles retained.
+- **Scrolling:** “More text · PgUp/PgDn” appears only when text overflows.
+  The old “text line” counter is removed.
 - **Hints:** `?` in reading; enter `?` in writing.
 - **Skip a question:** `s` in reading; enter `:skip` in writing.
 
@@ -59,11 +63,14 @@ uv are present, `uv sync --locked --offline` works without the network.
 
 ## What changed
 
-- **11 courses, 170 lessons, and 2,040 exercises** in total.
+- **11 courses, 224 lessons, and 2,688 exercises** in total.
 - **Rust follows the Rust Book:** 26 lessons × 12 exercises = 312 exercises,
   split into 8 Basics, 9 Intermediate, and 9 Advanced lessons.
-- The other nine added languages retain 14 lessons × 12 exercises. Course
-  content follows each language's uses and idioms; Python is a depth benchmark.
+- The other nine added languages now have **20 lessons × 12 exercises** each.
+  Their native topics and prerequisite order are documented in
+  [NATIVE_CURRICULA.md](NATIVE_CURRICULA.md): C compilation and memory contracts,
+  C++ value semantics, TypeScript runtime boundaries, browser behavior, Ruby
+  protocols, Lua embedding, PHP requests, Perl text processing, and SQLite semantics.
 - Each lesson has 8 reading MCQs followed by 4 writing exercises.
 - Correct feedback titles are **green**; incorrect feedback titles are **red**.
   Text labels remain explicit when color is unavailable.
@@ -81,7 +88,10 @@ uv are present, `uv sync --locked --offline` works without the network.
 
 Select **Change language** on the TUI main menu (or option 10 in the line menu).
 The menu displays each course's completion count and highlights the active
-course. Your last selected built-in language is remembered across launches.
+course. Press **p** to pin/unpin the highlighted language. Pinned languages
+show **★**, appear first, and persist across restarts. With pins present, the
+picker opens at the top of the pinned group. The line-input picker supports
+`p NUMBER` and shares the same pins. Your last selected built-in language is remembered across launches.
 Lessons, exam passes, resumable sessions, and mistakes are separate by course;
 EXP, gems, hearts, and the daily goal belong to the shared profile.
 
@@ -111,13 +121,17 @@ reading and writing language features; there are no algorithm or data-structure
 implementation lessons. Ordinary use of native arrays, maps, and standard
 language types remains part of learning the syntax.
 
-## Rust Book revision
+## Language-native revisions
 
 Rust now follows its own progression: Cargo and immutable bindings, ownership
 and borrowing, UTF-8 and domain modeling, recoverable errors, generic and borrowed
 APIs, then tests, useful CLI boundaries, smart pointers, concurrency, and async.
 See [RUST_BOOK.md](RUST_BOOK.md) for the chapter-to-lesson map and validation scope.
 The standard library is included; third-party runtime/framework tracks are not.
+The 1.1.0 revision extends this approach to the other nine added languages with
+54 new lessons and diagnosis-to-repair sequences. Python's existing idiomatic
+course and Rust's Book-led course are unchanged. No new specialized tracks or
+algorithm/data-structure implementation lessons are added.
 
 Existing EXP, gems, streaks, and stored history survive. Retained lesson IDs keep
 their completion state; new lessons start unfinished. Replaced question families
@@ -288,16 +302,18 @@ uv run python tools/verify_native.py
 uv run python tools/verify_rust.py
 ```
 
-69 tests cover all new lesson and exam completion paths, 30 sampled variants of
+78 tests cover all new lesson and exam completion paths, 30 sampled variants of
 every new template, language selection and persistence, independent mistakes,
 SQLite query results, and the existing Python/gameplay/UI regression suite.
-Separate compiler/interpreter checks exercised 314 sampled C, C++, Perl, and
-JavaScript snippets; a Perl print-precedence regression was corrected and
-rechecked with three variants. SQLite checks run all 56 prediction scenarios
-at three seeds. Ruby, Lua, Rust, PHP, and TypeScript runtimes were unavailable
-in the build environment, so their content received schema/variant and
-reference-based review rather than native execution. Browser DOM/CSS behavior
-was reviewed against MDN; the browser examples were not all browser-executed.
+Separate compiler/interpreter checks passed for 870 sampled authored predictions
+and repaired programs across C, C++, Lua 5.4, Perl, TypeScript, JavaScript, and SQLite.
+Twelve expected TypeScript type failures were also verified with TypeScript 5.6.3.
+SQLite regression checks also cover all 80 reading scenarios at three seeds,
+including expected constraint failures. Ruby and PHP executables
+were unavailable, so those revisions received schema/variant and reference-based
+review rather than native execution. DOM/CSS examples were reviewed against MDN;
+a browser runtime was unavailable. Rust remains unchanged and its optional audit
+still requires rustc. See [NATIVE_CURRICULA.md](NATIVE_CURRICULA.md) for scope.
 
 The real TUI was also checked for arrow navigation, language switching, course
 map access, persistence of the selected course, and clean exit. Correct/incorrect title colors and reset to a neutral title
@@ -305,7 +321,8 @@ were also verified in a real terminal.
 
 The generated banks are intentionally scaffolded: each lesson studies four
 scenarios through prediction, choosing a missing code fragment, and writing a
-fragment. Those stages sample literals independently. Rust error-reading scenarios lead to writing repairs of the broken code.
+fragment. Those stages sample literals independently. Error-reading scenarios
+in Rust and the nine expanded courses lead to writing repairs of the broken code.
 Fixed conceptual cards remain fixed when random numbers would not improve the question. Non-Python
 writing uses exact fragments (outer whitespace is ignored); it does not attempt
 to accept every semantically equivalent program. The app never executes learner

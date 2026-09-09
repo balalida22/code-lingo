@@ -3,7 +3,7 @@
   "id": "c",
   "title": "C",
   "language": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used",
-  "version": "1.0",
+  "version": "1.1",
   "sources": [
     {
       "id": "cs50c",
@@ -16,9 +16,223 @@
       "title": "GNU C language manual (portable C subset here)",
       "url": "https://www.gnu.org/software/c-intro-and-ref/manual/html_node/",
       "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "c-standard",
+      "title": "C17 committee draft N2176",
+      "url": "https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2176.pdf",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "gcc",
+      "title": "GCC: compilation stages and output options",
+      "url": "https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
     }
   ],
   "lessons": [
+    {
+      "id": "build",
+      "title": "From source files to an executable",
+      "section": "Basics",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. C separates preprocessing, compilation, and linking. A header declares an interface; an object file contains compiled definitions. Compile every implementation file and link the resulting objects once. Read diagnostics by stage: a syntax error differs from a missing definition at link time. The commands here use GCC with portable C17; compiler flags are tool-specific. Warnings help catch suspicious code but a successful compilation is not proof of valid memory access.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "gcc"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "From source files to an executable",
+          "explanation": "-c stops before linking, producing an object file.",
+          "hint": "-c stops before linking, producing an object file.",
+          "id": "build-read-1",
+          "kind": "mcq",
+          "code": "$ gcc -std=c17 -Wall -Wextra -c main.c",
+          "prompt": "What artifact does this command request?",
+          "answer": "Produces main.o without linking an executable",
+          "options": [
+            "Produces main.o without linking an executable",
+            "Runs main.c",
+            "Produces a shared library"
+          ]
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "-c stops before linking, producing an object file.",
+          "hint": "-c stops before linking, producing an object file.",
+          "id": "build-choose-1",
+          "kind": "mcq",
+          "code": "$ gcc -std=c17 -Wall -Wextra ____ main.c",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Produces main.o without linking an executable. -c stops before linking, producing an object file.",
+          "answer": "-c",
+          "options": [
+            "-c",
+            "-E",
+            "-S"
+          ]
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "The linker combines definitions into the named executable.",
+          "hint": "The linker combines definitions into the named executable.",
+          "id": "build-read-2",
+          "kind": "mcq",
+          "code": "$ gcc main.o helper.o -o app",
+          "prompt": "What does this command do?",
+          "answer": "Links the two objects into app",
+          "options": [
+            "Links the two objects into app",
+            "Creates a header file",
+            "Runs the tests"
+          ]
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "The linker combines definitions into the named executable.",
+          "hint": "The linker combines definitions into the named executable.",
+          "id": "build-choose-2",
+          "kind": "mcq",
+          "code": "$ gcc main.o helper.o ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Links the two objects into app. The linker combines definitions into the named executable.",
+          "answer": "-o app",
+          "options": [
+            "-o app",
+            "-c",
+            "-E"
+          ]
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "A declaration lets a call compile; linking still needs a definition.",
+          "hint": "A declaration lets a call compile; linking still needs a definition.",
+          "id": "build-read-3",
+          "kind": "mcq",
+          "code": "/* main.c declares int size(void), but size is never defined. */\n$ gcc main.c -o app",
+          "prompt": "Assume main calls size(): which stage fails?",
+          "answer": "Link error: missing definition of size when main calls it",
+          "options": [
+            "Link error: missing definition of size when main calls it",
+            "Guaranteed syntax error",
+            "Returns zero at runtime"
+          ],
+          "repair_question_id": "build-write-repair-3"
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "Provide a function definition with the declared signature so the call can be linked.",
+          "hint": "Provide a function definition with the declared signature so the call can be linked.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "build-choose-repair-3",
+          "kind": "mcq",
+          "code": "____\n/* in main */ printf(\"%d\",size());",
+          "prompt": "Repair the code by filling ____. Provide a function definition with the declared signature so the call can be linked. Target result: ${n}.",
+          "answer": "int size(void){return ${n};}",
+          "options": [
+            "int size(void){return ${n};}",
+            "int size(void);",
+            "int other(void){return ${n};}"
+          ]
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "Warnings reveal suspicious constructs; they cannot prove correctness.",
+          "hint": "Warnings reveal suspicious constructs; they cannot prove correctness.",
+          "id": "build-read-4",
+          "kind": "mcq",
+          "code": "$ gcc -std=c17 -Wall -Wextra main.c -o app",
+          "prompt": "What do these flags provide?",
+          "answer": "Enables additional compiler diagnostics",
+          "options": [
+            "Enables additional compiler diagnostics",
+            "Makes all undefined behavior safe",
+            "Executes the binary"
+          ]
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "Warnings reveal suspicious constructs; they cannot prove correctness.",
+          "hint": "Warnings reveal suspicious constructs; they cannot prove correctness.",
+          "id": "build-choose-4",
+          "kind": "mcq",
+          "code": "$ gcc -std=c17 ____ main.c -o app",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Enables additional compiler diagnostics. Warnings reveal suspicious constructs; they cannot prove correctness.",
+          "answer": "-Wall -Wextra",
+          "options": [
+            "-Wall -Wextra",
+            "-w",
+            "-E"
+          ]
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "-c stops before linking, producing an object file.",
+          "hint": "-c stops before linking, producing an object file.",
+          "id": "build-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$ gcc -std=c17 -Wall -Wextra ____ main.c",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Produces main.o without linking an executable. -c stops before linking, producing an object file. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "-c"
+          ]
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "The linker combines definitions into the named executable.",
+          "hint": "The linker combines definitions into the named executable.",
+          "id": "build-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$ gcc main.o helper.o ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Links the two objects into app. The linker combines definitions into the named executable. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "-o app"
+          ]
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "Provide a function definition with the declared signature so the call can be linked.",
+          "hint": "Provide a function definition with the declared signature so the call can be linked.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "build-write-repair-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____\n/* in main */ printf(\"%d\",size());",
+          "prompt": "Repair the code by filling ____. Provide a function definition with the declared signature so the call can be linked. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "int size(void){return ${n};}"
+          ],
+          "target_answer": "${n}"
+        },
+        {
+          "concept": "From source files to an executable",
+          "explanation": "Warnings reveal suspicious constructs; they cannot prove correctness.",
+          "hint": "Warnings reveal suspicious constructs; they cannot prove correctness.",
+          "id": "build-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$ gcc -std=c17 ____ main.c -o app",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Enables additional compiler diagnostics. Warnings reveal suspicious constructs; they cannot prove correctness. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "-Wall -Wextra"
+          ]
+        }
+      ]
+    },
     {
       "id": "values",
       "title": "Values and assignment",
@@ -26,9 +240,13 @@
       "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. A variable names a value. Assignment updates that variable; an earlier copied number does not follow later assignments. Read statements from top to bottom.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50c",
-        "gnu-c"
+        "gnu-c",
+        "c-standard",
+        "gcc"
       ],
-      "requires": [],
+      "requires": [
+        "build"
+      ],
       "questions": [
         {
           "concept": "Values and assignment",
@@ -353,16 +571,206 @@
       ]
     },
     {
+      "id": "integer-model",
+      "title": "Integer representation and conversions",
+      "section": "Basics",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. C integer types have ranges, not arbitrary precision. sizeof(char) is one C byte; CHAR_BIT tells how many bits it contains. Do not assume int is always 32 bits. Unsigned arithmetic wraps, but signed overflow is undefined behavior. Integer promotion and signed/unsigned conversions happen before arithmetic and comparisons. A cast before division changes the operation; a cast after division cannot recover its discarded fraction.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "c-standard"
+      ],
+      "requires": [
+        "values"
+      ],
+      "questions": [
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "sizeof measures C bytes, and char occupies exactly one.",
+          "hint": "sizeof measures C bytes, and char occupies exactly one.",
+          "id": "integer-model-read-1",
+          "kind": "mcq",
+          "code": "printf(\"%zu\", sizeof(char));",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "8",
+            "Platform-dependent"
+          ]
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "sizeof measures C bytes, and char occupies exactly one.",
+          "hint": "sizeof measures C bytes, and char occupies exactly one.",
+          "id": "integer-model-choose-1",
+          "kind": "mcq",
+          "code": "printf(\"%zu\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. sizeof measures C bytes, and char occupies exactly one.",
+          "answer": "sizeof(char)",
+          "options": [
+            "sizeof(char)",
+            "sizeof(int)",
+            "sizeof(double)"
+          ]
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "The signed -1 converts to unsigned int for this comparison and becomes a large value.",
+          "hint": "The signed -1 converts to unsigned int for this comparison and becomes a large value.",
+          "id": "integer-model-read-2",
+          "kind": "mcq",
+          "code": "printf(\"%d\", -1 < 1u);",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "-1"
+          ]
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "The signed -1 converts to unsigned int for this comparison and becomes a large value.",
+          "hint": "The signed -1 converts to unsigned int for this comparison and becomes a large value.",
+          "id": "integer-model-choose-2",
+          "kind": "mcq",
+          "code": "printf(\"%d\", -1 ____ 1u);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. The signed -1 converts to unsigned int for this comparison and becomes a large value.",
+          "answer": "<",
+          "options": [
+            "<",
+            ">",
+            "!="
+          ]
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "Converting an operand before division selects floating-point division.",
+          "hint": "Converting an operand before division selects floating-point division.",
+          "id": "integer-model-read-3",
+          "kind": "mcq",
+          "code": "printf(\"%.1f\", (double)5 / 2);",
+          "prompt": "What is the result?",
+          "answer": "2.5",
+          "options": [
+            "2.5",
+            "2.0",
+            "3.0"
+          ]
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "Converting an operand before division selects floating-point division.",
+          "hint": "Converting an operand before division selects floating-point division.",
+          "id": "integer-model-choose-3",
+          "kind": "mcq",
+          "code": "printf(\"%.1f\", ____ / 2);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2.5. Converting an operand before division selects floating-point division.",
+          "answer": "(double)5",
+          "options": [
+            "(double)5",
+            "5",
+            "(double)(5/2)"
+          ]
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "Signed overflow has no portable result; check the boundary before adding.",
+          "hint": "Signed overflow has no portable result; check the boundary before adding.",
+          "id": "integer-model-read-4",
+          "kind": "mcq",
+          "code": "int x=INT_MAX; printf(\"%d\", x+1);",
+          "prompt": "What does signed overflow imply?",
+          "answer": "Undefined behavior",
+          "options": [
+            "Undefined behavior",
+            "Always INT_MIN",
+            "Always zero"
+          ],
+          "repair_question_id": "integer-model-write-repair-4"
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "Check that a signed increment is in range before performing it.",
+          "hint": "Check that a signed increment is in range before performing it.",
+          "id": "integer-model-choose-repair-4",
+          "kind": "mcq",
+          "code": "int x=INT_MAX; if (____) ++x; printf(\"%d\",x==INT_MAX);",
+          "prompt": "Repair the code by filling ____. Check that a signed increment is in range before performing it. Target result: 1.",
+          "answer": "x < INT_MAX",
+          "options": [
+            "x < INT_MAX",
+            "x == INT_MAX",
+            "x > 0"
+          ]
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "sizeof measures C bytes, and char occupies exactly one.",
+          "hint": "sizeof measures C bytes, and char occupies exactly one.",
+          "id": "integer-model-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%zu\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. sizeof measures C bytes, and char occupies exactly one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "sizeof(char)"
+          ]
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "The signed -1 converts to unsigned int for this comparison and becomes a large value.",
+          "hint": "The signed -1 converts to unsigned int for this comparison and becomes a large value.",
+          "id": "integer-model-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%d\", -1 ____ 1u);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. The signed -1 converts to unsigned int for this comparison and becomes a large value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "<"
+          ]
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "Converting an operand before division selects floating-point division.",
+          "hint": "Converting an operand before division selects floating-point division.",
+          "id": "integer-model-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%.1f\", ____ / 2);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2.5. Converting an operand before division selects floating-point division. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "(double)5"
+          ]
+        },
+        {
+          "concept": "Integer representation and conversions",
+          "explanation": "Check that a signed increment is in range before performing it.",
+          "hint": "Check that a signed increment is in range before performing it.",
+          "id": "integer-model-write-repair-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=INT_MAX; if (____) ++x; printf(\"%d\",x==INT_MAX);",
+          "prompt": "Repair the code by filling ____. Check that a signed increment is in range before performing it. Target result: 1. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x < INT_MAX"
+          ],
+          "target_answer": "1"
+        }
+      ]
+    },
+    {
       "id": "arithmetic",
       "title": "Arithmetic and precedence",
       "section": "Basics",
       "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Multiplication binds more tightly than addition. Parentheses group expressions. Integer quotient and remainder answer different questions; all operands here are positive.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50c",
-        "gnu-c"
+        "gnu-c",
+        "c-standard",
+        "gcc"
       ],
       "requires": [
-        "values"
+        "integer-model"
       ],
       "questions": [
         {
@@ -728,16 +1136,470 @@
       ]
     },
     {
-      "id": "strings",
-      "title": "Characters and C strings",
+      "id": "conditions",
+      "title": "Conditions and boolean operators",
       "section": "Basics",
-      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. A char stores one character. A C string is a character array terminated by a zero byte. strlen excludes that terminator; sizeof an array includes all its storage.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Zero is false; nonzero is true. Comparisons yield int zero or one. && and || short-circuit, which can protect a pointer dereference.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50c",
-        "gnu-c"
+        "gnu-c",
+        "c-standard",
+        "gcc"
       ],
       "requires": [
         "arithmetic"
+      ],
+      "questions": [
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Equality of the identical integers yields one.",
+          "hint": "Equality of the identical integers yields one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-1",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ${n} == ${n});",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Equality of the identical integers yields one.",
+          "hint": "Equality of the identical integers yields one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-1",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ${n} ____ ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Equality of the identical integers yields one.",
+          "answer": "==",
+          "options": [
+            "==",
+            "!=",
+            "<"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "A nonzero condition enters the branch.",
+          "hint": "A nonzero condition enters the branch.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-read-2",
+          "kind": "mcq",
+          "code": "int x=0;\nif (${n}) x=1;\nprintf(\"%d\", x);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "A nonzero condition enters the branch.",
+          "hint": "A nonzero condition enters the branch.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-choose-2",
+          "kind": "mcq",
+          "code": "int x=0;\nif (____) x=1;\nprintf(\"%d\", x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A nonzero condition enters the branch. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "!1"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "&& skips the dereference when p is null.",
+          "hint": "&& skips the dereference when p is null.",
+          "id": "conditions-read-3",
+          "kind": "mcq",
+          "code": "int *p=NULL;\nif (p && *p > 0) puts(\"yes\"); else puts(\"no\");",
+          "prompt": "What is the result?",
+          "answer": "no",
+          "options": [
+            "no",
+            "yes",
+            "Undefined behavior"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "&& skips the dereference when p is null.",
+          "hint": "&& skips the dereference when p is null.",
+          "id": "conditions-choose-3",
+          "kind": "mcq",
+          "code": "int *p=NULL;\nif (p ____ *p > 0) puts(\"yes\"); else puts(\"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. && skips the dereference when p is null.",
+          "answer": "&&",
+          "options": [
+            "&&",
+            "&",
+            "||"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Logical negation of zero yields one.",
+          "hint": "Logical negation of zero yields one.",
+          "id": "conditions-read-4",
+          "kind": "mcq",
+          "code": "printf(\"%d\", !0);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Logical negation of zero yields one.",
+          "hint": "Logical negation of zero yields one.",
+          "id": "conditions-choose-4",
+          "kind": "mcq",
+          "code": "printf(\"%d\", ____0);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Logical negation of zero yields one.",
+          "answer": "!",
+          "options": [
+            "!",
+            "-",
+            "+"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Equality of the identical integers yields one.",
+          "hint": "Equality of the identical integers yields one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%d\", ${n} ____ ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Equality of the identical integers yields one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "A nonzero condition enters the branch.",
+          "hint": "A nonzero condition enters the branch.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "conditions-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0;\nif (____) x=1;\nprintf(\"%d\", x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A nonzero condition enters the branch. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "&& skips the dereference when p is null.",
+          "hint": "&& skips the dereference when p is null.",
+          "id": "conditions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *p=NULL;\nif (p ____ *p > 0) puts(\"yes\"); else puts(\"no\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: no. && skips the dereference when p is null. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&&"
+          ]
+        },
+        {
+          "concept": "Conditions and boolean operators",
+          "explanation": "Logical negation of zero yields one.",
+          "hint": "Logical negation of zero yields one.",
+          "id": "conditions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%d\", ____0);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Logical negation of zero yields one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "!"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loops",
+      "title": "Loop bounds and control flow",
+      "section": "Basics",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. for separates initialization, test, and update. < gives an exclusive upper bound. continue skips the body remainder; break exits the loop.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c",
+        "c-standard",
+        "gcc"
+      ],
+      "requires": [
+        "conditions"
+      ],
+      "questions": [
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "hint": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "loops-read-1",
+          "kind": "mcq",
+          "code": "int x=0; for(int i=0;i<${n};i++) x++; printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "hint": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-choose-1",
+          "kind": "mcq",
+          "code": "int x=0; for(int i=0;i____${n};i++) x++; printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Starting at zero with an exclusive limit gives ${n} iterations.",
+          "answer": "<",
+          "options": [
+            "<",
+            "<=",
+            ">"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "continue skips the middle increment.",
+          "hint": "continue skips the middle increment.",
+          "id": "loops-read-2",
+          "kind": "mcq",
+          "code": "int x=0; for(int i=0;i<3;i++) { if(i==1) continue; x++; } printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "continue skips the middle increment.",
+          "hint": "continue skips the middle increment.",
+          "id": "loops-choose-2",
+          "kind": "mcq",
+          "code": "int x=0; for(int i=0;i<3;i++) { if(i==1) ____; x++; } printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips the middle increment.",
+          "answer": "continue",
+          "options": [
+            "continue",
+            "break",
+            "return"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "break exits after one increment.",
+          "hint": "break exits after one increment.",
+          "id": "loops-read-3",
+          "kind": "mcq",
+          "code": "int x=0; while(1) { x++; break; } printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Never terminates"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "break exits after one increment.",
+          "hint": "break exits after one increment.",
+          "id": "loops-choose-3",
+          "kind": "mcq",
+          "code": "int x=0; while(1) { x++; ____; } printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. break exits after one increment.",
+          "answer": "break",
+          "options": [
+            "break",
+            "continue",
+            "return"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "A do loop runs its body before testing its condition.",
+          "hint": "A do loop runs its body before testing its condition.",
+          "id": "loops-read-4",
+          "kind": "mcq",
+          "code": "int x=0; do { x++; } while(0); printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Never terminates"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "A do loop runs its body before testing its condition.",
+          "hint": "A do loop runs its body before testing its condition.",
+          "id": "loops-choose-4",
+          "kind": "mcq",
+          "code": "int x=0; ____ { x++; } while(0); printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A do loop runs its body before testing its condition.",
+          "answer": "do",
+          "options": [
+            "do",
+            "if",
+            "for"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "hint": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "loops-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0; for(int i=0;i____${n};i++) x++; printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Starting at zero with an exclusive limit gives ${n} iterations. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "<"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "continue skips the middle increment.",
+          "hint": "continue skips the middle increment.",
+          "id": "loops-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0; for(int i=0;i<3;i++) { if(i==1) ____; x++; } printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips the middle increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "continue"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "break exits after one increment.",
+          "hint": "break exits after one increment.",
+          "id": "loops-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0; while(1) { x++; ____; } printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. break exits after one increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "break"
+          ]
+        },
+        {
+          "concept": "Loop bounds and control flow",
+          "explanation": "A do loop runs its body before testing its condition.",
+          "hint": "A do loop runs its body before testing its condition.",
+          "id": "loops-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0; ____ { x++; } while(0); printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A do loop runs its body before testing its condition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "do"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strings",
+      "title": "Characters and C strings",
+      "section": "Intermediate",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. A char stores one character. A C string is a character array terminated by a zero byte. strlen excludes that terminator; sizeof an array includes all its storage.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c",
+        "c-standard",
+        "gcc"
+      ],
+      "requires": [
+        "loops"
       ],
       "questions": [
         {
@@ -1097,395 +1959,136 @@
       ]
     },
     {
-      "id": "conditions",
-      "title": "Conditions and boolean operators",
-      "section": "Basics",
-      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Zero is false; nonzero is true. Comparisons yield int zero or one. && and || short-circuit, which can protect a pointer dereference.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "id": "arrays",
+      "title": "Arrays, sizes, and bounds",
+      "section": "Intermediate",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Arrays use zero-based indexes. sizeof can compute an array element count only while the expression is an actual array; a parameter declared as an array is adjusted to a pointer.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50c",
-        "gnu-c"
+        "gnu-c",
+        "c-standard",
+        "gcc"
       ],
       "requires": [
         "strings"
       ],
       "questions": [
         {
-          "concept": "Conditions and boolean operators",
-          "explanation": "Equality of the identical integers yields one.",
-          "hint": "Equality of the identical integers yields one.",
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Index one selects the second element.",
+          "hint": "Index one selects the second element.",
           "parameters": {
             "n": {
               "type": "int",
               "min": 3,
               "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
             }
           },
           "derived": {},
-          "id": "conditions-read-1",
+          "id": "arrays-read-1",
           "kind": "mcq",
-          "code": "printf(\"%d\", ${n} == ${n});",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",a[1]);",
           "prompt": "What is the result?",
-          "answer": "1",
+          "answer": "${m}",
           "options": [
-            "1",
-            "0",
-            "${n}"
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "Equality of the identical integers yields one.",
-          "hint": "Equality of the identical integers yields one.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "conditions-choose-1",
-          "kind": "mcq",
-          "code": "printf(\"%d\", ${n} ____ ${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Equality of the identical integers yields one.",
-          "answer": "==",
-          "options": [
-            "==",
-            "!=",
-            "<"
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "A nonzero condition enters the branch.",
-          "hint": "A nonzero condition enters the branch.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "conditions-read-2",
-          "kind": "mcq",
-          "code": "int x=0;\nif (${n}) x=1;\nprintf(\"%d\", x);",
-          "prompt": "What is the result?",
-          "answer": "1",
-          "options": [
-            "1",
-            "0",
-            "${n}"
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "A nonzero condition enters the branch.",
-          "hint": "A nonzero condition enters the branch.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "conditions-choose-2",
-          "kind": "mcq",
-          "code": "int x=0;\nif (____) x=1;\nprintf(\"%d\", x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A nonzero condition enters the branch. Use ${n} as the replacement literal.",
-          "answer": "${n}",
-          "options": [
+            "${m}",
             "${n}",
-            "0",
-            "!1"
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "&& skips the dereference when p is null.",
-          "hint": "&& skips the dereference when p is null.",
-          "id": "conditions-read-3",
-          "kind": "mcq",
-          "code": "int *p=NULL;\nif (p && *p > 0) puts(\"yes\"); else puts(\"no\");",
-          "prompt": "What is the result?",
-          "answer": "no",
-          "options": [
-            "no",
-            "yes",
-            "Undefined behavior"
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "&& skips the dereference when p is null.",
-          "hint": "&& skips the dereference when p is null.",
-          "id": "conditions-choose-3",
-          "kind": "mcq",
-          "code": "int *p=NULL;\nif (p ____ *p > 0) puts(\"yes\"); else puts(\"no\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: no. && skips the dereference when p is null.",
-          "answer": "&&",
-          "options": [
-            "&&",
-            "&",
-            "||"
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "Logical negation of zero yields one.",
-          "hint": "Logical negation of zero yields one.",
-          "id": "conditions-read-4",
-          "kind": "mcq",
-          "code": "printf(\"%d\", !0);",
-          "prompt": "What is the result?",
-          "answer": "1",
-          "options": [
-            "1",
-            "0",
-            "-1"
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "Logical negation of zero yields one.",
-          "hint": "Logical negation of zero yields one.",
-          "id": "conditions-choose-4",
-          "kind": "mcq",
-          "code": "printf(\"%d\", ____0);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Logical negation of zero yields one.",
-          "answer": "!",
-          "options": [
-            "!",
-            "-",
-            "+"
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "Equality of the identical integers yields one.",
-          "hint": "Equality of the identical integers yields one.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "conditions-write-1",
-          "kind": "write",
-          "checker": "exact",
-          "code": "printf(\"%d\", ${n} ____ ${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Equality of the identical integers yields one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "=="
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "A nonzero condition enters the branch.",
-          "hint": "A nonzero condition enters the branch.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "conditions-write-2",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int x=0;\nif (____) x=1;\nprintf(\"%d\", x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A nonzero condition enters the branch. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "${n}"
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "&& skips the dereference when p is null.",
-          "hint": "&& skips the dereference when p is null.",
-          "id": "conditions-write-3",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int *p=NULL;\nif (p ____ *p > 0) puts(\"yes\"); else puts(\"no\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: no. && skips the dereference when p is null. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "&&"
-          ]
-        },
-        {
-          "concept": "Conditions and boolean operators",
-          "explanation": "Logical negation of zero yields one.",
-          "hint": "Logical negation of zero yields one.",
-          "id": "conditions-write-4",
-          "kind": "write",
-          "checker": "exact",
-          "code": "printf(\"%d\", ____0);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Logical negation of zero yields one. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "!"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "loops",
-      "title": "Loop bounds and control flow",
-      "section": "Basics",
-      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. for separates initialization, test, and update. < gives an exclusive upper bound. continue skips the body remainder; break exits the loop.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
-      "sources": [
-        "cs50c",
-        "gnu-c"
-      ],
-      "requires": [
-        "conditions"
-      ],
-      "questions": [
-        {
-          "concept": "Loop bounds and control flow",
-          "explanation": "Starting at zero with an exclusive limit gives ${n} iterations.",
-          "hint": "Starting at zero with an exclusive limit gives ${n} iterations.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {
-            "next": "n+1"
-          },
-          "id": "loops-read-1",
-          "kind": "mcq",
-          "code": "int x=0; for(int i=0;i<${n};i++) x++; printf(\"%d\",x);",
-          "prompt": "What is the result?",
-          "answer": "${n}",
-          "options": [
-            "${n}",
-            "${next}",
             "0"
           ]
         },
         {
-          "concept": "Loop bounds and control flow",
-          "explanation": "Starting at zero with an exclusive limit gives ${n} iterations.",
-          "hint": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Index one selects the second element.",
+          "hint": "Index one selects the second element.",
           "parameters": {
             "n": {
               "type": "int",
               "min": 3,
               "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
             }
           },
           "derived": {},
-          "id": "loops-choose-1",
+          "id": "arrays-choose-1",
           "kind": "mcq",
-          "code": "int x=0; for(int i=0;i____${n};i++) x++; printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Starting at zero with an exclusive limit gives ${n} iterations.",
-          "answer": "<",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",a[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Index one selects the second element.",
+          "answer": "1",
           "options": [
-            "<",
-            "<=",
-            ">"
+            "1",
+            "0",
+            "2"
           ]
         },
         {
-          "concept": "Loop bounds and control flow",
-          "explanation": "continue skips the middle increment.",
-          "hint": "continue skips the middle increment.",
-          "id": "loops-read-2",
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Total array bytes divided by element bytes gives the count.",
+          "hint": "Total array bytes divided by element bytes gives the count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-2",
           "kind": "mcq",
-          "code": "int x=0; for(int i=0;i<3;i++) { if(i==1) continue; x++; } printf(\"%d\",x);",
+          "code": "int a[]={${n},${m}}; printf(\"%zu\",sizeof(a)/sizeof(a[0]));",
           "prompt": "What is the result?",
           "answer": "2",
           "options": [
             "2",
             "1",
-            "3"
+            "0"
           ]
         },
         {
-          "concept": "Loop bounds and control flow",
-          "explanation": "continue skips the middle increment.",
-          "hint": "continue skips the middle increment.",
-          "id": "loops-choose-2",
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Total array bytes divided by element bytes gives the count.",
+          "hint": "Total array bytes divided by element bytes gives the count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-2",
           "kind": "mcq",
-          "code": "int x=0; for(int i=0;i<3;i++) { if(i==1) ____; x++; } printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips the middle increment.",
-          "answer": "continue",
+          "code": "int a[]={${n},${m}}; printf(\"%zu\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Total array bytes divided by element bytes gives the count.",
+          "answer": "sizeof(a)/sizeof(a[0])",
           "options": [
-            "continue",
-            "break",
-            "return"
+            "sizeof(a)/sizeof(a[0])",
+            "sizeof(a[0])/sizeof(a)",
+            "0UL"
           ]
         },
         {
-          "concept": "Loop bounds and control flow",
-          "explanation": "break exits after one increment.",
-          "hint": "break exits after one increment.",
-          "id": "loops-read-3",
-          "kind": "mcq",
-          "code": "int x=0; while(1) { x++; break; } printf(\"%d\",x);",
-          "prompt": "What is the result?",
-          "answer": "1",
-          "options": [
-            "1",
-            "0",
-            "Never terminates"
-          ]
-        },
-        {
-          "concept": "Loop bounds and control flow",
-          "explanation": "break exits after one increment.",
-          "hint": "break exits after one increment.",
-          "id": "loops-choose-3",
-          "kind": "mcq",
-          "code": "int x=0; while(1) { x++; ____; } printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. break exits after one increment.",
-          "answer": "break",
-          "options": [
-            "break",
-            "continue",
-            "return"
-          ]
-        },
-        {
-          "concept": "Loop bounds and control flow",
-          "explanation": "A do loop runs its body before testing its condition.",
-          "hint": "A do loop runs its body before testing its condition.",
-          "id": "loops-read-4",
-          "kind": "mcq",
-          "code": "int x=0; do { x++; } while(0); printf(\"%d\",x);",
-          "prompt": "What is the result?",
-          "answer": "1",
-          "options": [
-            "1",
-            "0",
-            "Never terminates"
-          ]
-        },
-        {
-          "concept": "Loop bounds and control flow",
-          "explanation": "A do loop runs its body before testing its condition.",
-          "hint": "A do loop runs its body before testing its condition.",
-          "id": "loops-choose-4",
-          "kind": "mcq",
-          "code": "int x=0; ____ { x++; } while(0); printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A do loop runs its body before testing its condition.",
-          "answer": "do",
-          "options": [
-            "do",
-            "if",
-            "for"
-          ]
-        },
-        {
-          "concept": "Loop bounds and control flow",
-          "explanation": "Starting at zero with an exclusive limit gives ${n} iterations.",
-          "hint": "Starting at zero with an exclusive limit gives ${n} iterations.",
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Unspecified entries in this initializer are zero-initialized.",
+          "hint": "Unspecified entries in this initializer are zero-initialized.",
           "parameters": {
             "n": {
               "type": "int",
@@ -1494,53 +2097,513 @@
             }
           },
           "derived": {},
-          "id": "loops-write-1",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int x=0; for(int i=0;i____${n};i++) x++; printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Starting at zero with an exclusive limit gives ${n} iterations. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "<"
+          "id": "arrays-read-3",
+          "kind": "mcq",
+          "code": "int a[3]={${n}}; printf(\"%d\",a[2]);",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "${n}",
+            "Indeterminate"
           ]
         },
         {
-          "concept": "Loop bounds and control flow",
-          "explanation": "continue skips the middle increment.",
-          "hint": "continue skips the middle increment.",
-          "id": "loops-write-2",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int x=0; for(int i=0;i<3;i++) { if(i==1) ____; x++; } printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. continue skips the middle increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "continue"
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Unspecified entries in this initializer are zero-initialized.",
+          "hint": "Unspecified entries in this initializer are zero-initialized.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-3",
+          "kind": "mcq",
+          "code": "int a[3]={${n}}; printf(\"%d\",a[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Unspecified entries in this initializer are zero-initialized.",
+          "answer": "2",
+          "options": [
+            "2",
+            "0",
+            "3"
           ]
         },
         {
-          "concept": "Loop bounds and control flow",
-          "explanation": "break exits after one increment.",
-          "hint": "break exits after one increment.",
-          "id": "loops-write-3",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int x=0; while(1) { x++; ____; } printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. break exits after one increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "break"
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Index two is past the end of this two-element array.",
+          "hint": "Index two is past the end of this two-element array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-4",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",a[2]);",
+          "prompt": "What does the out-of-bounds access imply?",
+          "answer": "Undefined behavior",
+          "options": [
+            "Undefined behavior",
+            "Always zero",
+            "Always ${m}"
+          ],
+          "repair_question_id": "arrays-write-repair-4"
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Use the valid second-element index of this two-element array.",
+          "hint": "Use the valid second-element index of this two-element array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-repair-4",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",____);",
+          "prompt": "Repair the code by filling ____. Use the valid second-element index of this two-element array. Target result: ${m}.",
+          "answer": "a[1]",
+          "options": [
+            "a[1]",
+            "a[2]",
+            "a[3]"
           ]
         },
         {
-          "concept": "Loop bounds and control flow",
-          "explanation": "A do loop runs its body before testing its condition.",
-          "hint": "A do loop runs its body before testing its condition.",
-          "id": "loops-write-4",
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Index one selects the second element.",
+          "hint": "Index one selects the second element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-1",
           "kind": "write",
           "checker": "exact",
-          "code": "int x=0; ____ { x++; } while(0); printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. A do loop runs its body before testing its condition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",a[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Index one selects the second element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "do"
+            "1"
           ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Total array bytes divided by element bytes gives the count.",
+          "hint": "Total array bytes divided by element bytes gives the count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a[]={${n},${m}}; printf(\"%zu\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Total array bytes divided by element bytes gives the count. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "sizeof(a)/sizeof(a[0])"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Unspecified entries in this initializer are zero-initialized.",
+          "hint": "Unspecified entries in this initializer are zero-initialized.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a[3]={${n}}; printf(\"%d\",a[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Unspecified entries in this initializer are zero-initialized. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "2"
+          ]
+        },
+        {
+          "concept": "Arrays, sizes, and bounds",
+          "explanation": "Use the valid second-element index of this two-element array.",
+          "hint": "Use the valid second-element index of this two-element array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-repair-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a[]={${n},${m}}; printf(\"%d\",____);",
+          "prompt": "Repair the code by filling ____. Use the valid second-element index of this two-element array. Target result: ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "a[1]"
+          ],
+          "target_answer": "${m}"
+        }
+      ]
+    },
+    {
+      "id": "pointers",
+      "title": "Pointers, const, and lifetime",
+      "section": "Intermediate",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. & takes an address; * dereferences. A pointer is usable only while its target is alive. const on the pointed-to type prevents writes through that pointer.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c",
+        "c-standard",
+        "gcc"
+      ],
+      "requires": [
+        "arrays"
+      ],
+      "questions": [
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "p points to x, so dereferencing p updates x.",
+          "hint": "p points to x, so dereferencing p updates x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-read-1",
+          "kind": "mcq",
+          "code": "int x=${n}; int *p=&x; *p=${m}; printf(\"%d\",x);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "p points to x, so dereferencing p updates x.",
+          "hint": "p points to x, so dereferencing p updates x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-choose-1",
+          "kind": "mcq",
+          "code": "int x=${n}; int *p=____; *p=${m}; printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. p points to x, so dereferencing p updates x.",
+          "answer": "&x",
+          "options": [
+            "&x",
+            "NULL",
+            "0"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "Pointer arithmetic advances by one int element.",
+          "hint": "Pointer arithmetic advances by one int element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-read-2",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; int *p=a; printf(\"%d\",*(p+1));",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "An address"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "Pointer arithmetic advances by one int element.",
+          "hint": "Pointer arithmetic advances by one int element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-choose-2",
+          "kind": "mcq",
+          "code": "int a[]={${n},${m}}; int *p=a; printf(\"%d\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Pointer arithmetic advances by one int element.",
+          "answer": "*(p+1)",
+          "options": [
+            "*(p+1)",
+            "*p",
+            "a[0]"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "The pointed-to type is const; the pointer itself is not const.",
+          "hint": "The pointed-to type is const; the pointer itself is not const.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-read-3",
+          "kind": "mcq",
+          "code": "int x=${n}; const int *p=&x;",
+          "prompt": "Which restriction follows from this declaration?",
+          "answer": "Cannot assign through *p",
+          "options": [
+            "Cannot assign through *p",
+            "Cannot reassign p",
+            "x becomes globally immutable"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "The pointed-to type is const; the pointer itself is not const.",
+          "hint": "The pointed-to type is const; the pointer itself is not const.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-choose-3",
+          "kind": "mcq",
+          "code": "int x=${n}; ____p=&x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Cannot assign through *p. The pointed-to type is const; the pointer itself is not const.",
+          "answer": "const int *",
+          "options": [
+            "const int *",
+            "int *const ",
+            "int *"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "The automatic local lifetime ends when the function returns.",
+          "hint": "The automatic local lifetime ends when the function returns.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-read-4",
+          "kind": "mcq",
+          "code": "int *bad(void) { int x=${n}; return &x; }",
+          "prompt": "Why is dereferencing the returned non-null pointer invalid?",
+          "answer": "Returns a pointer to an expired local object",
+          "options": [
+            "Returns a pointer to an expired local object",
+            "Returns owned heap storage",
+            "Returns an integer copy"
+          ],
+          "repair_question_id": "pointers-write-repair-4"
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "Return the integer value rather than a pointer to an expired local.",
+          "hint": "Return the integer value rather than a pointer to an expired local.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-choose-repair-4",
+          "kind": "mcq",
+          "code": "int good(void) { int x=${n}; return ____; }\n/* in main */ printf(\"%d\",good());",
+          "prompt": "Repair the code by filling ____. Return the integer value rather than a pointer to an expired local. Target result: ${n}.",
+          "answer": "x",
+          "options": [
+            "x",
+            "&x",
+            "NULL"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "p points to x, so dereferencing p updates x.",
+          "hint": "p points to x, so dereferencing p updates x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=${n}; int *p=____; *p=${m}; printf(\"%d\",x);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. p points to x, so dereferencing p updates x. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&x"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "Pointer arithmetic advances by one int element.",
+          "hint": "Pointer arithmetic advances by one int element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "pointers-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a[]={${n},${m}}; int *p=a; printf(\"%d\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Pointer arithmetic advances by one int element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "*(p+1)"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "The pointed-to type is const; the pointer itself is not const.",
+          "hint": "The pointed-to type is const; the pointer itself is not const.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=${n}; ____p=&x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Cannot assign through *p. The pointed-to type is const; the pointer itself is not const. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "const int *"
+          ]
+        },
+        {
+          "concept": "Pointers, const, and lifetime",
+          "explanation": "Return the integer value rather than a pointer to an expired local.",
+          "hint": "Return the integer value rather than a pointer to an expired local.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "pointers-write-repair-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int good(void) { int x=${n}; return ____; }\n/* in main */ printf(\"%d\",good());",
+          "prompt": "Repair the code by filling ____. Return the integer value rather than a pointer to an expired local. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "x"
+          ],
+          "target_answer": "${n}"
         }
       ]
     },
@@ -1551,10 +2614,12 @@
       "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Function declarations specify return and parameter types. C passes arguments by value; use a pointer when a function should update caller storage.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50c",
-        "gnu-c"
+        "gnu-c",
+        "c-standard",
+        "gcc"
       ],
       "requires": [
-        "loops"
+        "pointers"
       ],
       "questions": [
         {
@@ -1879,67 +2944,120 @@
       ]
     },
     {
-      "id": "arrays",
-      "title": "Arrays, sizes, and bounds",
+      "id": "records",
+      "title": "Structures, enums, and typedef",
       "section": "Intermediate",
-      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Arrays use zero-based indexes. sizeof can compute an array element count only while the expression is an actual array; a parameter declared as an array is adjusted to a pointer.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Structures group named fields. . accesses a value and -> accesses through a pointer. typedef introduces an alias; enums define named integer constants.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50c",
-        "gnu-c"
+        "gnu-c",
+        "c-standard",
+        "gcc"
       ],
       "requires": [
         "functions"
       ],
       "questions": [
         {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Index one selects the second element.",
-          "hint": "Index one selects the second element.",
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Dot selects a field from the structure value.",
+          "hint": "Dot selects a field from the structure value.",
           "parameters": {
             "n": {
               "type": "int",
               "min": 3,
               "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
             }
           },
           "derived": {},
-          "id": "arrays-read-1",
+          "id": "records-read-1",
           "kind": "mcq",
-          "code": "int a[]={${n},${m}}; printf(\"%d\",a[1]);",
+          "code": "struct Box { int size; }; struct Box b={${n}}; printf(\"%d\",b.size);",
           "prompt": "What is the result?",
-          "answer": "${m}",
+          "answer": "${n}",
           "options": [
-            "${m}",
             "${n}",
-            "0"
+            "0",
+            "An address"
           ]
         },
         {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Index one selects the second element.",
-          "hint": "Index one selects the second element.",
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Dot selects a field from the structure value.",
+          "hint": "Dot selects a field from the structure value.",
           "parameters": {
             "n": {
               "type": "int",
               "min": 3,
               "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
             }
           },
           "derived": {},
-          "id": "arrays-choose-1",
+          "id": "records-choose-1",
           "kind": "mcq",
-          "code": "int a[]={${n},${m}}; printf(\"%d\",a[____]);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Index one selects the second element.",
+          "code": "struct Box { int size; }; struct Box b={${n}}; printf(\"%d\",b____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Dot selects a field from the structure value.",
+          "answer": ".size",
+          "options": [
+            ".size",
+            "->size",
+            ".other"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Arrow selects a field through a structure pointer.",
+          "hint": "Arrow selects a field through a structure pointer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-read-2",
+          "kind": "mcq",
+          "code": "struct Box { int size; }; struct Box b={${n}}; struct Box *p=&b; printf(\"%d\",p->size);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "An address"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Arrow selects a field through a structure pointer.",
+          "hint": "Arrow selects a field through a structure pointer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "records-choose-2",
+          "kind": "mcq",
+          "code": "struct Box { int size; }; struct Box b={${n}}; struct Box *p=&b; printf(\"%d\",p____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Arrow selects a field through a structure pointer.",
+          "answer": "->size",
+          "options": [
+            "->size",
+            ".size",
+            "->other"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Implicit enum values start at zero and increment.",
+          "hint": "Implicit enum values start at zero and increment.",
+          "id": "records-read-3",
+          "kind": "mcq",
+          "code": "enum State { OFF, ON }; printf(\"%d\",ON);",
+          "prompt": "What is the result?",
           "answer": "1",
           "options": [
             "1",
@@ -1948,65 +3066,24 @@
           ]
         },
         {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Total array bytes divided by element bytes gives the count.",
-          "hint": "Total array bytes divided by element bytes gives the count.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "arrays-read-2",
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Implicit enum values start at zero and increment.",
+          "hint": "Implicit enum values start at zero and increment.",
+          "id": "records-choose-3",
           "kind": "mcq",
-          "code": "int a[]={${n},${m}}; printf(\"%zu\",sizeof(a)/sizeof(a[0]));",
-          "prompt": "What is the result?",
-          "answer": "2",
+          "code": "enum State { OFF, ON }; printf(\"%d\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Implicit enum values start at zero and increment.",
+          "answer": "ON",
           "options": [
-            "2",
-            "1",
+            "ON",
+            "OFF",
             "0"
           ]
         },
         {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Total array bytes divided by element bytes gives the count.",
-          "hint": "Total array bytes divided by element bytes gives the count.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "arrays-choose-2",
-          "kind": "mcq",
-          "code": "int a[]={${n},${m}}; printf(\"%zu\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Total array bytes divided by element bytes gives the count.",
-          "answer": "sizeof(a)/sizeof(a[0])",
-          "options": [
-            "sizeof(a)/sizeof(a[0])",
-            "sizeof(a[0])/sizeof(a)",
-            "0UL"
-          ]
-        },
-        {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Unspecified entries in this initializer are zero-initialized.",
-          "hint": "Unspecified entries in this initializer are zero-initialized.",
+          "concept": "Structures, enums, and typedef",
+          "explanation": "typedef gives this structure type the alias Box.",
+          "hint": "typedef gives this structure type the alias Box.",
           "parameters": {
             "n": {
               "type": "int",
@@ -2015,152 +3092,65 @@
             }
           },
           "derived": {},
-          "id": "arrays-read-3",
+          "id": "records-read-4",
           "kind": "mcq",
-          "code": "int a[3]={${n}}; printf(\"%d\",a[2]);",
+          "code": "typedef struct { int size; } Box; Box b={${n}}; printf(\"%d\",b.size);",
           "prompt": "What is the result?",
-          "answer": "0",
+          "answer": "${n}",
           "options": [
-            "0",
             "${n}",
-            "Indeterminate"
-          ]
-        },
-        {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Unspecified entries in this initializer are zero-initialized.",
-          "hint": "Unspecified entries in this initializer are zero-initialized.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "arrays-choose-3",
-          "kind": "mcq",
-          "code": "int a[3]={${n}}; printf(\"%d\",a[____]);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Unspecified entries in this initializer are zero-initialized.",
-          "answer": "2",
-          "options": [
-            "2",
             "0",
-            "3"
+            "Compile error"
           ]
         },
         {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Index two is past the end of this two-element array.",
-          "hint": "Index two is past the end of this two-element array.",
+          "concept": "Structures, enums, and typedef",
+          "explanation": "typedef gives this structure type the alias Box.",
+          "hint": "typedef gives this structure type the alias Box.",
           "parameters": {
             "n": {
               "type": "int",
               "min": 3,
               "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
             }
           },
           "derived": {},
-          "id": "arrays-read-4",
+          "id": "records-choose-4",
           "kind": "mcq",
-          "code": "int a[]={${n},${m}}; printf(\"%d\",a[2]);",
-          "prompt": "What does the out-of-bounds access imply?",
-          "answer": "Undefined behavior",
+          "code": "____ struct { int size; } Box; Box b={${n}}; printf(\"%d\",b.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. typedef gives this structure type the alias Box.",
+          "answer": "typedef",
           "options": [
-            "Undefined behavior",
-            "Always zero",
-            "Always ${m}"
+            "typedef",
+            "static",
+            "extern"
           ]
         },
         {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Index two is past the end of this two-element array.",
-          "hint": "Index two is past the end of this two-element array.",
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Dot selects a field from the structure value.",
+          "hint": "Dot selects a field from the structure value.",
           "parameters": {
             "n": {
               "type": "int",
               "min": 3,
               "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
             }
           },
           "derived": {},
-          "id": "arrays-choose-4",
-          "kind": "mcq",
-          "code": "int a[]={${n},${m}}; printf(\"%d\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Undefined behavior. Index two is past the end of this two-element array.",
-          "answer": "a[2]",
-          "options": [
-            "a[2]",
-            "a[0]",
-            "a[1]"
-          ]
-        },
-        {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Index one selects the second element.",
-          "hint": "Index one selects the second element.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "arrays-write-1",
+          "id": "records-write-1",
           "kind": "write",
           "checker": "exact",
-          "code": "int a[]={${n},${m}}; printf(\"%d\",a[____]);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Index one selects the second element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "struct Box { int size; }; struct Box b={${n}}; printf(\"%d\",b____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Dot selects a field from the structure value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "1"
+            ".size"
           ]
         },
         {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Total array bytes divided by element bytes gives the count.",
-          "hint": "Total array bytes divided by element bytes gives the count.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "arrays-write-2",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int a[]={${n},${m}}; printf(\"%zu\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Total array bytes divided by element bytes gives the count. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "sizeof(a)/sizeof(a[0])"
-          ]
-        },
-        {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Unspecified entries in this initializer are zero-initialized.",
-          "hint": "Unspecified entries in this initializer are zero-initialized.",
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Arrow selects a field through a structure pointer.",
+          "hint": "Arrow selects a field through a structure pointer.",
           "parameters": {
             "n": {
               "type": "int",
@@ -2169,39 +3159,47 @@
             }
           },
           "derived": {},
-          "id": "arrays-write-3",
+          "id": "records-write-2",
           "kind": "write",
           "checker": "exact",
-          "code": "int a[3]={${n}}; printf(\"%d\",a[____]);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Unspecified entries in this initializer are zero-initialized. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "struct Box { int size; }; struct Box b={${n}}; struct Box *p=&b; printf(\"%d\",p____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Arrow selects a field through a structure pointer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "2"
+            "->size"
           ]
         },
         {
-          "concept": "Arrays, sizes, and bounds",
-          "explanation": "Index two is past the end of this two-element array.",
-          "hint": "Index two is past the end of this two-element array.",
+          "concept": "Structures, enums, and typedef",
+          "explanation": "Implicit enum values start at zero and increment.",
+          "hint": "Implicit enum values start at zero and increment.",
+          "id": "records-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "enum State { OFF, ON }; printf(\"%d\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Implicit enum values start at zero and increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ON"
+          ]
+        },
+        {
+          "concept": "Structures, enums, and typedef",
+          "explanation": "typedef gives this structure type the alias Box.",
+          "hint": "typedef gives this structure type the alias Box.",
           "parameters": {
             "n": {
               "type": "int",
               "min": 3,
               "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
             }
           },
           "derived": {},
-          "id": "arrays-write-4",
+          "id": "records-write-4",
           "kind": "write",
           "checker": "exact",
-          "code": "int a[]={${n},${m}}; printf(\"%d\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Undefined behavior. Index two is past the end of this two-element array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "____ struct { int size; } Box; Box b={${n}}; printf(\"%d\",b.size);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. typedef gives this structure type the alias Box. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "a[2]"
+            "typedef"
           ]
         }
       ]
@@ -2213,10 +3211,12 @@
       "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Use a format that matches the argument type. scanf needs a destination address and returns the number of successful assignments. fgets reads at most size minus one bytes.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50c",
-        "gnu-c"
+        "gnu-c",
+        "c-standard",
+        "gcc"
       ],
       "requires": [
-        "arrays"
+        "records"
       ],
       "questions": [
         {
@@ -2526,16 +3526,368 @@
       ]
     },
     {
-      "id": "units",
-      "title": "Headers, linkage, and macros",
+      "id": "buffers",
+      "title": "Text buffers, capacity, and bounded formatting",
       "section": "Intermediate",
-      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Headers declare interfaces shared by translation units. File-scope static gives internal linkage. Parenthesize macro parameters and expressions; macros substitute tokens.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. A buffer has a capacity; its current string length can be smaller. Reserve space for the terminating zero, and pass capacity alongside pointers. snprintf returns the length it would have written, excluding the terminator: a nonnegative result at least as large as capacity means truncation. Check negative results separately. memcpy copies bytes and requires nonoverlapping regions; memmove permits overlap. These contracts matter more than guessing what an invalid access might print.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "cs50c",
-        "gnu-c"
+        "c-standard"
       ],
       "requires": [
         "io"
+      ],
+      "questions": [
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "Every sampled word has at least five bytes, so the four-byte buffer truncates.",
+          "hint": "Every sampled word has at least five bytes, so the four-byte buffer truncates.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "buffers-read-1",
+          "kind": "mcq",
+          "code": "char b[4]; int needed=snprintf(b,sizeof b,\"%s\",\"${word}\"); printf(\"%d\", needed >= (int)sizeof b);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "Every sampled word has at least five bytes, so the four-byte buffer truncates.",
+          "hint": "Every sampled word has at least five bytes, so the four-byte buffer truncates.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "buffers-choose-1",
+          "kind": "mcq",
+          "code": "char b[4]; int needed=snprintf(b,sizeof b,\"%s\",\"${word}\"); printf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Every sampled word has at least five bytes, so the four-byte buffer truncates.",
+          "answer": "needed >= (int)sizeof b",
+          "options": [
+            "needed >= (int)sizeof b",
+            "needed < 0",
+            "needed == 0"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "Three bytes of text and one terminator fit in this buffer.",
+          "hint": "Three bytes of text and one terminator fit in this buffer.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "buffers-read-2",
+          "kind": "mcq",
+          "code": "char b[4]; snprintf(b,sizeof b,\"%s\",\"${word}\"); printf(\"%zu\", strlen(b));",
+          "prompt": "What is the result?",
+          "answer": "3",
+          "options": [
+            "3",
+            "4",
+            "${length}"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "Three bytes of text and one terminator fit in this buffer.",
+          "hint": "Three bytes of text and one terminator fit in this buffer.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "buffers-choose-2",
+          "kind": "mcq",
+          "code": "char b[4]; snprintf(b,sizeof b,\"%s\",\"${word}\"); printf(\"%zu\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. Three bytes of text and one terminator fit in this buffer.",
+          "answer": "strlen(b)",
+          "options": [
+            "strlen(b)",
+            "sizeof b",
+            "0UL"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "memmove supports overlap; this count includes the source terminator after shifting left.",
+          "hint": "memmove supports overlap; this count includes the source terminator after shifting left.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "tail": "word[1:]"
+          },
+          "id": "buffers-read-3",
+          "kind": "mcq",
+          "code": "char b[]=\"${word}\"; memmove(b,b+1,strlen(b)); printf(\"%s\",b);",
+          "prompt": "What is the result?",
+          "answer": "${tail}",
+          "options": [
+            "${tail}",
+            "${word}",
+            "Empty string"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "memmove supports overlap; this count includes the source terminator after shifting left.",
+          "hint": "memmove supports overlap; this count includes the source terminator after shifting left.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "tail": "word[1:]"
+          },
+          "id": "buffers-choose-3",
+          "kind": "mcq",
+          "code": "char b[]=\"${word}\"; ____(b,b+1,strlen(b)); printf(\"%s\",b);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${tail}. memmove supports overlap; this count includes the source terminator after shifting left.",
+          "answer": "memmove",
+          "options": [
+            "memmove",
+            "memcpy",
+            "memset"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "String initialization places the zero terminator after the text.",
+          "hint": "String initialization places the zero terminator after the text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "buffers-read-4",
+          "kind": "mcq",
+          "code": "char b[]=\"${word}\"; printf(\"%d\", b[sizeof b-1] == '\\0');",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Undefined behavior"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "String initialization places the zero terminator after the text.",
+          "hint": "String initialization places the zero terminator after the text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "buffers-choose-4",
+          "kind": "mcq",
+          "code": "char b[]=\"${word}\"; printf(\"%d\", b[sizeof b-1] ____ '\\0');",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. String initialization places the zero terminator after the text.",
+          "answer": "==",
+          "options": [
+            "==",
+            "!=",
+            ">"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "Every sampled word has at least five bytes, so the four-byte buffer truncates.",
+          "hint": "Every sampled word has at least five bytes, so the four-byte buffer truncates.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "buffers-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "char b[4]; int needed=snprintf(b,sizeof b,\"%s\",\"${word}\"); printf(\"%d\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Every sampled word has at least five bytes, so the four-byte buffer truncates. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "needed >= (int)sizeof b"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "Three bytes of text and one terminator fit in this buffer.",
+          "hint": "Three bytes of text and one terminator fit in this buffer.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "buffers-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "char b[4]; snprintf(b,sizeof b,\"%s\",\"${word}\"); printf(\"%zu\", ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. Three bytes of text and one terminator fit in this buffer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "strlen(b)"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "memmove supports overlap; this count includes the source terminator after shifting left.",
+          "hint": "memmove supports overlap; this count includes the source terminator after shifting left.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "tail": "word[1:]"
+          },
+          "id": "buffers-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "char b[]=\"${word}\"; ____(b,b+1,strlen(b)); printf(\"%s\",b);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${tail}. memmove supports overlap; this count includes the source terminator after shifting left. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "memmove"
+          ]
+        },
+        {
+          "concept": "Text buffers, capacity, and bounded formatting",
+          "explanation": "String initialization places the zero terminator after the text.",
+          "hint": "String initialization places the zero terminator after the text.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "buffers-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "char b[]=\"${word}\"; printf(\"%d\", b[sizeof b-1] ____ '\\0');",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. String initialization places the zero terminator after the text. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        }
+      ]
+    },
+    {
+      "id": "units",
+      "title": "Headers, linkage, and macros",
+      "section": "Advanced",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Headers declare interfaces shared by translation units. File-scope static gives internal linkage. Parenthesize macro parameters and expressions; macros substitute tokens.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c",
+        "c-standard",
+        "gcc"
+      ],
+      "requires": [
+        "buffers"
       ],
       "questions": [
         {
@@ -2767,16 +4119,482 @@
       ]
     },
     {
-      "id": "errors",
-      "title": "Failure reporting and cleanup",
-      "section": "Intermediate",
-      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. C APIs often report failure with sentinel return values, not exceptions. Check allocation and file results before use. errno is meaningful only when the API documents it on failure.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "id": "storage",
+      "title": "Storage duration and pointer contracts",
+      "section": "Advanced",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. A block-local automatic object ends when its block exits. A static local retains its value across calls. Returning a pointer to a local automatic object does not extend its lifetime; returning a value or using caller-owned storage avoids the dangling pointer. A const pointer and a pointer to const constrain different operations. An array parameter is adjusted to a pointer, so pass its count explicitly instead of reconstructing it with sizeof.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "cs50c",
-        "gnu-c"
+        "c-standard"
       ],
       "requires": [
         "units"
+      ],
+      "questions": [
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "The static local is initialized once and retains the first increment.",
+          "hint": "The static local is initialized once and retains the first increment.",
+          "id": "storage-read-1",
+          "kind": "mcq",
+          "code": "int next(void){static int n=0; return ++n;}\n/* in main */ next(); printf(\"%d\",next());",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "The static local is initialized once and retains the first increment.",
+          "hint": "The static local is initialized once and retains the first increment.",
+          "id": "storage-choose-1",
+          "kind": "mcq",
+          "code": "int next(void){static int n=0; return ____;}\n/* in main */ next(); printf(\"%d\",next());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The static local is initialized once and retains the first increment.",
+          "answer": "++n",
+          "options": [
+            "++n",
+            "n",
+            "n+1"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "The pointer target can change even though p cannot be reseated.",
+          "hint": "The pointer target can change even though p cannot be reseated.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "storage-read-2",
+          "kind": "mcq",
+          "code": "int a=${n},b=${m}; int *const p=&a; *p=b; printf(\"%d\",a);",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "The pointer target can change even though p cannot be reseated.",
+          "hint": "The pointer target can change even though p cannot be reseated.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "storage-choose-2",
+          "kind": "mcq",
+          "code": "int a=${n},b=${m}; int *const p=&a; ____; printf(\"%d\",a);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The pointer target can change even though p cannot be reseated.",
+          "answer": "*p=b",
+          "options": [
+            "*p=b",
+            "p=&b",
+            "*p=0"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "The caller supplies the element count; a is a pointer inside the function.",
+          "hint": "The caller supplies the element count; a is a pointer inside the function.",
+          "id": "storage-read-3",
+          "kind": "mcq",
+          "code": "size_t count(int a[],size_t n){return n;}\n/* in main */ int a[3]={0}; printf(\"%zu\",count(a,3));",
+          "prompt": "What is the result?",
+          "answer": "3",
+          "options": [
+            "3",
+            "1",
+            "Platform-dependent"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "The caller supplies the element count; a is a pointer inside the function.",
+          "hint": "The caller supplies the element count; a is a pointer inside the function.",
+          "id": "storage-choose-3",
+          "kind": "mcq",
+          "code": "size_t count(int a[],size_t n){return ____;}\n/* in main */ int a[3]={0}; printf(\"%zu\",count(a,3));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. The caller supplies the element count; a is a pointer inside the function.",
+          "answer": "n",
+          "options": [
+            "n",
+            "sizeof(a)",
+            "sizeof(a[0])"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "Returning the integer copies its value before the local lifetime ends.",
+          "hint": "Returning the integer copies its value before the local lifetime ends.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-read-4",
+          "kind": "mcq",
+          "code": "int value(void){int local=${n}; return local;}\n/* in main */ printf(\"%d\",value());",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "An address",
+            "Undefined behavior"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "Returning the integer copies its value before the local lifetime ends.",
+          "hint": "Returning the integer copies its value before the local lifetime ends.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-choose-4",
+          "kind": "mcq",
+          "code": "int value(void){int local=${n}; return ____;}\n/* in main */ printf(\"%d\",value());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Returning the integer copies its value before the local lifetime ends.",
+          "answer": "local",
+          "options": [
+            "local",
+            "&local",
+            "0"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "The static local is initialized once and retains the first increment.",
+          "hint": "The static local is initialized once and retains the first increment.",
+          "id": "storage-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int next(void){static int n=0; return ____;}\n/* in main */ next(); printf(\"%d\",next());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The static local is initialized once and retains the first increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "++n"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "The pointer target can change even though p cannot be reseated.",
+          "hint": "The pointer target can change even though p cannot be reseated.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "storage-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int a=${n},b=${m}; int *const p=&a; ____; printf(\"%d\",a);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The pointer target can change even though p cannot be reseated. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "*p=b"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "The caller supplies the element count; a is a pointer inside the function.",
+          "hint": "The caller supplies the element count; a is a pointer inside the function.",
+          "id": "storage-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "size_t count(int a[],size_t n){return ____;}\n/* in main */ int a[3]={0}; printf(\"%zu\",count(a,3));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. The caller supplies the element count; a is a pointer inside the function. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "n"
+          ]
+        },
+        {
+          "concept": "Storage duration and pointer contracts",
+          "explanation": "Returning the integer copies its value before the local lifetime ends.",
+          "hint": "Returning the integer copies its value before the local lifetime ends.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int value(void){int local=${n}; return ____;}\n/* in main */ printf(\"%d\",value());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Returning the integer copies its value before the local lifetime ends. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "local"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "title": "Dynamic memory and ownership",
+      "section": "Advanced",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. malloc gives uninitialized storage; calloc zero-initializes. free ends its lifetime. Keep the original pointer until realloc succeeds, and free exactly once.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c",
+        "c-standard",
+        "gcc"
+      ],
+      "requires": [
+        "storage"
+      ],
+      "questions": [
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "calloc zero-initializes the allocated integer storage.",
+          "hint": "calloc zero-initializes the allocated integer storage.",
+          "id": "memory-read-1",
+          "kind": "mcq",
+          "code": "int *p=calloc(1,sizeof *p); if(p) { printf(\"%d\",*p); free(p); }",
+          "prompt": "Assuming allocation succeeds, what is printed?",
+          "answer": "0",
+          "options": [
+            "0",
+            "Indeterminate",
+            "1"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "calloc zero-initializes the allocated integer storage.",
+          "hint": "calloc zero-initializes the allocated integer storage.",
+          "id": "memory-choose-1",
+          "kind": "mcq",
+          "code": "int *p=____(1,sizeof *p); if(p) { printf(\"%d\",*p); free(p); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. calloc zero-initializes the allocated integer storage.",
+          "answer": "calloc",
+          "options": [
+            "calloc",
+            "malloc",
+            "realloc"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "The pointer no longer refers to a live allocated object after free.",
+          "hint": "The pointer no longer refers to a live allocated object after free.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "memory-read-2",
+          "kind": "mcq",
+          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; free(p); printf(\"%d\",*p); }",
+          "prompt": "Assuming allocation succeeds, what follows from the final access?",
+          "answer": "Undefined behavior",
+          "options": [
+            "Undefined behavior",
+            "Always ${n}",
+            "Always zero"
+          ],
+          "repair_question_id": "memory-write-repair-2"
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "Read the live object before releasing its storage.",
+          "hint": "Read the live object before releasing its storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "memory-choose-repair-2",
+          "kind": "mcq",
+          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; printf(\"%d\",____); free(p); }",
+          "prompt": "Repair the code by filling ____. Read the live object before releasing its storage. Target result: ${n}.",
+          "answer": "*p",
+          "options": [
+            "*p",
+            "p",
+            "&p"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "hint": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "id": "memory-read-3",
+          "kind": "mcq",
+          "code": "int *tmp=realloc(p,new_bytes); if(tmp) p=tmp;",
+          "prompt": "Assume p is a live allocation: why use tmp?",
+          "answer": "Preserves the old allocation if resizing fails",
+          "options": [
+            "Preserves the old allocation if resizing fails",
+            "Always frees p on failure",
+            "Always keeps the same address"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "hint": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "id": "memory-choose-3",
+          "kind": "mcq",
+          "code": "int *tmp=____(p,new_bytes); if(tmp) p=tmp;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Preserves the old allocation if resizing fails. Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "answer": "realloc",
+          "options": [
+            "realloc",
+            "malloc",
+            "calloc"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "free accepts a null pointer and does nothing.",
+          "hint": "free accepts a null pointer and does nothing.",
+          "id": "memory-read-4",
+          "kind": "mcq",
+          "code": "int *p=NULL; free(p);",
+          "prompt": "What happens?",
+          "answer": "No effect",
+          "options": [
+            "No effect",
+            "Undefined behavior",
+            "Allocates memory"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "free accepts a null pointer and does nothing.",
+          "hint": "free accepts a null pointer and does nothing.",
+          "id": "memory-choose-4",
+          "kind": "mcq",
+          "code": "int *p=NULL; ____(p);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: No effect. free accepts a null pointer and does nothing.",
+          "answer": "free",
+          "options": [
+            "free",
+            "malloc",
+            "realloc"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "calloc zero-initializes the allocated integer storage.",
+          "hint": "calloc zero-initializes the allocated integer storage.",
+          "id": "memory-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *p=____(1,sizeof *p); if(p) { printf(\"%d\",*p); free(p); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. calloc zero-initializes the allocated integer storage. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "calloc"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "Read the live object before releasing its storage.",
+          "hint": "Read the live object before releasing its storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "memory-write-repair-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; printf(\"%d\",____); free(p); }",
+          "prompt": "Repair the code by filling ____. Read the live object before releasing its storage. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "*p"
+          ],
+          "target_answer": "${n}"
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "hint": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
+          "id": "memory-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *tmp=____(p,new_bytes); if(tmp) p=tmp;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Preserves the old allocation if resizing fails. Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "realloc"
+          ]
+        },
+        {
+          "concept": "Dynamic memory and ownership",
+          "explanation": "free accepts a null pointer and does nothing.",
+          "hint": "free accepts a null pointer and does nothing.",
+          "id": "memory-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int *p=NULL; ____(p);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: No effect. free accepts a null pointer and does nothing. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "errors",
+      "title": "Failure reporting and cleanup",
+      "section": "Advanced",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. C APIs often report failure with sentinel return values, not exceptions. Check allocation and file results before use. errno is meaningful only when the API documents it on failure.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cs50c",
+        "gnu-c",
+        "c-standard",
+        "gcc"
+      ],
+      "requires": [
+        "memory"
       ],
       "questions": [
         {
@@ -2978,480 +4796,111 @@
       ]
     },
     {
-      "id": "pointers",
-      "title": "Pointers, const, and lifetime",
+      "id": "bits",
+      "title": "Unsigned masks and byte-level inspection",
       "section": "Advanced",
-      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. & takes an address; * dereferences. A pointer is usable only while its target is alive. const on the pointed-to type prevents writes through that pointer.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Masks express flags in unsigned integers. Bitwise & tests selected bits, | sets them, and ^ toggles them; logical operators instead produce truth values and can short-circuit. Keep shift counts within the type width and use unsigned operands. An object representation may be inspected through unsigned char; its byte order is platform-dependent. These are representation-reading exercises, not algorithms or hardware-specific register programming.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "cs50c",
-        "gnu-c"
+        "c-standard"
       ],
       "requires": [
         "errors"
       ],
       "questions": [
         {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "p points to x, so dereferencing p updates x.",
-          "hint": "p points to x, so dereferencing p updates x.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "pointers-read-1",
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "Binary 101 AND 001 keeps only the low bit.",
+          "hint": "Binary 101 AND 001 keeps only the low bit.",
+          "id": "bits-read-1",
           "kind": "mcq",
-          "code": "int x=${n}; int *p=&x; *p=${m}; printf(\"%d\",x);",
-          "prompt": "What is the result?",
-          "answer": "${m}",
-          "options": [
-            "${m}",
-            "${n}",
-            "0"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "p points to x, so dereferencing p updates x.",
-          "hint": "p points to x, so dereferencing p updates x.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "pointers-choose-1",
-          "kind": "mcq",
-          "code": "int x=${n}; int *p=____; *p=${m}; printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. p points to x, so dereferencing p updates x.",
-          "answer": "&x",
-          "options": [
-            "&x",
-            "NULL",
-            "0"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "Pointer arithmetic advances by one int element.",
-          "hint": "Pointer arithmetic advances by one int element.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "pointers-read-2",
-          "kind": "mcq",
-          "code": "int a[]={${n},${m}}; int *p=a; printf(\"%d\",*(p+1));",
-          "prompt": "What is the result?",
-          "answer": "${m}",
-          "options": [
-            "${m}",
-            "${n}",
-            "An address"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "Pointer arithmetic advances by one int element.",
-          "hint": "Pointer arithmetic advances by one int element.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "pointers-choose-2",
-          "kind": "mcq",
-          "code": "int a[]={${n},${m}}; int *p=a; printf(\"%d\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Pointer arithmetic advances by one int element.",
-          "answer": "*(p+1)",
-          "options": [
-            "*(p+1)",
-            "*p",
-            "a[0]"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "The pointed-to type is const; the pointer itself is not const.",
-          "hint": "The pointed-to type is const; the pointer itself is not const.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "pointers-read-3",
-          "kind": "mcq",
-          "code": "int x=${n}; const int *p=&x;",
-          "prompt": "Which restriction follows from this declaration?",
-          "answer": "Cannot assign through *p",
-          "options": [
-            "Cannot assign through *p",
-            "Cannot reassign p",
-            "x becomes globally immutable"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "The pointed-to type is const; the pointer itself is not const.",
-          "hint": "The pointed-to type is const; the pointer itself is not const.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "pointers-choose-3",
-          "kind": "mcq",
-          "code": "int x=${n}; ____p=&x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Cannot assign through *p. The pointed-to type is const; the pointer itself is not const.",
-          "answer": "const int *",
-          "options": [
-            "const int *",
-            "int *const ",
-            "int *"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "The automatic local lifetime ends when the function returns.",
-          "hint": "The automatic local lifetime ends when the function returns.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "pointers-read-4",
-          "kind": "mcq",
-          "code": "int *bad(void) { int x=${n}; return &x; }",
-          "prompt": "Why is dereferencing the returned non-null pointer invalid?",
-          "answer": "Returns a pointer to an expired local object",
-          "options": [
-            "Returns a pointer to an expired local object",
-            "Returns owned heap storage",
-            "Returns an integer copy"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "The automatic local lifetime ends when the function returns.",
-          "hint": "The automatic local lifetime ends when the function returns.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "pointers-choose-4",
-          "kind": "mcq",
-          "code": "int *bad(void) { int x=${n}; return ____; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Returns a pointer to an expired local object. The automatic local lifetime ends when the function returns.",
-          "answer": "&x",
-          "options": [
-            "&x",
-            "NULL",
-            "0"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "p points to x, so dereferencing p updates x.",
-          "hint": "p points to x, so dereferencing p updates x.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "pointers-write-1",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int x=${n}; int *p=____; *p=${m}; printf(\"%d\",x);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. p points to x, so dereferencing p updates x. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "&x"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "Pointer arithmetic advances by one int element.",
-          "hint": "Pointer arithmetic advances by one int element.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "pointers-write-2",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int a[]={${n},${m}}; int *p=a; printf(\"%d\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Pointer arithmetic advances by one int element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "*(p+1)"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "The pointed-to type is const; the pointer itself is not const.",
-          "hint": "The pointed-to type is const; the pointer itself is not const.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "pointers-write-3",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int x=${n}; ____p=&x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Cannot assign through *p. The pointed-to type is const; the pointer itself is not const. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "const int *"
-          ]
-        },
-        {
-          "concept": "Pointers, const, and lifetime",
-          "explanation": "The automatic local lifetime ends when the function returns.",
-          "hint": "The automatic local lifetime ends when the function returns.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "pointers-write-4",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int *bad(void) { int x=${n}; return ____; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Returns a pointer to an expired local object. The automatic local lifetime ends when the function returns. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "&x"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "records",
-      "title": "Structures, enums, and typedef",
-      "section": "Advanced",
-      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Structures group named fields. . accesses a value and -> accesses through a pointer. typedef introduces an alias; enums define named integer constants.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
-      "sources": [
-        "cs50c",
-        "gnu-c"
-      ],
-      "requires": [
-        "pointers"
-      ],
-      "questions": [
-        {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "Dot selects a field from the structure value.",
-          "hint": "Dot selects a field from the structure value.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "records-read-1",
-          "kind": "mcq",
-          "code": "struct Box { int size; }; struct Box b={${n}}; printf(\"%d\",b.size);",
-          "prompt": "What is the result?",
-          "answer": "${n}",
-          "options": [
-            "${n}",
-            "0",
-            "An address"
-          ]
-        },
-        {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "Dot selects a field from the structure value.",
-          "hint": "Dot selects a field from the structure value.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "records-choose-1",
-          "kind": "mcq",
-          "code": "struct Box { int size; }; struct Box b={${n}}; printf(\"%d\",b____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Dot selects a field from the structure value.",
-          "answer": ".size",
-          "options": [
-            ".size",
-            "->size",
-            ".other"
-          ]
-        },
-        {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "Arrow selects a field through a structure pointer.",
-          "hint": "Arrow selects a field through a structure pointer.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "records-read-2",
-          "kind": "mcq",
-          "code": "struct Box { int size; }; struct Box b={${n}}; struct Box *p=&b; printf(\"%d\",p->size);",
-          "prompt": "What is the result?",
-          "answer": "${n}",
-          "options": [
-            "${n}",
-            "0",
-            "An address"
-          ]
-        },
-        {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "Arrow selects a field through a structure pointer.",
-          "hint": "Arrow selects a field through a structure pointer.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "records-choose-2",
-          "kind": "mcq",
-          "code": "struct Box { int size; }; struct Box b={${n}}; struct Box *p=&b; printf(\"%d\",p____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Arrow selects a field through a structure pointer.",
-          "answer": "->size",
-          "options": [
-            "->size",
-            ".size",
-            "->other"
-          ]
-        },
-        {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "Implicit enum values start at zero and increment.",
-          "hint": "Implicit enum values start at zero and increment.",
-          "id": "records-read-3",
-          "kind": "mcq",
-          "code": "enum State { OFF, ON }; printf(\"%d\",ON);",
+          "code": "unsigned flags=5u; printf(\"%u\", flags & 1u);",
           "prompt": "What is the result?",
           "answer": "1",
           "options": [
             "1",
-            "0",
-            "2"
+            "5",
+            "4"
           ]
         },
         {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "Implicit enum values start at zero and increment.",
-          "hint": "Implicit enum values start at zero and increment.",
-          "id": "records-choose-3",
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "Binary 101 AND 001 keeps only the low bit.",
+          "hint": "Binary 101 AND 001 keeps only the low bit.",
+          "id": "bits-choose-1",
           "kind": "mcq",
-          "code": "enum State { OFF, ON }; printf(\"%d\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Implicit enum values start at zero and increment.",
-          "answer": "ON",
+          "code": "unsigned flags=5u; printf(\"%u\", flags ____ 1u);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Binary 101 AND 001 keeps only the low bit.",
+          "answer": "&",
           "options": [
-            "ON",
-            "OFF",
-            "0"
+            "&",
+            "^",
+            "+"
           ]
         },
         {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "typedef gives this structure type the alias Box.",
-          "hint": "typedef gives this structure type the alias Box.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "records-read-4",
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "XOR toggles the selected low bit off.",
+          "hint": "XOR toggles the selected low bit off.",
+          "id": "bits-read-2",
           "kind": "mcq",
-          "code": "typedef struct { int size; } Box; Box b={${n}}; printf(\"%d\",b.size);",
+          "code": "unsigned flags=5u; printf(\"%u\", flags ^ 1u);",
           "prompt": "What is the result?",
-          "answer": "${n}",
+          "answer": "4",
           "options": [
-            "${n}",
+            "4",
+            "1",
+            "6"
+          ]
+        },
+        {
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "XOR toggles the selected low bit off.",
+          "hint": "XOR toggles the selected low bit off.",
+          "id": "bits-choose-2",
+          "kind": "mcq",
+          "code": "unsigned flags=5u; printf(\"%u\", flags ____ 1u);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 4. XOR toggles the selected low bit off.",
+          "answer": "^",
+          "options": [
+            "^",
+            "&",
+            "+"
+          ]
+        },
+        {
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "Shifting unsigned one by three produces eight; this count fits every unsigned int.",
+          "hint": "Shifting unsigned one by three produces eight; this count fits every unsigned int.",
+          "id": "bits-read-3",
+          "kind": "mcq",
+          "code": "printf(\"%u\", 1u << 3);",
+          "prompt": "What is the result?",
+          "answer": "8",
+          "options": [
+            "8",
             "0",
-            "Compile error"
+            "3"
           ]
         },
         {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "typedef gives this structure type the alias Box.",
-          "hint": "typedef gives this structure type the alias Box.",
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "Shifting unsigned one by three produces eight; this count fits every unsigned int.",
+          "hint": "Shifting unsigned one by three produces eight; this count fits every unsigned int.",
+          "id": "bits-choose-3",
+          "kind": "mcq",
+          "code": "printf(\"%u\", 1u ____ 3);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 8. Shifting unsigned one by three produces eight; this count fits every unsigned int.",
+          "answer": "<<",
+          "options": [
+            "<<",
+            ">>",
+            "+"
+          ]
+        },
+        {
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "Character-type access can inspect representations, but size and byte order remain platform-dependent.",
+          "hint": "Character-type access can inspect representations, but size and byte order remain platform-dependent.",
           "parameters": {
             "n": {
               "type": "int",
@@ -3460,21 +4909,21 @@
             }
           },
           "derived": {},
-          "id": "records-choose-4",
+          "id": "bits-read-4",
           "kind": "mcq",
-          "code": "____ struct { int size; } Box; Box b={${n}}; printf(\"%d\",b.size);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. typedef gives this structure type the alias Box.",
-          "answer": "typedef",
+          "code": "int value=${n}; const unsigned char *bytes=(const unsigned char *)&value;",
+          "prompt": "What is this pointer suitable for?",
+          "answer": "May inspect the object representation byte by byte",
           "options": [
-            "typedef",
-            "static",
-            "extern"
+            "May inspect the object representation byte by byte",
+            "Guarantees little-endian order",
+            "Always exposes four bytes"
           ]
         },
         {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "Dot selects a field from the structure value.",
-          "hint": "Dot selects a field from the structure value.",
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "Character-type access can inspect representations, but size and byte order remain platform-dependent.",
+          "hint": "Character-type access can inspect representations, but size and byte order remain platform-dependent.",
           "parameters": {
             "n": {
               "type": "int",
@@ -3483,19 +4932,60 @@
             }
           },
           "derived": {},
-          "id": "records-write-1",
-          "kind": "write",
-          "checker": "exact",
-          "code": "struct Box { int size; }; struct Box b={${n}}; printf(\"%d\",b____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Dot selects a field from the structure value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            ".size"
+          "id": "bits-choose-4",
+          "kind": "mcq",
+          "code": "int value=${n}; const ____ *bytes=(const unsigned char *)&value;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: May inspect the object representation byte by byte. Character-type access can inspect representations, but size and byte order remain platform-dependent.",
+          "answer": "unsigned char",
+          "options": [
+            "unsigned char",
+            "double",
+            "long"
           ]
         },
         {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "Arrow selects a field through a structure pointer.",
-          "hint": "Arrow selects a field through a structure pointer.",
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "Binary 101 AND 001 keeps only the low bit.",
+          "hint": "Binary 101 AND 001 keeps only the low bit.",
+          "id": "bits-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "unsigned flags=5u; printf(\"%u\", flags ____ 1u);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Binary 101 AND 001 keeps only the low bit. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&"
+          ]
+        },
+        {
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "XOR toggles the selected low bit off.",
+          "hint": "XOR toggles the selected low bit off.",
+          "id": "bits-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "unsigned flags=5u; printf(\"%u\", flags ____ 1u);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 4. XOR toggles the selected low bit off. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "^"
+          ]
+        },
+        {
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "Shifting unsigned one by three produces eight; this count fits every unsigned int.",
+          "hint": "Shifting unsigned one by three produces eight; this count fits every unsigned int.",
+          "id": "bits-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "printf(\"%u\", 1u ____ 3);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 8. Shifting unsigned one by three produces eight; this count fits every unsigned int. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "<<"
+          ]
+        },
+        {
+          "concept": "Unsigned masks and byte-level inspection",
+          "explanation": "Character-type access can inspect representations, but size and byte order remain platform-dependent.",
+          "hint": "Character-type access can inspect representations, but size and byte order remain platform-dependent.",
           "parameters": {
             "n": {
               "type": "int",
@@ -3504,258 +4994,13 @@
             }
           },
           "derived": {},
-          "id": "records-write-2",
+          "id": "bits-write-4",
           "kind": "write",
           "checker": "exact",
-          "code": "struct Box { int size; }; struct Box b={${n}}; struct Box *p=&b; printf(\"%d\",p____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Arrow selects a field through a structure pointer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "int value=${n}; const ____ *bytes=(const unsigned char *)&value;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: May inspect the object representation byte by byte. Character-type access can inspect representations, but size and byte order remain platform-dependent. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "->size"
-          ]
-        },
-        {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "Implicit enum values start at zero and increment.",
-          "hint": "Implicit enum values start at zero and increment.",
-          "id": "records-write-3",
-          "kind": "write",
-          "checker": "exact",
-          "code": "enum State { OFF, ON }; printf(\"%d\",____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Implicit enum values start at zero and increment. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "ON"
-          ]
-        },
-        {
-          "concept": "Structures, enums, and typedef",
-          "explanation": "typedef gives this structure type the alias Box.",
-          "hint": "typedef gives this structure type the alias Box.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "records-write-4",
-          "kind": "write",
-          "checker": "exact",
-          "code": "____ struct { int size; } Box; Box b={${n}}; printf(\"%d\",b.size);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. typedef gives this structure type the alias Box. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "typedef"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "memory",
-      "title": "Dynamic memory and ownership",
-      "section": "Advanced",
-      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. malloc gives uninitialized storage; calloc zero-initializes. free ends its lifetime. Keep the original pointer until realloc succeeds, and free exactly once.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
-      "sources": [
-        "cs50c",
-        "gnu-c"
-      ],
-      "requires": [
-        "records"
-      ],
-      "questions": [
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "calloc zero-initializes the allocated integer storage.",
-          "hint": "calloc zero-initializes the allocated integer storage.",
-          "id": "memory-read-1",
-          "kind": "mcq",
-          "code": "int *p=calloc(1,sizeof *p); if(p) { printf(\"%d\",*p); free(p); }",
-          "prompt": "Assuming allocation succeeds, what is printed?",
-          "answer": "0",
-          "options": [
-            "0",
-            "Indeterminate",
-            "1"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "calloc zero-initializes the allocated integer storage.",
-          "hint": "calloc zero-initializes the allocated integer storage.",
-          "id": "memory-choose-1",
-          "kind": "mcq",
-          "code": "int *p=____(1,sizeof *p); if(p) { printf(\"%d\",*p); free(p); }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. calloc zero-initializes the allocated integer storage.",
-          "answer": "calloc",
-          "options": [
-            "calloc",
-            "malloc",
-            "realloc"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "The pointer no longer refers to a live allocated object after free.",
-          "hint": "The pointer no longer refers to a live allocated object after free.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "memory-read-2",
-          "kind": "mcq",
-          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; free(p); printf(\"%d\",*p); }",
-          "prompt": "Assuming allocation succeeds, what follows from the final access?",
-          "answer": "Undefined behavior",
-          "options": [
-            "Undefined behavior",
-            "Always ${n}",
-            "Always zero"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "The pointer no longer refers to a live allocated object after free.",
-          "hint": "The pointer no longer refers to a live allocated object after free.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "memory-choose-2",
-          "kind": "mcq",
-          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; free(p); printf(\"%d\",____); }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Undefined behavior. The pointer no longer refers to a live allocated object after free.",
-          "answer": "*p",
-          "options": [
-            "*p",
-            "${n}",
-            "0"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
-          "hint": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
-          "id": "memory-read-3",
-          "kind": "mcq",
-          "code": "int *tmp=realloc(p,new_bytes); if(tmp) p=tmp;",
-          "prompt": "Assume p is a live allocation: why use tmp?",
-          "answer": "Preserves the old allocation if resizing fails",
-          "options": [
-            "Preserves the old allocation if resizing fails",
-            "Always frees p on failure",
-            "Always keeps the same address"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
-          "hint": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
-          "id": "memory-choose-3",
-          "kind": "mcq",
-          "code": "int *tmp=____(p,new_bytes); if(tmp) p=tmp;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Preserves the old allocation if resizing fails. Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
-          "answer": "realloc",
-          "options": [
-            "realloc",
-            "malloc",
-            "calloc"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "free accepts a null pointer and does nothing.",
-          "hint": "free accepts a null pointer and does nothing.",
-          "id": "memory-read-4",
-          "kind": "mcq",
-          "code": "int *p=NULL; free(p);",
-          "prompt": "What happens?",
-          "answer": "No effect",
-          "options": [
-            "No effect",
-            "Undefined behavior",
-            "Allocates memory"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "free accepts a null pointer and does nothing.",
-          "hint": "free accepts a null pointer and does nothing.",
-          "id": "memory-choose-4",
-          "kind": "mcq",
-          "code": "int *p=NULL; ____(p);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: No effect. free accepts a null pointer and does nothing.",
-          "answer": "free",
-          "options": [
-            "free",
-            "malloc",
-            "realloc"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "calloc zero-initializes the allocated integer storage.",
-          "hint": "calloc zero-initializes the allocated integer storage.",
-          "id": "memory-write-1",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int *p=____(1,sizeof *p); if(p) { printf(\"%d\",*p); free(p); }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. calloc zero-initializes the allocated integer storage. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "calloc"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "The pointer no longer refers to a live allocated object after free.",
-          "hint": "The pointer no longer refers to a live allocated object after free.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "memory-write-2",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int *p=malloc(sizeof *p); if(p) { *p=${n}; free(p); printf(\"%d\",____); }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Undefined behavior. The pointer no longer refers to a live allocated object after free. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "*p"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
-          "hint": "Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero.",
-          "id": "memory-write-3",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int *tmp=____(p,new_bytes); if(tmp) p=tmp;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Preserves the old allocation if resizing fails. Using a temporary avoids losing p when realloc returns NULL; assume new_bytes is nonzero. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "realloc"
-          ]
-        },
-        {
-          "concept": "Dynamic memory and ownership",
-          "explanation": "free accepts a null pointer and does nothing.",
-          "hint": "free accepts a null pointer and does nothing.",
-          "id": "memory-write-4",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int *p=NULL; ____(p);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: No effect. free accepts a null pointer and does nothing. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "free"
+            "unsigned char"
           ]
         }
       ]
@@ -3767,10 +5012,12 @@
       "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. Function pointers describe callable signatures. unsigned arithmetic wraps modulo the type range. volatile does not provide thread synchronization.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50c",
-        "gnu-c"
+        "gnu-c",
+        "c-standard",
+        "gcc"
       ],
       "requires": [
-        "memory"
+        "bits"
       ],
       "questions": [
         {
@@ -4012,6 +5259,294 @@
           "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Reassigning a pointer changes its target, not either integer value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
             "&b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cli",
+      "title": "Reading a C command-line boundary",
+      "section": "Advanced",
+      "intro": "C17; standard headers such as stdio.h, stdlib.h, string.h, and limits.h are assumed where used. main receives argc and argv; argv[0] usually names the executable, and argv[argc] is a null pointer. Check counts before indexing. strtol exposes where parsing stopped; also check range and errno when accepting arbitrary input. Keep diagnostics on stderr and return a failure status when the operation fails. Assertions describe programmer invariants and may be compiled out with NDEBUG; do not use them as the only check on user input.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "c-standard"
+      ],
+      "requires": [
+        "callbacks"
+      ],
+      "questions": [
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "With this invocation the first user argument is argv[1].",
+          "hint": "With this invocation the first user argument is argv[1].",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-read-1",
+          "kind": "mcq",
+          "code": "/* Inside main(int argc,char **argv); invocation: app ${word} */\nprintf(\"%s\",argv[1]);",
+          "prompt": "Given the stated invocation, what is printed?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "app",
+            "Undefined behavior"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "With this invocation the first user argument is argv[1].",
+          "hint": "With this invocation the first user argument is argv[1].",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-choose-1",
+          "kind": "mcq",
+          "code": "/* Inside main(int argc,char **argv); invocation: app ${word} */\nprintf(\"%s\",argv[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. With this invocation the first user argument is argv[1].",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "argc"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "strtol stops at x, allowing the caller to reject a trailing suffix.",
+          "hint": "strtol stops at x, allowing the caller to reject a trailing suffix.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "cli-read-2",
+          "kind": "mcq",
+          "code": "char *end; long n=strtol(\"${n}x\",&end,10); printf(\"%c\",*end);",
+          "prompt": "What is the result?",
+          "answer": "x",
+          "options": [
+            "x",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "strtol stops at x, allowing the caller to reject a trailing suffix.",
+          "hint": "strtol stops at x, allowing the caller to reject a trailing suffix.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "cli-choose-2",
+          "kind": "mcq",
+          "code": "char *end; long n=strtol(\"${n}x\",&end,10); printf(\"%c\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: x. strtol stops at x, allowing the caller to reject a trailing suffix.",
+          "answer": "*end",
+          "options": [
+            "*end",
+            "'0'",
+            "'y'"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "The explicit stream keeps diagnostics separate from normal output.",
+          "hint": "The explicit stream keeps diagnostics separate from normal output.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-read-3",
+          "kind": "mcq",
+          "code": "fprintf(stderr,\"invalid ${word}\\n\");",
+          "prompt": "Where is the message sent?",
+          "answer": "Writes a diagnostic to stderr",
+          "options": [
+            "Writes a diagnostic to stderr",
+            "Writes to stdout",
+            "Sets an exit status"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "The explicit stream keeps diagnostics separate from normal output.",
+          "hint": "The explicit stream keeps diagnostics separate from normal output.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-choose-3",
+          "kind": "mcq",
+          "code": "____(stderr,\"invalid ${word}\\n\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes a diagnostic to stderr. The explicit stream keeps diagnostics separate from normal output.",
+          "answer": "fprintf",
+          "options": [
+            "fprintf",
+            "printf",
+            "sprintf"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "EXIT_FAILURE is the portable failure status macro.",
+          "hint": "EXIT_FAILURE is the portable failure status macro.",
+          "id": "cli-read-4",
+          "kind": "mcq",
+          "code": "/* At the end of main after an input error */\nreturn EXIT_FAILURE;",
+          "prompt": "What does this return communicate?",
+          "answer": "Reports an unsuccessful process exit",
+          "options": [
+            "Reports an unsuccessful process exit",
+            "Always exits successfully",
+            "Automatically retries"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "EXIT_FAILURE is the portable failure status macro.",
+          "hint": "EXIT_FAILURE is the portable failure status macro.",
+          "id": "cli-choose-4",
+          "kind": "mcq",
+          "code": "/* At the end of main after an input error */\nreturn ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Reports an unsuccessful process exit. EXIT_FAILURE is the portable failure status macro.",
+          "answer": "EXIT_FAILURE",
+          "options": [
+            "EXIT_FAILURE",
+            "EXIT_SUCCESS",
+            "0"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "With this invocation the first user argument is argv[1].",
+          "hint": "With this invocation the first user argument is argv[1].",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "/* Inside main(int argc,char **argv); invocation: app ${word} */\nprintf(\"%s\",argv[____]);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. With this invocation the first user argument is argv[1]. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "strtol stops at x, allowing the caller to reject a trailing suffix.",
+          "hint": "strtol stops at x, allowing the caller to reject a trailing suffix.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "cli-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "char *end; long n=strtol(\"${n}x\",&end,10); printf(\"%c\",____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: x. strtol stops at x, allowing the caller to reject a trailing suffix. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "*end"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "The explicit stream keeps diagnostics separate from normal output.",
+          "hint": "The explicit stream keeps diagnostics separate from normal output.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____(stderr,\"invalid ${word}\\n\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes a diagnostic to stderr. The explicit stream keeps diagnostics separate from normal output. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "fprintf"
+          ]
+        },
+        {
+          "concept": "Reading a C command-line boundary",
+          "explanation": "EXIT_FAILURE is the portable failure status macro.",
+          "hint": "EXIT_FAILURE is the portable failure status macro.",
+          "id": "cli-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "/* At the end of main after an input error */\nreturn ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Reports an unsuccessful process exit. EXIT_FAILURE is the portable failure status macro. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "EXIT_FAILURE"
           ]
         }
       ]

@@ -3,7 +3,7 @@
   "id": "web",
   "title": "Vanilla HTML + CSS + JavaScript",
   "language": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions",
-  "version": "1.0",
+  "version": "1.1",
   "sources": [
     {
       "id": "mdn",
@@ -16,6 +16,24 @@
       "title": "MDN JavaScript Guide",
       "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
       "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "mdn-forms",
+      "title": "MDN: sending form data",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "mdn-events",
+      "title": "MDN: JavaScript execution model",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "mdn-grid",
+      "title": "MDN: CSS Grid layout",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
     }
   ],
   "lessons": [
@@ -26,7 +44,10 @@
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. HTML marks up content and meaning. Tags form elements; attributes configure them. A document has metadata in head and visible content in body. These are vanilla browser examples.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [],
       "questions": [
@@ -361,16 +382,244 @@
       ]
     },
     {
+      "id": "semantics",
+      "title": "Semantic HTML and keyboard interaction",
+      "section": "Basics",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. HTML elements carry behavior and accessibility semantics, not just appearance. Use buttons for actions and anchors with href for navigation. A native button supports keyboard activation; adding a click listener to a div does not provide the same behavior. Associate labels with controls and provide useful image alternatives according to purpose. Accessible names describe the action or destination. These foundations belong before styling or event-handler code.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn"
+      ],
+      "requires": [
+        "html"
+      ],
+      "questions": [
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "button provides built-in focus and keyboard activation behavior.",
+          "hint": "button provides built-in focus and keyboard activation behavior.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "semantics-read-1",
+          "kind": "mcq",
+          "code": "<button type=\"button\">Save ${word}</button>",
+          "prompt": "What does this element provide?",
+          "answer": "A native keyboard-operable action control",
+          "options": [
+            "A native keyboard-operable action control",
+            "A navigation link",
+            "A noninteractive text container"
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "button provides built-in focus and keyboard activation behavior.",
+          "hint": "button provides built-in focus and keyboard activation behavior.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "semantics-choose-1",
+          "kind": "mcq",
+          "code": "<____ type=\"button\">Save ${word}</button>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A native keyboard-operable action control. button provides built-in focus and keyboard activation behavior.",
+          "answer": "button",
+          "options": [
+            "button",
+            "div",
+            "span"
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "for matches the input id, which associates their semantics.",
+          "hint": "for matches the input id, which associates their semantics.",
+          "id": "semantics-read-2",
+          "kind": "mcq",
+          "code": "<label for=\"name\">Project name</label><input id=\"name\" name=\"project\">",
+          "prompt": "What does the label attribute accomplish?",
+          "answer": "Associates the visible label with the input",
+          "options": [
+            "Associates the visible label with the input",
+            "Makes the field required",
+            "Sets its submitted value"
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "for matches the input id, which associates their semantics.",
+          "hint": "for matches the input id, which associates their semantics.",
+          "id": "semantics-choose-2",
+          "kind": "mcq",
+          "code": "<label ____>Project name</label><input id=\"name\" name=\"project\">",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Associates the visible label with the input. for matches the input id, which associates their semantics.",
+          "answer": "for=\"name\"",
+          "options": [
+            "for=\"name\"",
+            "name=\"name\"",
+            "href=\"#name\""
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "An empty alt is appropriate for a purely decorative image.",
+          "hint": "An empty alt is appropriate for a purely decorative image.",
+          "id": "semantics-read-3",
+          "kind": "mcq",
+          "code": "<img src=\"divider.png\" alt=\"\">",
+          "prompt": "Assume this image is purely decorative: why use this attribute?",
+          "answer": "Marks this decorative image as having no textual content",
+          "options": [
+            "Marks this decorative image as having no textual content",
+            "Describes every image as a divider",
+            "Makes the image invisible visually"
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "An empty alt is appropriate for a purely decorative image.",
+          "hint": "An empty alt is appropriate for a purely decorative image.",
+          "id": "semantics-choose-3",
+          "kind": "mcq",
+          "code": "<img src=\"divider.png\" ____>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Marks this decorative image as having no textual content. An empty alt is appropriate for a purely decorative image.",
+          "answer": "alt=\"\"",
+          "options": [
+            "alt=\"\"",
+            "title=\"\"",
+            "alt=\"image\""
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "href supplies link navigation behavior and a destination.",
+          "hint": "href supplies link navigation behavior and a destination.",
+          "id": "semantics-read-4",
+          "kind": "mcq",
+          "code": "<a href=\"/help\">Help</a>",
+          "prompt": "What behavior does href provide?",
+          "answer": "A native navigation link to /help",
+          "options": [
+            "A native navigation link to /help",
+            "A form submit button",
+            "An element that only looks like a link"
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "href supplies link navigation behavior and a destination.",
+          "hint": "href supplies link navigation behavior and a destination.",
+          "id": "semantics-choose-4",
+          "kind": "mcq",
+          "code": "<a ____>Help</a>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A native navigation link to /help. href supplies link navigation behavior and a destination.",
+          "answer": "href=\"/help\"",
+          "options": [
+            "href=\"/help\"",
+            "role=\"button\"",
+            "data-href=\"/help\""
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "button provides built-in focus and keyboard activation behavior.",
+          "hint": "button provides built-in focus and keyboard activation behavior.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "semantics-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<____ type=\"button\">Save ${word}</button>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A native keyboard-operable action control. button provides built-in focus and keyboard activation behavior. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "button"
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "for matches the input id, which associates their semantics.",
+          "hint": "for matches the input id, which associates their semantics.",
+          "id": "semantics-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<label ____>Project name</label><input id=\"name\" name=\"project\">",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Associates the visible label with the input. for matches the input id, which associates their semantics. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "for=\"name\""
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "An empty alt is appropriate for a purely decorative image.",
+          "hint": "An empty alt is appropriate for a purely decorative image.",
+          "id": "semantics-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<img src=\"divider.png\" ____>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Marks this decorative image as having no textual content. An empty alt is appropriate for a purely decorative image. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "alt=\"\""
+          ]
+        },
+        {
+          "concept": "Semantic HTML and keyboard interaction",
+          "explanation": "href supplies link navigation behavior and a destination.",
+          "hint": "href supplies link navigation behavior and a destination.",
+          "id": "semantics-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<a ____>Help</a>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A native navigation link to /help. href supplies link navigation behavior and a destination. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "href=\"/help\""
+          ]
+        }
+      ]
+    },
+    {
       "id": "forms",
       "title": "Forms and accessible controls",
       "section": "Basics",
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Labels connect to controls by id. name supplies the submitted field name. button type matters inside forms; required enables browser constraint validation.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
-        "html"
+        "semantics"
       ],
       "questions": [
         {
@@ -593,7 +842,10 @@
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. CSS selectors choose elements. For competing declarations of the same origin, importance, and layer, specificity precedes source order. Class selectors use a dot and ID selectors use #.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
         "forms"
@@ -936,7 +1188,10 @@
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. content-box widths exclude padding and borders; border-box widths include them. Flexbox lays out children along a main axis. gap adds spacing between items.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
         "css"
@@ -1203,16 +1458,205 @@
       ]
     },
     {
+      "id": "grid",
+      "title": "CSS sizing, Grid, and responsive constraints",
+      "section": "Basics",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. CSS layout depends on the containing block, available space, and the selected layout model. Grid defines rows and columns; fr shares available space and minmax can express flexible bounds. border-box includes padding and borders inside a declared width. max-width can cap a fluid element without forcing it to overflow small screens. Read units and sizing constraints before assuming a pixel value is the final painted width.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn-grid"
+      ],
+      "requires": [
+        "layout"
+      ],
+      "questions": [
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "fr divides available track space after fixed costs, subject to intrinsic minimums.",
+          "hint": "fr divides available track space after fixed costs, subject to intrinsic minimums.",
+          "id": "grid-read-1",
+          "kind": "mcq",
+          "code": ".panel { display: grid; grid-template-columns: 1fr 2fr; }",
+          "prompt": "Assume intrinsic minimums do not constrain the tracks: what layout is requested?",
+          "answer": "Two columns sharing available space in a 1:2 ratio",
+          "options": [
+            "Two columns sharing available space in a 1:2 ratio",
+            "Two equal columns",
+            "Exactly 1px and 2px"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "fr divides available track space after fixed costs, subject to intrinsic minimums.",
+          "hint": "fr divides available track space after fixed costs, subject to intrinsic minimums.",
+          "id": "grid-choose-1",
+          "kind": "mcq",
+          "code": ".panel { display: grid; grid-template-columns: ____; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Two columns sharing available space in a 1:2 ratio. fr divides available track space after fixed costs, subject to intrinsic minimums.",
+          "answer": "1fr 2fr",
+          "options": [
+            "1fr 2fr",
+            "1fr 1fr",
+            "1px 2px"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "border-box includes both padding and border in the declared width.",
+          "hint": "border-box includes both padding and border in the declared width.",
+          "id": "grid-read-2",
+          "kind": "mcq",
+          "code": ".panel { width: 200px; padding: 10px; border: 2px solid; box-sizing: border-box; }",
+          "prompt": "Assume the parent uses content-box: what is the border-box width?",
+          "answer": "200px",
+          "options": [
+            "200px",
+            "224px",
+            "220px"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "border-box includes both padding and border in the declared width.",
+          "hint": "border-box includes both padding and border in the declared width.",
+          "id": "grid-choose-2",
+          "kind": "mcq",
+          "code": ".panel { width: 200px; padding: 10px; border: 2px solid; box-sizing: ____; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 200px. border-box includes both padding and border in the declared width.",
+          "answer": "border-box",
+          "options": [
+            "border-box",
+            "content-box",
+            "inherit"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "The maximum caps the fluid width without setting a minimum.",
+          "hint": "The maximum caps the fluid width without setting a minimum.",
+          "id": "grid-read-3",
+          "kind": "mcq",
+          "code": ".panel { width: 100%; max-width: 600px; }",
+          "prompt": "Assume content-box and no padding or border: how is width constrained?",
+          "answer": "Fills its containing block up to a 600px content width",
+          "options": [
+            "Fills its containing block up to a 600px content width",
+            "Always has a 600px width",
+            "Never gets wider than 100px"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "The maximum caps the fluid width without setting a minimum.",
+          "hint": "The maximum caps the fluid width without setting a minimum.",
+          "id": "grid-choose-3",
+          "kind": "mcq",
+          "code": ".panel { width: 100%; ____; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Fills its containing block up to a 600px content width. The maximum caps the fluid width without setting a minimum.",
+          "answer": "max-width: 600px",
+          "options": [
+            "max-width: 600px",
+            "min-width: 600px",
+            "height: 600px"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "An explicit zero minimum permits tracks to shrink past automatic content minimums.",
+          "hint": "An explicit zero minimum permits tracks to shrink past automatic content minimums.",
+          "id": "grid-read-4",
+          "kind": "mcq",
+          "code": ".panel { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }",
+          "prompt": "What track sizing does this express?",
+          "answer": "Two equally flexible tracks whose minimum can be zero",
+          "options": [
+            "Two equally flexible tracks whose minimum can be zero",
+            "Two fixed zero-width tracks",
+            "Two rows"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "An explicit zero minimum permits tracks to shrink past automatic content minimums.",
+          "hint": "An explicit zero minimum permits tracks to shrink past automatic content minimums.",
+          "id": "grid-choose-4",
+          "kind": "mcq",
+          "code": ".panel { display:grid; grid-template-columns:repeat(2,____); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Two equally flexible tracks whose minimum can be zero. An explicit zero minimum permits tracks to shrink past automatic content minimums.",
+          "answer": "minmax(0,1fr)",
+          "options": [
+            "minmax(0,1fr)",
+            "200px",
+            "auto"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "fr divides available track space after fixed costs, subject to intrinsic minimums.",
+          "hint": "fr divides available track space after fixed costs, subject to intrinsic minimums.",
+          "id": "grid-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": ".panel { display: grid; grid-template-columns: ____; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Two columns sharing available space in a 1:2 ratio. fr divides available track space after fixed costs, subject to intrinsic minimums. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1fr 2fr"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "border-box includes both padding and border in the declared width.",
+          "hint": "border-box includes both padding and border in the declared width.",
+          "id": "grid-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": ".panel { width: 200px; padding: 10px; border: 2px solid; box-sizing: ____; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 200px. border-box includes both padding and border in the declared width. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "border-box"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "The maximum caps the fluid width without setting a minimum.",
+          "hint": "The maximum caps the fluid width without setting a minimum.",
+          "id": "grid-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": ".panel { width: 100%; ____; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Fills its containing block up to a 600px content width. The maximum caps the fluid width without setting a minimum. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "max-width: 600px"
+          ]
+        },
+        {
+          "concept": "CSS sizing, Grid, and responsive constraints",
+          "explanation": "An explicit zero minimum permits tracks to shrink past automatic content minimums.",
+          "hint": "An explicit zero minimum permits tracks to shrink past automatic content minimums.",
+          "id": "grid-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": ".panel { display:grid; grid-template-columns:repeat(2,____); }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Two equally flexible tracks whose minimum can be zero. An explicit zero minimum permits tracks to shrink past automatic content minimums. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "minmax(0,1fr)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "javascript",
       "title": "JavaScript values and branches",
       "section": "Basics",
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. JavaScript adds behavior. let permits reassignment; const fixes a binding. + adds numbers or concatenates strings. === compares without coercion.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
-        "layout"
+        "grid"
       ],
       "questions": [
         {
@@ -1544,7 +1988,10 @@
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Functions package behavior and return values. let has block scope. for...of visits values. Arrow functions can return a single expression implicitly.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
         "javascript"
@@ -1870,16 +2317,323 @@
       ]
     },
     {
+      "id": "scope-values",
+      "title": "JavaScript identity, scope, and receiver binding",
+      "section": "Intermediate",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. JavaScript objects are shared by reference; spreading an object copies only its outer properties. let and const have block scope and a temporal dead zone before initialization. A normal method receives this from how it is called, while an arrow function captures this lexically. Extracting a method can lose its receiver; bind supplies a fixed receiver. These rules explain common browser callbacks without pretending JavaScript has Python-style method binding.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "js"
+      ],
+      "requires": [
+        "functions"
+      ],
+      "questions": [
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "The spread copy still shares the nested object.",
+          "hint": "The spread copy still shares the nested object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "scope-values-read-1",
+          "kind": "mcq",
+          "code": "const a={nested:{count:${n}}}; const b={...a}; b.nested.count++; console.log(a.nested.count);",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "TypeError"
+          ]
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "The spread copy still shares the nested object.",
+          "hint": "The spread copy still shares the nested object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "scope-values-choose-1",
+          "kind": "mcq",
+          "code": "const a={nested:{count:${n}}}; const b={____}; b.nested.count++; console.log(a.nested.count);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The spread copy still shares the nested object.",
+          "answer": "...a",
+          "options": [
+            "...a",
+            "nested:{count:0}",
+            "nested:{...a.nested}"
+          ]
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "The inner let has a separate block-scoped binding.",
+          "hint": "The inner let has a separate block-scoped binding.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scope-values-read-2",
+          "kind": "mcq",
+          "code": "let count=${n}; {let count=${m};} console.log(count);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "ReferenceError"
+          ]
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "The inner let has a separate block-scoped binding.",
+          "hint": "The inner let has a separate block-scoped binding.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scope-values-choose-2",
+          "kind": "mcq",
+          "code": "let count=${n}; {let count=${m};} console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The inner let has a separate block-scoped binding.",
+          "answer": "count",
+          "options": [
+            "count",
+            "0",
+            "null"
+          ]
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "bind fixes this to the original item for a later call.",
+          "hint": "bind fixes this to the original item for a later call.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scope-values-read-3",
+          "kind": "mcq",
+          "code": "const item={count:${n},read(){return this.count;}}; const read=item.read.bind(item); console.log(read());",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "TypeError"
+          ]
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "bind fixes this to the original item for a later call.",
+          "hint": "bind fixes this to the original item for a later call.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scope-values-choose-3",
+          "kind": "mcq",
+          "code": "const item={count:${n},read(){return this.count;}}; const read=item.read.____; console.log(read());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. bind fixes this to the original item for a later call.",
+          "answer": "bind(item)",
+          "options": [
+            "bind(item)",
+            "bind(null)",
+            "bind({count:0})"
+          ]
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "The block binding exists but is in its temporal dead zone before the declaration executes.",
+          "hint": "The block binding exists but is in its temporal dead zone before the declaration executes.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scope-values-read-4",
+          "kind": "mcq",
+          "code": "{ console.log(count); let count=${n}; }",
+          "prompt": "Why does this code fail?",
+          "answer": "ReferenceError: binding accessed before initialization",
+          "options": [
+            "ReferenceError: binding accessed before initialization",
+            "undefined",
+            "${n}"
+          ],
+          "repair_question_id": "scope-values-write-repair-4"
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "Initialize the block binding before reading it.",
+          "hint": "Initialize the block binding before reading it.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scope-values-choose-repair-4",
+          "kind": "mcq",
+          "code": "{ ____ console.log(count); }",
+          "prompt": "Repair the code by filling ____. Initialize the block binding before reading it. Target result: ${n}.",
+          "answer": "let count=${n};",
+          "options": [
+            "let count=${n};",
+            "const other=${n};"
+          ]
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "The spread copy still shares the nested object.",
+          "hint": "The spread copy still shares the nested object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "scope-values-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const a={nested:{count:${n}}}; const b={____}; b.nested.count++; console.log(a.nested.count);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The spread copy still shares the nested object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "...a"
+          ]
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "The inner let has a separate block-scoped binding.",
+          "hint": "The inner let has a separate block-scoped binding.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scope-values-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let count=${n}; {let count=${m};} console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The inner let has a separate block-scoped binding. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "count"
+          ]
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "bind fixes this to the original item for a later call.",
+          "hint": "bind fixes this to the original item for a later call.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scope-values-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const item={count:${n},read(){return this.count;}}; const read=item.read.____; console.log(read());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. bind fixes this to the original item for a later call. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "bind(item)"
+          ]
+        },
+        {
+          "concept": "JavaScript identity, scope, and receiver binding",
+          "explanation": "Initialize the block binding before reading it.",
+          "hint": "Initialize the block binding before reading it.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scope-values-write-repair-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "{ ____ console.log(count); }",
+          "prompt": "Repair the code by filling ____. Initialize the block binding before reading it. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "let count=${n};"
+          ],
+          "target_answer": "${n}"
+        }
+      ]
+    },
+    {
       "id": "dom",
       "title": "DOM selection and safe text updates",
       "section": "Intermediate",
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. The DOM exposes elements as objects. querySelector returns the first match or null. textContent inserts text without parsing markup; classList manipulates class tokens.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
-        "functions"
+        "scope-values"
       ],
       "questions": [
         {
@@ -2180,7 +2934,10 @@
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. addEventListener registers a callback. target identifies the originating element; currentTarget identifies the current listener element. preventDefault and stopPropagation have different roles.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
         "dom"
@@ -2400,16 +3157,205 @@
       ]
     },
     {
+      "id": "event-loop",
+      "title": "Tasks, microtasks, and event propagation",
+      "section": "Intermediate",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Browser JavaScript finishes its current synchronous work before running queued promise reactions. Microtasks run before the next timer task in these examples. Event bubbling carries an event from its target through ancestors; target is the originating element while currentTarget is the listener attachment. preventDefault cancels a cancelable default action; stopPropagation affects propagation and does not itself cancel that action. Keep these distinct when reading form and delegated event handlers.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn-events"
+      ],
+      "requires": [
+        "events"
+      ],
+      "questions": [
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "The fulfillment reaction waits until the synchronous statements finish.",
+          "hint": "The fulfillment reaction waits until the synchronous statements finish.",
+          "id": "event-loop-read-1",
+          "kind": "mcq",
+          "code": "console.log(\"A\"); Promise.resolve().then(()=>console.log(\"B\")); console.log(\"C\");",
+          "prompt": "What is the result?",
+          "answer": "A\nC\nB",
+          "options": [
+            "A\nC\nB",
+            "A\nB\nC",
+            "B\nA\nC"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "The fulfillment reaction waits until the synchronous statements finish.",
+          "hint": "The fulfillment reaction waits until the synchronous statements finish.",
+          "id": "event-loop-choose-1",
+          "kind": "mcq",
+          "code": "console.log(\"A\"); Promise.resolve().____(()=>console.log(\"B\")); console.log(\"C\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A\nC\nB. The fulfillment reaction waits until the synchronous statements finish.",
+          "answer": "then",
+          "options": [
+            "then",
+            "catch",
+            "resolve"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "The current work finishes, then the microtask runs before the timer task.",
+          "hint": "The current work finishes, then the microtask runs before the timer task.",
+          "id": "event-loop-read-2",
+          "kind": "mcq",
+          "code": "setTimeout(()=>console.log(\"timer\"),0); queueMicrotask(()=>console.log(\"micro\")); console.log(\"sync\");",
+          "prompt": "What is the result?",
+          "answer": "sync\nmicro\ntimer",
+          "options": [
+            "sync\nmicro\ntimer",
+            "sync\ntimer\nmicro",
+            "micro\nsync\ntimer"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "The current work finishes, then the microtask runs before the timer task.",
+          "hint": "The current work finishes, then the microtask runs before the timer task.",
+          "id": "event-loop-choose-2",
+          "kind": "mcq",
+          "code": "setTimeout(()=>console.log(\"timer\"),0); ____(()=>console.log(\"micro\")); console.log(\"sync\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: sync\nmicro\ntimer. The current work finishes, then the microtask runs before the timer task.",
+          "answer": "queueMicrotask",
+          "options": [
+            "queueMicrotask",
+            "setTimeout",
+            "requestAnimationFrame"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "currentTarget is the node whose listener is currently running.",
+          "hint": "currentTarget is the node whose listener is currently running.",
+          "id": "event-loop-read-3",
+          "kind": "mcq",
+          "code": "list.addEventListener(\"click\",event=>{console.log(event.currentTarget===list);});",
+          "prompt": "Assume a child inside list was clicked: what is logged?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "currentTarget is the node whose listener is currently running.",
+          "hint": "currentTarget is the node whose listener is currently running.",
+          "id": "event-loop-choose-3",
+          "kind": "mcq",
+          "code": "list.addEventListener(\"click\",event=>{console.log(event.____===list);});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. currentTarget is the node whose listener is currently running.",
+          "answer": "currentTarget",
+          "options": [
+            "currentTarget",
+            "target",
+            "relatedTarget"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "preventDefault cancels this default action without stopping propagation.",
+          "hint": "preventDefault cancels this default action without stopping propagation.",
+          "id": "event-loop-read-4",
+          "kind": "mcq",
+          "code": "form.addEventListener(\"submit\",event=>event.preventDefault());",
+          "prompt": "What action does this handler prevent?",
+          "answer": "Cancels the normal form submission",
+          "options": [
+            "Cancels the normal form submission",
+            "Stops all bubbling by itself",
+            "Validates every field"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "preventDefault cancels this default action without stopping propagation.",
+          "hint": "preventDefault cancels this default action without stopping propagation.",
+          "id": "event-loop-choose-4",
+          "kind": "mcq",
+          "code": "form.addEventListener(\"submit\",event=>event.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Cancels the normal form submission. preventDefault cancels this default action without stopping propagation.",
+          "answer": "preventDefault()",
+          "options": [
+            "preventDefault()",
+            "stopPropagation()",
+            "stopImmediatePropagation()"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "The fulfillment reaction waits until the synchronous statements finish.",
+          "hint": "The fulfillment reaction waits until the synchronous statements finish.",
+          "id": "event-loop-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "console.log(\"A\"); Promise.resolve().____(()=>console.log(\"B\")); console.log(\"C\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: A\nC\nB. The fulfillment reaction waits until the synchronous statements finish. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "then"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "The current work finishes, then the microtask runs before the timer task.",
+          "hint": "The current work finishes, then the microtask runs before the timer task.",
+          "id": "event-loop-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "setTimeout(()=>console.log(\"timer\"),0); ____(()=>console.log(\"micro\")); console.log(\"sync\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: sync\nmicro\ntimer. The current work finishes, then the microtask runs before the timer task. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "queueMicrotask"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "currentTarget is the node whose listener is currently running.",
+          "hint": "currentTarget is the node whose listener is currently running.",
+          "id": "event-loop-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "list.addEventListener(\"click\",event=>{console.log(event.____===list);});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. currentTarget is the node whose listener is currently running. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "currentTarget"
+          ]
+        },
+        {
+          "concept": "Tasks, microtasks, and event propagation",
+          "explanation": "preventDefault cancels this default action without stopping propagation.",
+          "hint": "preventDefault cancels this default action without stopping propagation.",
+          "id": "event-loop-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "form.addEventListener(\"submit\",event=>event.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Cancels the normal form submission. preventDefault cancels this default action without stopping propagation. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "preventDefault()"
+          ]
+        }
+      ]
+    },
+    {
       "id": "data",
       "title": "Objects, arrays, and JSON",
       "section": "Intermediate",
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Objects hold named properties. Array operations work on values. Spread makes shallow copies; JSON is a text format and parsing it does not validate its shape.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
-        "events"
+        "event-loop"
       ],
       "questions": [
         {
@@ -2743,7 +3689,10 @@
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Media queries conditionally apply rules. Relative units adapt to context. :focus-visible supports keyboard focus styling. Prefer native interactive elements for built-in keyboard behavior.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
         "data"
@@ -2963,16 +3912,307 @@
       ]
     },
     {
+      "id": "forms-data",
+      "title": "FormData and browser input contracts",
+      "section": "Advanced",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Input.value is text even for type=number; valueAsNumber provides a numeric value or NaN. Successful form controls use name as their submitted key, not id. Disabled controls are omitted from FormData. Native constraints such as required improve browser feedback but cannot replace server validation. URLSearchParams encodes query data without concatenating raw values. Read these boundaries before assuming that a valid-looking form produces the intended request.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn-forms"
+      ],
+      "requires": [
+        "responsive"
+      ],
+      "questions": [
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "The value property is text; valueAsNumber performs numeric interpretation.",
+          "hint": "The value property is text; valueAsNumber performs numeric interpretation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "forms-data-read-1",
+          "kind": "mcq",
+          "code": "<input id=\"size\" type=\"number\" value=\"${n}\">\n<script>console.log(typeof document.querySelector(\"#size\").value);</script>",
+          "prompt": "What type is logged?",
+          "answer": "string",
+          "options": [
+            "string",
+            "number",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "The value property is text; valueAsNumber performs numeric interpretation.",
+          "hint": "The value property is text; valueAsNumber performs numeric interpretation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "forms-data-choose-1",
+          "kind": "mcq",
+          "code": "<input id=\"size\" type=\"number\" value=\"${n}\">\n<script>console.log(typeof document.querySelector(\"#size\").____);</script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: string. The value property is text; valueAsNumber performs numeric interpretation.",
+          "answer": "value",
+          "options": [
+            "value",
+            "valueAsNumber",
+            "checked"
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "FormData keys come from name attributes.",
+          "hint": "FormData keys come from name attributes.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "forms-data-read-2",
+          "kind": "mcq",
+          "code": "<form id=\"f\"><input name=\"project\" value=\"${word}\"></form>\n<script>console.log(new FormData(document.querySelector(\"#f\")).get(\"project\"));</script>",
+          "prompt": "What is logged?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "null",
+            "f"
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "FormData keys come from name attributes.",
+          "hint": "FormData keys come from name attributes.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "forms-data-choose-2",
+          "kind": "mcq",
+          "code": "<form id=\"f\"><input name=\"project\" value=\"${word}\"></form>\n<script>console.log(new FormData(document.querySelector(\"#f\")).get(____));</script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. FormData keys come from name attributes. Use \"project\" as the replacement literal.",
+          "answer": "\"project\"",
+          "options": [
+            "\"project\"",
+            "\"f\"",
+            "\"value\""
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "Disabled controls are excluded from the submitted form data.",
+          "hint": "Disabled controls are excluded from the submitted form data.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "forms-data-read-3",
+          "kind": "mcq",
+          "code": "<form id=\"f\"><input name=\"project\" value=\"${word}\" disabled></form>\n<script>console.log(new FormData(document.querySelector(\"#f\")).has(\"project\"));</script>",
+          "prompt": "What is logged?",
+          "answer": "false",
+          "options": [
+            "false",
+            "true",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "Disabled controls are excluded from the submitted form data.",
+          "hint": "Disabled controls are excluded from the submitted form data.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "forms-data-choose-3",
+          "kind": "mcq",
+          "code": "<form id=\"f\"><input name=\"project\" value=\"${word}\" ____></form>\n<script>console.log(new FormData(document.querySelector(\"#f\")).has(\"project\"));</script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. Disabled controls are excluded from the submitted form data.",
+          "answer": "disabled",
+          "options": [
+            "disabled",
+            "readonly",
+            "required"
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "The API preserves the value while handling serialization separately.",
+          "hint": "The API preserves the value while handling serialization separately.",
+          "id": "forms-data-read-4",
+          "kind": "mcq",
+          "code": "const query=new URLSearchParams({q:\"a&b\"}); console.log(query.get(\"q\"));",
+          "prompt": "What is the result?",
+          "answer": "a&b",
+          "options": [
+            "a&b",
+            "a",
+            "q=a%26b"
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "The API preserves the value while handling serialization separately.",
+          "hint": "The API preserves the value while handling serialization separately.",
+          "id": "forms-data-choose-4",
+          "kind": "mcq",
+          "code": "const query=new URLSearchParams({q:\"a&b\"}); console.log(query.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: a&b. The API preserves the value while handling serialization separately.",
+          "answer": "get(\"q\")",
+          "options": [
+            "get(\"q\")",
+            "toString()",
+            "get(\"b\")"
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "The value property is text; valueAsNumber performs numeric interpretation.",
+          "hint": "The value property is text; valueAsNumber performs numeric interpretation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "forms-data-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<input id=\"size\" type=\"number\" value=\"${n}\">\n<script>console.log(typeof document.querySelector(\"#size\").____);</script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: string. The value property is text; valueAsNumber performs numeric interpretation. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "value"
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "FormData keys come from name attributes.",
+          "hint": "FormData keys come from name attributes.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "forms-data-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<form id=\"f\"><input name=\"project\" value=\"${word}\"></form>\n<script>console.log(new FormData(document.querySelector(\"#f\")).get(____));</script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. FormData keys come from name attributes. Use \"project\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"project\""
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "Disabled controls are excluded from the submitted form data.",
+          "hint": "Disabled controls are excluded from the submitted form data.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "forms-data-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<form id=\"f\"><input name=\"project\" value=\"${word}\" ____></form>\n<script>console.log(new FormData(document.querySelector(\"#f\")).has(\"project\"));</script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. Disabled controls are excluded from the submitted form data. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "disabled"
+          ]
+        },
+        {
+          "concept": "FormData and browser input contracts",
+          "explanation": "The API preserves the value while handling serialization separately.",
+          "hint": "The API preserves the value while handling serialization separately.",
+          "id": "forms-data-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const query=new URLSearchParams({q:\"a&b\"}); console.log(query.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: a&b. The API preserves the value while handling serialization separately. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "get(\"q\")"
+          ]
+        }
+      ]
+    },
+    {
       "id": "async",
       "title": "Promises and async execution",
       "section": "Advanced",
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Promise callbacks run after current synchronous code. async functions return promises; await suspends the async function until settlement. Rejections can be caught.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
-        "responsive"
+        "forms-data"
       ],
       "questions": [
         {
@@ -3249,7 +4489,10 @@
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. fetch resolves to a Response for HTTP errors too; network failures reject. Check ok before parsing. response.json is asynchronous. These examples assume the stated server response.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
         "async"
@@ -3460,7 +4703,10 @@
       "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Browser modules use type=\"module\" and explicit exports. Module bindings have their own scope. Closures retain lexical variables; a const binding can still refer to a mutable object.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
-        "js"
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
       ],
       "requires": [
         "fetch"
@@ -3734,16 +4980,269 @@
       ]
     },
     {
-      "id": "integration",
-      "title": "DOM lifecycle and browser boundaries",
+      "id": "browser-state",
+      "title": "Origins, storage, and page lifecycle",
       "section": "Advanced",
-      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. defer runs a classic external script after parsing and before DOMContentLoaded. localStorage stores strings. Delegated handlers can use closest. Browser code is constrained by origin policies.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. Browser APIs have origin and lifecycle boundaries. localStorage stores strings and persists beyond a page reload for the origin, subject to browser policy and possible exceptions. JSON serialization preserves selected data, not functions or arbitrary object identity. A module script is deferred by default; DOMContentLoaded signals that parsing and deferred scripts have completed, not that every image has loaded. Fetch HTTP failures and network failures take different paths, so inspect Response.ok before trusting a body.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "mdn",
         "js"
       ],
       "requires": [
         "modules"
+      ],
+      "questions": [
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "Storage returns a string or null; it does not restore a numeric type.",
+          "hint": "Storage returns a string or null; it does not restore a numeric type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "browser-state-read-1",
+          "kind": "mcq",
+          "code": "localStorage.setItem(\"lesson_count\",String(${n})); console.log(typeof localStorage.getItem(\"lesson_count\"));",
+          "prompt": "Assume storage is available: what type is logged?",
+          "answer": "string",
+          "options": [
+            "string",
+            "number",
+            "object"
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "Storage returns a string or null; it does not restore a numeric type.",
+          "hint": "Storage returns a string or null; it does not restore a numeric type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "browser-state-choose-1",
+          "kind": "mcq",
+          "code": "localStorage.setItem(\"lesson_count\",String(${n})); console.log(typeof localStorage.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: string. Storage returns a string or null; it does not restore a numeric type.",
+          "answer": "getItem(\"lesson_count\")",
+          "options": [
+            "getItem(\"lesson_count\")",
+            "length",
+            "key(0)"
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "JSON serialization omits function-valued object properties.",
+          "hint": "JSON serialization omits function-valued object properties.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "browser-state-read-2",
+          "kind": "mcq",
+          "code": "const value=JSON.parse(JSON.stringify({name:\"${word}\",run(){}})); console.log(typeof value.run);",
+          "prompt": "What is the result?",
+          "answer": "undefined",
+          "options": [
+            "undefined",
+            "function",
+            "object"
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "JSON serialization omits function-valued object properties.",
+          "hint": "JSON serialization omits function-valued object properties.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "browser-state-choose-2",
+          "kind": "mcq",
+          "code": "const value=JSON.parse(JSON.stringify({name:\"${word}\",run(){}})); console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: undefined. JSON serialization omits function-valued object properties.",
+          "answer": "typeof value.run",
+          "options": [
+            "typeof value.run",
+            "typeof value.name",
+            "typeof value"
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "Module scripts have their own scope and wait for parsing by default.",
+          "hint": "Module scripts have their own scope and wait for parsing by default.",
+          "id": "browser-state-read-3",
+          "kind": "mcq",
+          "code": "<script type=\"module\" src=\"app.js\"></script>",
+          "prompt": "What loading behavior does this request?",
+          "answer": "Runs with module scope and deferred execution by default",
+          "options": [
+            "Runs with module scope and deferred execution by default",
+            "Blocks parsing like a classic script without defer",
+            "Shares top-level bindings as window properties"
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "Module scripts have their own scope and wait for parsing by default.",
+          "hint": "Module scripts have their own scope and wait for parsing by default.",
+          "id": "browser-state-choose-3",
+          "kind": "mcq",
+          "code": "<script ____ src=\"app.js\"></script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Runs with module scope and deferred execution by default. Module scripts have their own scope and wait for parsing by default.",
+          "answer": "type=\"module\"",
+          "options": [
+            "type=\"module\"",
+            "type=\"text/javascript\"",
+            "async"
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "fetch normally fulfills for HTTP error statuses; inspect ok explicitly.",
+          "hint": "fetch normally fulfills for HTTP error statuses; inspect ok explicitly.",
+          "id": "browser-state-read-4",
+          "kind": "mcq",
+          "code": "const response=await fetch(\"/data\"); if(!response.ok) throw new Error(\"HTTP failure\");",
+          "prompt": "Assume the server responds 404: what does this check do?",
+          "answer": "Rejects this path for an HTTP 404 response",
+          "options": [
+            "Rejects this path for an HTTP 404 response",
+            "Relies on fetch to reject every 404",
+            "Treats every response as success"
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "fetch normally fulfills for HTTP error statuses; inspect ok explicitly.",
+          "hint": "fetch normally fulfills for HTTP error statuses; inspect ok explicitly.",
+          "id": "browser-state-choose-4",
+          "kind": "mcq",
+          "code": "const response=await fetch(\"/data\"); if(____) throw new Error(\"HTTP failure\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Rejects this path for an HTTP 404 response. fetch normally fulfills for HTTP error statuses; inspect ok explicitly.",
+          "answer": "!response.ok",
+          "options": [
+            "!response.ok",
+            "response.ok",
+            "false"
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "Storage returns a string or null; it does not restore a numeric type.",
+          "hint": "Storage returns a string or null; it does not restore a numeric type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "browser-state-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "localStorage.setItem(\"lesson_count\",String(${n})); console.log(typeof localStorage.____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: string. Storage returns a string or null; it does not restore a numeric type. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "getItem(\"lesson_count\")"
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "JSON serialization omits function-valued object properties.",
+          "hint": "JSON serialization omits function-valued object properties.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "browser-state-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const value=JSON.parse(JSON.stringify({name:\"${word}\",run(){}})); console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: undefined. JSON serialization omits function-valued object properties. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "typeof value.run"
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "Module scripts have their own scope and wait for parsing by default.",
+          "hint": "Module scripts have their own scope and wait for parsing by default.",
+          "id": "browser-state-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "<script ____ src=\"app.js\"></script>",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Runs with module scope and deferred execution by default. Module scripts have their own scope and wait for parsing by default. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "type=\"module\""
+          ]
+        },
+        {
+          "concept": "Origins, storage, and page lifecycle",
+          "explanation": "fetch normally fulfills for HTTP error statuses; inspect ok explicitly.",
+          "hint": "fetch normally fulfills for HTTP error statuses; inspect ok explicitly.",
+          "id": "browser-state-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const response=await fetch(\"/data\"); if(____) throw new Error(\"HTTP failure\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Rejects this path for an HTTP 404 response. fetch normally fulfills for HTTP error statuses; inspect ok explicitly. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "!response.ok"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "integration",
+      "title": "DOM lifecycle and browser boundaries",
+      "section": "Advanced",
+      "intro": "Modern standards-mode browser; scripts execute after their referenced elements exist unless timing is the topic; await snippets are inside async functions. defer runs a classic external script after parsing and before DOMContentLoaded. localStorage stores strings. Delegated handlers can use closest. Browser code is constrained by origin policies.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "mdn",
+        "js",
+        "mdn-forms",
+        "mdn-events",
+        "mdn-grid"
+      ],
+      "requires": [
+        "browser-state"
       ],
       "questions": [
         {

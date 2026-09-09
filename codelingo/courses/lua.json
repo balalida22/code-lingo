@@ -3,25 +3,311 @@
   "id": "lua",
   "title": "Lua",
   "language": "Lua 5.4",
-  "version": "1.0",
+  "version": "1.1",
   "sources": [
     {
       "id": "lua",
       "title": "Lua 5.4 Reference Manual",
       "url": "https://www.lua.org/manual/5.4/",
       "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "lua-manual",
+      "title": "Lua 5.4 reference manual: language, libraries, embedding",
+      "url": "https://www.lua.org/manual/5.4/manual.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
     }
   ],
   "lessons": [
+    {
+      "id": "runtime",
+      "title": "Lua chunks, globals, and embedded execution",
+      "section": "Basics",
+      "intro": "Lua 5.4. Lua runs chunks that may return values to their caller. In embedded applications the host supplies globals and decides when chunks run; do not assume a browser, operating system, or package is present. Local bindings avoid accidentally sharing state through the environment. load compiles text into a function or returns an error; compiling does not execute that function. This is a language mechanism, not a recommendation to execute untrusted text.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua-manual"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "Calling the loaded function executes the chunk and receives its return value.",
+          "hint": "Calling the loaded function executes the chunk and receives its return value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "runtime-read-1",
+          "kind": "mcq",
+          "code": "local fn=assert(load(\"return ${n}+1\"))\nprint(fn())",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "function"
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "Calling the loaded function executes the chunk and receives its return value.",
+          "hint": "Calling the loaded function executes the chunk and receives its return value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "runtime-choose-1",
+          "kind": "mcq",
+          "code": "local fn=assert(load(\"return ${n}+1\"))\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Calling the loaded function executes the chunk and receives its return value.",
+          "answer": "fn()",
+          "options": [
+            "fn()",
+            "fn",
+            "0"
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "Invalid syntax makes load return nil and an error message.",
+          "hint": "Invalid syntax makes load return nil and an error message.",
+          "id": "runtime-read-2",
+          "kind": "mcq",
+          "code": "local fn,err=load(\"local =\")\nprint(fn == nil)",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "A chunk executes"
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "Invalid syntax makes load return nil and an error message.",
+          "hint": "Invalid syntax makes load return nil and an error message.",
+          "id": "runtime-choose-2",
+          "kind": "mcq",
+          "code": "local fn,err=load(\"local =\")\nprint(fn ____ nil)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. Invalid syntax makes load return nil and an error message.",
+          "answer": "==",
+          "options": [
+            "==",
+            "~=",
+            ">"
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "The supplied environment resolves count when the chunk runs.",
+          "hint": "The supplied environment resolves count when the chunk runs.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "runtime-read-3",
+          "kind": "mcq",
+          "code": "local env={count=${n}}\nlocal fn=assert(load(\"return count\", \"config\", \"t\", env))\nprint(fn())",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "0"
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "The supplied environment resolves count when the chunk runs.",
+          "hint": "The supplied environment resolves count when the chunk runs.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "runtime-choose-3",
+          "kind": "mcq",
+          "code": "local env={count=${n}}\nlocal fn=assert(load(\"return count\", \"config\", \"t\", ____))\nprint(fn())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The supplied environment resolves count when the chunk runs.",
+          "answer": "env",
+          "options": [
+            "env",
+            "{}",
+            "{count=0}"
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "The inner local shadows the outer binding only within its block.",
+          "hint": "The inner local shadows the outer binding only within its block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "runtime-read-4",
+          "kind": "mcq",
+          "code": "local count=${n}\ndo local count=${m} end\nprint(count)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "The inner local shadows the outer binding only within its block.",
+          "hint": "The inner local shadows the outer binding only within its block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "runtime-choose-4",
+          "kind": "mcq",
+          "code": "local count=${n}\ndo local count=${m} end\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The inner local shadows the outer binding only within its block.",
+          "answer": "count",
+          "options": [
+            "count",
+            "0",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "Calling the loaded function executes the chunk and receives its return value.",
+          "hint": "Calling the loaded function executes the chunk and receives its return value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "runtime-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local fn=assert(load(\"return ${n}+1\"))\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Calling the loaded function executes the chunk and receives its return value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "fn()"
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "Invalid syntax makes load return nil and an error message.",
+          "hint": "Invalid syntax makes load return nil and an error message.",
+          "id": "runtime-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local fn,err=load(\"local =\")\nprint(fn ____ nil)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. Invalid syntax makes load return nil and an error message. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "The supplied environment resolves count when the chunk runs.",
+          "hint": "The supplied environment resolves count when the chunk runs.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "runtime-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local env={count=${n}}\nlocal fn=assert(load(\"return count\", \"config\", \"t\", ____))\nprint(fn())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The supplied environment resolves count when the chunk runs. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "env"
+          ]
+        },
+        {
+          "concept": "Lua chunks, globals, and embedded execution",
+          "explanation": "The inner local shadows the outer binding only within its block.",
+          "hint": "The inner local shadows the outer binding only within its block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "runtime-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local count=${n}\ndo local count=${m} end\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The inner local shadows the outer binding only within its block. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "count"
+          ]
+        }
+      ]
+    },
     {
       "id": "values",
       "title": "Values and assignment",
       "section": "Basics",
       "intro": "Lua 5.4. A variable names a value. Assignment updates that variable; an earlier copied number does not follow later assignments. Read statements from top to bottom.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
-      "requires": [],
+      "requires": [
+        "runtime"
+      ],
       "questions": [
         {
           "concept": "Values and assignment",
@@ -351,7 +637,8 @@
       "section": "Basics",
       "intro": "Lua 5.4. Multiplication binds more tightly than addition. Parentheses group expressions. Integer quotient and remainder answer different questions; all operands here are positive.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
         "values"
@@ -725,7 +1012,8 @@
       "section": "Basics",
       "intro": "Lua 5.4. Strings concatenate with .. and are indexed through string functions. # counts bytes, which match character counts in these ASCII examples.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
         "arithmetic"
@@ -1096,7 +1384,8 @@
       "section": "Basics",
       "intro": "Lua 5.4. Only false and nil are falsey. Zero and empty strings are truthy. and/or return operands and short-circuit.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
         "strings"
@@ -1350,7 +1639,8 @@
       "section": "Basics",
       "intro": "Lua 5.4. Numeric for includes its endpoint. ipairs traverses sequential integer keys until the first absent value; break exits a loop.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
         "conditions"
@@ -1610,7 +1900,8 @@
       "section": "Intermediate",
       "intro": "Lua 5.4. Functions are values. They can return multiple results. Assignment fills missing results with nil; parentheses around a call reduce it to one result.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
         "loops"
@@ -1938,15 +2229,358 @@
       ]
     },
     {
+      "id": "results",
+      "title": "Multiple results, varargs, and nil holes",
+      "section": "Intermediate",
+      "intro": "Lua 5.4. Lua adjusts a function call to one result except where the final expression in a list may expand. Parenthesizing a call forces one result. Assignment fills missing values with nil and discards excess values. Varargs use ...; table.pack records their exact count in n, including nil holes. The length operator on a table with holes is not a reliable count of supplied arguments. Use table.unpack with explicit bounds when preserving those results.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua-manual"
+      ],
+      "requires": [
+        "functions"
+      ],
+      "questions": [
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "The final call expands to both assignment results.",
+          "hint": "The final call expands to both assignment results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-read-1",
+          "kind": "mcq",
+          "code": "local function pair() return ${n},${m} end\nlocal a,b=pair()\nprint(b)",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "nil",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "The final call expands to both assignment results.",
+          "hint": "The final call expands to both assignment results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-choose-1",
+          "kind": "mcq",
+          "code": "local function pair() return ${n},${m} end\nlocal a,b=____\nprint(b)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The final call expands to both assignment results.",
+          "answer": "pair()",
+          "options": [
+            "pair()",
+            "(pair())",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "Parentheses reduce the call to one result; b is filled with nil.",
+          "hint": "Parentheses reduce the call to one result; b is filled with nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-read-2",
+          "kind": "mcq",
+          "code": "local function pair() return ${n},${m} end\nlocal a,b=(pair())\nprint(b)",
+          "prompt": "What is the result?",
+          "answer": "nil",
+          "options": [
+            "nil",
+            "${m}",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "Parentheses reduce the call to one result; b is filled with nil.",
+          "hint": "Parentheses reduce the call to one result; b is filled with nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-choose-2",
+          "kind": "mcq",
+          "code": "local function pair() return ${n},${m} end\nlocal a,b=____\nprint(b)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. Parentheses reduce the call to one result; b is filled with nil.",
+          "answer": "(pair())",
+          "options": [
+            "(pair())",
+            "pair()",
+            "${n},${m}"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "pack stores the supplied argument count independently of holes.",
+          "hint": "pack stores the supplied argument count independently of holes.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-read-3",
+          "kind": "mcq",
+          "code": "local args=table.pack(${n},nil,${m})\nprint(args.n)",
+          "prompt": "What is the result?",
+          "answer": "3",
+          "options": [
+            "3",
+            "2",
+            "1"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "pack stores the supplied argument count independently of holes.",
+          "hint": "pack stores the supplied argument count independently of holes.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-choose-3",
+          "kind": "mcq",
+          "code": "local args=table.____(${n},nil,${m})\nprint(args.n)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. pack stores the supplied argument count independently of holes.",
+          "answer": "pack",
+          "options": [
+            "pack",
+            "concat",
+            "unpack"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "select with # counts all arguments, including nil.",
+          "hint": "select with # counts all arguments, including nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-read-4",
+          "kind": "mcq",
+          "code": "local function count(...) return select(\"#\",...) end\nprint(count(${n},nil,${m}))",
+          "prompt": "What is the result?",
+          "answer": "3",
+          "options": [
+            "3",
+            "2",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "select with # counts all arguments, including nil.",
+          "hint": "select with # counts all arguments, including nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-choose-4",
+          "kind": "mcq",
+          "code": "local function count(...) return select(____,...) end\nprint(count(${n},nil,${m}))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. select with # counts all arguments, including nil. Use \"#\" as the replacement literal.",
+          "answer": "\"#\"",
+          "options": [
+            "\"#\"",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "The final call expands to both assignment results.",
+          "hint": "The final call expands to both assignment results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local function pair() return ${n},${m} end\nlocal a,b=____\nprint(b)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The final call expands to both assignment results. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "pair()"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "Parentheses reduce the call to one result; b is filled with nil.",
+          "hint": "Parentheses reduce the call to one result; b is filled with nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local function pair() return ${n},${m} end\nlocal a,b=____\nprint(b)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. Parentheses reduce the call to one result; b is filled with nil. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "(pair())"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "pack stores the supplied argument count independently of holes.",
+          "hint": "pack stores the supplied argument count independently of holes.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local args=table.____(${n},nil,${m})\nprint(args.n)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. pack stores the supplied argument count independently of holes. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "pack"
+          ]
+        },
+        {
+          "concept": "Multiple results, varargs, and nil holes",
+          "explanation": "select with # counts all arguments, including nil.",
+          "hint": "select with # counts all arguments, including nil.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "results-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local function count(...) return select(____,...) end\nprint(count(${n},nil,${m}))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. select with # counts all arguments, including nil. Use \"#\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"#\""
+          ]
+        }
+      ]
+    },
+    {
       "id": "tables",
       "title": "Tables and absent values",
       "section": "Intermediate",
       "intro": "Lua 5.4. Tables support named and integer keys. t.name abbreviates t[\"name\"]. Assigning nil removes a key. Avoid # on tables with holes.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
-        "functions"
+        "results"
       ],
       "questions": [
         {
@@ -2265,15 +2899,319 @@
       ]
     },
     {
+      "id": "iteration",
+      "title": "Sequence boundaries and iterator protocols",
+      "section": "Intermediate",
+      "intro": "Lua 5.4. A Lua table can contain both array-like and map-like entries. ipairs visits consecutive integer keys starting at one and stops at the first absent entry; pairs traverses keys without a guaranteed order. A generic for consumes an iterator protocol rather than indexing by itself. Never use # to count arbitrary map entries or tables with holes. rawget inspects stored entries without consulting __index, which is useful when reading prototype-style objects.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua-manual"
+      ],
+      "requires": [
+        "tables"
+      ],
+      "questions": [
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "ipairs stops at the missing second element.",
+          "hint": "ipairs stops at the missing second element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "iteration-read-1",
+          "kind": "mcq",
+          "code": "local values={[1]=${n},[3]=${m}}\nlocal count=0\nfor i,v in ipairs(values) do count=count+1 end\nprint(count)",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "ipairs stops at the missing second element.",
+          "hint": "ipairs stops at the missing second element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "iteration-choose-1",
+          "kind": "mcq",
+          "code": "local values={[1]=${n},[3]=${m}}\nlocal count=0\nfor i,v in ____(values) do count=count+1 end\nprint(count)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. ipairs stops at the missing second element.",
+          "answer": "ipairs",
+          "options": [
+            "ipairs",
+            "pairs",
+            "next"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "pairs visits both fields, without promising their order.",
+          "hint": "pairs visits both fields, without promising their order.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "iteration-read-2",
+          "kind": "mcq",
+          "code": "local values={name=\"${word}\",size=${n}}\nlocal count=0\nfor k,v in pairs(values) do count=count+1 end\nprint(count)",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "0",
+            "1"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "pairs visits both fields, without promising their order.",
+          "hint": "pairs visits both fields, without promising their order.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "iteration-choose-2",
+          "kind": "mcq",
+          "code": "local values={name=\"${word}\",size=${n}}\nlocal count=0\nfor k,v in ____(values) do count=count+1 end\nprint(count)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. pairs visits both fields, without promising their order.",
+          "answer": "pairs",
+          "options": [
+            "pairs",
+            "ipairs",
+            "next"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "rawget bypasses the fallback and finds no stored size field.",
+          "hint": "rawget bypasses the fallback and finds no stored size field.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "iteration-read-3",
+          "kind": "mcq",
+          "code": "local values=setmetatable({}, {__index={size=${n}}})\nprint(rawget(values,\"size\"))",
+          "prompt": "What is the result?",
+          "answer": "nil",
+          "options": [
+            "nil",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "rawget bypasses the fallback and finds no stored size field.",
+          "hint": "rawget bypasses the fallback and finds no stored size field.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "iteration-choose-3",
+          "kind": "mcq",
+          "code": "local values=setmetatable({}, {__index={size=${n}}})\nprint(____(values,\"size\"))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. rawget bypasses the fallback and finds no stored size field.",
+          "answer": "rawget",
+          "options": [
+            "rawget",
+            "getmetatable",
+            "type"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "The iterator receives the previous control value and stops when it returns nil.",
+          "hint": "The iterator receives the previous control value and stops when it returns nil.",
+          "id": "iteration-read-4",
+          "kind": "mcq",
+          "code": "local function values(_,previous)\n if previous<2 then return previous+1 end\nend\nlocal count=0\nfor i in values,nil,0 do count=count+1 end\nprint(count)",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "The iterator receives the previous control value and stops when it returns nil.",
+          "hint": "The iterator receives the previous control value and stops when it returns nil.",
+          "id": "iteration-choose-4",
+          "kind": "mcq",
+          "code": "local function values(_,previous)\n if previous<2 then return previous+1 end\nend\nlocal count=0\nfor i in values,nil,____ do count=count+1 end\nprint(count)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The iterator receives the previous control value and stops when it returns nil.",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "ipairs stops at the missing second element.",
+          "hint": "ipairs stops at the missing second element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "iteration-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local values={[1]=${n},[3]=${m}}\nlocal count=0\nfor i,v in ____(values) do count=count+1 end\nprint(count)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. ipairs stops at the missing second element. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ipairs"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "pairs visits both fields, without promising their order.",
+          "hint": "pairs visits both fields, without promising their order.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "iteration-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local values={name=\"${word}\",size=${n}}\nlocal count=0\nfor k,v in ____(values) do count=count+1 end\nprint(count)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. pairs visits both fields, without promising their order. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "pairs"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "rawget bypasses the fallback and finds no stored size field.",
+          "hint": "rawget bypasses the fallback and finds no stored size field.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "iteration-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local values=setmetatable({}, {__index={size=${n}}})\nprint(____(values,\"size\"))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. rawget bypasses the fallback and finds no stored size field. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "rawget"
+          ]
+        },
+        {
+          "concept": "Sequence boundaries and iterator protocols",
+          "explanation": "The iterator receives the previous control value and stops when it returns nil.",
+          "hint": "The iterator receives the previous control value and stops when it returns nil.",
+          "id": "iteration-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local function values(_,previous)\n if previous<2 then return previous+1 end\nend\nlocal count=0\nfor i in values,nil,____ do count=count+1 end\nprint(count)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The iterator receives the previous control value and stops when it returns nil. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "0"
+          ]
+        }
+      ]
+    },
+    {
       "id": "io",
       "title": "Input, files, and conversion",
       "section": "Intermediate",
       "intro": "Lua 5.4. io.read may return nil at EOF. tonumber converts numeric strings; tostring converts values to text. Always close handles you open.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
-        "tables"
+        "iteration"
       ],
       "questions": [
         {
@@ -2587,7 +3525,8 @@
       "section": "Intermediate",
       "intro": "Lua 5.4. local limits a binding to its lexical scope. A module commonly returns a table. require caches loaded module results.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
         "io"
@@ -2869,77 +3808,21 @@
       ]
     },
     {
-      "id": "errors",
-      "title": "Protected calls and assertions",
+      "id": "patterns",
+      "title": "Lua patterns and UTF-8 boundaries",
       "section": "Intermediate",
-      "intro": "Lua 5.4. error raises; pcall catches and returns a success flag followed by results or an error. assert raises for false or nil.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "Lua 5.4. Lua patterns are a compact language with % escapes; they are not JavaScript or Perl regular expressions. Captures extract substrings, gsub returns both the transformed text and replacement count, and gmatch produces an iterator. Lua strings are byte sequences: # counts bytes. The utf8 library counts Unicode code points for valid UTF-8, not user-perceived grapheme clusters. Plain string.find can disable pattern interpretation for literal searches.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua-manual"
       ],
       "requires": [
         "scope"
       ],
       "questions": [
         {
-          "concept": "Protected calls and assertions",
-          "explanation": "pcall reports a caught error with false.",
-          "hint": "pcall reports a caught error with false.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "errors-read-1",
-          "kind": "mcq",
-          "code": "local ok = pcall(function() error(\"${word}\") end)\nprint(ok)",
-          "prompt": "What is the result?",
-          "answer": "false",
-          "options": [
-            "false",
-            "true",
-            "nil"
-          ]
-        },
-        {
-          "concept": "Protected calls and assertions",
-          "explanation": "pcall reports a caught error with false.",
-          "hint": "pcall reports a caught error with false.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "errors-choose-1",
-          "kind": "mcq",
-          "code": "local ok = ____(function() error(\"${word}\") end)\nprint(ok)",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: false. pcall reports a caught error with false.",
-          "answer": "pcall",
-          "options": [
-            "pcall",
-            "type",
-            "tostring"
-          ]
-        },
-        {
-          "concept": "Protected calls and assertions",
-          "explanation": "A successful protected call returns true followed by results.",
-          "hint": "A successful protected call returns true followed by results.",
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "%d+ captures the run of decimal digits.",
+          "hint": "%d+ captures the run of decimal digits.",
           "parameters": {
             "n": {
               "type": "int",
@@ -2948,100 +3831,21 @@
             }
           },
           "derived": {},
-          "id": "errors-read-2",
+          "id": "patterns-read-1",
           "kind": "mcq",
-          "code": "local ok, value = pcall(function() return ${n} end)\nprint(value)",
+          "code": "local text=\"size=${n}\"\nprint(string.match(text,\"%d+\"))",
           "prompt": "What is the result?",
-          "answer": "${n}",
-          "options": [
-            "${n}",
-            "true",
-            "nil"
-          ]
-        },
-        {
-          "concept": "Protected calls and assertions",
-          "explanation": "A successful protected call returns true followed by results.",
-          "hint": "A successful protected call returns true followed by results.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "errors-choose-2",
-          "kind": "mcq",
-          "code": "local ok, value = pcall(function() return ____ end)\nprint(value)",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A successful protected call returns true followed by results. Use ${n} as the replacement literal.",
           "answer": "${n}",
           "options": [
             "${n}",
             "nil",
-            "false"
+            "size"
           ]
         },
         {
-          "concept": "Protected calls and assertions",
-          "explanation": "assert raises when its first argument is falsey.",
-          "hint": "assert raises when its first argument is falsey.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "errors-read-3",
-          "kind": "mcq",
-          "code": "assert(false, \"${word}\")",
-          "prompt": "What happens?",
-          "answer": "Raises an error",
-          "options": [
-            "Raises an error",
-            "Returns false",
-            "Returns nil"
-          ]
-        },
-        {
-          "concept": "Protected calls and assertions",
-          "explanation": "assert raises when its first argument is falsey.",
-          "hint": "assert raises when its first argument is falsey.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "errors-choose-3",
-          "kind": "mcq",
-          "code": "____(false, \"${word}\")",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises an error. assert raises when its first argument is falsey.",
-          "answer": "assert",
-          "options": [
-            "assert",
-            "print",
-            "type"
-          ]
-        },
-        {
-          "concept": "Protected calls and assertions",
-          "explanation": "The function completes normally, so the success flag is true.",
-          "hint": "The function completes normally, so the success flag is true.",
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "%d+ captures the run of decimal digits.",
+          "hint": "%d+ captures the run of decimal digits.",
           "parameters": {
             "n": {
               "type": "int",
@@ -3050,44 +3854,189 @@
             }
           },
           "derived": {},
-          "id": "errors-read-4",
+          "id": "patterns-choose-1",
           "kind": "mcq",
-          "code": "local ok, value = pcall(function() return ${n} end)\nprint(ok)",
+          "code": "local text=\"size=${n}\"\nprint(string.match(text,____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. %d+ captures the run of decimal digits. Use \"%d+\" as the replacement literal.",
+          "answer": "\"%d+\"",
+          "options": [
+            "\"%d+\"",
+            "\"%a+\"",
+            "\"%s+\""
+          ]
+        },
+        {
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "gsub returns the replacement count as its second result.",
+          "hint": "gsub returns the replacement count as its second result.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "patterns-read-2",
+          "kind": "mcq",
+          "code": "local text,count=string.gsub(\"${word} ${word}\",\"${word}\",\"X\")\nprint(count)",
           "prompt": "What is the result?",
-          "answer": "true",
+          "answer": "2",
           "options": [
-            "true",
-            "false",
-            "${n}"
+            "2",
+            "1",
+            "0"
           ]
         },
         {
-          "concept": "Protected calls and assertions",
-          "explanation": "The function completes normally, so the success flag is true.",
-          "hint": "The function completes normally, so the success flag is true.",
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "gsub returns the replacement count as its second result.",
+          "hint": "gsub returns the replacement count as its second result.",
           "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
             }
           },
           "derived": {},
-          "id": "errors-choose-4",
+          "id": "patterns-choose-2",
           "kind": "mcq",
-          "code": "local ok, value = ____(function() return ${n} end)\nprint(ok)",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The function completes normally, so the success flag is true.",
-          "answer": "pcall",
+          "code": "local text,count=string.____(\"${word} ${word}\",\"${word}\",\"X\")\nprint(count)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. gsub returns the replacement count as its second result.",
+          "answer": "gsub",
           "options": [
-            "pcall",
-            "tonumber",
-            "tostring"
+            "gsub",
+            "match",
+            "find"
           ]
         },
         {
-          "concept": "Protected calls and assertions",
-          "explanation": "pcall reports a caught error with false.",
-          "hint": "pcall reports a caught error with false.",
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "utf8.len counts code points in this valid text; lambda occupies two UTF-8 bytes.",
+          "hint": "utf8.len counts code points in this valid text; lambda occupies two UTF-8 bytes.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "unicodebytes": "len(word)+2",
+            "unicodechars": "len(word)+1"
+          },
+          "id": "patterns-read-3",
+          "kind": "mcq",
+          "code": "local text=\"λ${word}\"\nprint(utf8.len(text))",
+          "prompt": "What is the result?",
+          "answer": "${unicodechars}",
+          "options": [
+            "${unicodechars}",
+            "${unicodebytes}",
+            "1"
+          ]
+        },
+        {
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "utf8.len counts code points in this valid text; lambda occupies two UTF-8 bytes.",
+          "hint": "utf8.len counts code points in this valid text; lambda occupies two UTF-8 bytes.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "unicodechars": "len(word)+1"
+          },
+          "id": "patterns-choose-3",
+          "kind": "mcq",
+          "code": "local text=\"λ${word}\"\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${unicodechars}. utf8.len counts code points in this valid text; lambda occupies two UTF-8 bytes.",
+          "answer": "utf8.len(text)",
+          "options": [
+            "utf8.len(text)",
+            "#text",
+            "string.len(text)"
+          ]
+        },
+        {
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "The final true requests a literal dot, not the any-character pattern.",
+          "hint": "The final true requests a literal dot, not the any-character pattern.",
+          "id": "patterns-read-4",
+          "kind": "mcq",
+          "code": "local start=string.find(\"a.b\",\".\",1,true)\nprint(start)",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "The final true requests a literal dot, not the any-character pattern.",
+          "hint": "The final true requests a literal dot, not the any-character pattern.",
+          "id": "patterns-choose-4",
+          "kind": "mcq",
+          "code": "local start=string.find(\"a.b\",____)\nprint(start)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The final true requests a literal dot, not the any-character pattern.",
+          "answer": "\".\",1,true",
+          "options": [
+            "\".\",1,true",
+            "\".\"",
+            "\"x\",1,true"
+          ]
+        },
+        {
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "%d+ captures the run of decimal digits.",
+          "hint": "%d+ captures the run of decimal digits.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "patterns-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local text=\"size=${n}\"\nprint(string.match(text,____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. %d+ captures the run of decimal digits. Use \"%d+\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"%d+\""
+          ]
+        },
+        {
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "gsub returns the replacement count as its second result.",
+          "hint": "gsub returns the replacement count as its second result.",
           "parameters": {
             "word": {
               "type": "choice",
@@ -3101,40 +4050,19 @@
             }
           },
           "derived": {},
-          "id": "errors-write-1",
+          "id": "patterns-write-2",
           "kind": "write",
           "checker": "exact",
-          "code": "local ok = ____(function() error(\"${word}\") end)\nprint(ok)",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: false. pcall reports a caught error with false. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "local text,count=string.____(\"${word} ${word}\",\"${word}\",\"X\")\nprint(count)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. gsub returns the replacement count as its second result. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "pcall"
+            "gsub"
           ]
         },
         {
-          "concept": "Protected calls and assertions",
-          "explanation": "A successful protected call returns true followed by results.",
-          "hint": "A successful protected call returns true followed by results.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "errors-write-2",
-          "kind": "write",
-          "checker": "exact",
-          "code": "local ok, value = pcall(function() return ____ end)\nprint(value)",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A successful protected call returns true followed by results. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "${n}"
-          ]
-        },
-        {
-          "concept": "Protected calls and assertions",
-          "explanation": "assert raises when its first argument is falsey.",
-          "hint": "assert raises when its first argument is falsey.",
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "utf8.len counts code points in this valid text; lambda occupies two UTF-8 bytes.",
+          "hint": "utf8.len counts code points in this valid text; lambda occupies two UTF-8 bytes.",
           "parameters": {
             "word": {
               "type": "choice",
@@ -3147,35 +4075,29 @@
               ]
             }
           },
-          "derived": {},
-          "id": "errors-write-3",
+          "derived": {
+            "unicodechars": "len(word)+1"
+          },
+          "id": "patterns-write-3",
           "kind": "write",
           "checker": "exact",
-          "code": "____(false, \"${word}\")",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises an error. assert raises when its first argument is falsey. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "local text=\"λ${word}\"\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${unicodechars}. utf8.len counts code points in this valid text; lambda occupies two UTF-8 bytes. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "assert"
+            "utf8.len(text)"
           ]
         },
         {
-          "concept": "Protected calls and assertions",
-          "explanation": "The function completes normally, so the success flag is true.",
-          "hint": "The function completes normally, so the success flag is true.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "errors-write-4",
+          "concept": "Lua patterns and UTF-8 boundaries",
+          "explanation": "The final true requests a literal dot, not the any-character pattern.",
+          "hint": "The final true requests a literal dot, not the any-character pattern.",
+          "id": "patterns-write-4",
           "kind": "write",
           "checker": "exact",
-          "code": "local ok, value = ____(function() return ${n} end)\nprint(ok)",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The function completes normally, so the success flag is true. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "local start=string.find(\"a.b\",____)\nprint(start)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The final true requests a literal dot, not the any-character pattern. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "pcall"
+            "\".\",1,true"
           ]
         }
       ]
@@ -3186,10 +4108,11 @@
       "section": "Advanced",
       "intro": "Lua 5.4. Assigning a table copies its reference, not its contents. rawequal compares identity without equality metamethods.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
-        "errors"
+        "patterns"
       ],
       "questions": [
         {
@@ -3489,7 +4412,8 @@
       "section": "Advanced",
       "intro": "Lua 5.4. Metatables customize operations. __index provides missing fields; __newindex handles assignment to absent keys. Raw operations bypass these hooks.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
         "references"
@@ -3792,7 +4716,8 @@
       "section": "Advanced",
       "intro": "Lua 5.4. Colon calls pass the receiver as self. Dot calls require that receiver explicitly. Factory functions can encapsulate state in an upvalue.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
         "metatables"
@@ -4081,15 +5006,557 @@
       ]
     },
     {
+      "id": "errors",
+      "title": "Protected calls and assertions",
+      "section": "Advanced",
+      "intro": "Lua 5.4. error raises; pcall catches and returns a success flag followed by results or an error. assert raises for false or nil.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua",
+        "lua-manual"
+      ],
+      "requires": [
+        "methods"
+      ],
+      "questions": [
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "pcall reports a caught error with false.",
+          "hint": "pcall reports a caught error with false.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-1",
+          "kind": "mcq",
+          "code": "local ok = pcall(function() error(\"${word}\") end)\nprint(ok)",
+          "prompt": "What is the result?",
+          "answer": "false",
+          "options": [
+            "false",
+            "true",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "pcall reports a caught error with false.",
+          "hint": "pcall reports a caught error with false.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-1",
+          "kind": "mcq",
+          "code": "local ok = ____(function() error(\"${word}\") end)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. pcall reports a caught error with false.",
+          "answer": "pcall",
+          "options": [
+            "pcall",
+            "type",
+            "tostring"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "A successful protected call returns true followed by results.",
+          "hint": "A successful protected call returns true followed by results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-read-2",
+          "kind": "mcq",
+          "code": "local ok, value = pcall(function() return ${n} end)\nprint(value)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "true",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "A successful protected call returns true followed by results.",
+          "hint": "A successful protected call returns true followed by results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-2",
+          "kind": "mcq",
+          "code": "local ok, value = pcall(function() return ____ end)\nprint(value)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A successful protected call returns true followed by results. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "false"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "assert raises when its first argument is falsey.",
+          "hint": "assert raises when its first argument is falsey.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-3",
+          "kind": "mcq",
+          "code": "assert(false, \"${word}\")",
+          "prompt": "What happens?",
+          "answer": "Raises an error",
+          "options": [
+            "Raises an error",
+            "Returns false",
+            "Returns nil"
+          ],
+          "repair_question_id": "errors-write-repair-3"
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "A protected boundary converts the assertion failure into a false status.",
+          "hint": "A protected boundary converts the assertion failure into a false status.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-repair-3",
+          "kind": "mcq",
+          "code": "local ok,message=____(function() assert(false,\"${word}\") end)\nprint(ok)",
+          "prompt": "Repair the code by filling ____. A protected boundary converts the assertion failure into a false status. Target result: false.",
+          "answer": "pcall",
+          "options": [
+            "pcall",
+            "assert",
+            "type"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "The function completes normally, so the success flag is true.",
+          "hint": "The function completes normally, so the success flag is true.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-read-4",
+          "kind": "mcq",
+          "code": "local ok, value = pcall(function() return ${n} end)\nprint(ok)",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "The function completes normally, so the success flag is true.",
+          "hint": "The function completes normally, so the success flag is true.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-4",
+          "kind": "mcq",
+          "code": "local ok, value = ____(function() return ${n} end)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The function completes normally, so the success flag is true.",
+          "answer": "pcall",
+          "options": [
+            "pcall",
+            "tonumber",
+            "tostring"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "pcall reports a caught error with false.",
+          "hint": "pcall reports a caught error with false.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local ok = ____(function() error(\"${word}\") end)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. pcall reports a caught error with false. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "pcall"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "A successful protected call returns true followed by results.",
+          "hint": "A successful protected call returns true followed by results.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local ok, value = pcall(function() return ____ end)\nprint(value)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A successful protected call returns true followed by results. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "A protected boundary converts the assertion failure into a false status.",
+          "hint": "A protected boundary converts the assertion failure into a false status.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-repair-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local ok,message=____(function() assert(false,\"${word}\") end)\nprint(ok)",
+          "prompt": "Repair the code by filling ____. A protected boundary converts the assertion failure into a false status. Target result: false. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "pcall"
+          ],
+          "target_answer": "false"
+        },
+        {
+          "concept": "Protected calls and assertions",
+          "explanation": "The function completes normally, so the success flag is true.",
+          "hint": "The function completes normally, so the success flag is true.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local ok, value = ____(function() return ${n} end)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The function completes normally, so the success flag is true. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "pcall"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "resources",
+      "title": "Closing resources and reporting failures",
+      "section": "Advanced",
+      "intro": "Lua 5.4. Lua APIs commonly return nil plus an error message. pcall instead returns a success boolean followed by results or the error object. Distinguish these conventions when reading a call. Lua 5.4 to-be-closed locals use <close>; their __close metamethod runs at scope exit, including error unwinding. A closable object must satisfy that protocol, or be nil/false. File handles support it, allowing explicit lifetime boundaries in scripts and embedded hosts.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua-manual"
+      ],
+      "requires": [
+        "errors"
+      ],
+      "questions": [
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "pcall converts the raised error into a false status and an error object.",
+          "hint": "pcall converts the raised error into a false status and an error object.",
+          "id": "resources-read-1",
+          "kind": "mcq",
+          "code": "local ok,message=pcall(function() error(\"invalid\") end)\nprint(ok)",
+          "prompt": "What is the result?",
+          "answer": "false",
+          "options": [
+            "false",
+            "true",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "pcall converts the raised error into a false status and an error object.",
+          "hint": "pcall converts the raised error into a false status and an error object.",
+          "id": "resources-choose-1",
+          "kind": "mcq",
+          "code": "local ok,message=____(function() error(\"invalid\") end)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. pcall converts the raised error into a false status and an error object.",
+          "answer": "pcall",
+          "options": [
+            "pcall",
+            "xpcall",
+            "assert"
+          ]
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "The close metamethod runs when the local leaves scope.",
+          "hint": "The close metamethod runs when the local leaves scope.",
+          "id": "resources-read-2",
+          "kind": "mcq",
+          "code": "local closed=false\ndo\n local resource <close> = setmetatable({}, {__close=function() closed=true end})\nend\nprint(closed)",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "The close metamethod runs when the local leaves scope.",
+          "hint": "The close metamethod runs when the local leaves scope.",
+          "id": "resources-choose-2",
+          "kind": "mcq",
+          "code": "local closed=false\ndo\n local resource ____ = setmetatable({}, {__close=function() closed=true end})\nend\nprint(closed)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The close metamethod runs when the local leaves scope.",
+          "answer": "<close>",
+          "options": [
+            "<close>",
+            "<const>"
+          ]
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "io.open returns nil plus an error message on this assumed failure.",
+          "hint": "io.open returns nil plus an error message on this assumed failure.",
+          "id": "resources-read-3",
+          "kind": "mcq",
+          "code": "local handle,message=io.open(\"missing.txt\",\"r\")\nif handle == nil then print(\"failed\") end",
+          "prompt": "Assume the file does not exist: what is printed?",
+          "answer": "failed",
+          "options": [
+            "failed",
+            "Nothing",
+            "An exception always escapes"
+          ]
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "io.open returns nil plus an error message on this assumed failure.",
+          "hint": "io.open returns nil plus an error message on this assumed failure.",
+          "id": "resources-choose-3",
+          "kind": "mcq",
+          "code": "local handle,message=io.open(\"missing.txt\",\"r\")\nif handle ____ nil then print(\"failed\") end",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: failed. io.open returns nil plus an error message on this assumed failure.",
+          "answer": "==",
+          "options": [
+            "==",
+            "~=",
+            ">"
+          ]
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "A const local cannot be assigned a new value.",
+          "hint": "A const local cannot be assigned a new value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "resources-read-4",
+          "kind": "mcq",
+          "code": "local value <const> = ${n}\nvalue=${m}",
+          "prompt": "What does Lua reject?",
+          "answer": "Compile error: assignment to const local",
+          "options": [
+            "Compile error: assignment to const local",
+            "${m}",
+            "Runtime nil"
+          ],
+          "repair_question_id": "resources-write-repair-4"
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "Declare an ordinary local when reassignment is part of the contract.",
+          "hint": "Declare an ordinary local when reassignment is part of the contract.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "resources-choose-repair-4",
+          "kind": "mcq",
+          "code": "local ____ = ${n}\nvalue=${m}\nprint(value)",
+          "prompt": "Repair the code by filling ____. Declare an ordinary local when reassignment is part of the contract. Target result: ${m}.",
+          "answer": "value",
+          "options": [
+            "value",
+            "value <const>",
+            "value <close>"
+          ]
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "pcall converts the raised error into a false status and an error object.",
+          "hint": "pcall converts the raised error into a false status and an error object.",
+          "id": "resources-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local ok,message=____(function() error(\"invalid\") end)\nprint(ok)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: false. pcall converts the raised error into a false status and an error object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "pcall"
+          ]
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "The close metamethod runs when the local leaves scope.",
+          "hint": "The close metamethod runs when the local leaves scope.",
+          "id": "resources-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local closed=false\ndo\n local resource ____ = setmetatable({}, {__close=function() closed=true end})\nend\nprint(closed)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The close metamethod runs when the local leaves scope. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "<close>"
+          ]
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "io.open returns nil plus an error message on this assumed failure.",
+          "hint": "io.open returns nil plus an error message on this assumed failure.",
+          "id": "resources-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local handle,message=io.open(\"missing.txt\",\"r\")\nif handle ____ nil then print(\"failed\") end",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: failed. io.open returns nil plus an error message on this assumed failure. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        },
+        {
+          "concept": "Closing resources and reporting failures",
+          "explanation": "Declare an ordinary local when reassignment is part of the contract.",
+          "hint": "Declare an ordinary local when reassignment is part of the contract.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "resources-write-repair-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local ____ = ${n}\nvalue=${m}\nprint(value)",
+          "prompt": "Repair the code by filling ____. Declare an ordinary local when reassignment is part of the contract. Target result: ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "value"
+          ],
+          "target_answer": "${m}"
+        }
+      ]
+    },
+    {
       "id": "coroutines",
       "title": "Coroutines and suspended execution",
       "section": "Advanced",
       "intro": "Lua 5.4. create makes a suspended coroutine; resume runs it; yield pauses with values. resume returns a success flag before yielded or returned results.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "lua"
+        "lua",
+        "lua-manual"
       ],
       "requires": [
-        "methods"
+        "resources"
       ],
       "questions": [
         {
@@ -4388,6 +5855,270 @@
           "prompt": "Complete ____ using the demonstrated construction. Target result: false. resume reports an error with a false success flag. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
             "resume"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedding",
+      "title": "Metamethods, modules, and host boundaries",
+      "section": "Advanced",
+      "intro": "Lua 5.4. Lua often provides configuration or extension logic inside a host application. Modules usually return a table of functions and keep implementation state local. require caches a loaded module in package.loaded. __call makes a table callable; __newindex handles assignments to absent keys, while writes to existing keys normally bypass it. These mechanics explain lightweight object systems without imposing a class hierarchy from another language. Host APIs and sandbox guarantees depend on the embedding application.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "lua-manual"
+      ],
+      "requires": [
+        "coroutines"
+      ],
+      "questions": [
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "__call supplies behavior when this table is called like a function.",
+          "hint": "__call supplies behavior when this table is called like a function.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "embedding-read-1",
+          "kind": "mcq",
+          "code": "local item=setmetatable({}, {__call=function(self,n) return n+1 end})\nprint(item(${n}))",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "Runtime error"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "__call supplies behavior when this table is called like a function.",
+          "hint": "__call supplies behavior when this table is called like a function.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "embedding-choose-1",
+          "kind": "mcq",
+          "code": "local item=setmetatable({}, {__call=function(self,n) return n+1 end})\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. __call supplies behavior when this table is called like a function.",
+          "answer": "item(${n})",
+          "options": [
+            "item(${n})",
+            "item[${n}]",
+            "item.n"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "Updating an existing raw key does not invoke __newindex.",
+          "hint": "Updating an existing raw key does not invoke __newindex.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "embedding-read-2",
+          "kind": "mcq",
+          "code": "local writes=0\nlocal item=setmetatable({size=1},{__newindex=function(t,k,v) writes=writes+1; rawset(t,k,v) end})\nitem.size=${n}\nprint(writes)",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "Updating an existing raw key does not invoke __newindex.",
+          "hint": "Updating an existing raw key does not invoke __newindex.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "embedding-choose-2",
+          "kind": "mcq",
+          "code": "local writes=0\nlocal item=setmetatable({size=1},{__newindex=function(t,k,v) writes=writes+1; rawset(t,k,v) end})\nitem.____=${n}\nprint(writes)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Updating an existing raw key does not invoke __newindex.",
+          "answer": "size",
+          "options": [
+            "size",
+            "name",
+            "other"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "require reuses the cached table for this module name.",
+          "hint": "require reuses the cached table for this module name.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "embedding-read-3",
+          "kind": "mcq",
+          "code": "package.preload[\"lesson_config\"]=function() return {size=${n}} end\nlocal a=require(\"lesson_config\")\nlocal b=require(\"lesson_config\")\nprint(a==b)",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "require reuses the cached table for this module name.",
+          "hint": "require reuses the cached table for this module name.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "embedding-choose-3",
+          "kind": "mcq",
+          "code": "package.preload[\"lesson_config\"]=function() return {size=${n}} end\nlocal a=require(\"lesson_config\")\nlocal b=____\nprint(a==b)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. require reuses the cached table for this module name.",
+          "answer": "require(\"lesson_config\")",
+          "options": [
+            "require(\"lesson_config\")",
+            "{}",
+            "{size=${n}}"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "Each factory call creates a distinct captured upvalue.",
+          "hint": "Each factory call creates a distinct captured upvalue.",
+          "id": "embedding-read-4",
+          "kind": "mcq",
+          "code": "local function create()\n local n=0\n return function() n=n+1; return n end\nend\nlocal a=create(); local b=create(); a()\nprint(b())",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "2",
+            "0"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "Each factory call creates a distinct captured upvalue.",
+          "hint": "Each factory call creates a distinct captured upvalue.",
+          "id": "embedding-choose-4",
+          "kind": "mcq",
+          "code": "local function create()\n local n=0\n return function() n=n+1; return n end\nend\nlocal a=create(); local b=create(); a()\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Each factory call creates a distinct captured upvalue.",
+          "answer": "b()",
+          "options": [
+            "b()",
+            "a()",
+            "0"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "__call supplies behavior when this table is called like a function.",
+          "hint": "__call supplies behavior when this table is called like a function.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "embedding-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local item=setmetatable({}, {__call=function(self,n) return n+1 end})\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. __call supplies behavior when this table is called like a function. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "item(${n})"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "Updating an existing raw key does not invoke __newindex.",
+          "hint": "Updating an existing raw key does not invoke __newindex.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "embedding-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local writes=0\nlocal item=setmetatable({size=1},{__newindex=function(t,k,v) writes=writes+1; rawset(t,k,v) end})\nitem.____=${n}\nprint(writes)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Updating an existing raw key does not invoke __newindex. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "size"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "require reuses the cached table for this module name.",
+          "hint": "require reuses the cached table for this module name.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "embedding-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "package.preload[\"lesson_config\"]=function() return {size=${n}} end\nlocal a=require(\"lesson_config\")\nlocal b=____\nprint(a==b)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. require reuses the cached table for this module name. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "require(\"lesson_config\")"
+          ]
+        },
+        {
+          "concept": "Metamethods, modules, and host boundaries",
+          "explanation": "Each factory call creates a distinct captured upvalue.",
+          "hint": "Each factory call creates a distinct captured upvalue.",
+          "id": "embedding-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "local function create()\n local n=0\n return function() n=n+1; return n end\nend\nlocal a=create(); local b=create(); a()\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Each factory call creates a distinct captured upvalue. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "b()"
           ]
         }
       ]

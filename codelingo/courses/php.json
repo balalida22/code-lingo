@@ -3,25 +3,303 @@
   "id": "php",
   "title": "PHP",
   "language": "PHP 8.2+; snippets are inside a PHP block",
-  "version": "1.0",
+  "version": "1.1",
   "sources": [
     {
       "id": "php",
       "title": "PHP language reference",
       "url": "https://www.php.net/manual/en/langref.php",
       "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "php-manual",
+      "title": "PHP manual: language and standard extensions",
+      "url": "https://www.php.net/manual/en/",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "php-pdo",
+      "title": "PDO prepared statements",
+      "url": "https://www.php.net/manual/en/pdo.prepared-statements.php",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
     }
   ],
   "lessons": [
+    {
+      "id": "runtime",
+      "title": "PHP execution and request boundaries",
+      "section": "Basics",
+      "intro": "PHP 8.2+; snippets are inside a PHP block. PHP runs in different server APIs, including CLI and web servers. A web request receives its own execution context; ordinary local variables do not persist across later requests. CLI arguments arrive through argv, while query and form values use superglobals. php -l checks syntax without executing the script. Keep declarations before use, and distinguish the language interpreter from the server that routes HTTP requests. These examples assume PHP 8.2 or later.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "php-manual"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Lint mode checks syntax; it does not prove that names or runtime operations are valid.",
+          "hint": "Lint mode checks syntax; it does not prove that names or runtime operations are valid.",
+          "id": "runtime-read-1",
+          "kind": "mcq",
+          "code": "$ php -l app.php",
+          "prompt": "What does this command check?",
+          "answer": "Checks PHP syntax without executing the script",
+          "options": [
+            "Checks PHP syntax without executing the script",
+            "Starts a production web server",
+            "Runs every test"
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Lint mode checks syntax; it does not prove that names or runtime operations are valid.",
+          "hint": "Lint mode checks syntax; it does not prove that names or runtime operations are valid.",
+          "id": "runtime-choose-1",
+          "kind": "mcq",
+          "code": "$ php ____ app.php",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Checks PHP syntax without executing the script. Lint mode checks syntax; it does not prove that names or runtime operations are valid.",
+          "answer": "-l",
+          "options": [
+            "-l",
+            "-v",
+            "-i"
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Index one is the first CLI argument after the script name.",
+          "hint": "Index one is the first CLI argument after the script name.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "runtime-read-2",
+          "kind": "mcq",
+          "code": "// CLI invocation: php app.php ${word}\necho $argv[1];",
+          "prompt": "Given this invocation, what is printed?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "app.php",
+            "0"
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Index one is the first CLI argument after the script name.",
+          "hint": "Index one is the first CLI argument after the script name.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "runtime-choose-2",
+          "kind": "mcq",
+          "code": "// CLI invocation: php app.php ${word}\necho $argv[____];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Index one is the first CLI argument after the script name.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Null coalescing supplies a fallback, but validation and output encoding remain separate.",
+          "hint": "Null coalescing supplies a fallback, but validation and output encoding remain separate.",
+          "id": "runtime-read-3",
+          "kind": "mcq",
+          "code": "$name=$_GET[\"name\"] ?? \"guest\";",
+          "prompt": "What does this expression guarantee?",
+          "answer": "Uses guest when the query key is absent or null",
+          "options": [
+            "Uses guest when the query key is absent or null",
+            "Persists the name across all requests",
+            "Validates the name as safe HTML"
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Null coalescing supplies a fallback, but validation and output encoding remain separate.",
+          "hint": "Null coalescing supplies a fallback, but validation and output encoding remain separate.",
+          "id": "runtime-choose-3",
+          "kind": "mcq",
+          "code": "$name=$_GET[\"name\"] ____ \"guest\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Uses guest when the query key is absent or null. Null coalescing supplies a fallback, but validation and output encoding remain separate.",
+          "answer": "??",
+          "options": [
+            "??",
+            "+",
+            "==="
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Sessions provide a persistence mechanism; ordinary variables do not.",
+          "hint": "Sessions provide a persistence mechanism; ordinary variables do not.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "runtime-read-4",
+          "kind": "mcq",
+          "code": "session_start(); $_SESSION[\"name\"]=\"${word}\";",
+          "prompt": "Assume headers can still be sent: what mechanism is used?",
+          "answer": "Uses session storage to retain a value across requests",
+          "options": [
+            "Uses session storage to retain a value across requests",
+            "Makes a local variable permanent",
+            "Encrypts every response"
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Sessions provide a persistence mechanism; ordinary variables do not.",
+          "hint": "Sessions provide a persistence mechanism; ordinary variables do not.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "runtime-choose-4",
+          "kind": "mcq",
+          "code": "____(); $_SESSION[\"name\"]=\"${word}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Uses session storage to retain a value across requests. Sessions provide a persistence mechanism; ordinary variables do not.",
+          "answer": "session_start",
+          "options": [
+            "session_start",
+            "ob_start",
+            "header"
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Lint mode checks syntax; it does not prove that names or runtime operations are valid.",
+          "hint": "Lint mode checks syntax; it does not prove that names or runtime operations are valid.",
+          "id": "runtime-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$ php ____ app.php",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Checks PHP syntax without executing the script. Lint mode checks syntax; it does not prove that names or runtime operations are valid. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "-l"
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Index one is the first CLI argument after the script name.",
+          "hint": "Index one is the first CLI argument after the script name.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "runtime-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "// CLI invocation: php app.php ${word}\necho $argv[____];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Index one is the first CLI argument after the script name. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "1"
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Null coalescing supplies a fallback, but validation and output encoding remain separate.",
+          "hint": "Null coalescing supplies a fallback, but validation and output encoding remain separate.",
+          "id": "runtime-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$name=$_GET[\"name\"] ____ \"guest\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Uses guest when the query key is absent or null. Null coalescing supplies a fallback, but validation and output encoding remain separate. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "??"
+          ]
+        },
+        {
+          "concept": "PHP execution and request boundaries",
+          "explanation": "Sessions provide a persistence mechanism; ordinary variables do not.",
+          "hint": "Sessions provide a persistence mechanism; ordinary variables do not.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "runtime-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____(); $_SESSION[\"name\"]=\"${word}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Uses session storage to retain a value across requests. Sessions provide a persistence mechanism; ordinary variables do not. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "session_start"
+          ]
+        }
+      ]
+    },
     {
       "id": "values",
       "title": "Values and assignment",
       "section": "Basics",
       "intro": "PHP 8.2+; snippets are inside a PHP block. A variable names a value. Assignment updates that variable; an earlier copied number does not follow later assignments. Read statements from top to bottom.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
-      "requires": [],
+      "requires": [
+        "runtime"
+      ],
       "questions": [
         {
           "concept": "Values and assignment",
@@ -351,7 +629,9 @@
       "section": "Basics",
       "intro": "PHP 8.2+; snippets are inside a PHP block. Multiplication binds more tightly than addition. Parentheses group expressions. Integer quotient and remainder answer different questions; all operands here are positive.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
         "values"
@@ -725,7 +1005,9 @@
       "section": "Basics",
       "intro": "PHP 8.2+; snippets are inside a PHP block. PHP statements shown belong inside a <?php block. Double quotes interpolate variables; single quotes preserve their names. The dot operator concatenates strings.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
         "arithmetic"
@@ -1075,7 +1357,9 @@
       "section": "Basics",
       "intro": "PHP 8.2+; snippets are inside a PHP block. === compares type and value; == permits coercion. The string \"0\" is falsey. ?? falls back only for null or an unset value.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
         "strings"
@@ -1366,7 +1650,9 @@
       "section": "Basics",
       "intro": "PHP 8.2+; snippets are inside a PHP block. for has initialization, condition, and update. foreach yields values or keys and values. break exits; continue skips an iteration.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
         "conditions"
@@ -1624,7 +1910,9 @@
       "section": "Intermediate",
       "intro": "PHP 8.2+; snippets are inside a PHP block. Functions use return for results. Type declarations document and check contracts. Defaults fill missing arguments; named arguments bind by parameter name.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
         "loops"
@@ -1942,7 +2230,9 @@
       "section": "Intermediate",
       "intro": "PHP 8.2+; snippets are inside a PHP block. PHP arrays are ordered maps. [] appends; => associates keys and values. isset is false for missing and null values, while array_key_exists tests presence.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
         "functions"
@@ -2245,7 +2535,9 @@
       "section": "Intermediate",
       "intro": "PHP 8.2+; snippets are inside a PHP block. Request data arrives as untrusted strings or arrays. Validate types before use. ?? provides defaults; htmlspecialchars escapes text for an HTML text context.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
         "arrays"
@@ -2549,15 +2841,1110 @@
       ]
     },
     {
-      "id": "namespaces",
-      "title": "Namespaces and loading",
+      "id": "validation",
+      "title": "Validate input and encode output",
       "section": "Intermediate",
-      "intro": "PHP 8.2+; snippets are inside a PHP block. Namespaces qualify names and avoid collisions. use introduces an alias. require_once loads a file only once and fails if it cannot be loaded.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "PHP 8.2+; snippets are inside a PHP block. HTTP input is external data, even when an HTML form declares a numeric field. A query key may be absent or array-valued. Validate shape before conversion, and compare filter failures strictly because valid zero is falsey. Escaping is output-context-specific: htmlspecialchars encodes HTML text, not SQL, JavaScript, or a complete URL. This lesson separates input validation from safe rendering and avoids teaching broad claims such as making a string universally safe.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php-manual"
       ],
       "requires": [
         "io"
+      ],
+      "questions": [
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "A valid integer zero must not be confused with the false failure sentinel.",
+          "hint": "A valid integer zero must not be confused with the false failure sentinel.",
+          "id": "validation-read-1",
+          "kind": "mcq",
+          "code": "$value=filter_var(\"0\",FILTER_VALIDATE_INT); echo ($value === false) ? \"invalid\" : \"valid\";",
+          "prompt": "What is the result?",
+          "answer": "valid",
+          "options": [
+            "valid",
+            "invalid",
+            "0"
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "A valid integer zero must not be confused with the false failure sentinel.",
+          "hint": "A valid integer zero must not be confused with the false failure sentinel.",
+          "id": "validation-choose-1",
+          "kind": "mcq",
+          "code": "$value=filter_var(\"0\",FILTER_VALIDATE_INT); echo ($value ____ false) ? \"invalid\" : \"valid\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: valid. A valid integer zero must not be confused with the false failure sentinel.",
+          "answer": "===",
+          "options": [
+            "===",
+            "==",
+            "!=="
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "Check shape before treating request data as a scalar string.",
+          "hint": "Check shape before treating request data as a scalar string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "validation-read-2",
+          "kind": "mcq",
+          "code": "$raw=[\"${word}\"]; echo is_string($raw) ? \"text\" : \"reject\";",
+          "prompt": "What is the result?",
+          "answer": "reject",
+          "options": [
+            "reject",
+            "text",
+            "Array"
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "Check shape before treating request data as a scalar string.",
+          "hint": "Check shape before treating request data as a scalar string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "validation-choose-2",
+          "kind": "mcq",
+          "code": "$raw=[\"${word}\"]; echo ____($raw) ? \"text\" : \"reject\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: reject. Check shape before treating request data as a scalar string.",
+          "answer": "is_string",
+          "options": [
+            "is_string",
+            "is_array",
+            "isset"
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "HTML encoding turns angle brackets into text entities for this output context.",
+          "hint": "HTML encoding turns angle brackets into text entities for this output context.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "validation-read-3",
+          "kind": "mcq",
+          "code": "echo htmlspecialchars(\"<${word}>\",ENT_QUOTES,\"UTF-8\");",
+          "prompt": "What is the result?",
+          "answer": "&lt;${word}&gt;",
+          "options": [
+            "&lt;${word}&gt;",
+            "<${word}>",
+            "${word}"
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "HTML encoding turns angle brackets into text entities for this output context.",
+          "hint": "HTML encoding turns angle brackets into text entities for this output context.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "validation-choose-3",
+          "kind": "mcq",
+          "code": "echo ____(\"<${word}>\",ENT_QUOTES,\"UTF-8\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: &lt;${word}&gt;. HTML encoding turns angle brackets into text entities for this output context.",
+          "answer": "htmlspecialchars",
+          "options": [
+            "htmlspecialchars",
+            "strtolower",
+            "trim"
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "The fallback handles null before the value reaches output.",
+          "hint": "The fallback handles null before the value reaches output.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "validation-read-4",
+          "kind": "mcq",
+          "code": "$name=null; echo $name ?? \"${word}\";",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "0",
+            "TypeError"
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "The fallback handles null before the value reaches output.",
+          "hint": "The fallback handles null before the value reaches output.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "validation-choose-4",
+          "kind": "mcq",
+          "code": "$name=null; echo $name ____ \"${word}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The fallback handles null before the value reaches output.",
+          "answer": "??",
+          "options": [
+            "??",
+            "+",
+            "==="
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "A valid integer zero must not be confused with the false failure sentinel.",
+          "hint": "A valid integer zero must not be confused with the false failure sentinel.",
+          "id": "validation-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$value=filter_var(\"0\",FILTER_VALIDATE_INT); echo ($value ____ false) ? \"invalid\" : \"valid\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: valid. A valid integer zero must not be confused with the false failure sentinel. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "==="
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "Check shape before treating request data as a scalar string.",
+          "hint": "Check shape before treating request data as a scalar string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "validation-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$raw=[\"${word}\"]; echo ____($raw) ? \"text\" : \"reject\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: reject. Check shape before treating request data as a scalar string. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "is_string"
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "HTML encoding turns angle brackets into text entities for this output context.",
+          "hint": "HTML encoding turns angle brackets into text entities for this output context.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "validation-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "echo ____(\"<${word}>\",ENT_QUOTES,\"UTF-8\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: &lt;${word}&gt;. HTML encoding turns angle brackets into text entities for this output context. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "htmlspecialchars"
+          ]
+        },
+        {
+          "concept": "Validate input and encode output",
+          "explanation": "The fallback handles null before the value reaches output.",
+          "hint": "The fallback handles null before the value reaches output.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "validation-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$name=null; echo $name ____ \"${word}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The fallback handles null before the value reaches output. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "??"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "http",
+      "title": "HTTP responses, forms, and redirects",
+      "section": "Intermediate",
+      "intro": "PHP 8.2+; snippets are inside a PHP block. HTTP status and headers describe a response separately from its body. Set headers before output unless buffering deliberately delays it. header with a Location value requests a redirect but does not stop PHP execution; exit prevents later code from running. GET and POST values are separate inputs. A form changes the source of input, not its trustworthiness. These exercises read request/response boundaries without introducing a framework or a full authentication system.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "php-manual"
+      ],
+      "requires": [
+        "validation"
+      ],
+      "questions": [
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "The status setter communicates the failure separately from the body.",
+          "hint": "The status setter communicates the failure separately from the body.",
+          "id": "http-read-1",
+          "kind": "mcq",
+          "code": "http_response_code(404); echo \"missing\";",
+          "prompt": "Assume a web request before headers are sent: what does this do?",
+          "answer": "Sets the HTTP response status to 404",
+          "options": [
+            "Sets the HTTP response status to 404",
+            "Redirects automatically",
+            "Throws an exception"
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "The status setter communicates the failure separately from the body.",
+          "hint": "The status setter communicates the failure separately from the body.",
+          "id": "http-choose-1",
+          "kind": "mcq",
+          "code": "____(404); echo \"missing\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Sets the HTTP response status to 404. The status setter communicates the failure separately from the body.",
+          "answer": "http_response_code",
+          "options": [
+            "http_response_code",
+            "header",
+            "print"
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "exit stops execution after setting the redirect header.",
+          "hint": "exit stops execution after setting the redirect header.",
+          "id": "http-read-2",
+          "kind": "mcq",
+          "code": "header(\"Location: /done\"); exit; echo \"later\";",
+          "prompt": "What happens to the final echo?",
+          "answer": "The later body is not emitted",
+          "options": [
+            "The later body is not emitted",
+            "The later body is always emitted",
+            "The redirect is cancelled"
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "exit stops execution after setting the redirect header.",
+          "hint": "exit stops execution after setting the redirect header.",
+          "id": "http-choose-2",
+          "kind": "mcq",
+          "code": "header(\"Location: /done\"); ____; echo \"later\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: The later body is not emitted. exit stops execution after setting the redirect header.",
+          "answer": "exit",
+          "options": [
+            "exit",
+            ";",
+            "print \"continue\""
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "Content-Type describes the emitted representation; encoding still must be correct.",
+          "hint": "Content-Type describes the emitted representation; encoding still must be correct.",
+          "id": "http-read-3",
+          "kind": "mcq",
+          "code": "header(\"Content-Type: application/json\"); echo \"{}\";",
+          "prompt": "What does the header describe?",
+          "answer": "Declares a JSON response body",
+          "options": [
+            "Declares a JSON response body",
+            "Parses the incoming request JSON",
+            "Validates arbitrary PHP values"
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "Content-Type describes the emitted representation; encoding still must be correct.",
+          "hint": "Content-Type describes the emitted representation; encoding still must be correct.",
+          "id": "http-choose-3",
+          "kind": "mcq",
+          "code": "header(____); echo \"{}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Declares a JSON response body. Content-Type describes the emitted representation; encoding still must be correct. Use \"Content-Type: application/json\" as the replacement literal.",
+          "answer": "\"Content-Type: application/json\"",
+          "options": [
+            "\"Content-Type: application/json\"",
+            "\"Accept: application/json\"",
+            "\"Location: /json\""
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "Reading POST explicitly chooses the form data in this fixture.",
+          "hint": "Reading POST explicitly chooses the form data in this fixture.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "http-read-4",
+          "kind": "mcq",
+          "code": "$_GET=[\"name\"=>\"query\"]; $_POST=[\"name\"=>\"${word}\"]; echo $_POST[\"name\"];",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "query",
+            "Array"
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "Reading POST explicitly chooses the form data in this fixture.",
+          "hint": "Reading POST explicitly chooses the form data in this fixture.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "http-choose-4",
+          "kind": "mcq",
+          "code": "$_GET=[\"name\"=>\"query\"]; $_POST=[\"name\"=>\"${word}\"]; echo ____[\"name\"];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Reading POST explicitly chooses the form data in this fixture.",
+          "answer": "$_POST",
+          "options": [
+            "$_POST",
+            "$_GET",
+            "[]"
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "The status setter communicates the failure separately from the body.",
+          "hint": "The status setter communicates the failure separately from the body.",
+          "id": "http-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____(404); echo \"missing\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Sets the HTTP response status to 404. The status setter communicates the failure separately from the body. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "http_response_code"
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "exit stops execution after setting the redirect header.",
+          "hint": "exit stops execution after setting the redirect header.",
+          "id": "http-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "header(\"Location: /done\"); ____; echo \"later\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: The later body is not emitted. exit stops execution after setting the redirect header. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "exit"
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "Content-Type describes the emitted representation; encoding still must be correct.",
+          "hint": "Content-Type describes the emitted representation; encoding still must be correct.",
+          "id": "http-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "header(____); echo \"{}\";",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Declares a JSON response body. Content-Type describes the emitted representation; encoding still must be correct. Use \"Content-Type: application/json\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"Content-Type: application/json\""
+          ]
+        },
+        {
+          "concept": "HTTP responses, forms, and redirects",
+          "explanation": "Reading POST explicitly chooses the form data in this fixture.",
+          "hint": "Reading POST explicitly chooses the form data in this fixture.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "http-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$_GET=[\"name\"=>\"query\"]; $_POST=[\"name\"=>\"${word}\"]; echo ____[\"name\"];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Reading POST explicitly chooses the form data in this fixture. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "$_POST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "json",
+      "title": "JSON boundaries and explicit failure handling",
+      "section": "Intermediate",
+      "intro": "PHP 8.2+; snippets are inside a PHP block. json_decode can produce objects or associative arrays depending on its second argument. JSON_THROW_ON_ERROR makes malformed input a JsonException rather than an ambiguous null result. Valid JSON null still decodes to PHP null. JSON encoding is serialization, not HTML escaping. At the boundary, check the expected shape and keys before relying on the data; parsing successfully does not establish the application-level schema.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "php-manual"
+      ],
+      "requires": [
+        "http"
+      ],
+      "questions": [
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "The associative flag asks for arrays instead of stdClass objects.",
+          "hint": "The associative flag asks for arrays instead of stdClass objects.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "json-read-1",
+          "kind": "mcq",
+          "code": "$value=json_decode('{\"size\":${n}}',true,512,JSON_THROW_ON_ERROR); echo $value[\"size\"];",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "TypeError",
+            "0"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "The associative flag asks for arrays instead of stdClass objects.",
+          "hint": "The associative flag asks for arrays instead of stdClass objects.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "json-choose-1",
+          "kind": "mcq",
+          "code": "$value=json_decode('{\"size\":${n}}',____,512,JSON_THROW_ON_ERROR); echo $value[\"size\"];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The associative flag asks for arrays instead of stdClass objects.",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "null"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "The flag makes malformed JSON throw a catchable JsonException.",
+          "hint": "The flag makes malformed JSON throw a catchable JsonException.",
+          "id": "json-read-2",
+          "kind": "mcq",
+          "code": "try { json_decode(\"bad\",true,512,JSON_THROW_ON_ERROR); } catch (JsonException $e) { echo \"invalid\"; }",
+          "prompt": "What is the result?",
+          "answer": "invalid",
+          "options": [
+            "invalid",
+            "null",
+            "bad"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "The flag makes malformed JSON throw a catchable JsonException.",
+          "hint": "The flag makes malformed JSON throw a catchable JsonException.",
+          "id": "json-choose-2",
+          "kind": "mcq",
+          "code": "try { json_decode(\"bad\",true,512,____); } catch (JsonException $e) { echo \"invalid\"; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: invalid. The flag makes malformed JSON throw a catchable JsonException.",
+          "answer": "JSON_THROW_ON_ERROR",
+          "options": [
+            "JSON_THROW_ON_ERROR",
+            "0",
+            "JSON_OBJECT_AS_ARRAY"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "JSON null is valid input and decodes to PHP null.",
+          "hint": "JSON null is valid input and decodes to PHP null.",
+          "id": "json-read-3",
+          "kind": "mcq",
+          "code": "$value=json_decode(\"null\",true,512,JSON_THROW_ON_ERROR); echo get_debug_type($value);",
+          "prompt": "What is the result?",
+          "answer": "null",
+          "options": [
+            "null",
+            "false",
+            "array"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "JSON null is valid input and decodes to PHP null.",
+          "hint": "JSON null is valid input and decodes to PHP null.",
+          "id": "json-choose-3",
+          "kind": "mcq",
+          "code": "$value=json_decode(\"null\",true,512,JSON_THROW_ON_ERROR); echo ____($value);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: null. JSON null is valid input and decodes to PHP null.",
+          "answer": "get_debug_type",
+          "options": [
+            "get_debug_type",
+            "strval",
+            "count"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "The string-keyed array becomes a JSON object.",
+          "hint": "The string-keyed array becomes a JSON object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "json-read-4",
+          "kind": "mcq",
+          "code": "echo json_encode([\"size\"=>${n}],JSON_THROW_ON_ERROR);",
+          "prompt": "What is the result?",
+          "answer": "{\"size\":${n}}",
+          "options": [
+            "{\"size\":${n}}",
+            "[${n}]",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "The string-keyed array becomes a JSON object.",
+          "hint": "The string-keyed array becomes a JSON object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "json-choose-4",
+          "kind": "mcq",
+          "code": "echo ____([\"size\"=>${n}],JSON_THROW_ON_ERROR);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: {\"size\":${n}}. The string-keyed array becomes a JSON object.",
+          "answer": "json_encode",
+          "options": [
+            "json_encode",
+            "serialize",
+            "print_r"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "The associative flag asks for arrays instead of stdClass objects.",
+          "hint": "The associative flag asks for arrays instead of stdClass objects.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "json-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$value=json_decode('{\"size\":${n}}',____,512,JSON_THROW_ON_ERROR); echo $value[\"size\"];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The associative flag asks for arrays instead of stdClass objects. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "true"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "The flag makes malformed JSON throw a catchable JsonException.",
+          "hint": "The flag makes malformed JSON throw a catchable JsonException.",
+          "id": "json-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "try { json_decode(\"bad\",true,512,____); } catch (JsonException $e) { echo \"invalid\"; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: invalid. The flag makes malformed JSON throw a catchable JsonException. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "JSON_THROW_ON_ERROR"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "JSON null is valid input and decodes to PHP null.",
+          "hint": "JSON null is valid input and decodes to PHP null.",
+          "id": "json-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$value=json_decode(\"null\",true,512,JSON_THROW_ON_ERROR); echo ____($value);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: null. JSON null is valid input and decodes to PHP null. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "get_debug_type"
+          ]
+        },
+        {
+          "concept": "JSON boundaries and explicit failure handling",
+          "explanation": "The string-keyed array becomes a JSON object.",
+          "hint": "The string-keyed array becomes a JSON object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "json-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "echo ____([\"size\"=>${n}],JSON_THROW_ON_ERROR);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: {\"size\":${n}}. The string-keyed array becomes a JSON object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "json_encode"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "errors",
+      "title": "Exceptions and cleanup",
+      "section": "Intermediate",
+      "intro": "PHP 8.2+; snippets are inside a PHP block. throw raises an exception. catch selects handlers; finally runs even during exception propagation. TypeError implements Throwable.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "php",
+        "php-manual",
+        "php-pdo"
+      ],
+      "requires": [
+        "json"
+      ],
+      "questions": [
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "catch handles the matching exception.",
+          "hint": "catch handles the matching exception.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-1",
+          "kind": "mcq",
+          "code": "try { throw new RuntimeException(); } catch (RuntimeException $e) { echo \"${word}\"; }",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Exception escapes",
+            "null"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "catch handles the matching exception.",
+          "hint": "catch handles the matching exception.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-1",
+          "kind": "mcq",
+          "code": "try { throw new RuntimeException(); } ____ (RuntimeException $e) { echo \"${word}\"; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. catch handles the matching exception.",
+          "answer": "catch",
+          "options": [
+            "catch",
+            "finally",
+            "else"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "finally runs after the try body.",
+          "hint": "finally runs after the try body.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "errors-read-2",
+          "kind": "mcq",
+          "code": "try { echo ${n}; } finally { echo ${m}; }",
+          "prompt": "What is the result?",
+          "answer": "${n}${m}",
+          "options": [
+            "${n}${m}",
+            "${n}",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "finally runs after the try body.",
+          "hint": "finally runs after the try body.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-2",
+          "kind": "mcq",
+          "code": "try { echo ${n}; } ____ { echo ${m}; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}${m}. finally runs after the try body.",
+          "answer": "finally",
+          "options": [
+            "finally",
+            "catch",
+            "else"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "throw transfers control to an exception handler.",
+          "hint": "throw transfers control to an exception handler.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-read-3",
+          "kind": "mcq",
+          "code": "throw new InvalidArgumentException(\"${word}\");",
+          "prompt": "What happens?",
+          "answer": "Raises an exception",
+          "options": [
+            "Raises an exception",
+            "Returns a string",
+            "Prints a string"
+          ],
+          "repair_question_id": "errors-write-repair-3"
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "Catch the argument error at a boundary that can handle it.",
+          "hint": "Catch the argument error at a boundary that can handle it.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-repair-3",
+          "kind": "mcq",
+          "code": "try {throw new InvalidArgumentException(\"${word}\");} catch (____) {echo $e->getMessage();}",
+          "prompt": "Repair the code by filling ____. Catch the argument error at a boundary that can handle it. Target result: ${word}.",
+          "answer": "InvalidArgumentException $e",
+          "options": [
+            "InvalidArgumentException $e",
+            "TypeError $e",
+            "ParseError $e"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "Throwable catches TypeError as well as Exception subclasses.",
+          "hint": "Throwable catches TypeError as well as Exception subclasses.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-read-4",
+          "kind": "mcq",
+          "code": "try { strlen([]); } catch (Throwable $e) { echo ${n}; }",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "null"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "Throwable catches TypeError as well as Exception subclasses.",
+          "hint": "Throwable catches TypeError as well as Exception subclasses.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-choose-4",
+          "kind": "mcq",
+          "code": "try { strlen([]); } catch (____ $e) { echo ${n}; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Throwable catches TypeError as well as Exception subclasses.",
+          "answer": "Throwable",
+          "options": [
+            "Throwable",
+            "Exception",
+            "RuntimeException"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "catch handles the matching exception.",
+          "hint": "catch handles the matching exception.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "try { throw new RuntimeException(); } ____ (RuntimeException $e) { echo \"${word}\"; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. catch handles the matching exception. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "catch"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "finally runs after the try body.",
+          "hint": "finally runs after the try body.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "errors-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "try { echo ${n}; } ____ { echo ${m}; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}${m}. finally runs after the try body. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "finally"
+          ]
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "Catch the argument error at a boundary that can handle it.",
+          "hint": "Catch the argument error at a boundary that can handle it.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "errors-write-repair-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "try {throw new InvalidArgumentException(\"${word}\");} catch (____) {echo $e->getMessage();}",
+          "prompt": "Repair the code by filling ____. Catch the argument error at a boundary that can handle it. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "InvalidArgumentException $e"
+          ],
+          "target_answer": "${word}"
+        },
+        {
+          "concept": "Exceptions and cleanup",
+          "explanation": "Throwable catches TypeError as well as Exception subclasses.",
+          "hint": "Throwable catches TypeError as well as Exception subclasses.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "errors-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "try { strlen([]); } catch (____ $e) { echo ${n}; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Throwable catches TypeError as well as Exception subclasses. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Throwable"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "namespaces",
+      "title": "Namespaces and loading",
+      "section": "Advanced",
+      "intro": "PHP 8.2+; snippets are inside a PHP block. Namespaces qualify names and avoid collisions. use introduces an alias. require_once loads a file only once and fails if it cannot be loaded.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "php",
+        "php-manual",
+        "php-pdo"
+      ],
+      "requires": [
+        "errors"
       ],
       "questions": [
         {
@@ -2759,342 +4146,17 @@
       ]
     },
     {
-      "id": "errors",
-      "title": "Exceptions and cleanup",
-      "section": "Intermediate",
-      "intro": "PHP 8.2+; snippets are inside a PHP block. throw raises an exception. catch selects handlers; finally runs even during exception propagation. TypeError implements Throwable.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
-      "sources": [
-        "php"
-      ],
-      "requires": [
-        "namespaces"
-      ],
-      "questions": [
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "catch handles the matching exception.",
-          "hint": "catch handles the matching exception.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "errors-read-1",
-          "kind": "mcq",
-          "code": "try { throw new RuntimeException(); } catch (RuntimeException $e) { echo \"${word}\"; }",
-          "prompt": "What is the result?",
-          "answer": "${word}",
-          "options": [
-            "${word}",
-            "Exception escapes",
-            "null"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "catch handles the matching exception.",
-          "hint": "catch handles the matching exception.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "errors-choose-1",
-          "kind": "mcq",
-          "code": "try { throw new RuntimeException(); } ____ (RuntimeException $e) { echo \"${word}\"; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. catch handles the matching exception.",
-          "answer": "catch",
-          "options": [
-            "catch",
-            "finally",
-            "else"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "finally runs after the try body.",
-          "hint": "finally runs after the try body.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "errors-read-2",
-          "kind": "mcq",
-          "code": "try { echo ${n}; } finally { echo ${m}; }",
-          "prompt": "What is the result?",
-          "answer": "${n}${m}",
-          "options": [
-            "${n}${m}",
-            "${n}",
-            "${m}"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "finally runs after the try body.",
-          "hint": "finally runs after the try body.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "errors-choose-2",
-          "kind": "mcq",
-          "code": "try { echo ${n}; } ____ { echo ${m}; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}${m}. finally runs after the try body.",
-          "answer": "finally",
-          "options": [
-            "finally",
-            "catch",
-            "else"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "throw transfers control to an exception handler.",
-          "hint": "throw transfers control to an exception handler.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "errors-read-3",
-          "kind": "mcq",
-          "code": "throw new InvalidArgumentException(\"${word}\");",
-          "prompt": "What happens?",
-          "answer": "Raises an exception",
-          "options": [
-            "Raises an exception",
-            "Returns a string",
-            "Prints a string"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "throw transfers control to an exception handler.",
-          "hint": "throw transfers control to an exception handler.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "errors-choose-3",
-          "kind": "mcq",
-          "code": "____ new InvalidArgumentException(\"${word}\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises an exception. throw transfers control to an exception handler.",
-          "answer": "throw",
-          "options": [
-            "throw",
-            "echo",
-            "return"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "Throwable catches TypeError as well as Exception subclasses.",
-          "hint": "Throwable catches TypeError as well as Exception subclasses.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "errors-read-4",
-          "kind": "mcq",
-          "code": "try { strlen([]); } catch (Throwable $e) { echo ${n}; }",
-          "prompt": "What is the result?",
-          "answer": "${n}",
-          "options": [
-            "${n}",
-            "0",
-            "null"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "Throwable catches TypeError as well as Exception subclasses.",
-          "hint": "Throwable catches TypeError as well as Exception subclasses.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "errors-choose-4",
-          "kind": "mcq",
-          "code": "try { strlen([]); } catch (____ $e) { echo ${n}; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Throwable catches TypeError as well as Exception subclasses.",
-          "answer": "Throwable",
-          "options": [
-            "Throwable",
-            "Exception",
-            "RuntimeException"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "catch handles the matching exception.",
-          "hint": "catch handles the matching exception.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "errors-write-1",
-          "kind": "write",
-          "checker": "exact",
-          "code": "try { throw new RuntimeException(); } ____ (RuntimeException $e) { echo \"${word}\"; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. catch handles the matching exception. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "catch"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "finally runs after the try body.",
-          "hint": "finally runs after the try body.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            },
-            "m": {
-              "type": "int",
-              "min": 2,
-              "max": 7
-            }
-          },
-          "derived": {},
-          "id": "errors-write-2",
-          "kind": "write",
-          "checker": "exact",
-          "code": "try { echo ${n}; } ____ { echo ${m}; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}${m}. finally runs after the try body. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "finally"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "throw transfers control to an exception handler.",
-          "hint": "throw transfers control to an exception handler.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "errors-write-3",
-          "kind": "write",
-          "checker": "exact",
-          "code": "____ new InvalidArgumentException(\"${word}\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises an exception. throw transfers control to an exception handler. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "throw"
-          ]
-        },
-        {
-          "concept": "Exceptions and cleanup",
-          "explanation": "Throwable catches TypeError as well as Exception subclasses.",
-          "hint": "Throwable catches TypeError as well as Exception subclasses.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "errors-write-4",
-          "kind": "write",
-          "checker": "exact",
-          "code": "try { strlen([]); } catch (____ $e) { echo ${n}; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Throwable catches TypeError as well as Exception subclasses. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "Throwable"
-          ]
-        }
-      ]
-    },
-    {
       "id": "objects",
       "title": "Classes and instance state",
       "section": "Advanced",
       "intro": "PHP 8.2+; snippets are inside a PHP block. Constructors initialize objects. -> accesses members; private restricts access. Typed properties describe state without changing ordinary object identity.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
-        "errors"
+        "namespaces"
       ],
       "questions": [
         {
@@ -3403,7 +4465,9 @@
       "section": "Advanced",
       "intro": "PHP 8.2+; snippets are inside a PHP block. Interfaces specify contracts. Traits share implementation. Backed enum cases carry scalar values; they are not interchangeable with those raw values.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
         "objects"
@@ -3725,15 +4789,324 @@
       ]
     },
     {
+      "id": "modern-contracts",
+      "title": "Modern PHP value and API contracts",
+      "section": "Advanced",
+      "intro": "PHP 8.2+; snippets are inside a PHP block. PHP 8 provides named arguments, match expressions, union types, and constructor property promotion. match compares strictly and must cover the input or provide a default; it does not fall through like switch. A readonly property permits initialization but prevents later reassignment. strict_types is declared per calling file and changes scalar argument coercion at that boundary; type declarations do not validate every property of external data.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "php-manual"
+      ],
+      "requires": [
+        "contracts"
+      ],
+      "questions": [
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "match uses strict comparison, so string 1 does not match integer 1.",
+          "hint": "match uses strict comparison, so string 1 does not match integer 1.",
+          "id": "modern-contracts-read-1",
+          "kind": "mcq",
+          "code": "$value=\"1\"; echo match($value) {1=>\"integer\", default=>\"text\"};",
+          "prompt": "What is the result?",
+          "answer": "text",
+          "options": [
+            "text",
+            "integer",
+            "UnhandledMatchError"
+          ]
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "match uses strict comparison, so string 1 does not match integer 1.",
+          "hint": "match uses strict comparison, so string 1 does not match integer 1.",
+          "id": "modern-contracts-choose-1",
+          "kind": "mcq",
+          "code": "$value=\"1\"; echo match($value) {1=>\"integer\", ____=>\"text\"};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: text. match uses strict comparison, so string 1 does not match integer 1.",
+          "answer": "default",
+          "options": [
+            "default",
+            "\"other\"",
+            "0"
+          ]
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "After constructor initialization, the readonly property cannot be reassigned.",
+          "hint": "After constructor initialization, the readonly property cannot be reassigned.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modern-contracts-read-2",
+          "kind": "mcq",
+          "code": "class Limit {public function __construct(public readonly int $value) {}} $x=new Limit(${n}); $x->value=${m};",
+          "prompt": "What happens at reassignment?",
+          "answer": "Error: cannot modify readonly property",
+          "options": [
+            "Error: cannot modify readonly property",
+            "${m}",
+            "Creates a new instance"
+          ],
+          "repair_question_id": "modern-contracts-write-repair-2"
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "Create a new value object rather than reassigning a readonly property.",
+          "hint": "Create a new value object rather than reassigning a readonly property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modern-contracts-choose-repair-2",
+          "kind": "mcq",
+          "code": "class Limit {public function __construct(public readonly int $value) {}} $x=new Limit(${n}); $x=____; echo $x->value;",
+          "prompt": "Repair the code by filling ____. Create a new value object rather than reassigning a readonly property. Target result: ${m}.",
+          "answer": "new Limit(${m})",
+          "options": [
+            "new Limit(${m})",
+            "${m}",
+            "null"
+          ]
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "Named arguments bind by parameter name rather than source order.",
+          "hint": "Named arguments bind by parameter name rather than source order.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "modern-contracts-read-3",
+          "kind": "mcq",
+          "code": "function label(string $name,int $count):string {return \"$name:$count\";} echo label(count: ${n}, name: \"${word}\");",
+          "prompt": "What is the result?",
+          "answer": "${word}:${n}",
+          "options": [
+            "${word}:${n}",
+            "${n}:${word}",
+            "ArgumentCountError"
+          ]
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "Named arguments bind by parameter name rather than source order.",
+          "hint": "Named arguments bind by parameter name rather than source order.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "modern-contracts-choose-3",
+          "kind": "mcq",
+          "code": "function label(string $name,int $count):string {return \"$name:$count\";} echo label(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}:${n}. Named arguments bind by parameter name rather than source order.",
+          "answer": "count: ${n}, name: \"${word}\"",
+          "options": [
+            "count: ${n}, name: \"${word}\"",
+            "\"${word}\", 0",
+            "\"other\", ${n}"
+          ]
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "This strict calling file does not coerce a numeric string into an integer parameter.",
+          "hint": "This strict calling file does not coerce a numeric string into an integer parameter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modern-contracts-read-4",
+          "kind": "mcq",
+          "code": "declare(strict_types=1); function size(int $n):int{return $n;} echo size(\"${n}\");",
+          "prompt": "What happens at the call?",
+          "answer": "TypeError: string passed to int parameter",
+          "options": [
+            "TypeError: string passed to int parameter",
+            "${n}",
+            "0"
+          ],
+          "repair_question_id": "modern-contracts-write-repair-4"
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "Supply an actual integer at this strict call boundary.",
+          "hint": "Supply an actual integer at this strict call boundary.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modern-contracts-choose-repair-4",
+          "kind": "mcq",
+          "code": "declare(strict_types=1); function size(int $n):int{return $n;} echo size(____);",
+          "prompt": "Repair the code by filling ____. Supply an actual integer at this strict call boundary. Target result: ${n}.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "\"${n}\"",
+            "true"
+          ]
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "match uses strict comparison, so string 1 does not match integer 1.",
+          "hint": "match uses strict comparison, so string 1 does not match integer 1.",
+          "id": "modern-contracts-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$value=\"1\"; echo match($value) {1=>\"integer\", ____=>\"text\"};",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: text. match uses strict comparison, so string 1 does not match integer 1. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "default"
+          ]
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "Create a new value object rather than reassigning a readonly property.",
+          "hint": "Create a new value object rather than reassigning a readonly property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modern-contracts-write-repair-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Limit {public function __construct(public readonly int $value) {}} $x=new Limit(${n}); $x=____; echo $x->value;",
+          "prompt": "Repair the code by filling ____. Create a new value object rather than reassigning a readonly property. Target result: ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "new Limit(${m})"
+          ],
+          "target_answer": "${m}"
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "Named arguments bind by parameter name rather than source order.",
+          "hint": "Named arguments bind by parameter name rather than source order.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "modern-contracts-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function label(string $name,int $count):string {return \"$name:$count\";} echo label(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}:${n}. Named arguments bind by parameter name rather than source order. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "count: ${n}, name: \"${word}\""
+          ]
+        },
+        {
+          "concept": "Modern PHP value and API contracts",
+          "explanation": "Supply an actual integer at this strict call boundary.",
+          "hint": "Supply an actual integer at this strict call boundary.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modern-contracts-write-repair-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "declare(strict_types=1); function size(int $n):int{return $n;} echo size(____);",
+          "prompt": "Repair the code by filling ____. Supply an actual integer at this strict call boundary. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ],
+          "target_answer": "${n}"
+        }
+      ]
+    },
+    {
       "id": "closures",
       "title": "Closures and capture",
       "section": "Advanced",
       "intro": "PHP 8.2+; snippets are inside a PHP block. Anonymous functions explicitly capture with use; & captures by reference. Arrow functions capture referenced outer values by value automatically.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
-        "contracts"
+        "modern-contracts"
       ],
       "questions": [
         {
@@ -4079,7 +5452,9 @@
       "section": "Advanced",
       "intro": "PHP 8.2+; snippets are inside a PHP block. yield makes a function lazy. foreach consumes yielded values. A by-reference foreach variable remains a reference after the loop until unset.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "php"
+        "php",
+        "php-manual",
+        "php-pdo"
       ],
       "requires": [
         "closures"
@@ -4411,6 +5786,285 @@
           "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Ordinary array assignment has value semantics here. Use ${m} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
             "${m}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "database",
+      "title": "PDO parameters and transactional boundaries",
+      "section": "Advanced",
+      "intro": "PHP 8.2+; snippets are inside a PHP block. PDO is PHP's standard database interface, provided by an extension with a driver for the selected database. These questions assume PDO_SQLite is available. Prepare statements with placeholders and bind data through execute rather than concatenating SQL. Parameters represent values, not table names or SQL keywords. Transactions group related writes; catch failures and roll back at the application boundary. SQLite is used for small fixtures, not as a claim that all database dialects behave identically.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "php-pdo"
+      ],
+      "requires": [
+        "generators"
+      ],
+      "questions": [
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "execute binds the named value and runs the prepared statement.",
+          "hint": "execute binds the named value and runs the prepared statement.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "database-read-1",
+          "kind": "mcq",
+          "code": "$db=new PDO(\"sqlite::memory:\"); $s=$db->prepare(\"SELECT :size + 1\"); $s->execute([\"size\"=>${n}]); echo $s->fetchColumn();",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "execute binds the named value and runs the prepared statement.",
+          "hint": "execute binds the named value and runs the prepared statement.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "database-choose-1",
+          "kind": "mcq",
+          "code": "$db=new PDO(\"sqlite::memory:\"); $s=$db->prepare(\"SELECT :size + 1\"); $s->____([\"size\"=>${n}]); echo $s->fetchColumn();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. execute binds the named value and runs the prepared statement.",
+          "answer": "execute",
+          "options": [
+            "execute",
+            "fetch",
+            "closeCursor"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "The placeholder is data, and fetchColumn reads the first result column.",
+          "hint": "The placeholder is data, and fetchColumn reads the first result column.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "database-read-2",
+          "kind": "mcq",
+          "code": "$db=new PDO(\"sqlite::memory:\"); $s=$db->prepare(\"SELECT :name\"); $s->execute([\"name\"=>\"${word}\"]); echo $s->fetchColumn();",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "0",
+            "Array"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "The placeholder is data, and fetchColumn reads the first result column.",
+          "hint": "The placeholder is data, and fetchColumn reads the first result column.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "database-choose-2",
+          "kind": "mcq",
+          "code": "$db=new PDO(\"sqlite::memory:\"); $s=$db->prepare(\"SELECT :name\"); $s->execute([\"name\"=>\"${word}\"]); echo $s->____();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The placeholder is data, and fetchColumn reads the first result column.",
+          "answer": "fetchColumn",
+          "options": [
+            "fetchColumn",
+            "rowCount",
+            "errorCode"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "Rolling back discards the inserted row in this transaction.",
+          "hint": "Rolling back discards the inserted row in this transaction.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "database-read-3",
+          "kind": "mcq",
+          "code": "$db=new PDO(\"sqlite::memory:\"); $db->exec(\"CREATE TABLE t(n INTEGER)\"); $db->beginTransaction(); $db->exec(\"INSERT INTO t VALUES (${n})\"); $db->rollBack(); echo $db->query(\"SELECT COUNT(*) FROM t\")->fetchColumn();",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "Rolling back discards the inserted row in this transaction.",
+          "hint": "Rolling back discards the inserted row in this transaction.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "database-choose-3",
+          "kind": "mcq",
+          "code": "$db=new PDO(\"sqlite::memory:\"); $db->exec(\"CREATE TABLE t(n INTEGER)\"); $db->beginTransaction(); $db->exec(\"INSERT INTO t VALUES (${n})\"); $db->____(); echo $db->query(\"SELECT COUNT(*) FROM t\")->fetchColumn();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Rolling back discards the inserted row in this transaction.",
+          "answer": "rollBack",
+          "options": [
+            "rollBack",
+            "commit",
+            "lastInsertId"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "Choose identifiers from a trusted allowlist; placeholders only represent data values.",
+          "hint": "Choose identifiers from a trusted allowlist; placeholders only represent data values.",
+          "id": "database-read-4",
+          "kind": "mcq",
+          "code": "$s=$db->prepare(\"SELECT * FROM items ORDER BY :column\");",
+          "prompt": "Why does binding a column name not choose the sort column?",
+          "answer": "Binds a value expression, not a column identifier",
+          "options": [
+            "Binds a value expression, not a column identifier",
+            "Safely substitutes any column name",
+            "Changes the table schema"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "Choose identifiers from a trusted allowlist; placeholders only represent data values.",
+          "hint": "Choose identifiers from a trusted allowlist; placeholders only represent data values.",
+          "id": "database-choose-4",
+          "kind": "mcq",
+          "code": "$s=$db->prepare(\"SELECT * FROM items ORDER BY ____\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Binds a value expression, not a column identifier. Choose identifiers from a trusted allowlist; placeholders only represent data values.",
+          "answer": ":column",
+          "options": [
+            ":column",
+            "name",
+            "size"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "execute binds the named value and runs the prepared statement.",
+          "hint": "execute binds the named value and runs the prepared statement.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "database-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$db=new PDO(\"sqlite::memory:\"); $s=$db->prepare(\"SELECT :size + 1\"); $s->____([\"size\"=>${n}]); echo $s->fetchColumn();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. execute binds the named value and runs the prepared statement. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "execute"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "The placeholder is data, and fetchColumn reads the first result column.",
+          "hint": "The placeholder is data, and fetchColumn reads the first result column.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "database-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$db=new PDO(\"sqlite::memory:\"); $s=$db->prepare(\"SELECT :name\"); $s->execute([\"name\"=>\"${word}\"]); echo $s->____();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The placeholder is data, and fetchColumn reads the first result column. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "fetchColumn"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "Rolling back discards the inserted row in this transaction.",
+          "hint": "Rolling back discards the inserted row in this transaction.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "database-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$db=new PDO(\"sqlite::memory:\"); $db->exec(\"CREATE TABLE t(n INTEGER)\"); $db->beginTransaction(); $db->exec(\"INSERT INTO t VALUES (${n})\"); $db->____(); echo $db->query(\"SELECT COUNT(*) FROM t\")->fetchColumn();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Rolling back discards the inserted row in this transaction. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "rollBack"
+          ]
+        },
+        {
+          "concept": "PDO parameters and transactional boundaries",
+          "explanation": "Choose identifiers from a trusted allowlist; placeholders only represent data values.",
+          "hint": "Choose identifiers from a trusted allowlist; placeholders only represent data values.",
+          "id": "database-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$s=$db->prepare(\"SELECT * FROM items ORDER BY ____\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Binds a value expression, not a column identifier. Choose identifiers from a trusted allowlist; placeholders only represent data values. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            ":column"
           ]
         }
       ]

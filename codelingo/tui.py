@@ -12,6 +12,17 @@ from .exams import section_requirements
 
 STATUS_COLORS = {'DONE': 2, 'OPEN': 1, 'ACTIVE': 3, 'LOCK': 4}
 
+class StyledBody(str):
+    """Text with semantic spans; stays usable by plain-text screen doubles."""
+    def __new__(cls, text, role='normal', spans=None):
+        value=super().__new__(cls,text)
+        value.spans=spans if spans is not None else [(0,len(text),role)]
+        return value
+
+    def __add__(self, other):
+        spans=getattr(other,'spans',[(0,len(other),'normal')])
+        return StyledBody(str(self)+str(other),spans=self.spans+[(a+len(self),b+len(self),r) for a,b,r in spans])
+
 
 def header_parts(stats, width, main_menu=False):
     left = f" EXP {stats['xp']}   ◆ {stats['gems']} gems"
@@ -112,18 +123,29 @@ class Screen:
 
     def wrapped(self, body, width):
         lines = []
-        for line in body.splitlines():
-            lines.extend(textwrap.wrap(line, width, replace_whitespace=False,
-                                       drop_whitespace=False, subsequent_indent='    ') or [''])
+        position=0
+        for raw in body.splitlines(keepends=True):
+            line=raw.rstrip('\r\n')
+            at=position+len(line)-len(line.lstrip())
+            role=next((r for a,b,r in getattr(body,'spans',[]) if a<=at<b),'normal')
+            parts=textwrap.wrap(line, width, replace_whitespace=False,
+                                drop_whitespace=False, subsequent_indent='    ') or ['']
+            lines.extend((part,role) for part in parts)
+            position+=len(raw)
         return lines
 
     def body(self, lines, start, height, offset):
         offset = max(0, min(offset, max(0, len(lines)-height)))
-        for i, line in enumerate(lines[offset:offset+height]):
-            self.put(start+i, 2, line)
+        for i, (line,role) in enumerate(lines[offset:offset+height]):
+            style=self.muted() if role=='muted' else self.color(1)|self.c.A_BOLD if role=='explanation' else 0
+            self.put(start+i, 2, line,style)
         return offset
 
-    def choose(self, title, body, options, question=False, hint=False, statuses=None, initial=0, main_menu=False, title_color=1):
+    def muted(self):
+        # Use the terminal's own low-intensity foreground on light/dark themes.
+        return getattr(self.c,'A_DIM',0)
+
+    def choose(self, title, body, options, question=False, hint=False, statuses=None, initial=0, main_menu=False, title_color=1, pin=False):
         selected, offset = min(initial, len(options)-1), 0
         while True:
             size = self.frame(title, main_menu=main_menu, title_color=title_color)
@@ -142,7 +164,8 @@ class Screen:
                     used += len(option_lines[end]) + 1
                     end += 1
                 top = h - 3 - min(used, budget)
-                lines = self.wrapped(body, w-5)
+                rendered=StyledBody(body,'muted') if not isinstance(body,StyledBody) and not question and len(options)>1 else body
+                lines = self.wrapped(rendered, w-5)
                 offset = self.body(lines, 4, max(1, top-5), offset)
                 row = top
                 for idx in range(start, end):
@@ -155,13 +178,20 @@ class Screen:
                         self.put(row, 2, ('› ' if idx == selected else '  ') + (line if part == 0 else '  '+line), style)
                         row += 1
                     row += 1
-                self.put(h-3, 2, f'{selected+1}/{len(options)} choices · text line {offset+1}/{max(1,len(lines))}', self.color(1))
-                help_text = '↑↓ / j k select · Enter confirm · PgUp/PgDn scroll · Esc/q back'
+                overflow=len(lines)>max(1,top-5)
+                position=f'{selected+1}/{len(options)} choices' if len(options)>1 else ''
+                if overflow:
+                    directions=('↑' if offset else '')+('↓' if offset+max(1,top-5)<len(lines) else '')
+                    position+=(' · ' if position else '')+'More text '+directions+' · PgUp/PgDn'
+                self.put(h-3, 2, position, self.muted())
+                help_text = '↑↓ / j k select · Enter confirm · Esc/q back'
+                if pin:
+                    help_text = '↑↓ select · Enter open · p pin/unpin · Esc/q back'
                 if question:
-                    help_text = '↑↓ select · Enter answer · PgUp/PgDn scroll · s skip · Esc/q leave'
+                    help_text = '↑↓ select · Enter answer · s skip · Esc/q leave'
                     if hint:
                         help_text += ' · ? hint'
-                self.put(h-1, 1, help_text)
+                self.put(h-1, 1, help_text,self.muted())
                 self.win.refresh()
             key = self.key()
             if key in ('q', '\x1b'):
@@ -182,6 +212,8 @@ class Screen:
                 return 'skip'
             elif hint and key == '?':
                 return 'hint'
+            elif pin and key in ('p','P'):
+                return ('pin',selected)
 
     def page(self, title, body, title_color=1):
         return self.choose(title, body, ['Continue'], title_color=title_color) is not None
@@ -196,10 +228,12 @@ class Screen:
                     h, w = size
                     lines = self.wrapped(body, w-5)
                     offset = self.body(lines, 4, h-9, offset)
-                    self.put(h-4, 2, 'Your code fragment (one line):', self.color(1))
+                    self.put(h-4, 2, 'Your code fragment (one line):', self.muted())
                     start = max(0, cursor-(w-8))
                     self.put(h-3, 2, '> ' + ''.join(chars[start:start+w-6]))
-                    self.put(h-1, 1, 'Enter submit · ←→ edit · PgUp/PgDn scroll · Esc leave · :skip / ?')
+                    if len(lines)>h-9:
+                        self.put(h-2,2,'More text · PgUp/PgDn',self.muted())
+                    self.put(h-1, 1, 'Enter submit · ←→ edit · Esc leave · :skip / ?',self.muted())
                     try:
                         self.win.move(h-3, min(w-2, 4+cursor-start))
                     except self.c.error:
@@ -283,7 +317,7 @@ class TuiApp(App):
 
     def question_body(self, q):
         code = '\n'.join(f'{i:2} │ {line}' for i,line in enumerate(q.get('code','').splitlines(),1))
-        return code + '\n\n' + q['prompt']
+        return StyledBody(code) + StyledBody('\n\n'+q['prompt'],'muted')
 
     def read_answer(self, q, title, exam=False):
         intro = self.take_output()
@@ -303,7 +337,7 @@ class TuiApp(App):
                     body = self.question_body(q) + '\n\nHint: ' + q['hint']
                     continue
                 return options[selected]
-        body += '\n\nEnter only the requested expression or statement. Use the specified construction.'
+        body += StyledBody('\n\nEnter only the requested expression or statement. Use the specified construction.','muted')
         while True:
             answer = self.screen.edit(title, body)
             if answer is None or answer == ':q':
@@ -325,7 +359,7 @@ class TuiApp(App):
             message = f"Correct! +{result['xp']} EXP · +{result['gems']} gems · Combo {result['combo']}"
         else:
             message = 'Not quite. One heart lost; combo reset. A fresh variant will return in review.'
-        body = self.question_body(q) + '\n\n' + message + '\n\nAnswer: ' + self.solution(q) + '\n\n' + q['explanation']
+        body = self.question_body(q) + StyledBody('\n\n'+message,'muted') + '\n\nAnswer: ' + self.solution(q) + StyledBody('\n\nExplanation\n'+q['explanation'],'explanation')
         if not self.screen.page('Correct' if result['correct'] else 'Incorrect · Learn from this one', body,
                                 title_color=2 if result['correct'] else 4):
             raise LeaveSession
@@ -369,20 +403,30 @@ class TuiApp(App):
 
     def pick_course(self):
         from .course import course_catalog
-        entries = course_catalog()
-        selected = next((i for i, c in enumerate(entries) if c['id'] == self.course.id), 0)
-        labels = []
-        statuses = []
-        for c in entries:
-            prefix = c['id'] + ':'
-            done = sum(self.store.is_complete(prefix+lid) for lid in c['lesson_ids'])
-            status = 'DONE' if done >= c['lessons'] else 'ACTIVE' if c['id'] == self.course.id else 'OPEN'
-            labels.append(f"{c['title']} · {done}/{c['lessons']} lessons")
-            statuses.append(status)
-        choice = self.screen.choose('Choose language', 'Each language has its own lessons, exams, and mistake notebook. EXP, gems, hearts, and the daily goal are shared.', labels, statuses=statuses, initial=selected)
-        if choice is not None:
+        focused=None
+        while True:
+            pins=self.store.pinned_courses()
+            entries=sorted(course_catalog(),key=lambda c:c['id'] not in pins)
+            if focused is None:
+                focused=entries[0]['id'] if pins else self.course.id
+            selected=next((i for i,c in enumerate(entries) if c['id']==focused),0)
+            labels=[];statuses=[]
+            for c in entries:
+                done=sum(self.store.is_complete(c['id']+':'+lid) for lid in c['lesson_ids'])
+                status='DONE' if done>=c['lessons'] else 'ACTIVE' if c['id']==self.course.id else 'OPEN'
+                labels.append(('★ ' if c['id'] in pins else '')+f"{c['title']} · {done}/{c['lessons']} lessons")
+                statuses.append(status)
+            body=StyledBody('★ Pinned languages appear first. Press p to pin/unpin the highlighted language.\nEach language keeps its own lessons, exams, and mistakes.','muted')
+            choice=self.screen.choose('Choose language',body,labels,statuses=statuses,initial=selected,pin=True)
+            if choice is None:
+                return
+            if isinstance(choice,tuple) and choice[0]=='pin':
+                focused=entries[choice[1]]['id']
+                self.store.toggle_course_pin(focused)
+                continue
             self.switch_course(entries[choice]['id'])
             self.screen.progress = None
+            return
 
     def menu(self):
         labels = ['Continue learning','Choose lesson / course map','Review due mistakes','Review upcoming mistakes','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language','Quit']

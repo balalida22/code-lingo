@@ -3,25 +3,263 @@
   "id": "typescript",
   "title": "TypeScript",
   "language": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise",
-  "version": "1.0",
+  "version": "1.1",
   "sources": [
     {
       "id": "ts",
       "title": "TypeScript Handbook",
       "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
       "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "ts-types",
+      "title": "TypeScript Handbook: everyday types",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "ts-narrow",
+      "title": "TypeScript Handbook: narrowing",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "ts-config",
+      "title": "TSConfig reference",
+      "url": "https://www.typescriptlang.org/tsconfig/",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "ts-types-from-types",
+      "title": "TypeScript Handbook: creating types from types",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
     }
   ],
   "lessons": [
+    {
+      "id": "tooling",
+      "title": "Type checking, tsconfig, and JavaScript output",
+      "section": "Basics",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. TypeScript checks a program before JavaScript executes. Types and interfaces are normally erased; they do not validate incoming JSON. tsconfig describes the project, including strict checking, target syntax, and library declarations. tsc --noEmit checks a project without writing output. lib makes type declarations available but does not install runtime APIs or polyfills. These lessons assume strict checking and ES2022; additional flags are stated in each question when needed.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts-config"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "noEmit disables output while retaining type checking.",
+          "hint": "noEmit disables output while retaining type checking.",
+          "id": "tooling-read-1",
+          "kind": "mcq",
+          "code": "$ tsc --noEmit",
+          "prompt": "What does this command request?",
+          "answer": "Checks the configured project without writing JavaScript",
+          "options": [
+            "Checks the configured project without writing JavaScript",
+            "Executes the application",
+            "Installs browser polyfills"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "noEmit disables output while retaining type checking.",
+          "hint": "noEmit disables output while retaining type checking.",
+          "id": "tooling-choose-1",
+          "kind": "mcq",
+          "code": "$ tsc ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Checks the configured project without writing JavaScript. noEmit disables output while retaining type checking.",
+          "answer": "--noEmit",
+          "options": [
+            "--noEmit",
+            "--watch",
+            "--version"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "strict enables related compiler checks, including strictNullChecks.",
+          "hint": "strict enables related compiler checks, including strictNullChecks.",
+          "id": "tooling-read-2",
+          "kind": "mcq",
+          "code": "// tsconfig.json\n{\"compilerOptions\":{\"strict\":true}}",
+          "prompt": "What does this option control?",
+          "answer": "Enables the strict type-checking family",
+          "options": [
+            "Enables the strict type-checking family",
+            "Checks every external value at runtime",
+            "Makes every field readonly"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "strict enables related compiler checks, including strictNullChecks.",
+          "hint": "strict enables related compiler checks, including strictNullChecks.",
+          "id": "tooling-choose-2",
+          "kind": "mcq",
+          "code": "// tsconfig.json\n{\"compilerOptions\":{\"____\":true}}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Enables the strict type-checking family. strict enables related compiler checks, including strictNullChecks.",
+          "answer": "strict",
+          "options": [
+            "strict",
+            "sourceMap",
+            "declaration"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "The DOM library describes browser types; runtime availability is a separate concern.",
+          "hint": "The DOM library describes browser types; runtime availability is a separate concern.",
+          "id": "tooling-read-3",
+          "kind": "mcq",
+          "code": "// tsconfig.json\n{\"compilerOptions\":{\"lib\":[\"ES2022\",\"DOM\"]}}",
+          "prompt": "What does DOM add?",
+          "answer": "Includes browser API type declarations",
+          "options": [
+            "Includes browser API type declarations",
+            "Creates a browser at runtime",
+            "Makes document available inside Node automatically"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "The DOM library describes browser types; runtime availability is a separate concern.",
+          "hint": "The DOM library describes browser types; runtime availability is a separate concern.",
+          "id": "tooling-choose-3",
+          "kind": "mcq",
+          "code": "// tsconfig.json\n{\"compilerOptions\":{\"lib\":[\"ES2022\",\"____\"]}}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Includes browser API type declarations. The DOM library describes browser types; runtime availability is a separate concern.",
+          "answer": "DOM",
+          "options": [
+            "DOM",
+            "CommonJS",
+            "strict"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "The alias is erased, leaving an ordinary numeric runtime value.",
+          "hint": "The alias is erased, leaving an ordinary numeric runtime value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tooling-read-4",
+          "kind": "mcq",
+          "code": "type Count=number; const count:Count=${n}; console.log(count);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "Count",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "The alias is erased, leaving an ordinary numeric runtime value.",
+          "hint": "The alias is erased, leaving an ordinary numeric runtime value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tooling-choose-4",
+          "kind": "mcq",
+          "code": "type Count=number; const count:Count=${n}; console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The alias is erased, leaving an ordinary numeric runtime value.",
+          "answer": "count",
+          "options": [
+            "count",
+            "Count",
+            "0"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "noEmit disables output while retaining type checking.",
+          "hint": "noEmit disables output while retaining type checking.",
+          "id": "tooling-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$ tsc ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Checks the configured project without writing JavaScript. noEmit disables output while retaining type checking. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "--noEmit"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "strict enables related compiler checks, including strictNullChecks.",
+          "hint": "strict enables related compiler checks, including strictNullChecks.",
+          "id": "tooling-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "// tsconfig.json\n{\"compilerOptions\":{\"____\":true}}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Enables the strict type-checking family. strict enables related compiler checks, including strictNullChecks. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "strict"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "The DOM library describes browser types; runtime availability is a separate concern.",
+          "hint": "The DOM library describes browser types; runtime availability is a separate concern.",
+          "id": "tooling-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "// tsconfig.json\n{\"compilerOptions\":{\"lib\":[\"ES2022\",\"____\"]}}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Includes browser API type declarations. The DOM library describes browser types; runtime availability is a separate concern. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "DOM"
+          ]
+        },
+        {
+          "concept": "Type checking, tsconfig, and JavaScript output",
+          "explanation": "The alias is erased, leaving an ordinary numeric runtime value.",
+          "hint": "The alias is erased, leaving an ordinary numeric runtime value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tooling-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Count=number; const count:Count=${n}; console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The alias is erased, leaving an ordinary numeric runtime value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "count"
+          ]
+        }
+      ]
+    },
     {
       "id": "values",
       "title": "Bindings and primitive types",
       "section": "Basics",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Use let for reassignment and const for a binding that cannot be reassigned. Type annotations constrain assignments; they do not convert values at runtime. Assume strict mode throughout.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
-      "requires": [],
+      "requires": [
+        "tooling"
+      ],
       "questions": [
         {
           "concept": "Bindings and primitive types",
@@ -151,12 +389,13 @@
             "Type error: cannot reassign const",
             "Prints ${m}",
             "Changes the binding"
-          ]
+          ],
+          "repair_question_id": "values-write-repair-3"
         },
         {
           "concept": "Bindings and primitive types",
-          "explanation": "const prevents reassignment of this binding.",
-          "hint": "const prevents reassignment of this binding.",
+          "explanation": "Use let when the binding must be reassigned.",
+          "hint": "Use let when the binding must be reassigned.",
           "parameters": {
             "n": {
               "type": "int",
@@ -170,15 +409,15 @@
             }
           },
           "derived": {},
-          "id": "values-choose-3",
+          "id": "values-choose-repair-3",
           "kind": "mcq",
-          "code": "____ x=${n}; x=${m};",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: cannot reassign const. const prevents reassignment of this binding.",
-          "answer": "const",
+          "code": "____ x=${n}; x=${m}; console.log(x);",
+          "prompt": "Repair the code by filling ____. Use let when the binding must be reassigned. Target result: ${m}.",
+          "answer": "let",
           "options": [
-            "const",
             "let",
-            "var"
+            "const",
+            "readonly"
           ]
         },
         {
@@ -276,8 +515,8 @@
         },
         {
           "concept": "Bindings and primitive types",
-          "explanation": "const prevents reassignment of this binding.",
-          "hint": "const prevents reassignment of this binding.",
+          "explanation": "Use let when the binding must be reassigned.",
+          "hint": "Use let when the binding must be reassigned.",
           "parameters": {
             "n": {
               "type": "int",
@@ -291,14 +530,15 @@
             }
           },
           "derived": {},
-          "id": "values-write-3",
+          "id": "values-write-repair-3",
           "kind": "write",
           "checker": "exact",
-          "code": "____ x=${n}; x=${m};",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: cannot reassign const. const prevents reassignment of this binding. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "____ x=${n}; x=${m}; console.log(x);",
+          "prompt": "Repair the code by filling ____. Use let when the binding must be reassigned. Target result: ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "const"
-          ]
+            "let"
+          ],
+          "target_answer": "${m}"
         },
         {
           "concept": "Bindings and primitive types",
@@ -329,7 +569,11 @@
       "section": "Basics",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. JavaScript number division keeps fractions. + concatenates when an operand is a string. === compares without numeric coercion. TypeScript follows JavaScript runtime arithmetic.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
         "values"
@@ -694,7 +938,11 @@
       "section": "Basics",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Control-flow analysis narrows union types after checks such as typeof. Nullish coalescing falls back for null or undefined, while || also falls back for other falsey values.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
         "expressions"
@@ -1012,7 +1260,11 @@
       "section": "Basics",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. for...of iterates values; for...in enumerates keys. A strict upper bound excludes the endpoint. continue skips the rest of the current iteration.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
         "branches"
@@ -1309,7 +1561,11 @@
       "section": "Basics",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Parameter and return annotations describe a function contract. Defaults handle omitted or undefined arguments. Rest parameters gather trailing arguments into an array.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
         "loops"
@@ -1623,7 +1879,11 @@
       "section": "Intermediate",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Object types describe required properties structurally. Optional properties may be absent. readonly restricts writes through a type but does not freeze the runtime object.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
         "functions"
@@ -1731,12 +1991,13 @@
             "Type error: readonly property",
             "Updates with no type error",
             "Freezes every object"
-          ]
+          ],
+          "repair_question_id": "objects-write-repair-3"
         },
         {
           "concept": "Object types and interfaces",
-          "explanation": "readonly prevents this assignment through the declared type.",
-          "hint": "readonly prevents this assignment through the declared type.",
+          "explanation": "Construct an updated value without mutating the readonly field.",
+          "hint": "Construct an updated value without mutating the readonly field.",
           "parameters": {
             "n": {
               "type": "int",
@@ -1750,15 +2011,15 @@
             }
           },
           "derived": {},
-          "id": "objects-choose-3",
+          "id": "objects-choose-repair-3",
           "kind": "mcq",
-          "code": "interface Box {____ size:number} const b:Box={size:${n}}; b.size=${m};",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: readonly property. readonly prevents this assignment through the declared type.",
-          "answer": "readonly",
+          "code": "interface Box {readonly size:number} const b:Box={size:${n}}; const updated:Box=____; console.log(updated.size);",
+          "prompt": "Repair the code by filling ____. Construct an updated value without mutating the readonly field. Target result: ${m}.",
+          "answer": "{...b,size:${m}}",
           "options": [
-            "readonly",
-            "public",
-            "mutable"
+            "{...b,size:${m}}",
+            "b",
+            "{size:\"${m}\"}"
           ]
         },
         {
@@ -1863,8 +2124,8 @@
         },
         {
           "concept": "Object types and interfaces",
-          "explanation": "readonly prevents this assignment through the declared type.",
-          "hint": "readonly prevents this assignment through the declared type.",
+          "explanation": "Construct an updated value without mutating the readonly field.",
+          "hint": "Construct an updated value without mutating the readonly field.",
           "parameters": {
             "n": {
               "type": "int",
@@ -1878,14 +2139,15 @@
             }
           },
           "derived": {},
-          "id": "objects-write-3",
+          "id": "objects-write-repair-3",
           "kind": "write",
           "checker": "exact",
-          "code": "interface Box {____ size:number} const b:Box={size:${n}}; b.size=${m};",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: readonly property. readonly prevents this assignment through the declared type. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "interface Box {readonly size:number} const b:Box={size:${n}}; const updated:Box=____; console.log(updated.size);",
+          "prompt": "Repair the code by filling ____. Construct an updated value without mutating the readonly field. Target result: ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "readonly"
-          ]
+            "{...b,size:${m}}"
+          ],
+          "target_answer": "${m}"
         },
         {
           "concept": "Object types and interfaces",
@@ -1921,15 +2183,374 @@
       ]
     },
     {
+      "id": "structural",
+      "title": "Structural compatibility and excess properties",
+      "section": "Intermediate",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. TypeScript usually compares object shapes rather than nominal class names. A value with all required fields can often satisfy a smaller interface. Fresh object literals receive excess-property checks that catch likely typos. Optional properties may be undefined, and readonly prevents writes through that particular typed reference without deeply freezing the object. Distinguish assignability, compiler diagnostics, and actual runtime mutation when reading these contracts.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts-types"
+      ],
+      "requires": [
+        "objects"
+      ],
+      "questions": [
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "A variable with extra fields still satisfies the required name property.",
+          "hint": "A variable with extra fields still satisfies the required name property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "structural-read-1",
+          "kind": "mcq",
+          "code": "interface Named {name:string}\nconst full={name:\"${word}\",size:${n}}; const item:Named=full; console.log(item.name);",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Type error",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "A variable with extra fields still satisfies the required name property.",
+          "hint": "A variable with extra fields still satisfies the required name property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "structural-choose-1",
+          "kind": "mcq",
+          "code": "interface Named {name:string}\nconst full={name:\"${word}\",size:${n}}; const item:Named=____; console.log(item.name);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. A variable with extra fields still satisfies the required name property.",
+          "answer": "full",
+          "options": [
+            "full",
+            "{size:${n}}",
+            "{}"
+          ]
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "A fresh literal is checked for unknown properties against Named.",
+          "hint": "A fresh literal is checked for unknown properties against Named.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "structural-read-2",
+          "kind": "mcq",
+          "code": "interface Named {name:string}\nconst item:Named={name:\"${word}\", typo:1};",
+          "prompt": "What does the checker report?",
+          "answer": "Type error: excess property typo",
+          "options": [
+            "Type error: excess property typo",
+            "Accepted because every literal may have extra fields",
+            "Runtime exception"
+          ],
+          "repair_question_id": "structural-write-repair-2"
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "Remove the unintended excess property while keeping the required name.",
+          "hint": "Remove the unintended excess property while keeping the required name.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "structural-choose-repair-2",
+          "kind": "mcq",
+          "code": "interface Named {name:string}\nconst item:Named={____}; console.log(item.name);",
+          "prompt": "Repair the code by filling ____. Remove the unintended excess property while keeping the required name. Target result: ${word}.",
+          "answer": "name:\"${word}\"",
+          "options": [
+            "name:\"${word}\"",
+            "name:\"${word}\",typo:1",
+            "size:${n}"
+          ]
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "Readonly constrains writes through view; it does not freeze the shared object.",
+          "hint": "Readonly constrains writes through view; it does not freeze the shared object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "structural-read-3",
+          "kind": "mcq",
+          "code": "const mutable={count:${n}}; const view:Readonly<typeof mutable>=mutable; mutable.count++; console.log(view.count);",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "Readonly constrains writes through view; it does not freeze the shared object.",
+          "hint": "Readonly constrains writes through view; it does not freeze the shared object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "structural-choose-3",
+          "kind": "mcq",
+          "code": "const mutable={count:${n}}; const view:Readonly<typeof mutable>=mutable; mutable.count++; console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Readonly constrains writes through view; it does not freeze the shared object.",
+          "answer": "view.count",
+          "options": [
+            "view.count",
+            "0",
+            "mutable"
+          ]
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "The fallback handles an absent optional property.",
+          "hint": "The fallback handles an absent optional property.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "structural-read-4",
+          "kind": "mcq",
+          "code": "interface Named {name?:string}\nconst item:Named={}; console.log(item.name ?? \"${word}\");",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "The fallback handles an absent optional property.",
+          "hint": "The fallback handles an absent optional property.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "structural-choose-4",
+          "kind": "mcq",
+          "code": "interface Named {name?:string}\nconst item:Named={}; console.log(item.name ____ \"${word}\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The fallback handles an absent optional property.",
+          "answer": "??",
+          "options": [
+            "??",
+            "+",
+            "==="
+          ]
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "A variable with extra fields still satisfies the required name property.",
+          "hint": "A variable with extra fields still satisfies the required name property.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "structural-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "interface Named {name:string}\nconst full={name:\"${word}\",size:${n}}; const item:Named=____; console.log(item.name);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. A variable with extra fields still satisfies the required name property. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "full"
+          ]
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "Remove the unintended excess property while keeping the required name.",
+          "hint": "Remove the unintended excess property while keeping the required name.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "structural-write-repair-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "interface Named {name:string}\nconst item:Named={____}; console.log(item.name);",
+          "prompt": "Repair the code by filling ____. Remove the unintended excess property while keeping the required name. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "name:\"${word}\""
+          ],
+          "target_answer": "${word}"
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "Readonly constrains writes through view; it does not freeze the shared object.",
+          "hint": "Readonly constrains writes through view; it does not freeze the shared object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "structural-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const mutable={count:${n}}; const view:Readonly<typeof mutable>=mutable; mutable.count++; console.log(____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. Readonly constrains writes through view; it does not freeze the shared object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "view.count"
+          ]
+        },
+        {
+          "concept": "Structural compatibility and excess properties",
+          "explanation": "The fallback handles an absent optional property.",
+          "hint": "The fallback handles an absent optional property.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "structural-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "interface Named {name?:string}\nconst item:Named={}; console.log(item.name ____ \"${word}\");",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The fallback handles an absent optional property. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "??"
+          ]
+        }
+      ]
+    },
+    {
       "id": "arrays",
       "title": "Arrays, tuples, and destructuring",
       "section": "Intermediate",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Arrays contain a chosen element type; tuples describe fixed positions. Destructuring extracts values; spread constructs shallow copies. No data-structure implementation is taught here.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
-        "objects"
+        "structural"
       ],
       "questions": [
         {
@@ -2278,15 +2899,359 @@
       ]
     },
     {
+      "id": "validation",
+      "title": "Unknown data and runtime narrowing",
+      "section": "Intermediate",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Treat untrusted data as unknown until runtime checks establish the shape you need. typeof and null checks narrow primitive unions; object fields need their own checks. A type assertion with as only changes the checker view and performs no conversion. User-defined type predicates are promises made by their implementation, so an incorrect predicate can mislead the compiler. Validation belongs where data enters the application, before business logic relies on a static interface.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts-narrow"
+      ],
+      "requires": [
+        "arrays"
+      ],
+      "questions": [
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "The runtime typeof check narrows unknown to string.",
+          "hint": "The runtime typeof check narrows unknown to string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "validation-read-1",
+          "kind": "mcq",
+          "code": "const value:unknown=\"${word}\"; if(typeof value === \"string\") console.log(value.toUpperCase());",
+          "prompt": "What is the result?",
+          "answer": "${upper}",
+          "options": [
+            "${upper}",
+            "Type error",
+            "${word}"
+          ]
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "The runtime typeof check narrows unknown to string.",
+          "hint": "The runtime typeof check narrows unknown to string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "validation-choose-1",
+          "kind": "mcq",
+          "code": "const value:unknown=\"${word}\"; if(____) console.log(value.toUpperCase());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${upper}. The runtime typeof check narrows unknown to string.",
+          "answer": "typeof value === \"string\"",
+          "options": [
+            "typeof value === \"string\"",
+            "value !== null",
+            "Boolean(value)"
+          ]
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "An unknown value cannot be used as a string without checking its type.",
+          "hint": "An unknown value cannot be used as a string without checking its type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "validation-read-2",
+          "kind": "mcq",
+          "code": "const value:unknown=${n}; console.log(value.toUpperCase());",
+          "prompt": "Why is the call rejected?",
+          "answer": "Type error: value is unknown",
+          "options": [
+            "Type error: value is unknown",
+            "${n}",
+            "Automatically converts to text"
+          ],
+          "repair_question_id": "validation-write-repair-2"
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "Narrow the unknown value before calling a string method.",
+          "hint": "Narrow the unknown value before calling a string method.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "validation-choose-repair-2",
+          "kind": "mcq",
+          "code": "const value:unknown=\"${word}\"; if(____) console.log(value.toUpperCase());",
+          "prompt": "Repair the code by filling ____. Narrow the unknown value before calling a string method. Target result: ${upper}.",
+          "answer": "typeof value === \"string\"",
+          "options": [
+            "typeof value === \"string\"",
+            "value !== null",
+            "Boolean(value)"
+          ]
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "The assertion is erased and does not convert the number.",
+          "hint": "The assertion is erased and does not convert the number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "validation-read-3",
+          "kind": "mcq",
+          "code": "const value:unknown=${n}; const text=value as string; console.log(typeof text);",
+          "prompt": "What is the result?",
+          "answer": "number",
+          "options": [
+            "number",
+            "string",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "The assertion is erased and does not convert the number.",
+          "hint": "The assertion is erased and does not convert the number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "validation-choose-3",
+          "kind": "mcq",
+          "code": "const value:unknown=${n}; const text=value ____; console.log(typeof text);",
+          "prompt": "Assert value as string, without runtime conversion. Fill ____ with the demonstrated assertion.",
+          "answer": "as string",
+          "options": [
+            "as string",
+            "as number",
+            "as unknown"
+          ]
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "The predicate is backed by a runtime check and exposes its narrowing to the caller.",
+          "hint": "The predicate is backed by a runtime check and exposes its narrowing to the caller.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "validation-read-4",
+          "kind": "mcq",
+          "code": "function isText(x:unknown):x is string {return typeof x === \"string\";}\nconst value:unknown=\"${word}\"; if(isText(value)) console.log(value.length);",
+          "prompt": "What is the result?",
+          "answer": "${length}",
+          "options": [
+            "${length}",
+            "Type error",
+            "0"
+          ]
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "The predicate is backed by a runtime check and exposes its narrowing to the caller.",
+          "hint": "The predicate is backed by a runtime check and exposes its narrowing to the caller.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "validation-choose-4",
+          "kind": "mcq",
+          "code": "function isText(x:unknown):x is string {return ____;}\nconst value:unknown=\"${word}\"; if(isText(value)) console.log(value.length);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. The predicate is backed by a runtime check and exposes its narrowing to the caller.",
+          "answer": "typeof x === \"string\"",
+          "options": [
+            "typeof x === \"string\"",
+            "true",
+            "false"
+          ]
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "The runtime typeof check narrows unknown to string.",
+          "hint": "The runtime typeof check narrows unknown to string.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "validation-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const value:unknown=\"${word}\"; if(____) console.log(value.toUpperCase());",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${upper}. The runtime typeof check narrows unknown to string. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "typeof value === \"string\""
+          ]
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "Narrow the unknown value before calling a string method.",
+          "hint": "Narrow the unknown value before calling a string method.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "upper": "upper(word)"
+          },
+          "id": "validation-write-repair-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const value:unknown=\"${word}\"; if(____) console.log(value.toUpperCase());",
+          "prompt": "Repair the code by filling ____. Narrow the unknown value before calling a string method. Target result: ${upper}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "typeof value === \"string\""
+          ],
+          "target_answer": "${upper}"
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "The assertion is erased and does not convert the number.",
+          "hint": "The assertion is erased and does not convert the number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "validation-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const value:unknown=${n}; const text=value ____; console.log(typeof text);",
+          "prompt": "Assert value as string, without runtime conversion. Fill ____ with the demonstrated assertion. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "as string"
+          ]
+        },
+        {
+          "concept": "Unknown data and runtime narrowing",
+          "explanation": "The predicate is backed by a runtime check and exposes its narrowing to the caller.",
+          "hint": "The predicate is backed by a runtime check and exposes its narrowing to the caller.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "validation-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function isText(x:unknown):x is string {return ____;}\nconst value:unknown=\"${word}\"; if(isText(value)) console.log(value.length);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. The predicate is backed by a runtime check and exposes its narrowing to the caller. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "typeof x === \"string\""
+          ]
+        }
+      ]
+    },
+    {
       "id": "modules",
       "title": "Modules and type-only imports",
       "section": "Intermediate",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. export exposes module members. import brings them into another module. import type is erased and cannot supply a runtime value. File boundaries are stated in each snippet.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
-        "arrays"
+        "validation"
       ],
       "questions": [
         {
@@ -2541,7 +3506,11 @@
       "section": "Intermediate",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. With strict checking, catch variables are unknown. Narrow them before reading properties. Throwing and catching follow JavaScript runtime rules; annotations do not validate external data.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
         "modules"
@@ -2889,7 +3858,11 @@
       "section": "Intermediate",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Classes define instance state and methods. TypeScript private is checked statically; JavaScript # fields enforce runtime privacy. extends inherits implementation.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
         "errors"
@@ -3171,7 +4144,11 @@
       "section": "Advanced",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Generics connect types across a function without discarding information. Constraints require available operations. keyof forms a union of property names.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
         "classes"
@@ -3445,15 +4422,320 @@
       ]
     },
     {
+      "id": "keyed-types",
+      "title": "Key-dependent APIs and conditional types",
+      "section": "Advanced",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. keyof describes known keys and indexed access T[K] relates a result to a chosen key. Generic constraints preserve this relationship across reusable helpers. Conditional types select types based on assignability, and infer can extract part of a type structure. These are compile-time descriptions with no runtime dispatch. Prefer a useful relationship between inputs and outputs over an unconstrained generic or a broad any that discards information.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts-types-from-types"
+      ],
+      "requires": [
+        "generics"
+      ],
+      "questions": [
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "Indexed access ties the result type to the selected key.",
+          "hint": "Indexed access ties the result type to the selected key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "keyed-types-read-1",
+          "kind": "mcq",
+          "code": "function get<T,K extends keyof T>(value:T,key:K):T[K] {return value[key];}\nconsole.log(get({name:\"${word}\",size:${n}},\"name\"));",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "${n}",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "Indexed access ties the result type to the selected key.",
+          "hint": "Indexed access ties the result type to the selected key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "keyed-types-choose-1",
+          "kind": "mcq",
+          "code": "function get<T,K extends keyof T>(value:T,key:K):____ {return value[key];}\nconsole.log(get({name:\"${word}\",size:${n}},\"name\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Indexed access ties the result type to the selected key.",
+          "answer": "T[K]",
+          "options": [
+            "T[K]",
+            "T",
+            "K"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "infer extracts the resolved payload type at compile time.",
+          "hint": "infer extracts the resolved payload type at compile time.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keyed-types-read-2",
+          "kind": "mcq",
+          "code": "type Payload<T>=T extends Promise<infer U> ? U : T;\nconst value:Payload<Promise<number>>=${n}; console.log(value);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "Type error",
+            "Promise"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "infer extracts the resolved payload type at compile time.",
+          "hint": "infer extracts the resolved payload type at compile time.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keyed-types-choose-2",
+          "kind": "mcq",
+          "code": "type Payload<T>=T extends Promise<infer U> ? ____ : T;\nconst value:Payload<Promise<number>>=${n}; console.log(value);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. infer extracts the resolved payload type at compile time.",
+          "answer": "U",
+          "options": [
+            "U",
+            "T",
+            "Promise<U>"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "keyof produces the known key union name or size.",
+          "hint": "keyof produces the known key union name or size.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "keyed-types-read-3",
+          "kind": "mcq",
+          "code": "type Label={name:string,size:number}; const key:keyof Label=\"name\"; console.log(key);",
+          "prompt": "What is the result?",
+          "answer": "name",
+          "options": [
+            "name",
+            "${word}",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "keyof produces the known key union name or size.",
+          "hint": "keyof produces the known key union name or size.",
+          "id": "keyed-types-choose-3",
+          "kind": "mcq",
+          "code": "type Label={name:string,size:number}; const key:____=\"name\"; console.log(key);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: name. keyof produces the known key union name or size.",
+          "answer": "keyof Label",
+          "options": [
+            "keyof Label",
+            "Label",
+            "number"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "The size property type is number.",
+          "hint": "The size property type is number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keyed-types-read-4",
+          "kind": "mcq",
+          "code": "type Label={name:string,size:number}; const value:Label[\"size\"]=${n}; console.log(value);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "Type error",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "The size property type is number.",
+          "hint": "The size property type is number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keyed-types-choose-4",
+          "kind": "mcq",
+          "code": "type Label={name:string,size:number}; const value:____=${n}; console.log(value);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The size property type is number.",
+          "answer": "Label[\"size\"]",
+          "options": [
+            "Label[\"size\"]",
+            "Label[\"name\"]",
+            "keyof Label"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "Indexed access ties the result type to the selected key.",
+          "hint": "Indexed access ties the result type to the selected key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "keyed-types-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "function get<T,K extends keyof T>(value:T,key:K):____ {return value[key];}\nconsole.log(get({name:\"${word}\",size:${n}},\"name\"));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. Indexed access ties the result type to the selected key. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "T[K]"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "infer extracts the resolved payload type at compile time.",
+          "hint": "infer extracts the resolved payload type at compile time.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keyed-types-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Payload<T>=T extends Promise<infer U> ? ____ : T;\nconst value:Payload<Promise<number>>=${n}; console.log(value);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. infer extracts the resolved payload type at compile time. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "U"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "keyof produces the known key union name or size.",
+          "hint": "keyof produces the known key union name or size.",
+          "id": "keyed-types-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Label={name:string,size:number}; const key:____=\"name\"; console.log(key);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: name. keyof produces the known key union name or size. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "keyof Label"
+          ]
+        },
+        {
+          "concept": "Key-dependent APIs and conditional types",
+          "explanation": "The size property type is number.",
+          "hint": "The size property type is number.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keyed-types-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Label={name:string,size:number}; const value:____=${n}; console.log(value);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The size property type is number. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Label[\"size\"]"
+          ]
+        }
+      ]
+    },
+    {
       "id": "unions",
       "title": "Discriminated unions and exhaustiveness",
       "section": "Advanced",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. A common literal tag distinguishes union members. Checking the tag narrows available fields. never represents an impossible remaining case in an exhaustive switch.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
-        "generics"
+        "keyed-types"
       ],
       "questions": [
         {
@@ -3720,7 +5002,11 @@
       "section": "Advanced",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. Utility types transform existing contracts. Partial makes properties optional; Pick selects properties; Readonly restricts assignment. satisfies checks compatibility while retaining useful inference.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
         "unions"
@@ -3828,12 +5114,13 @@
             "Type error: readonly property",
             "Updates with no type error",
             "Freezes the object at runtime"
-          ]
+          ],
+          "repair_question_id": "utilities-write-repair-3"
         },
         {
           "concept": "Mapped types and type operators",
-          "explanation": "Readonly transforms the property contract to prohibit assignment through b.",
-          "hint": "Readonly transforms the property contract to prohibit assignment through b.",
+          "explanation": "Create a new object to satisfy the immutable update contract.",
+          "hint": "Create a new object to satisfy the immutable update contract.",
           "parameters": {
             "n": {
               "type": "int",
@@ -3847,15 +5134,15 @@
             }
           },
           "derived": {},
-          "id": "utilities-choose-3",
+          "id": "utilities-choose-repair-3",
           "kind": "mcq",
-          "code": "type Box={size:number}; const b:____={size:${n}}; b.size=${m};",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: readonly property. Readonly transforms the property contract to prohibit assignment through b.",
-          "answer": "Readonly<Box>",
+          "code": "type Box={size:number}; const b:Readonly<Box>={size:${n}}; const updated:Box=____; console.log(updated.size);",
+          "prompt": "Repair the code by filling ____. Create a new object to satisfy the immutable update contract. Target result: ${m}.",
+          "answer": "{...b,size:${m}}",
           "options": [
-            "Readonly<Box>",
-            "Box",
-            "Partial<Box>"
+            "{...b,size:${m}}",
+            "b",
+            "{size:\"${m}\"}"
           ]
         },
         {
@@ -3944,8 +5231,8 @@
         },
         {
           "concept": "Mapped types and type operators",
-          "explanation": "Readonly transforms the property contract to prohibit assignment through b.",
-          "hint": "Readonly transforms the property contract to prohibit assignment through b.",
+          "explanation": "Create a new object to satisfy the immutable update contract.",
+          "hint": "Create a new object to satisfy the immutable update contract.",
           "parameters": {
             "n": {
               "type": "int",
@@ -3959,14 +5246,15 @@
             }
           },
           "derived": {},
-          "id": "utilities-write-3",
+          "id": "utilities-write-repair-3",
           "kind": "write",
           "checker": "exact",
-          "code": "type Box={size:number}; const b:____={size:${n}}; b.size=${m};",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Type error: readonly property. Readonly transforms the property contract to prohibit assignment through b. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "type Box={size:number}; const b:Readonly<Box>={size:${n}}; const updated:Box=____; console.log(updated.size);",
+          "prompt": "Repair the code by filling ____. Create a new object to satisfy the immutable update contract. Target result: ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "Readonly<Box>"
-          ]
+            "{...b,size:${m}}"
+          ],
+          "target_answer": "${m}"
         },
         {
           "concept": "Mapped types and type operators",
@@ -3994,15 +5282,257 @@
       ]
     },
     {
+      "id": "contracts",
+      "title": "Literal inference and precise optional contracts",
+      "section": "Advanced",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. as const preserves literal types and marks literal properties readonly; it does not freeze runtime objects. satisfies checks an expression against a contract while preserving useful inference. exactOptionalPropertyTypes distinguishes an absent key from a key explicitly set to undefined unless the declared value type includes undefined. noUncheckedIndexedAccess makes potentially missing indexed values visible in the type. The last two flags are additional choices, not automatically enabled by strict.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts-config",
+        "ts-types-from-types"
+      ],
+      "requires": [
+        "utilities"
+      ],
+      "questions": [
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "The const assertion preserves the literal ready type.",
+          "hint": "The const assertion preserves the literal ready type.",
+          "id": "contracts-read-1",
+          "kind": "mcq",
+          "code": "const mode={kind:\"ready\"} as const; const only:\"ready\"=mode.kind; console.log(only);",
+          "prompt": "What is the result?",
+          "answer": "ready",
+          "options": [
+            "ready",
+            "Type error",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "The const assertion preserves the literal ready type.",
+          "hint": "The const assertion preserves the literal ready type.",
+          "id": "contracts-choose-1",
+          "kind": "mcq",
+          "code": "const mode={kind:\"ready\"} ____; const only:\"ready\"=mode.kind; console.log(only);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ready. The const assertion preserves the literal ready type.",
+          "answer": "as const",
+          "options": [
+            "as const",
+            "as {kind:string}"
+          ]
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "satisfies checks Config while preserving this precise discriminant.",
+          "hint": "satisfies checks Config while preserving this precise discriminant.",
+          "id": "contracts-read-2",
+          "kind": "mcq",
+          "code": "type Config={mode:\"fast\"|\"safe\"}; const cfg={mode:\"fast\"} satisfies Config; const mode:\"fast\"=cfg.mode; console.log(mode);",
+          "prompt": "What is the result?",
+          "answer": "fast",
+          "options": [
+            "fast",
+            "Type error",
+            "safe"
+          ]
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "satisfies checks Config while preserving this precise discriminant.",
+          "hint": "satisfies checks Config while preserving this precise discriminant.",
+          "id": "contracts-choose-2",
+          "kind": "mcq",
+          "code": "type Config={mode:\"fast\"|\"safe\"}; const cfg={mode:\"fast\"} ____; const mode:\"fast\"=cfg.mode; console.log(mode);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: fast. satisfies checks Config while preserving this precise discriminant.",
+          "answer": "satisfies Config",
+          "options": [
+            "satisfies Config",
+            "as Config",
+            "as {mode:string}"
+          ]
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "With this flag, optional allows absence but not an explicitly undefined string value.",
+          "hint": "With this flag, optional allows absence but not an explicitly undefined string value.",
+          "id": "contracts-read-3",
+          "kind": "mcq",
+          "code": "// strict + exactOptionalPropertyTypes\nconst value:{name?:string}={name:undefined};",
+          "prompt": "Why does this assignment fail?",
+          "answer": "Type error: present name cannot be undefined",
+          "options": [
+            "Type error: present name cannot be undefined",
+            "Accepted because the flag is part of strict",
+            "Runtime error"
+          ],
+          "repair_question_id": "contracts-write-repair-3"
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "Represent absence by omitting the property under this compiler flag.",
+          "hint": "Represent absence by omitting the property under this compiler flag.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "contracts-choose-repair-3",
+          "kind": "mcq",
+          "code": "// strict + exactOptionalPropertyTypes\nconst value:{name?:string}=____; console.log(value.name ?? \"${word}\");",
+          "prompt": "Repair the code by filling ____. Represent absence by omitting the property under this compiler flag. Target result: ${word}.",
+          "answer": "{}",
+          "options": [
+            "{}",
+            "{name:undefined}",
+            "{name:null}"
+          ]
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "The fallback handles the missing indexed value.",
+          "hint": "The fallback handles the missing indexed value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "contracts-read-4",
+          "kind": "mcq",
+          "code": "// strict + noUncheckedIndexedAccess\nconst values:number[]=[]; console.log(values[0] ?? ${n});",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "undefined",
+            "Type error"
+          ]
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "The fallback handles the missing indexed value.",
+          "hint": "The fallback handles the missing indexed value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "contracts-choose-4",
+          "kind": "mcq",
+          "code": "// strict + noUncheckedIndexedAccess\nconst values:number[]=[]; console.log(values[0] ____ ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The fallback handles the missing indexed value.",
+          "answer": "??",
+          "options": [
+            "??",
+            "+",
+            "==="
+          ]
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "The const assertion preserves the literal ready type.",
+          "hint": "The const assertion preserves the literal ready type.",
+          "id": "contracts-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "const mode={kind:\"ready\"} ____; const only:\"ready\"=mode.kind; console.log(only);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ready. The const assertion preserves the literal ready type. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "as const"
+          ]
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "satisfies checks Config while preserving this precise discriminant.",
+          "hint": "satisfies checks Config while preserving this precise discriminant.",
+          "id": "contracts-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Config={mode:\"fast\"|\"safe\"}; const cfg={mode:\"fast\"} ____; const mode:\"fast\"=cfg.mode; console.log(mode);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: fast. satisfies checks Config while preserving this precise discriminant. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "satisfies Config"
+          ]
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "Represent absence by omitting the property under this compiler flag.",
+          "hint": "Represent absence by omitting the property under this compiler flag.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "contracts-write-repair-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "// strict + exactOptionalPropertyTypes\nconst value:{name?:string}=____; console.log(value.name ?? \"${word}\");",
+          "prompt": "Repair the code by filling ____. Represent absence by omitting the property under this compiler flag. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "{}"
+          ],
+          "target_answer": "${word}"
+        },
+        {
+          "concept": "Literal inference and precise optional contracts",
+          "explanation": "The fallback handles the missing indexed value.",
+          "hint": "The fallback handles the missing indexed value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "contracts-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "// strict + noUncheckedIndexedAccess\nconst values:number[]=[]; console.log(values[0] ____ ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The fallback handles the missing indexed value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "??"
+          ]
+        }
+      ]
+    },
+    {
       "id": "async",
       "title": "Promises, async, and type erasure",
       "section": "Advanced",
       "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. async returns a Promise. await unwraps fulfillment inside an async function. Rejections use exception handling. Types are erased; runtime input still requires validation.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ts"
+        "ts",
+        "ts-types",
+        "ts-narrow",
+        "ts-config",
+        "ts-types-from-types"
       ],
       "requires": [
-        "utilities"
+        "contracts"
       ],
       "questions": [
         {
@@ -4307,6 +5837,324 @@
           "prompt": "Complete ____ using the demonstrated construction. Target result: string. An assertion performs no runtime validation or conversion. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
             "as Box"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "async-boundaries",
+      "title": "Promise failures and asynchronous contracts",
+      "section": "Advanced",
+      "intro": "TypeScript with strict checking; ES2022 JavaScript target; runtime output assumes successful type-checking unless the question explicitly asks otherwise. An async function returns a Promise even when it returns a plain value. Awaited describes the value after awaiting, but does not execute a promise. Promise.all preserves input order in its result and rejects if an input rejects; it does not automatically cancel remaining work. Catch blocks receive unknown under strict checking, so narrow errors before reading message. Keep failures visible at the caller boundary instead of treating every rejection as an empty success.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ts-types"
+      ],
+      "requires": [
+        "async"
+      ],
+      "questions": [
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "The callback receives the fulfilled number, not the Promise object.",
+          "hint": "The callback receives the fulfilled number, not the Promise object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "async-boundaries-read-1",
+          "kind": "mcq",
+          "code": "async function size():Promise<number>{return ${n};}\nsize().then(value=>console.log(value+1));",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "Promise"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "The callback receives the fulfilled number, not the Promise object.",
+          "hint": "The callback receives the fulfilled number, not the Promise object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "async-boundaries-choose-1",
+          "kind": "mcq",
+          "code": "async function size():Promise<number>{return ${n};}\nsize().then(value=>console.log(____));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The callback receives the fulfilled number, not the Promise object.",
+          "answer": "value+1",
+          "options": [
+            "value+1",
+            "value",
+            "0"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "all returns values in input order, regardless of completion order.",
+          "hint": "all returns values in input order, regardless of completion order.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "async-boundaries-read-2",
+          "kind": "mcq",
+          "code": "Promise.all([Promise.resolve(${n}),Promise.resolve(${m})]).then(values=>console.log(values[0]));",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${m}",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "all returns values in input order, regardless of completion order.",
+          "hint": "all returns values in input order, regardless of completion order.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "async-boundaries-choose-2",
+          "kind": "mcq",
+          "code": "Promise.____([Promise.resolve(${n}),Promise.resolve(${m})]).then(values=>console.log(values[0]));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. all returns values in input order, regardless of completion order.",
+          "answer": "all",
+          "options": [
+            "all",
+            "race",
+            "any"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "The instanceof check narrows the caught unknown value to Error.",
+          "hint": "The instanceof check narrows the caught unknown value to Error.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-boundaries-read-3",
+          "kind": "mcq",
+          "code": "async function run(){try {await Promise.reject(new Error(\"${word}\"));} catch(error) {if(error instanceof Error) console.log(error.message);}}\nrun();",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Type error",
+            "undefined"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "The instanceof check narrows the caught unknown value to Error.",
+          "hint": "The instanceof check narrows the caught unknown value to Error.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-boundaries-choose-3",
+          "kind": "mcq",
+          "code": "async function run(){try {await Promise.reject(new Error(\"${word}\"));} catch(error) {if(____) console.log(error.message);}}\nrun();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The instanceof check narrows the caught unknown value to Error.",
+          "answer": "error instanceof Error",
+          "options": [
+            "error instanceof Error",
+            "error !== null",
+            "Boolean(error)"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "Awaited describes the resolved value type without performing runtime work.",
+          "hint": "Awaited describes the resolved value type without performing runtime work.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "async-boundaries-read-4",
+          "kind": "mcq",
+          "code": "type Value=Awaited<Promise<number>>; const value:Value=${n}; console.log(value);",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "Type error",
+            "Promise"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "Awaited describes the resolved value type without performing runtime work.",
+          "hint": "Awaited describes the resolved value type without performing runtime work.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "async-boundaries-choose-4",
+          "kind": "mcq",
+          "code": "type Value=____; const value:Value=${n}; console.log(value);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Awaited describes the resolved value type without performing runtime work.",
+          "answer": "Awaited<Promise<number>>",
+          "options": [
+            "Awaited<Promise<number>>",
+            "Promise<number>",
+            "Promise<Promise<number>>"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "The callback receives the fulfilled number, not the Promise object.",
+          "hint": "The callback receives the fulfilled number, not the Promise object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "async-boundaries-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "async function size():Promise<number>{return ${n};}\nsize().then(value=>console.log(____));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The callback receives the fulfilled number, not the Promise object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "value+1"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "all returns values in input order, regardless of completion order.",
+          "hint": "all returns values in input order, regardless of completion order.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "async-boundaries-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "Promise.____([Promise.resolve(${n}),Promise.resolve(${m})]).then(values=>console.log(values[0]));",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. all returns values in input order, regardless of completion order. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "all"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "The instanceof check narrows the caught unknown value to Error.",
+          "hint": "The instanceof check narrows the caught unknown value to Error.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "async-boundaries-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "async function run(){try {await Promise.reject(new Error(\"${word}\"));} catch(error) {if(____) console.log(error.message);}}\nrun();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The instanceof check narrows the caught unknown value to Error. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "error instanceof Error"
+          ]
+        },
+        {
+          "concept": "Promise failures and asynchronous contracts",
+          "explanation": "Awaited describes the resolved value type without performing runtime work.",
+          "hint": "Awaited describes the resolved value type without performing runtime work.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "async-boundaries-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "type Value=____; const value:Value=${n}; console.log(value);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Awaited describes the resolved value type without performing runtime work. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Awaited<Promise<number>>"
           ]
         }
       ]

@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.1.1 — prepared, not published
+
+- Dim routine prompts and navigation, and highlight lesson explanations in bold cyan.
+- Persist language pins, sort them first, and preserve selection when toggling.
+- Add p to pin/unpin in the TUI and p NUMBER in the line-input picker.
+- Remove the text-line counter; show a scroll hint only when content overflows.
+- Add five UI/persistence regressions; 78 tests pass.
+
+## 1.1.0 — prepared, not published
+
+- Expanded C, C++, TypeScript, vanilla web, Ruby, Lua, SQL, PHP, and Perl from
+  14 to 20 lessons each, adding 54 lessons and 648 exercises.
+- Native prerequisite orders and language-specific runtime/API boundaries.
+- Error-reading questions now lead to successful code repairs in these courses.
+- Preserved all existing lesson IDs and the meaning of retained exercise IDs;
+  retired completion exercises remain in stored history, with new IDs for repairs.
+- Added a v1 identity fixture, history/resumption regressions, primary-reference
+  mappings, and an optional native audit including a Lua 5.4 shared-library runner.
+- Python and Rust course banks remain unchanged. No new specialized tracks.
+
 ## 1.0.0 — 2026-09-09
 
 First major release of Code Lingo. Promotes the reviewed 0.3.1

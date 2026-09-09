@@ -64,18 +64,27 @@ class App:
         self.store.selected_course(course_id)
 
     def pick_course(self):
-        entries = course_catalog()
-        for i, entry in enumerate(entries, 1):
-            print(f"{i:2}. {entry['title']} ({entry['lessons']} lessons)")
-        try:
-            choice = input('Language number (blank to cancel) > ').strip()
-        except (EOFError, KeyboardInterrupt):
-            raise LeaveSession from None
-        if not choice:
+        while True:
+            pins=self.store.pinned_courses()
+            entries=sorted(course_catalog(),key=lambda c:c['id'] not in pins)
+            for i, entry in enumerate(entries, 1):
+                print(f"{i:2}. {'★ ' if entry['id'] in pins else ''}{entry['title']} ({entry['lessons']} lessons)")
+            try:
+                choice = input('Language number, p NUMBER to pin/unpin (blank to cancel) > ').strip()
+            except (EOFError, KeyboardInterrupt):
+                raise LeaveSession from None
+            if not choice:
+                return
+            pin=choice.lower().startswith('p ')
+            number=choice[2:].strip() if pin else choice
+            if not number.isdigit() or not 1 <= int(number) <= len(entries):
+                raise ValueError('Choose a listed language number or p NUMBER.')
+            cid=entries[int(number)-1]['id']
+            if pin:
+                self.store.toggle_course_pin(cid)
+                continue
+            self.switch_course(cid)
             return
-        if not choice.isdigit() or not 1 <= int(choice) <= len(entries):
-            raise ValueError('Choose a listed language number.')
-        self.switch_course(entries[int(choice)-1]['id'])
 
     def begin_session(self, mode, questions):
         initial = {}

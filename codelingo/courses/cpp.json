@@ -3,25 +3,218 @@
   "id": "cpp",
   "title": "C++",
   "language": "C++20; relevant standard headers and a main function are assumed",
-  "version": "1.0",
+  "version": "1.1",
   "sources": [
     {
       "id": "learncpp",
       "title": "Learn C++",
       "url": "https://www.learncpp.com/",
       "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "cpp-guidelines",
+      "title": "C++ Core Guidelines: values, interfaces, resources, concurrency",
+      "url": "https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
     }
   ],
   "lessons": [
+    {
+      "id": "build",
+      "title": "C++ translation units and build diagnostics",
+      "section": "Basics",
+      "intro": "C++20; relevant standard headers and a main function are assumed. A C++ project compiles source files and links their definitions. Headers expose declarations, while implementation files provide definitions. Use the C++ compiler driver to link the standard C++ library. The commands here use GCC and C++20. Read compiler errors separately from linker errors, and distinguish both from runtime exceptions. A successful build is only the start of validation; assertions can check invariants during development.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cpp-guidelines"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "The standard flag selects the language dialect for this compilation.",
+          "hint": "The standard flag selects the language dialect for this compilation.",
+          "id": "build-read-1",
+          "kind": "mcq",
+          "code": "$ g++ -std=c++20 main.cpp -o app",
+          "prompt": "What does the flag configure?",
+          "answer": "Selects C++20 language rules",
+          "options": [
+            "Selects C++20 language rules",
+            "Selects Python syntax",
+            "Runs the application"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "The standard flag selects the language dialect for this compilation.",
+          "hint": "The standard flag selects the language dialect for this compilation.",
+          "id": "build-choose-1",
+          "kind": "mcq",
+          "code": "$ g++ ____ main.cpp -o app",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Selects C++20 language rules. The standard flag selects the language dialect for this compilation.",
+          "answer": "-std=c++20",
+          "options": [
+            "-std=c++20",
+            "-std=c17",
+            "-E"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "-c produces widget.o for a later link step.",
+          "hint": "-c produces widget.o for a later link step.",
+          "id": "build-read-2",
+          "kind": "mcq",
+          "code": "$ g++ -c widget.cpp",
+          "prompt": "What does the command produce?",
+          "answer": "Produces an object file without linking",
+          "options": [
+            "Produces an object file without linking",
+            "Runs widget.cpp",
+            "Publishes a package"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "-c produces widget.o for a later link step.",
+          "hint": "-c produces widget.o for a later link step.",
+          "id": "build-choose-2",
+          "kind": "mcq",
+          "code": "$ g++ ____ widget.cpp",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Produces an object file without linking. -c produces widget.o for a later link step.",
+          "answer": "-c",
+          "options": [
+            "-c",
+            "-E",
+            "-S"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "Both compiled translation units participate in this link.",
+          "hint": "Both compiled translation units participate in this link.",
+          "id": "build-read-3",
+          "kind": "mcq",
+          "code": "$ g++ main.o widget.o -o app",
+          "prompt": "What does this step do?",
+          "answer": "Links an executable named app",
+          "options": [
+            "Links an executable named app",
+            "Checks only formatting",
+            "Creates a header"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "Both compiled translation units participate in this link.",
+          "hint": "Both compiled translation units participate in this link.",
+          "id": "build-choose-3",
+          "kind": "mcq",
+          "code": "$ g++ main.o widget.o ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Links an executable named app. Both compiled translation units participate in this link.",
+          "answer": "-o app",
+          "options": [
+            "-o app",
+            "-c",
+            "-E"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "static_assert requires a compile-time boolean condition.",
+          "hint": "static_assert requires a compile-time boolean condition.",
+          "id": "build-read-4",
+          "kind": "mcq",
+          "code": "static_assert(sizeof(char)==1);",
+          "prompt": "When is this invariant checked?",
+          "answer": "Checks the invariant at compile time",
+          "options": [
+            "Checks the invariant at compile time",
+            "Runs only when main calls it",
+            "Checks user input at runtime"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "static_assert requires a compile-time boolean condition.",
+          "hint": "static_assert requires a compile-time boolean condition.",
+          "id": "build-choose-4",
+          "kind": "mcq",
+          "code": "____(sizeof(char)==1);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Checks the invariant at compile time. static_assert requires a compile-time boolean condition.",
+          "answer": "static_assert",
+          "options": [
+            "static_assert",
+            "assert",
+            "if"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "The standard flag selects the language dialect for this compilation.",
+          "hint": "The standard flag selects the language dialect for this compilation.",
+          "id": "build-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$ g++ ____ main.cpp -o app",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Selects C++20 language rules. The standard flag selects the language dialect for this compilation. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "-std=c++20"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "-c produces widget.o for a later link step.",
+          "hint": "-c produces widget.o for a later link step.",
+          "id": "build-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$ g++ ____ widget.cpp",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Produces an object file without linking. -c produces widget.o for a later link step. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "-c"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "Both compiled translation units participate in this link.",
+          "hint": "Both compiled translation units participate in this link.",
+          "id": "build-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$ g++ main.o widget.o ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Links an executable named app. Both compiled translation units participate in this link. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "-o app"
+          ]
+        },
+        {
+          "concept": "C++ translation units and build diagnostics",
+          "explanation": "static_assert requires a compile-time boolean condition.",
+          "hint": "static_assert requires a compile-time boolean condition.",
+          "id": "build-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____(sizeof(char)==1);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Checks the invariant at compile time. static_assert requires a compile-time boolean condition. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "static_assert"
+          ]
+        }
+      ]
+    },
     {
       "id": "values",
       "title": "Values and assignment",
       "section": "Basics",
       "intro": "C++20; relevant standard headers and a main function are assumed. A variable names a value. Assignment updates that variable; an earlier copied number does not follow later assignments. Read statements from top to bottom.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
-      "requires": [],
+      "requires": [
+        "build"
+      ],
       "questions": [
         {
           "concept": "Values and assignment",
@@ -346,15 +539,305 @@
       ]
     },
     {
+      "id": "initialization",
+      "title": "Initialization, auto, and const references",
+      "section": "Basics",
+      "intro": "C++20; relevant standard headers and a main function are assumed. Prefer initializing an object at its declaration. Brace initialization rejects narrowing conversions such as a fractional double to int. auto deduces a value type and usually drops a reference; auto& preserves aliasing. const auto& gives a read-only view without copying. Read a declaration as a contract about conversion and ownership, rather than assuming that every assignment shares an object as in Python.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cpp-guidelines"
+      ],
+      "requires": [
+        "values"
+      ],
+      "questions": [
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "List initialization rejects this narrowing double-to-int conversion.",
+          "hint": "List initialization rejects this narrowing double-to-int conversion.",
+          "id": "initialization-read-1",
+          "kind": "mcq",
+          "code": "int n{2.5}; std::cout<<n;",
+          "prompt": "What does the compiler report?",
+          "answer": "Compile error: narrowing conversion",
+          "options": [
+            "Compile error: narrowing conversion",
+            "2",
+            "3"
+          ],
+          "repair_question_id": "initialization-write-repair-1"
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "Use an integer initializer when the intended value is exactly two.",
+          "hint": "Use an integer initializer when the intended value is exactly two.",
+          "id": "initialization-choose-repair-1",
+          "kind": "mcq",
+          "code": "int n____; std::cout<<n;",
+          "prompt": "Repair the code by filling ____. Use an integer initializer when the intended value is exactly two. Target result: 2.",
+          "answer": "{2}",
+          "options": [
+            "{2}",
+            "{2.5}",
+            "{3}"
+          ]
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "auto creates an independent integer value here.",
+          "hint": "auto creates an independent integer value here.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "initialization-read-2",
+          "kind": "mcq",
+          "code": "int n=${n}; auto copy=n; ++copy; std::cout<<n;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "auto creates an independent integer value here.",
+          "hint": "auto creates an independent integer value here.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "initialization-choose-2",
+          "kind": "mcq",
+          "code": "int n=${n}; ____ copy=n; ++copy; std::cout<<n;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. auto creates an independent integer value here.",
+          "answer": "auto",
+          "options": [
+            "auto",
+            "auto&",
+            "const auto&"
+          ]
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "The reference aliases n, so incrementing it changes n.",
+          "hint": "The reference aliases n, so incrementing it changes n.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "initialization-read-3",
+          "kind": "mcq",
+          "code": "int n=${n}; auto& alias=n; ++alias; std::cout<<n;",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "The reference aliases n, so incrementing it changes n.",
+          "hint": "The reference aliases n, so incrementing it changes n.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "initialization-choose-3",
+          "kind": "mcq",
+          "code": "int n=${n}; ____ alias=n; ++alias; std::cout<<n;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The reference aliases n, so incrementing it changes n.",
+          "answer": "auto&",
+          "options": [
+            "auto&",
+            "auto",
+            "const auto&"
+          ]
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "A const reference reads the existing string without copying it.",
+          "hint": "A const reference reads the existing string without copying it.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "initialization-read-4",
+          "kind": "mcq",
+          "code": "std::string text=\"${word}\"; const auto& view=text; std::cout<<view.size();",
+          "prompt": "What is the result?",
+          "answer": "${length}",
+          "options": [
+            "${length}",
+            "0",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "A const reference reads the existing string without copying it.",
+          "hint": "A const reference reads the existing string without copying it.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "initialization-choose-4",
+          "kind": "mcq",
+          "code": "std::string text=\"${word}\"; ____ view=text; std::cout<<view.size();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. A const reference reads the existing string without copying it.",
+          "answer": "const auto&",
+          "options": [
+            "const auto&",
+            "auto*",
+            "int&"
+          ]
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "Use an integer initializer when the intended value is exactly two.",
+          "hint": "Use an integer initializer when the intended value is exactly two.",
+          "id": "initialization-write-repair-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int n____; std::cout<<n;",
+          "prompt": "Repair the code by filling ____. Use an integer initializer when the intended value is exactly two. Target result: 2. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "{2}"
+          ],
+          "target_answer": "2"
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "auto creates an independent integer value here.",
+          "hint": "auto creates an independent integer value here.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "initialization-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int n=${n}; ____ copy=n; ++copy; std::cout<<n;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. auto creates an independent integer value here. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "auto"
+          ]
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "The reference aliases n, so incrementing it changes n.",
+          "hint": "The reference aliases n, so incrementing it changes n.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "initialization-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int n=${n}; ____ alias=n; ++alias; std::cout<<n;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The reference aliases n, so incrementing it changes n. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "auto&"
+          ]
+        },
+        {
+          "concept": "Initialization, auto, and const references",
+          "explanation": "A const reference reads the existing string without copying it.",
+          "hint": "A const reference reads the existing string without copying it.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "length": "len(word)"
+          },
+          "id": "initialization-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "std::string text=\"${word}\"; ____ view=text; std::cout<<view.size();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${length}. A const reference reads the existing string without copying it. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "const auto&"
+          ]
+        }
+      ]
+    },
+    {
       "id": "arithmetic",
       "title": "Arithmetic and precedence",
       "section": "Basics",
       "intro": "C++20; relevant standard headers and a main function are assumed. Multiplication binds more tightly than addition. Parentheses group expressions. Integer quotient and remainder answer different questions; all operands here are positive.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
-        "values"
+        "initialization"
       ],
       "questions": [
         {
@@ -725,7 +1208,8 @@
       "section": "Basics",
       "intro": "C++20; relevant standard headers and a main function are assumed. std::string owns text and supports value copying. size counts stored characters for these ASCII examples; operator+ concatenates.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
         "arithmetic"
@@ -1092,7 +1576,8 @@
       "section": "Basics",
       "intro": "C++20; relevant standard headers and a main function are assumed. bool represents true or false. Comparisons produce bool. && short-circuits; if can introduce a local initializer whose scope spans both branches.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
         "strings"
@@ -1365,7 +1850,8 @@
       "section": "Basics",
       "intro": "C++20; relevant standard headers and a main function are assumed. Range-for reads elements directly. auto copies each value; auto& binds to the element so modifications persist. continue skips an iteration.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
         "conditions"
@@ -1653,7 +2139,8 @@
       "section": "Intermediate",
       "intro": "C++20; relevant standard headers and a main function are assumed. Overloads select a matching signature. Values copy; references alias. Default arguments fill omitted trailing arguments.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
         "loops"
@@ -1947,7 +2434,8 @@
       "section": "Intermediate",
       "intro": "C++20; relevant standard headers and a main function are assumed. std::vector owns a resizable sequence; std::array has a fixed size. at checks bounds. These lessons concern library type usage, not implementing data structures.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
         "functions"
@@ -2132,12 +2620,13 @@
             "Throws std::out_of_range",
             "Always zero",
             "Undefined behavior"
-          ]
+          ],
+          "repair_question_id": "containers-write-repair-4"
         },
         {
           "concept": "Standard containers and checked access",
-          "explanation": "at checks that the requested index is within the vector.",
-          "hint": "at checks that the requested index is within the vector.",
+          "explanation": "Use the valid index zero for this one-element vector.",
+          "hint": "Use the valid index zero for this one-element vector.",
           "parameters": {
             "n": {
               "type": "int",
@@ -2146,15 +2635,15 @@
             }
           },
           "derived": {},
-          "id": "containers-choose-4",
+          "id": "containers-choose-repair-4",
           "kind": "mcq",
           "code": "std::vector<int> a={${n}}; std::cout<<a.____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Throws std::out_of_range. at checks that the requested index is within the vector.",
-          "answer": "at(1)",
+          "prompt": "Repair the code by filling ____. Use the valid index zero for this one-element vector. Target result: ${n}.",
+          "answer": "at(0)",
           "options": [
-            "at(1)",
             "at(0)",
-            "size()"
+            "at(1)",
+            "at(2)"
           ]
         },
         {
@@ -2232,8 +2721,8 @@
         },
         {
           "concept": "Standard containers and checked access",
-          "explanation": "at checks that the requested index is within the vector.",
-          "hint": "at checks that the requested index is within the vector.",
+          "explanation": "Use the valid index zero for this one-element vector.",
+          "hint": "Use the valid index zero for this one-element vector.",
           "parameters": {
             "n": {
               "type": "int",
@@ -2242,302 +2731,15 @@
             }
           },
           "derived": {},
-          "id": "containers-write-4",
+          "id": "containers-write-repair-4",
           "kind": "write",
           "checker": "exact",
           "code": "std::vector<int> a={${n}}; std::cout<<a.____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Throws std::out_of_range. at checks that the requested index is within the vector. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "prompt": "Repair the code by filling ____. Use the valid index zero for this one-element vector. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "at(1)"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "io",
-      "title": "Streams and input state",
-      "section": "Intermediate",
-      "intro": "C++20; relevant standard headers and a main function are assumed. Streams use << for output and >> for formatted input. Input operations set state on failure. getline reads a line; stream objects manage their file resources.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
-      "sources": [
-        "learncpp"
-      ],
-      "requires": [
-        "containers"
-      ],
-      "questions": [
-        {
-          "concept": "Streams and input state",
-          "explanation": "Formatted extraction parses an integer into x.",
-          "hint": "Formatted extraction parses an integer into x.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "io-read-1",
-          "kind": "mcq",
-          "code": "int x=0; std::cin >> x; std::cout<<x;",
-          "prompt": "Given valid input ${n}, what is printed?",
-          "answer": "${n}",
-          "options": [
-            "${n}",
-            "0",
-            "An address"
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "Formatted extraction parses an integer into x.",
-          "hint": "Formatted extraction parses an integer into x.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "io-choose-1",
-          "kind": "mcq",
-          "code": "int x=0; std::cin ____ x; std::cout<<x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Formatted extraction parses an integer into x.",
-          "answer": ">>",
-          "options": [
-            ">>",
-            "<<",
-            "=="
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "getline reads text up to the newline into s.",
-          "hint": "getline reads text up to the newline into s.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "io-read-2",
-          "kind": "mcq",
-          "code": "std::string s; std::getline(std::cin,s); std::cout<<s;",
-          "prompt": "Given the line ${word}, what is printed?",
-          "answer": "${word}",
-          "options": [
-            "${word}",
-            "Empty string",
-            "An address"
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "getline reads text up to the newline into s.",
-          "hint": "getline reads text up to the newline into s.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "io-choose-2",
-          "kind": "mcq",
-          "code": "std::string s; std::____(std::cin,s); std::cout<<s;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. getline reads text up to the newline into s.",
-          "answer": "getline",
-          "options": [
-            "getline",
-            "move",
-            "size"
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "Invalid integer extraction sets the failure state.",
-          "hint": "Invalid integer extraction sets the failure state.",
-          "id": "io-read-3",
-          "kind": "mcq",
-          "code": "std::istringstream in(\"bad\"); int x=0; in>>x; std::cout<<in.fail();",
-          "prompt": "What is the result?",
-          "answer": "1",
-          "options": [
-            "1",
-            "0",
-            "Compile error"
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "Invalid integer extraction sets the failure state.",
-          "hint": "Invalid integer extraction sets the failure state.",
-          "id": "io-choose-3",
-          "kind": "mcq",
-          "code": "std::istringstream in(\"bad\"); int x=0; in>>x; std::cout<<in.____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Invalid integer extraction sets the failure state.",
-          "answer": "fail()",
-          "options": [
-            "fail()",
-            "good()",
-            "eof()"
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
-          "hint": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "io-read-4",
-          "kind": "mcq",
-          "code": "{ std::ofstream f(\"notes.txt\"); f << \"${word}\"; }",
-          "prompt": "What resource behavior applies?",
-          "answer": "Writes text; destruction closes the file",
-          "options": [
-            "Writes text; destruction closes the file",
-            "Requires explicit delete",
-            "Only reads the file"
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
-          "hint": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "io-choose-4",
-          "kind": "mcq",
-          "code": "{ std::ofstream f(\"notes.txt\"); f ____ \"${word}\"; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text; destruction closes the file. The stream owns its resource and closes it at scope exit; assume opening succeeds.",
-          "answer": "<<",
-          "options": [
-            "<<",
-            ">>",
-            "=="
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "Formatted extraction parses an integer into x.",
-          "hint": "Formatted extraction parses an integer into x.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "io-write-1",
-          "kind": "write",
-          "checker": "exact",
-          "code": "int x=0; std::cin ____ x; std::cout<<x;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Formatted extraction parses an integer into x. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            ">>"
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "getline reads text up to the newline into s.",
-          "hint": "getline reads text up to the newline into s.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "io-write-2",
-          "kind": "write",
-          "checker": "exact",
-          "code": "std::string s; std::____(std::cin,s); std::cout<<s;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. getline reads text up to the newline into s. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "getline"
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "Invalid integer extraction sets the failure state.",
-          "hint": "Invalid integer extraction sets the failure state.",
-          "id": "io-write-3",
-          "kind": "write",
-          "checker": "exact",
-          "code": "std::istringstream in(\"bad\"); int x=0; in>>x; std::cout<<in.____;",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Invalid integer extraction sets the failure state. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "fail()"
-          ]
-        },
-        {
-          "concept": "Streams and input state",
-          "explanation": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
-          "hint": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "io-write-4",
-          "kind": "write",
-          "checker": "exact",
-          "code": "{ std::ofstream f(\"notes.txt\"); f ____ \"${word}\"; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text; destruction closes the file. The stream owns its resource and closes it at scope exit; assume opening succeeds. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "<<"
-          ]
+            "at(0)"
+          ],
+          "target_answer": "${n}"
         }
       ]
     },
@@ -2547,10 +2749,11 @@
       "section": "Intermediate",
       "intro": "C++20; relevant standard headers and a main function are assumed. Namespaces qualify names. auto deduces a type from an initializer; const prevents mutation through that binding. using can introduce type aliases.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
-        "io"
+        "containers"
       ],
       "questions": [
         {
@@ -2721,12 +2924,13 @@
             "Compile error",
             "Updates x",
             "Undefined behavior"
-          ]
+          ],
+          "repair_question_id": "names-write-repair-4"
         },
         {
           "concept": "Namespaces and type deduction",
-          "explanation": "A const-qualified integer cannot be reassigned.",
-          "hint": "A const-qualified integer cannot be reassigned.",
+          "explanation": "Use a mutable integer when reassignment is required.",
+          "hint": "Use a mutable integer when reassignment is required.",
           "parameters": {
             "n": {
               "type": "int",
@@ -2740,15 +2944,15 @@
             }
           },
           "derived": {},
-          "id": "names-choose-4",
+          "id": "names-choose-repair-4",
           "kind": "mcq",
-          "code": "____ int x=${n}; x=${m};",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Compile error. A const-qualified integer cannot be reassigned.",
-          "answer": "const",
+          "code": "____ x=${n}; x=${m}; std::cout<<x;",
+          "prompt": "Repair the code by filling ____. Use a mutable integer when reassignment is required. Target result: ${m}.",
+          "answer": "int",
           "options": [
-            "const",
-            "static",
-            "unsigned"
+            "int",
+            "const int",
+            "const auto"
           ]
         },
         {
@@ -2818,8 +3022,8 @@
         },
         {
           "concept": "Namespaces and type deduction",
-          "explanation": "A const-qualified integer cannot be reassigned.",
-          "hint": "A const-qualified integer cannot be reassigned.",
+          "explanation": "Use a mutable integer when reassignment is required.",
+          "hint": "Use a mutable integer when reassignment is required.",
           "parameters": {
             "n": {
               "type": "int",
@@ -2833,315 +3037,29 @@
             }
           },
           "derived": {},
-          "id": "names-write-4",
+          "id": "names-write-repair-4",
           "kind": "write",
           "checker": "exact",
-          "code": "____ int x=${n}; x=${m};",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Compile error. A const-qualified integer cannot be reassigned. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "____ x=${n}; x=${m}; std::cout<<x;",
+          "prompt": "Repair the code by filling ____. Use a mutable integer when reassignment is required. Target result: ${m}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "const"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "exceptions",
-      "title": "Exceptions and unwinding",
-      "section": "Intermediate",
-      "intro": "C++20; relevant standard headers and a main function are assumed. throw raises an exception; catch handles matching types. Stack unwinding destroys automatic objects, which supports reliable cleanup.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
-      "sources": [
-        "learncpp"
-      ],
-      "requires": [
-        "names"
-      ],
-      "questions": [
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "The base exception reference handles this derived exception.",
-          "hint": "The base exception reference handles this derived exception.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "exceptions-read-1",
-          "kind": "mcq",
-          "code": "try {throw std::runtime_error(\"${word}\");} catch (const std::exception& e) {std::cout<<e.what();}",
-          "prompt": "What is the result?",
-          "answer": "${word}",
-          "options": [
-            "${word}",
-            "Exception escapes",
-            "0"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "The base exception reference handles this derived exception.",
-          "hint": "The base exception reference handles this derived exception.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "exceptions-choose-1",
-          "kind": "mcq",
-          "code": "try {throw std::runtime_error(\"${word}\");} ____ (const std::exception& e) {std::cout<<e.what();}",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The base exception reference handles this derived exception.",
-          "answer": "catch",
-          "options": [
-            "catch",
-            "if",
-            "while"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "throw transfers control to a matching handler.",
-          "hint": "throw transfers control to a matching handler.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "exceptions-read-2",
-          "kind": "mcq",
-          "code": "throw std::invalid_argument(\"${word}\");",
-          "prompt": "What happens?",
-          "answer": "Raises an exception",
-          "options": [
-            "Raises an exception",
-            "Returns a value",
-            "Prints the message"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "throw transfers control to a matching handler.",
-          "hint": "throw transfers control to a matching handler.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "exceptions-choose-2",
-          "kind": "mcq",
-          "code": "____ std::invalid_argument(\"${word}\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises an exception. throw transfers control to a matching handler.",
-          "answer": "throw",
-          "options": [
-            "throw",
-            "return",
-            "sizeof"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "The checked access throws out_of_range.",
-          "hint": "The checked access throws out_of_range.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "exceptions-read-3",
-          "kind": "mcq",
-          "code": "try {std::vector<int> a; a.at(0);} catch(const std::out_of_range&) {std::cout<<${n};}",
-          "prompt": "What is the result?",
-          "answer": "${n}",
-          "options": [
-            "${n}",
-            "0",
-            "Undefined behavior"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "The checked access throws out_of_range.",
-          "hint": "The checked access throws out_of_range.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "exceptions-choose-3",
-          "kind": "mcq",
-          "code": "try {std::vector<int> a; a.at(0);} catch(const ____&) {std::cout<<${n};}",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The checked access throws out_of_range.",
-          "answer": "std::out_of_range",
-          "options": [
-            "std::out_of_range",
-            "std::bad_alloc",
-            "std::bad_cast"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "The destructor runs when the automatic object leaves scope.",
-          "hint": "The destructor runs when the automatic object leaves scope.",
-          "id": "exceptions-read-4",
-          "kind": "mcq",
-          "code": "struct Guard {~Guard(){std::cout<<\"closed\";} };\n// in main\n{ Guard g; }",
-          "prompt": "What is the result?",
-          "answer": "closed",
-          "options": [
-            "closed",
-            "Nothing",
-            "Compile error"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "The destructor runs when the automatic object leaves scope.",
-          "hint": "The destructor runs when the automatic object leaves scope.",
-          "id": "exceptions-choose-4",
-          "kind": "mcq",
-          "code": "struct Guard {____{std::cout<<\"closed\";} };\n// in main\n{ Guard g; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: closed. The destructor runs when the automatic object leaves scope.",
-          "answer": "~Guard()",
-          "options": [
-            "~Guard()",
-            "Guard()",
-            "close()"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "The base exception reference handles this derived exception.",
-          "hint": "The base exception reference handles this derived exception.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "exceptions-write-1",
-          "kind": "write",
-          "checker": "exact",
-          "code": "try {throw std::runtime_error(\"${word}\");} ____ (const std::exception& e) {std::cout<<e.what();}",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The base exception reference handles this derived exception. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "catch"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "throw transfers control to a matching handler.",
-          "hint": "throw transfers control to a matching handler.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "exceptions-write-2",
-          "kind": "write",
-          "checker": "exact",
-          "code": "____ std::invalid_argument(\"${word}\");",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises an exception. throw transfers control to a matching handler. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "throw"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "The checked access throws out_of_range.",
-          "hint": "The checked access throws out_of_range.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "exceptions-write-3",
-          "kind": "write",
-          "checker": "exact",
-          "code": "try {std::vector<int> a; a.at(0);} catch(const ____&) {std::cout<<${n};}",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The checked access throws out_of_range. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "std::out_of_range"
-          ]
-        },
-        {
-          "concept": "Exceptions and unwinding",
-          "explanation": "The destructor runs when the automatic object leaves scope.",
-          "hint": "The destructor runs when the automatic object leaves scope.",
-          "id": "exceptions-write-4",
-          "kind": "write",
-          "checker": "exact",
-          "code": "struct Guard {____{std::cout<<\"closed\";} };\n// in main\n{ Guard g; }",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: closed. The destructor runs when the automatic object leaves scope. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "~Guard()"
-          ]
+            "int"
+          ],
+          "target_answer": "${m}"
         }
       ]
     },
     {
       "id": "classes",
       "title": "Classes and encapsulation",
-      "section": "Advanced",
+      "section": "Intermediate",
       "intro": "C++20; relevant standard headers and a main function are assumed. Constructors initialize fields. private restricts access. const member functions promise not to mutate ordinary instance fields through this.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
-        "exceptions"
+        "names"
       ],
       "questions": [
         {
@@ -3432,10 +3350,11 @@
     {
       "id": "ownership",
       "title": "RAII and smart pointers",
-      "section": "Advanced",
+      "section": "Intermediate",
       "intro": "C++20; relevant standard headers and a main function are assumed. RAII ties resource lifetime to object lifetime. unique_ptr owns exclusively; moving transfers ownership. shared_ptr shares ownership and counts owners.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
         "classes"
@@ -3712,15 +3631,897 @@
       ]
     },
     {
+      "id": "value-semantics",
+      "title": "Moves, ownership transfer, and the rule of zero",
+      "section": "Intermediate",
+      "intro": "C++20; relevant standard headers and a main function are assumed. Value types such as string copy their contents, whereas unique_ptr is move-only. std::move is a cast that enables a move-aware operation; it does not itself move or destroy anything. A moved-from standard string remains valid but its contents are unspecified. A moved-from unique_ptr is empty. Prefer composing resource-owning standard types so compiler-generated special members manage cleanup: this is the rule of zero.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cpp-guidelines"
+      ],
+      "requires": [
+        "ownership"
+      ],
+      "questions": [
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "Exclusive ownership cannot be duplicated by copying unique_ptr.",
+          "hint": "Exclusive ownership cannot be duplicated by copying unique_ptr.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-read-1",
+          "kind": "mcq",
+          "code": "auto a=std::make_unique<int>(${n}); auto b=a;",
+          "prompt": "What happens during initialization of b?",
+          "answer": "Compile error: unique_ptr cannot be copied",
+          "options": [
+            "Compile error: unique_ptr cannot be copied",
+            "Both pointers own independent integers",
+            "a becomes empty"
+          ],
+          "repair_question_id": "value-semantics-write-repair-1"
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "Transfer exclusive ownership rather than attempting to copy it.",
+          "hint": "Transfer exclusive ownership rather than attempting to copy it.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-choose-repair-1",
+          "kind": "mcq",
+          "code": "auto a=std::make_unique<int>(${n}); auto b=____; std::cout<<*b;",
+          "prompt": "Repair the code by filling ____. Transfer exclusive ownership rather than attempting to copy it. Target result: ${n}.",
+          "answer": "std::move(a)",
+          "options": [
+            "std::move(a)",
+            "a",
+            "nullptr"
+          ]
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "Move construction transfers ownership into b.",
+          "hint": "Move construction transfers ownership into b.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-read-2",
+          "kind": "mcq",
+          "code": "auto a=std::make_unique<int>(${n}); auto b=std::move(a); std::cout<<*b;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "Move construction transfers ownership into b.",
+          "hint": "Move construction transfers ownership into b.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-choose-2",
+          "kind": "mcq",
+          "code": "auto a=std::make_unique<int>(${n}); auto b=____; std::cout<<*b;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Move construction transfers ownership into b.",
+          "answer": "std::move(a)",
+          "options": [
+            "std::move(a)",
+            "a",
+            "nullptr"
+          ]
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "unique_ptr specifies that the moved-from pointer is empty.",
+          "hint": "unique_ptr specifies that the moved-from pointer is empty.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-read-3",
+          "kind": "mcq",
+          "code": "auto a=std::make_unique<int>(${n}); auto b=std::move(a); std::cout<<(a == nullptr);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "unique_ptr specifies that the moved-from pointer is empty.",
+          "hint": "unique_ptr specifies that the moved-from pointer is empty.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-choose-3",
+          "kind": "mcq",
+          "code": "auto a=std::make_unique<int>(${n}); auto b=std::move(a); std::cout<<(a ____ nullptr);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. unique_ptr specifies that the moved-from pointer is empty.",
+          "answer": "==",
+          "options": [
+            "==",
+            "!=",
+            ">"
+          ]
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "The generated copy operation uses string value semantics; no manual destructor is needed.",
+          "hint": "The generated copy operation uses string value semantics; no manual destructor is needed.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "tail": "word[1:]"
+          },
+          "id": "value-semantics-read-4",
+          "kind": "mcq",
+          "code": "struct Note {std::string text;};\n// in main\nNote a{\"${word}\"}; auto b=a; b.text[0]='X'; std::cout<<a.text;",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "X${tail}",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "The generated copy operation uses string value semantics; no manual destructor is needed.",
+          "hint": "The generated copy operation uses string value semantics; no manual destructor is needed.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-choose-4",
+          "kind": "mcq",
+          "code": "struct Note {____ text;};\n// in main\nNote a{\"${word}\"}; auto b=a; b.text[0]='X'; std::cout<<a.text;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The generated copy operation uses string value semantics; no manual destructor is needed.",
+          "answer": "std::string",
+          "options": [
+            "std::string",
+            "char*",
+            "std::string_view"
+          ]
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "Transfer exclusive ownership rather than attempting to copy it.",
+          "hint": "Transfer exclusive ownership rather than attempting to copy it.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-write-repair-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "auto a=std::make_unique<int>(${n}); auto b=____; std::cout<<*b;",
+          "prompt": "Repair the code by filling ____. Transfer exclusive ownership rather than attempting to copy it. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "std::move(a)"
+          ],
+          "target_answer": "${n}"
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "Move construction transfers ownership into b.",
+          "hint": "Move construction transfers ownership into b.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "auto a=std::make_unique<int>(${n}); auto b=____; std::cout<<*b;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Move construction transfers ownership into b. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "std::move(a)"
+          ]
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "unique_ptr specifies that the moved-from pointer is empty.",
+          "hint": "unique_ptr specifies that the moved-from pointer is empty.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "auto a=std::make_unique<int>(${n}); auto b=std::move(a); std::cout<<(a ____ nullptr);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. unique_ptr specifies that the moved-from pointer is empty. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        },
+        {
+          "concept": "Moves, ownership transfer, and the rule of zero",
+          "explanation": "The generated copy operation uses string value semantics; no manual destructor is needed.",
+          "hint": "The generated copy operation uses string value semantics; no manual destructor is needed.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "value-semantics-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "struct Note {____ text;};\n// in main\nNote a{\"${word}\"}; auto b=a; b.text[0]='X'; std::cout<<a.text;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The generated copy operation uses string value semantics; no manual destructor is needed. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "std::string"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io",
+      "title": "Streams and input state",
+      "section": "Intermediate",
+      "intro": "C++20; relevant standard headers and a main function are assumed. Streams use << for output and >> for formatted input. Input operations set state on failure. getline reads a line; stream objects manage their file resources.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "learncpp",
+        "cpp-guidelines"
+      ],
+      "requires": [
+        "value-semantics"
+      ],
+      "questions": [
+        {
+          "concept": "Streams and input state",
+          "explanation": "Formatted extraction parses an integer into x.",
+          "hint": "Formatted extraction parses an integer into x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "io-read-1",
+          "kind": "mcq",
+          "code": "int x=0; std::cin >> x; std::cout<<x;",
+          "prompt": "Given valid input ${n}, what is printed?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "An address"
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "Formatted extraction parses an integer into x.",
+          "hint": "Formatted extraction parses an integer into x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "io-choose-1",
+          "kind": "mcq",
+          "code": "int x=0; std::cin ____ x; std::cout<<x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Formatted extraction parses an integer into x.",
+          "answer": ">>",
+          "options": [
+            ">>",
+            "<<",
+            "=="
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "getline reads text up to the newline into s.",
+          "hint": "getline reads text up to the newline into s.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-2",
+          "kind": "mcq",
+          "code": "std::string s; std::getline(std::cin,s); std::cout<<s;",
+          "prompt": "Given the line ${word}, what is printed?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Empty string",
+            "An address"
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "getline reads text up to the newline into s.",
+          "hint": "getline reads text up to the newline into s.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-2",
+          "kind": "mcq",
+          "code": "std::string s; std::____(std::cin,s); std::cout<<s;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. getline reads text up to the newline into s.",
+          "answer": "getline",
+          "options": [
+            "getline",
+            "move",
+            "size"
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "Invalid integer extraction sets the failure state.",
+          "hint": "Invalid integer extraction sets the failure state.",
+          "id": "io-read-3",
+          "kind": "mcq",
+          "code": "std::istringstream in(\"bad\"); int x=0; in>>x; std::cout<<in.fail();",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "Invalid integer extraction sets the failure state.",
+          "hint": "Invalid integer extraction sets the failure state.",
+          "id": "io-choose-3",
+          "kind": "mcq",
+          "code": "std::istringstream in(\"bad\"); int x=0; in>>x; std::cout<<in.____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Invalid integer extraction sets the failure state.",
+          "answer": "fail()",
+          "options": [
+            "fail()",
+            "good()",
+            "eof()"
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
+          "hint": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-read-4",
+          "kind": "mcq",
+          "code": "{ std::ofstream f(\"notes.txt\"); f << \"${word}\"; }",
+          "prompt": "What resource behavior applies?",
+          "answer": "Writes text; destruction closes the file",
+          "options": [
+            "Writes text; destruction closes the file",
+            "Requires explicit delete",
+            "Only reads the file"
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
+          "hint": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-choose-4",
+          "kind": "mcq",
+          "code": "{ std::ofstream f(\"notes.txt\"); f ____ \"${word}\"; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text; destruction closes the file. The stream owns its resource and closes it at scope exit; assume opening succeeds.",
+          "answer": "<<",
+          "options": [
+            "<<",
+            ">>",
+            "=="
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "Formatted extraction parses an integer into x.",
+          "hint": "Formatted extraction parses an integer into x.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "io-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int x=0; std::cin ____ x; std::cout<<x;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Formatted extraction parses an integer into x. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            ">>"
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "getline reads text up to the newline into s.",
+          "hint": "getline reads text up to the newline into s.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "std::string s; std::____(std::cin,s); std::cout<<s;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. getline reads text up to the newline into s. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "getline"
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "Invalid integer extraction sets the failure state.",
+          "hint": "Invalid integer extraction sets the failure state.",
+          "id": "io-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "std::istringstream in(\"bad\"); int x=0; in>>x; std::cout<<in.____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Invalid integer extraction sets the failure state. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "fail()"
+          ]
+        },
+        {
+          "concept": "Streams and input state",
+          "explanation": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
+          "hint": "The stream owns its resource and closes it at scope exit; assume opening succeeds.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "io-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "{ std::ofstream f(\"notes.txt\"); f ____ \"${word}\"; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes text; destruction closes the file. The stream owns its resource and closes it at scope exit; assume opening succeeds. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "<<"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exceptions",
+      "title": "Exceptions and unwinding",
+      "section": "Advanced",
+      "intro": "C++20; relevant standard headers and a main function are assumed. throw raises an exception; catch handles matching types. Stack unwinding destroys automatic objects, which supports reliable cleanup.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "learncpp",
+        "cpp-guidelines"
+      ],
+      "requires": [
+        "io"
+      ],
+      "questions": [
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "The base exception reference handles this derived exception.",
+          "hint": "The base exception reference handles this derived exception.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "exceptions-read-1",
+          "kind": "mcq",
+          "code": "try {throw std::runtime_error(\"${word}\");} catch (const std::exception& e) {std::cout<<e.what();}",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Exception escapes",
+            "0"
+          ]
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "The base exception reference handles this derived exception.",
+          "hint": "The base exception reference handles this derived exception.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "exceptions-choose-1",
+          "kind": "mcq",
+          "code": "try {throw std::runtime_error(\"${word}\");} ____ (const std::exception& e) {std::cout<<e.what();}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The base exception reference handles this derived exception.",
+          "answer": "catch",
+          "options": [
+            "catch",
+            "if",
+            "while"
+          ]
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "throw transfers control to a matching handler.",
+          "hint": "throw transfers control to a matching handler.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "exceptions-read-2",
+          "kind": "mcq",
+          "code": "throw std::invalid_argument(\"${word}\");",
+          "prompt": "What happens?",
+          "answer": "Raises an exception",
+          "options": [
+            "Raises an exception",
+            "Returns a value",
+            "Prints the message"
+          ],
+          "repair_question_id": "exceptions-write-repair-2"
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "Catch the specific exception by const reference at the boundary.",
+          "hint": "Catch the specific exception by const reference at the boundary.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "exceptions-choose-repair-2",
+          "kind": "mcq",
+          "code": "try {throw std::invalid_argument(\"${word}\");} catch (____) {std::cout<<e.what();}",
+          "prompt": "Repair the code by filling ____. Catch the specific exception by const reference at the boundary. Target result: ${word}.",
+          "answer": "const std::invalid_argument& e",
+          "options": [
+            "const std::invalid_argument& e",
+            "const std::out_of_range& e",
+            "int e"
+          ]
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "The checked access throws out_of_range.",
+          "hint": "The checked access throws out_of_range.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "exceptions-read-3",
+          "kind": "mcq",
+          "code": "try {std::vector<int> a; a.at(0);} catch(const std::out_of_range&) {std::cout<<${n};}",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "Undefined behavior"
+          ]
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "The checked access throws out_of_range.",
+          "hint": "The checked access throws out_of_range.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "exceptions-choose-3",
+          "kind": "mcq",
+          "code": "try {std::vector<int> a; a.at(0);} catch(const ____&) {std::cout<<${n};}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The checked access throws out_of_range.",
+          "answer": "std::out_of_range",
+          "options": [
+            "std::out_of_range",
+            "std::bad_alloc",
+            "std::bad_cast"
+          ]
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "The destructor runs when the automatic object leaves scope.",
+          "hint": "The destructor runs when the automatic object leaves scope.",
+          "id": "exceptions-read-4",
+          "kind": "mcq",
+          "code": "struct Guard {~Guard(){std::cout<<\"closed\";} };\n// in main\n{ Guard g; }",
+          "prompt": "What is the result?",
+          "answer": "closed",
+          "options": [
+            "closed",
+            "Nothing",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "The destructor runs when the automatic object leaves scope.",
+          "hint": "The destructor runs when the automatic object leaves scope.",
+          "id": "exceptions-choose-4",
+          "kind": "mcq",
+          "code": "struct Guard {____{std::cout<<\"closed\";} };\n// in main\n{ Guard g; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: closed. The destructor runs when the automatic object leaves scope.",
+          "answer": "~Guard()",
+          "options": [
+            "~Guard()",
+            "Guard()",
+            "close()"
+          ]
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "The base exception reference handles this derived exception.",
+          "hint": "The base exception reference handles this derived exception.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "exceptions-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "try {throw std::runtime_error(\"${word}\");} ____ (const std::exception& e) {std::cout<<e.what();}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The base exception reference handles this derived exception. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "catch"
+          ]
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "Catch the specific exception by const reference at the boundary.",
+          "hint": "Catch the specific exception by const reference at the boundary.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "exceptions-write-repair-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "try {throw std::invalid_argument(\"${word}\");} catch (____) {std::cout<<e.what();}",
+          "prompt": "Repair the code by filling ____. Catch the specific exception by const reference at the boundary. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "const std::invalid_argument& e"
+          ],
+          "target_answer": "${word}"
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "The checked access throws out_of_range.",
+          "hint": "The checked access throws out_of_range.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "exceptions-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "try {std::vector<int> a; a.at(0);} catch(const ____&) {std::cout<<${n};}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The checked access throws out_of_range. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "std::out_of_range"
+          ]
+        },
+        {
+          "concept": "Exceptions and unwinding",
+          "explanation": "The destructor runs when the automatic object leaves scope.",
+          "hint": "The destructor runs when the automatic object leaves scope.",
+          "id": "exceptions-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "struct Guard {____{std::cout<<\"closed\";} };\n// in main\n{ Guard g; }",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: closed. The destructor runs when the automatic object leaves scope. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "~Guard()"
+          ]
+        }
+      ]
+    },
+    {
       "id": "templates",
       "title": "Templates and callable objects",
       "section": "Advanced",
       "intro": "C++20; relevant standard headers and a main function are assumed. Templates are instantiated for argument types. Lambdas form callable objects with explicit captures. Value captures preserve a copy; reference captures follow the variable.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
-        "ownership"
+        "exceptions"
       ],
       "questions": [
         {
@@ -4036,15 +4837,653 @@
       ]
     },
     {
+      "id": "views",
+      "title": "Non-owning views and lifetime boundaries",
+      "section": "Advanced",
+      "intro": "C++20; relevant standard headers and a main function are assumed. string_view and span describe existing storage without owning it. Their cheap copies do not extend the lifetime of the underlying object. span carries an element count, unlike a raw pointer. Mutating a span of mutable elements changes the original data. A view of a temporary string can dangle immediately; keep an owner alive or return an owning value when constructing new text.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cpp-guidelines"
+      ],
+      "requires": [
+        "templates"
+      ],
+      "questions": [
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "The substring view refers to the first character of the live owner.",
+          "hint": "The substring view refers to the first character of the live owner.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "views-read-1",
+          "kind": "mcq",
+          "code": "std::string owner=\"${word}\"; std::string_view view=owner; std::cout<<view.substr(0,1);",
+          "prompt": "What is the result?",
+          "answer": "${first}",
+          "options": [
+            "${first}",
+            "${word}",
+            "Empty string"
+          ]
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "The substring view refers to the first character of the live owner.",
+          "hint": "The substring view refers to the first character of the live owner.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "views-choose-1",
+          "kind": "mcq",
+          "code": "std::string owner=\"${word}\"; std::string_view view=owner; std::cout<<view.____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. The substring view refers to the first character of the live owner.",
+          "answer": "substr(0,1)",
+          "options": [
+            "substr(0,1)",
+            "substr(1)",
+            "substr(0)"
+          ]
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "span borrows the array; modifying its element updates the array.",
+          "hint": "span borrows the array; modifying its element updates the array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "views-read-2",
+          "kind": "mcq",
+          "code": "int values[]={${n},${m}}; std::span<int> view=values; view[0]+=1; std::cout<<values[0];",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "span borrows the array; modifying its element updates the array.",
+          "hint": "span borrows the array; modifying its element updates the array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "views-choose-2",
+          "kind": "mcq",
+          "code": "int values[]={${n},${m}}; std::span<int> view=values; view[0]____; std::cout<<values[0];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. span borrows the array; modifying its element updates the array.",
+          "answer": "+=1",
+          "options": [
+            "+=1",
+            "+=0",
+            "=0"
+          ]
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "span retains the number of elements in its view.",
+          "hint": "span retains the number of elements in its view.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "views-read-3",
+          "kind": "mcq",
+          "code": "int values[]={${n},${m}}; std::span<const int> view=values; std::cout<<view.size();",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "${n}",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "span retains the number of elements in its view.",
+          "hint": "span retains the number of elements in its view.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "views-choose-3",
+          "kind": "mcq",
+          "code": "int values[]={${n},${m}}; std::span<const int> view=values; std::cout<<view.____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. span retains the number of elements in its view.",
+          "answer": "size()",
+          "options": [
+            "size()",
+            "front()",
+            "back()"
+          ]
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "The temporary string dies at the first semicolon; the view does not keep it alive.",
+          "hint": "The temporary string dies at the first semicolon; the view does not keep it alive.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "views-read-4",
+          "kind": "mcq",
+          "code": "std::string_view view=std::string(\"${word}\"); std::cout<<view;",
+          "prompt": "Why is the output invalid?",
+          "answer": "Undefined behavior: view refers to destroyed storage",
+          "options": [
+            "Undefined behavior: view refers to destroyed storage",
+            "Always ${word}",
+            "Compile error"
+          ],
+          "repair_question_id": "views-write-repair-4"
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "Keep an owning string alive while the view is used.",
+          "hint": "Keep an owning string alive while the view is used.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "views-choose-repair-4",
+          "kind": "mcq",
+          "code": "____ owner=\"${word}\"; std::string_view view=owner; std::cout<<view;",
+          "prompt": "Repair the code by filling ____. Keep an owning string alive while the view is used. Target result: ${word}.",
+          "answer": "std::string",
+          "options": [
+            "std::string",
+            "int",
+            "char"
+          ]
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "The substring view refers to the first character of the live owner.",
+          "hint": "The substring view refers to the first character of the live owner.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "views-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "std::string owner=\"${word}\"; std::string_view view=owner; std::cout<<view.____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${first}. The substring view refers to the first character of the live owner. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "substr(0,1)"
+          ]
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "span borrows the array; modifying its element updates the array.",
+          "hint": "span borrows the array; modifying its element updates the array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "views-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int values[]={${n},${m}}; std::span<int> view=values; view[0]____; std::cout<<values[0];",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. span borrows the array; modifying its element updates the array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "+=1"
+          ]
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "span retains the number of elements in its view.",
+          "hint": "span retains the number of elements in its view.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "views-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int values[]={${n},${m}}; std::span<const int> view=values; std::cout<<view.____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. span retains the number of elements in its view. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "size()"
+          ]
+        },
+        {
+          "concept": "Non-owning views and lifetime boundaries",
+          "explanation": "Keep an owning string alive while the view is used.",
+          "hint": "Keep an owning string alive while the view is used.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "views-write-repair-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ owner=\"${word}\"; std::string_view view=owner; std::cout<<view;",
+          "prompt": "Repair the code by filling ____. Keep an owning string alive while the view is used. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "std::string"
+          ],
+          "target_answer": "${word}"
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": "Sum types and constrained generic contracts",
+      "section": "Advanced",
+      "intro": "C++20; relevant standard headers and a main function are assumed. Use enum class for scoped states and variant for alternatives with different payloads. get_if checks the active variant without throwing; a raw get of the wrong alternative throws bad_variant_access. Concepts express the operations a generic interface accepts and provide earlier diagnostics. These tools let APIs state their possible values and requirements instead of relying on informal comments or unsafe casts.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cpp-guidelines"
+      ],
+      "requires": [
+        "views"
+      ],
+      "questions": [
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "get_if returns a pointer because int is the active alternative.",
+          "hint": "get_if returns a pointer because int is the active alternative.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "variants-read-1",
+          "kind": "mcq",
+          "code": "std::variant<int,std::string> value=${n}; auto p=std::get_if<int>(&value); std::cout<<*p;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "get_if returns a pointer because int is the active alternative.",
+          "hint": "get_if returns a pointer because int is the active alternative.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "variants-choose-1",
+          "kind": "mcq",
+          "code": "std::variant<int,std::string> value=${n}; auto p=std::____(&value); std::cout<<*p;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. get_if returns a pointer because int is the active alternative.",
+          "answer": "get_if<int>",
+          "options": [
+            "get_if<int>",
+            "get_if<std::string>",
+            "get<int>"
+          ]
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "The string alternative is active, so requesting int throws.",
+          "hint": "The string alternative is active, so requesting int throws.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "variants-read-2",
+          "kind": "mcq",
+          "code": "std::variant<int,std::string> value=\"${word}\"; std::cout<<std::get<int>(value);",
+          "prompt": "What happens at runtime?",
+          "answer": "Throws std::bad_variant_access",
+          "options": [
+            "Throws std::bad_variant_access",
+            "0",
+            "Compile error"
+          ],
+          "repair_question_id": "variants-write-repair-2"
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "Select the active string alternative.",
+          "hint": "Select the active string alternative.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "variants-choose-repair-2",
+          "kind": "mcq",
+          "code": "std::variant<int,std::string> value=\"${word}\"; std::cout<<std::____(value);",
+          "prompt": "Repair the code by filling ____. Select the active string alternative. Target result: ${word}.",
+          "answer": "get<std::string>",
+          "options": [
+            "get<std::string>",
+            "get<int>",
+            "get<double>"
+          ]
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "integral constrains T to integer types.",
+          "hint": "integral constrains T to integer types.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "variants-read-3",
+          "kind": "mcq",
+          "code": "template<std::integral T> T next(T n){return n+1;}\n// in main\nstd::cout<<next(${n});",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "integral constrains T to integer types.",
+          "hint": "integral constrains T to integer types.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "variants-choose-3",
+          "kind": "mcq",
+          "code": "template<std::____ T> T next(T n){return n+1;}\n// in main\nstd::cout<<next(${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. integral constrains T to integer types.",
+          "answer": "integral",
+          "options": [
+            "integral",
+            "floating_point",
+            "same_as"
+          ]
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "Scoped enum values are named through the enum type.",
+          "hint": "Scoped enum values are named through the enum type.",
+          "id": "variants-read-4",
+          "kind": "mcq",
+          "code": "enum class State {idle,ready}; auto state=State::ready; std::cout<<(state==State::ready);",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "Scoped enum values are named through the enum type.",
+          "hint": "Scoped enum values are named through the enum type.",
+          "id": "variants-choose-4",
+          "kind": "mcq",
+          "code": "enum class State {idle,ready}; auto state=State::____; std::cout<<(state==State::ready);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Scoped enum values are named through the enum type.",
+          "answer": "ready",
+          "options": [
+            "ready",
+            "idle",
+            "missing"
+          ]
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "get_if returns a pointer because int is the active alternative.",
+          "hint": "get_if returns a pointer because int is the active alternative.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "variants-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "std::variant<int,std::string> value=${n}; auto p=std::____(&value); std::cout<<*p;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. get_if returns a pointer because int is the active alternative. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "get_if<int>"
+          ]
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "Select the active string alternative.",
+          "hint": "Select the active string alternative.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "variants-write-repair-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "std::variant<int,std::string> value=\"${word}\"; std::cout<<std::____(value);",
+          "prompt": "Repair the code by filling ____. Select the active string alternative. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "get<std::string>"
+          ],
+          "target_answer": "${word}"
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "integral constrains T to integer types.",
+          "hint": "integral constrains T to integer types.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "variants-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "template<std::____ T> T next(T n){return n+1;}\n// in main\nstd::cout<<next(${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. integral constrains T to integer types. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "integral"
+          ]
+        },
+        {
+          "concept": "Sum types and constrained generic contracts",
+          "explanation": "Scoped enum values are named through the enum type.",
+          "hint": "Scoped enum values are named through the enum type.",
+          "id": "variants-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "enum class State {idle,ready}; auto state=State::____; std::cout<<(state==State::ready);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Scoped enum values are named through the enum type. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ready"
+          ]
+        }
+      ]
+    },
+    {
       "id": "polymorphism",
       "title": "Virtual dispatch and optional values",
       "section": "Advanced",
       "intro": "C++20; relevant standard headers and a main function are assumed. Virtual methods dispatch through base references or pointers. override checks an intended override. optional represents a value that may be absent.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "learncpp"
+        "learncpp",
+        "cpp-guidelines"
       ],
       "requires": [
-        "templates"
+        "variants"
       ],
       "questions": [
         {
@@ -4305,6 +5744,248 @@
           "accepted": [
             "virtual"
           ]
+        }
+      ]
+    },
+    {
+      "id": "concurrency",
+      "title": "Threads, joining, and synchronization",
+      "section": "Advanced",
+      "intro": "C++20; relevant standard headers and a main function are assumed. C++20 jthread joins automatically when destroyed. A thread that borrows local storage must finish before that storage dies. mutex protects shared operations when every participant follows the same locking protocol; scoped_lock releases the lock on scope exit. atomic supports specified operations without data races, but does not make unrelated state safe. Unsynchronized conflicting access to ordinary memory is undefined behavior, not merely an unpredictable final number.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "cpp-guidelines"
+      ],
+      "requires": [
+        "polymorphism"
+      ],
+      "questions": [
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "The jthread destructor joins before the final read.",
+          "hint": "The jthread destructor joins before the final read.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "concurrency-read-1",
+          "kind": "mcq",
+          "code": "int value=0; {std::jthread worker([&]{value=${n};});} std::cout<<value;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "Undefined behavior"
+          ]
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "The jthread destructor joins before the final read.",
+          "hint": "The jthread destructor joins before the final read.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "concurrency-choose-1",
+          "kind": "mcq",
+          "code": "int value=0; {std::jthread worker([&]{value=${n};});} std::cout<<____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The jthread destructor joins before the final read.",
+          "answer": "value",
+          "options": [
+            "value",
+            "0",
+            "1"
+          ]
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "fetch_add atomically increments this integer.",
+          "hint": "fetch_add atomically increments this integer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "concurrency-read-2",
+          "kind": "mcq",
+          "code": "std::atomic<int> value{${n}}; value.fetch_add(1); std::cout<<value.load();",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "fetch_add atomically increments this integer.",
+          "hint": "fetch_add atomically increments this integer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "concurrency-choose-2",
+          "kind": "mcq",
+          "code": "std::atomic<int> value{${n}}; value.____(1); std::cout<<value.load();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. fetch_add atomically increments this integer.",
+          "answer": "fetch_add",
+          "options": [
+            "fetch_add",
+            "store",
+            "exchange"
+          ]
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "The RAII guard releases its lock at the closing brace.",
+          "hint": "The RAII guard releases its lock at the closing brace.",
+          "id": "concurrency-read-3",
+          "kind": "mcq",
+          "code": "std::mutex mutex; {std::scoped_lock guard(mutex);}",
+          "prompt": "How is the mutex released?",
+          "answer": "Releases the mutex when guard leaves scope",
+          "options": [
+            "Releases the mutex when guard leaves scope",
+            "Keeps it locked forever",
+            "Launches a thread"
+          ]
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "The RAII guard releases its lock at the closing brace.",
+          "hint": "The RAII guard releases its lock at the closing brace.",
+          "id": "concurrency-choose-3",
+          "kind": "mcq",
+          "code": "std::mutex mutex; {std::____ guard(mutex);}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Releases the mutex when guard leaves scope. The RAII guard releases its lock at the closing brace.",
+          "answer": "scoped_lock",
+          "options": [
+            "scoped_lock",
+            "unique_ptr",
+            "jthread"
+          ]
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "Concurrent unsynchronized writes to the same ordinary int form a data race.",
+          "hint": "Concurrent unsynchronized writes to the same ordinary int form a data race.",
+          "id": "concurrency-read-4",
+          "kind": "mcq",
+          "code": "int value=0; {std::jthread a([&]{++value;}); std::jthread b([&]{++value;});}",
+          "prompt": "What is wrong with the shared counter?",
+          "answer": "Undefined behavior: data race",
+          "options": [
+            "Undefined behavior: data race",
+            "Guaranteed value 2",
+            "Guaranteed value 1"
+          ],
+          "repair_question_id": "concurrency-write-repair-4"
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "Use an atomic counter and join both threads before reading its result.",
+          "hint": "Use an atomic counter and join both threads before reading its result.",
+          "id": "concurrency-choose-repair-4",
+          "kind": "mcq",
+          "code": "____ value{0}; {std::jthread a([&]{++value;}); std::jthread b([&]{++value;});} std::cout<<value.load();",
+          "prompt": "Repair the code by filling ____. Use an atomic counter and join both threads before reading its result. Target result: 2.",
+          "answer": "std::atomic<int>",
+          "options": [
+            "std::atomic<int>",
+            "int",
+            "volatile int"
+          ]
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "The jthread destructor joins before the final read.",
+          "hint": "The jthread destructor joins before the final read.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "concurrency-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "int value=0; {std::jthread worker([&]{value=${n};});} std::cout<<____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The jthread destructor joins before the final read. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "value"
+          ]
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "fetch_add atomically increments this integer.",
+          "hint": "fetch_add atomically increments this integer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "concurrency-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "std::atomic<int> value{${n}}; value.____(1); std::cout<<value.load();",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. fetch_add atomically increments this integer. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "fetch_add"
+          ]
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "The RAII guard releases its lock at the closing brace.",
+          "hint": "The RAII guard releases its lock at the closing brace.",
+          "id": "concurrency-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "std::mutex mutex; {std::____ guard(mutex);}",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Releases the mutex when guard leaves scope. The RAII guard releases its lock at the closing brace. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "scoped_lock"
+          ]
+        },
+        {
+          "concept": "Threads, joining, and synchronization",
+          "explanation": "Use an atomic counter and join both threads before reading its result.",
+          "hint": "Use an atomic counter and join both threads before reading its result.",
+          "id": "concurrency-write-repair-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ value{0}; {std::jthread a([&]{++value;}); std::jthread b([&]{++value;});} std::cout<<value.load();",
+          "prompt": "Repair the code by filling ____. Use an atomic counter and join both threads before reading its result. Target result: 2. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "std::atomic<int>"
+          ],
+          "target_answer": "2"
         }
       ]
     }

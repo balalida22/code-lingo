@@ -88,6 +88,21 @@ class Store:
     def close(self):
         self.db.close()
 
+    def pinned_courses(self):
+        prefix='pinned_course:'
+        return {row[0][len(prefix):] for row in self.db.execute(
+            "SELECT name FROM settings WHERE name GLOB 'pinned_course:*' AND value='1'")}
+
+    def toggle_course_pin(self, course_id):
+        key='pinned_course:'+course_id
+        with self.db:
+            pinned=self.db.execute('SELECT 1 FROM settings WHERE name=?',(key,)).fetchone()
+            if pinned:
+                self.db.execute('DELETE FROM settings WHERE name=?',(key,))
+            else:
+                self.db.execute('INSERT INTO settings(name,value) VALUES(?,?)',(key,'1'))
+        return not bool(pinned)
+
     def today(self):
         return datetime.fromtimestamp(self.clock()).date().isoformat()
 

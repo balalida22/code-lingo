@@ -26,6 +26,10 @@ def lesson(lid, title, notes, *scenarios):
     return dict(id=lid,title=title,notes=notes,scenarios=scenarios)
 
 def emit(cid,title,baseline,sources,lessons,version='1.0'):
+    if cid not in ('rust','python'):
+        from native_revision import upgrade
+        sources,lessons=upgrade(cid,sources,lessons)
+        version='1.1'
     assert lessons, cid
     data=dict(schema_version=2,id=cid,title=title,language=baseline,version=version,sources=sources,lessons=[])
     for index,l in enumerate(lessons):
@@ -36,6 +40,8 @@ def emit(cid,title,baseline,sources,lessons,version='1.0'):
             q=dict(base,id=f"{l['id']}-read-{stem}",kind='mcq',code=s['code'],prompt=s['prompt'],answer=s['answer'],options=[s['answer']]+s['wrong'])
             qs.append(q)
             if s.get('completion'):
+                if cid!='rust':
+                    q['repair_question_id']=f"{l['id']}-write-repair-{stem}"
                 s=s['completion']
                 stem='repair-'+stem
                 base=dict(base,explanation=s['explanation'],hint=s.get('hint',s['explanation']))
@@ -44,7 +50,10 @@ def emit(cid,title,baseline,sources,lessons,version='1.0'):
                 goal+=' Use '+s['fragment']+' as the replacement literal.'
             goal=s.get('goal',goal)
             qs.append(dict(base,id=f"{l['id']}-choose-{stem}",kind='mcq',code=s['blank'],prompt=goal,answer=s['fragment'],options=[s['fragment']]+s['bad']))
-            writes.append(dict(base,id=f"{l['id']}-write-{stem}",kind='write',checker='exact',code=s['blank'],prompt=goal+' Enter only the missing fragment, preserving its spelling, spaces, and punctuation.',accepted=[s['fragment']]))
+            card=dict(base,id=f"{l['id']}-write-{stem}",kind='write',checker='exact',code=s['blank'],prompt=goal+' Enter only the missing fragment, preserving its spelling, spaces, and punctuation.',accepted=[s['fragment']])
+            if cid not in ('rust','python') and stem.startswith('repair-'):
+                card['target_answer']=s['answer']
+            writes.append(card)
         # Only retain parameters actually used (and their dependency closure).
         for q in qs+writes:
             used=set(re.findall(r'\$\{(\w+)\}',json.dumps({k:v for k,v in q.items() if k not in ('parameters','derived')})))
@@ -71,3 +80,5 @@ if __name__=='__main__':
     from web_types import build as web_types
     from sql_course import build as sql_course
     imperative();systems();web_types();sql_course()
+    from catalog import write_catalog
+    write_catalog()

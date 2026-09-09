@@ -3,7 +3,7 @@
   "id": "sql",
   "title": "SQL (SQLite)",
   "language": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant",
-  "version": "1.0",
+  "version": "1.1",
   "sources": [
     {
       "id": "cs50sql",
@@ -16,6 +16,36 @@
       "title": "SQLite SQL language reference",
       "url": "https://www.sqlite.org/lang.html",
       "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "sqlite-types",
+      "title": "SQLite datatypes and affinity",
+      "url": "https://www.sqlite.org/datatype3.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "sqlite-select",
+      "title": "SQLite SELECT processing",
+      "url": "https://www.sqlite.org/lang_select.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "sqlite-window",
+      "title": "SQLite window functions",
+      "url": "https://www.sqlite.org/windowfunctions.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "sqlite-alter",
+      "title": "SQLite ALTER TABLE",
+      "url": "https://www.sqlite.org/lang_altertable.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "sqlite-date",
+      "title": "SQLite date and time functions",
+      "url": "https://www.sqlite.org/lang_datefunc.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
     }
   ],
   "lessons": [
@@ -26,7 +56,12 @@
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. SELECT produces result columns. AS names a result column without changing its value. A SELECT of constants needs no table; strings use single quotes.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [],
       "questions": [
@@ -346,7 +381,12 @@
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. SQLite uses || for concatenation. Integer operands use integer division. NULL represents missing information; most arithmetic with NULL yields NULL.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
         "select"
@@ -693,16 +733,270 @@
       ]
     },
     {
+      "id": "null-logic",
+      "title": "Three-valued logic and conditional expressions",
+      "section": "Basics",
+      "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. SQL predicates can be true, false, or unknown. NULL means a missing value, so equality to NULL is unknown; use IS NULL to test absence. WHERE keeps only true rows. COALESCE chooses the first non-null value, while NULLIF can turn a sentinel into NULL. A CHECK constraint rejects false but permits unknown in SQLite, so add NOT NULL when absence must also be rejected. Do not translate Python truthiness into SQL filtering rules.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "sqlite-select",
+        "sqlite"
+      ],
+      "requires": [
+        "expressions"
+      ],
+      "questions": [
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "COALESCE returns the first non-null argument.",
+          "hint": "COALESCE returns the first non-null argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "null-logic-read-1",
+          "kind": "mcq",
+          "code": "SELECT COALESCE(NULL,${n},${m});",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "NULL",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "COALESCE returns the first non-null argument.",
+          "hint": "COALESCE returns the first non-null argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "null-logic-choose-1",
+          "kind": "mcq",
+          "code": "SELECT ____(NULL,${n},${m});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. COALESCE returns the first non-null argument.",
+          "answer": "COALESCE",
+          "options": [
+            "COALESCE",
+            "MAX",
+            "MIN"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "Equal arguments make NULLIF return NULL.",
+          "hint": "Equal arguments make NULLIF return NULL.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "null-logic-read-2",
+          "kind": "mcq",
+          "code": "SELECT NULLIF(${n},${n});",
+          "prompt": "What is the result?",
+          "answer": "NULL",
+          "options": [
+            "NULL",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "Equal arguments make NULLIF return NULL.",
+          "hint": "Equal arguments make NULLIF return NULL.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "null-logic-choose-2",
+          "kind": "mcq",
+          "code": "SELECT ____(${n},${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: NULL. Equal arguments make NULLIF return NULL.",
+          "answer": "NULLIF",
+          "options": [
+            "NULLIF",
+            "COALESCE",
+            "MAX"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "NULL=NULL is unknown, so CASE does not take the true branch.",
+          "hint": "NULL=NULL is unknown, so CASE does not take the true branch.",
+          "id": "null-logic-read-3",
+          "kind": "mcq",
+          "code": "SELECT CASE WHEN NULL=NULL THEN 'equal' ELSE 'unknown' END;",
+          "prompt": "What is the result?",
+          "answer": "unknown",
+          "options": [
+            "unknown",
+            "equal",
+            "NULL"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "NULL=NULL is unknown, so CASE does not take the true branch.",
+          "hint": "NULL=NULL is unknown, so CASE does not take the true branch.",
+          "id": "null-logic-choose-3",
+          "kind": "mcq",
+          "code": "SELECT CASE WHEN NULL=NULL THEN 'equal' ____ END;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: unknown. NULL=NULL is unknown, so CASE does not take the true branch.",
+          "answer": "ELSE 'unknown'",
+          "options": [
+            "ELSE 'unknown'",
+            "ELSE 'equal'"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "CHECK allows unknown; NOT NULL is needed to forbid missing n.",
+          "hint": "CHECK allows unknown; NOT NULL is needed to forbid missing n.",
+          "id": "null-logic-read-4",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n INTEGER CHECK(n>0)); INSERT INTO item VALUES(NULL); SELECT COUNT(*) FROM item;",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "Constraint error"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "CHECK allows unknown; NOT NULL is needed to forbid missing n.",
+          "hint": "CHECK allows unknown; NOT NULL is needed to forbid missing n.",
+          "id": "null-logic-choose-4",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n INTEGER CHECK(n>0)); INSERT INTO item VALUES(NULL); SELECT ____ FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. CHECK allows unknown; NOT NULL is needed to forbid missing n.",
+          "answer": "COUNT(*)",
+          "options": [
+            "COUNT(*)",
+            "COUNT(n)",
+            "SUM(n)"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "COALESCE returns the first non-null argument.",
+          "hint": "COALESCE returns the first non-null argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "null-logic-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "SELECT ____(NULL,${n},${m});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. COALESCE returns the first non-null argument. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "COALESCE"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "Equal arguments make NULLIF return NULL.",
+          "hint": "Equal arguments make NULLIF return NULL.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "null-logic-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "SELECT ____(${n},${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: NULL. Equal arguments make NULLIF return NULL. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "NULLIF"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "NULL=NULL is unknown, so CASE does not take the true branch.",
+          "hint": "NULL=NULL is unknown, so CASE does not take the true branch.",
+          "id": "null-logic-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "SELECT CASE WHEN NULL=NULL THEN 'equal' ____ END;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: unknown. NULL=NULL is unknown, so CASE does not take the true branch. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ELSE 'unknown'"
+          ]
+        },
+        {
+          "concept": "Three-valued logic and conditional expressions",
+          "explanation": "CHECK allows unknown; NOT NULL is needed to forbid missing n.",
+          "hint": "CHECK allows unknown; NOT NULL is needed to forbid missing n.",
+          "id": "null-logic-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE item(n INTEGER CHECK(n>0)); INSERT INTO item VALUES(NULL); SELECT ____ FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. CHECK allows unknown; NOT NULL is needed to forbid missing n. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "COUNT(*)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "filter",
       "title": "Filtering with WHERE",
       "section": "Basics",
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. WHERE retains rows whose condition is true; false and NULL are excluded. IS NULL tests missing values. Each table fixture is created afresh for its question.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
-        "expressions"
+        "null-logic"
       ],
       "questions": [
         {
@@ -997,7 +1291,12 @@
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. Row order is unspecified without ORDER BY. ASC sorts upward; DESC downward. LIMIT caps rows; OFFSET skips rows after ordering.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
         "filter"
@@ -1280,7 +1579,12 @@
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. CREATE TABLE declares columns and constraints. SQLite has dynamic typing and type affinity; do not assume another SQL dialect has identical coercion. NOT NULL and CHECK reject invalid rows.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
         "order"
@@ -1299,21 +1603,30 @@
             "Constraint error",
             "Inserts zero",
             "Inserts NULL"
-          ]
+          ],
+          "repair_question_id": "schema-write-repair-1"
         },
         {
           "concept": "Tables, types, and constraints",
-          "explanation": "NOT NULL rejects a missing size.",
-          "hint": "NOT NULL rejects a missing size.",
-          "id": "schema-choose-1",
+          "explanation": "Supply a non-null value that satisfies the existing schema.",
+          "hint": "Supply a non-null value that satisfies the existing schema.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-choose-repair-1",
           "kind": "mcq",
-          "code": "CREATE TABLE item(size INTEGER ____); INSERT INTO item VALUES (NULL);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Constraint error. NOT NULL rejects a missing size.",
-          "answer": "NOT NULL",
+          "code": "CREATE TABLE item(size INTEGER NOT NULL); INSERT INTO item VALUES(____); SELECT size FROM item;",
+          "prompt": "Repair the code by filling ____. Supply a non-null value that satisfies the existing schema. Target result: ${n}.",
+          "answer": "${n}",
           "options": [
-            "NOT NULL",
-            "DEFAULT 0",
-            "UNIQUE"
+            "${n}",
+            "NULL",
+            "0"
           ]
         },
         {
@@ -1375,21 +1688,30 @@
             "Constraint error",
             "Inserts zero",
             "Inserts NULL"
-          ]
+          ],
+          "repair_question_id": "schema-write-repair-3"
         },
         {
           "concept": "Tables, types, and constraints",
-          "explanation": "CHECK rejects the row because size>0 is false.",
-          "hint": "CHECK rejects the row because size>0 is false.",
-          "id": "schema-choose-3",
+          "explanation": "Insert a positive value instead of weakening the intended constraint.",
+          "hint": "Insert a positive value instead of weakening the intended constraint.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-choose-repair-3",
           "kind": "mcq",
-          "code": "CREATE TABLE item(size INTEGER ____); INSERT INTO item VALUES (0);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Constraint error. CHECK rejects the row because size>0 is false.",
-          "answer": "CHECK(size>0)",
+          "code": "CREATE TABLE item(size INTEGER CHECK(size>0)); INSERT INTO item VALUES(____); SELECT size FROM item;",
+          "prompt": "Repair the code by filling ____. Insert a positive value instead of weakening the intended constraint. Target result: ${n}.",
+          "answer": "${n}",
           "options": [
-            "CHECK(size>0)",
-            "CHECK(size>=0)",
-            "DEFAULT 1"
+            "${n}",
+            "0",
+            "-1"
           ]
         },
         {
@@ -1440,16 +1762,25 @@
         },
         {
           "concept": "Tables, types, and constraints",
-          "explanation": "NOT NULL rejects a missing size.",
-          "hint": "NOT NULL rejects a missing size.",
-          "id": "schema-write-1",
+          "explanation": "Supply a non-null value that satisfies the existing schema.",
+          "hint": "Supply a non-null value that satisfies the existing schema.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-write-repair-1",
           "kind": "write",
           "checker": "exact",
-          "code": "CREATE TABLE item(size INTEGER ____); INSERT INTO item VALUES (NULL);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Constraint error. NOT NULL rejects a missing size. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "CREATE TABLE item(size INTEGER NOT NULL); INSERT INTO item VALUES(____); SELECT size FROM item;",
+          "prompt": "Repair the code by filling ____. Supply a non-null value that satisfies the existing schema. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "NOT NULL"
-          ]
+            "${n}"
+          ],
+          "target_answer": "${n}"
         },
         {
           "concept": "Tables, types, and constraints",
@@ -1474,16 +1805,25 @@
         },
         {
           "concept": "Tables, types, and constraints",
-          "explanation": "CHECK rejects the row because size>0 is false.",
-          "hint": "CHECK rejects the row because size>0 is false.",
-          "id": "schema-write-3",
+          "explanation": "Insert a positive value instead of weakening the intended constraint.",
+          "hint": "Insert a positive value instead of weakening the intended constraint.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-write-repair-3",
           "kind": "write",
           "checker": "exact",
-          "code": "CREATE TABLE item(size INTEGER ____); INSERT INTO item VALUES (0);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Constraint error. CHECK rejects the row because size>0 is false. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "CREATE TABLE item(size INTEGER CHECK(size>0)); INSERT INTO item VALUES(____); SELECT size FROM item;",
+          "prompt": "Repair the code by filling ____. Insert a positive value instead of weakening the intended constraint. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "CHECK(size>0)"
-          ]
+            "${n}"
+          ],
+          "target_answer": "${n}"
         },
         {
           "concept": "Tables, types, and constraints",
@@ -1509,16 +1849,294 @@
       ]
     },
     {
+      "id": "affinity",
+      "title": "SQLite storage classes and type affinity",
+      "section": "Basics",
+      "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. SQLite attaches a storage class to each value; a column's affinity influences conversions but usually does not forbid other storage classes. NUMERIC affinity can turn digit text into an integer, while TEXT affinity stores a numeric input as text. CAST explicitly requests conversion and can have permissive behavior on malformed text. These rules are SQLite-specific; do not assume PostgreSQL or MySQL makes the same conversions. All fixtures start from a fresh in-memory database.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "sqlite-types"
+      ],
+      "requires": [
+        "schema"
+      ],
+      "questions": [
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "TEXT affinity converts the supplied integer into text storage.",
+          "hint": "TEXT affinity converts the supplied integer into text storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "affinity-read-1",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n TEXT); INSERT INTO item VALUES(${n}); SELECT typeof(n) FROM item;",
+          "prompt": "What is the result?",
+          "answer": "text",
+          "options": [
+            "text",
+            "integer",
+            "real"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "TEXT affinity converts the supplied integer into text storage.",
+          "hint": "TEXT affinity converts the supplied integer into text storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "affinity-choose-1",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n ____); INSERT INTO item VALUES(${n}); SELECT typeof(n) FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: text. TEXT affinity converts the supplied integer into text storage.",
+          "answer": "TEXT",
+          "options": [
+            "TEXT",
+            "INTEGER",
+            "NUMERIC"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "NUMERIC affinity converts this well-formed integer text.",
+          "hint": "NUMERIC affinity converts this well-formed integer text.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "affinity-read-2",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n NUMERIC); INSERT INTO item VALUES('${n}'); SELECT typeof(n) FROM item;",
+          "prompt": "What is the result?",
+          "answer": "integer",
+          "options": [
+            "integer",
+            "text",
+            "real"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "NUMERIC affinity converts this well-formed integer text.",
+          "hint": "NUMERIC affinity converts this well-formed integer text.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "affinity-choose-2",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n ____); INSERT INTO item VALUES('${n}'); SELECT typeof(n) FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: integer. NUMERIC affinity converts this well-formed integer text.",
+          "answer": "NUMERIC",
+          "options": [
+            "NUMERIC",
+            "TEXT",
+            "BLOB"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "An ordinary INTEGER-affinity column can still hold nonnumeric text in SQLite.",
+          "hint": "An ordinary INTEGER-affinity column can still hold nonnumeric text in SQLite.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "affinity-read-3",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n INTEGER); INSERT INTO item VALUES('${word}'); SELECT typeof(n) FROM item;",
+          "prompt": "What is the result?",
+          "answer": "text",
+          "options": [
+            "text",
+            "integer",
+            "Constraint error"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "An ordinary INTEGER-affinity column can still hold nonnumeric text in SQLite.",
+          "hint": "An ordinary INTEGER-affinity column can still hold nonnumeric text in SQLite.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "affinity-choose-3",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n INTEGER); INSERT INTO item VALUES('${word}'); SELECT ____ FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: text. An ordinary INTEGER-affinity column can still hold nonnumeric text in SQLite.",
+          "answer": "typeof(n)",
+          "options": [
+            "typeof(n)",
+            "n",
+            "length(n)"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "SQLite converts this text to integer zero; a cast alone is not strict input validation.",
+          "hint": "SQLite converts this text to integer zero; a cast alone is not strict input validation.",
+          "id": "affinity-read-4",
+          "kind": "mcq",
+          "code": "SELECT CAST('bad' AS INTEGER);",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "Constraint error",
+            "NULL"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "SQLite converts this text to integer zero; a cast alone is not strict input validation.",
+          "hint": "SQLite converts this text to integer zero; a cast alone is not strict input validation.",
+          "id": "affinity-choose-4",
+          "kind": "mcq",
+          "code": "SELECT CAST('bad' AS ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. SQLite converts this text to integer zero; a cast alone is not strict input validation.",
+          "answer": "INTEGER",
+          "options": [
+            "INTEGER",
+            "TEXT",
+            "BLOB"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "TEXT affinity converts the supplied integer into text storage.",
+          "hint": "TEXT affinity converts the supplied integer into text storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "affinity-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE item(n ____); INSERT INTO item VALUES(${n}); SELECT typeof(n) FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: text. TEXT affinity converts the supplied integer into text storage. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "TEXT"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "NUMERIC affinity converts this well-formed integer text.",
+          "hint": "NUMERIC affinity converts this well-formed integer text.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "affinity-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE item(n ____); INSERT INTO item VALUES('${n}'); SELECT typeof(n) FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: integer. NUMERIC affinity converts this well-formed integer text. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "NUMERIC"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "An ordinary INTEGER-affinity column can still hold nonnumeric text in SQLite.",
+          "hint": "An ordinary INTEGER-affinity column can still hold nonnumeric text in SQLite.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "affinity-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE item(n INTEGER); INSERT INTO item VALUES('${word}'); SELECT ____ FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: text. An ordinary INTEGER-affinity column can still hold nonnumeric text in SQLite. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "typeof(n)"
+          ]
+        },
+        {
+          "concept": "SQLite storage classes and type affinity",
+          "explanation": "SQLite converts this text to integer zero; a cast alone is not strict input validation.",
+          "hint": "SQLite converts this text to integer zero; a cast alone is not strict input validation.",
+          "id": "affinity-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "SELECT CAST('bad' AS ____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. SQLite converts this text to integer zero; a cast alone is not strict input validation. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "INTEGER"
+          ]
+        }
+      ]
+    },
+    {
       "id": "writes",
       "title": "INSERT, UPDATE, and DELETE",
       "section": "Intermediate",
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. INSERT creates rows. UPDATE and DELETE affect every matching row; omitting WHERE affects all rows. A statement runs against the current table state.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
-        "schema"
+        "affinity"
       ],
       "questions": [
         {
@@ -1804,7 +2422,12 @@
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. COUNT(*) counts rows; COUNT(column) excludes NULL. GROUP BY creates groups; HAVING filters aggregate groups after grouping.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
         "writes"
@@ -2124,7 +2747,12 @@
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. JOIN combines rows according to a predicate. LEFT JOIN retains unmatched left rows with NULL right fields. Column qualification avoids ambiguity; joins may produce multiple rows per key.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
         "aggregation"
@@ -2329,16 +2957,207 @@
       ]
     },
     {
+      "id": "join-boundaries",
+      "title": "Outer joins and predicate placement",
+      "section": "Intermediate",
+      "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. A join produces rows, possibly multiplying one left row into several matches. LEFT JOIN fills right columns with NULL when no match exists. A predicate in ON limits matching; the same predicate in WHERE can remove those preserved rows after the join. Count a non-null right key to count matches, since COUNT(*) also counts a null-extended row. Read qualifications and grouping carefully rather than treating a join as a dictionary lookup.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "sqlite-select"
+      ],
+      "requires": [
+        "joins"
+      ],
+      "questions": [
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "The ON condition limits matches while retaining the unmatched left row.",
+          "hint": "The ON condition limits matches while retaining the unmatched left row.",
+          "id": "join-boundaries-read-1",
+          "kind": "mcq",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER,active INTEGER); INSERT INTO a VALUES(1); SELECT COUNT(*) FROM a LEFT JOIN b ON a.id=b.id AND b.active=1;",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "The ON condition limits matches while retaining the unmatched left row.",
+          "hint": "The ON condition limits matches while retaining the unmatched left row.",
+          "id": "join-boundaries-choose-1",
+          "kind": "mcq",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER,active INTEGER); INSERT INTO a VALUES(1); SELECT COUNT(*) FROM a LEFT JOIN b ON a.id=b.id ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. The ON condition limits matches while retaining the unmatched left row.",
+          "answer": "AND b.active=1",
+          "options": [
+            "AND b.active=1",
+            "WHERE b.active=1",
+            "WHERE b.id IS NOT NULL"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "The WHERE predicate rejects the null-extended row because its comparison is unknown.",
+          "hint": "The WHERE predicate rejects the null-extended row because its comparison is unknown.",
+          "id": "join-boundaries-read-2",
+          "kind": "mcq",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER,active INTEGER); INSERT INTO a VALUES(1); SELECT COUNT(*) FROM a LEFT JOIN b ON a.id=b.id WHERE b.active=1;",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "The WHERE predicate rejects the null-extended row because its comparison is unknown.",
+          "hint": "The WHERE predicate rejects the null-extended row because its comparison is unknown.",
+          "id": "join-boundaries-choose-2",
+          "kind": "mcq",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER,active INTEGER); INSERT INTO a VALUES(1); SELECT COUNT(*) FROM a LEFT JOIN b ON a.id=b.id ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. The WHERE predicate rejects the null-extended row because its comparison is unknown.",
+          "answer": "WHERE b.active=1",
+          "options": [
+            "WHERE b.active=1",
+            "WHERE b.id IS NULL",
+            "WHERE 1"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "Counting the right key ignores the NULL on the unmatched row.",
+          "hint": "Counting the right key ignores the NULL on the unmatched row.",
+          "id": "join-boundaries-read-3",
+          "kind": "mcq",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER); INSERT INTO a VALUES(1); SELECT COUNT(b.id) FROM a LEFT JOIN b ON a.id=b.id;",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "NULL"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "Counting the right key ignores the NULL on the unmatched row.",
+          "hint": "Counting the right key ignores the NULL on the unmatched row.",
+          "id": "join-boundaries-choose-3",
+          "kind": "mcq",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER); INSERT INTO a VALUES(1); SELECT ____ FROM a LEFT JOIN b ON a.id=b.id;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Counting the right key ignores the NULL on the unmatched row.",
+          "answer": "COUNT(b.id)",
+          "options": [
+            "COUNT(b.id)",
+            "COUNT(*)",
+            "COUNT(a.id)"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "Each matching right row contributes a result row.",
+          "hint": "Each matching right row contributes a result row.",
+          "id": "join-boundaries-read-4",
+          "kind": "mcq",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER); INSERT INTO a VALUES(1); INSERT INTO b VALUES(1),(1); SELECT COUNT(*) FROM a JOIN b ON a.id=b.id;",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "Each matching right row contributes a result row.",
+          "hint": "Each matching right row contributes a result row.",
+          "id": "join-boundaries-choose-4",
+          "kind": "mcq",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER); INSERT INTO a VALUES(1); INSERT INTO b VALUES(1),(1); SELECT ____ FROM a JOIN b ON a.id=b.id;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Each matching right row contributes a result row.",
+          "answer": "COUNT(*)",
+          "options": [
+            "COUNT(*)",
+            "COUNT(DISTINCT a.id)",
+            "0"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "The ON condition limits matches while retaining the unmatched left row.",
+          "hint": "The ON condition limits matches while retaining the unmatched left row.",
+          "id": "join-boundaries-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER,active INTEGER); INSERT INTO a VALUES(1); SELECT COUNT(*) FROM a LEFT JOIN b ON a.id=b.id ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. The ON condition limits matches while retaining the unmatched left row. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "AND b.active=1"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "The WHERE predicate rejects the null-extended row because its comparison is unknown.",
+          "hint": "The WHERE predicate rejects the null-extended row because its comparison is unknown.",
+          "id": "join-boundaries-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER,active INTEGER); INSERT INTO a VALUES(1); SELECT COUNT(*) FROM a LEFT JOIN b ON a.id=b.id ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. The WHERE predicate rejects the null-extended row because its comparison is unknown. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "WHERE b.active=1"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "Counting the right key ignores the NULL on the unmatched row.",
+          "hint": "Counting the right key ignores the NULL on the unmatched row.",
+          "id": "join-boundaries-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER); INSERT INTO a VALUES(1); SELECT ____ FROM a LEFT JOIN b ON a.id=b.id;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Counting the right key ignores the NULL on the unmatched row. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "COUNT(b.id)"
+          ]
+        },
+        {
+          "concept": "Outer joins and predicate placement",
+          "explanation": "Each matching right row contributes a result row.",
+          "hint": "Each matching right row contributes a result row.",
+          "id": "join-boundaries-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE a(id INTEGER); CREATE TABLE b(id INTEGER); INSERT INTO a VALUES(1); INSERT INTO b VALUES(1),(1); SELECT ____ FROM a JOIN b ON a.id=b.id;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Each matching right row contributes a result row. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "COUNT(*)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "subqueries",
       "title": "Subqueries and EXISTS",
       "section": "Intermediate",
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. A subquery can supply a scalar or a set of rows. EXISTS tests whether any row exists, independent of its selected value. Qualify correlated references carefully.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
-        "joins"
+        "join-boundaries"
       ],
       "questions": [
         {
@@ -2546,7 +3365,12 @@
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. A view stores a query definition. A nonrecursive WITH expression names a temporary query result for one statement. UNION removes duplicate rows; UNION ALL preserves them.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
         "subqueries"
@@ -2829,16 +3653,256 @@
       ]
     },
     {
+      "id": "dates-sets",
+      "title": "Date representations and compound queries",
+      "section": "Intermediate",
+      "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. SQLite has no dedicated date storage class; its date functions understand documented text and numeric representations. Modifiers change a supplied value, so explicit dates make tests reproducible. UNION removes duplicate rows, UNION ALL retains them, and EXCEPT removes rows present in the right query. Apply a final ORDER BY when result order matters. Compound query columns align by position; names do not join them together.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "sqlite-date",
+        "sqlite-select"
+      ],
+      "requires": [
+        "views"
+      ],
+      "questions": [
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "The explicit date lies in a leap year, so adding one day reaches February 29.",
+          "hint": "The explicit date lies in a leap year, so adding one day reaches February 29.",
+          "id": "dates-sets-read-1",
+          "kind": "mcq",
+          "code": "SELECT date('2024-02-28','+1 day');",
+          "prompt": "What is the result?",
+          "answer": "2024-02-29",
+          "options": [
+            "2024-02-29",
+            "2024-03-01",
+            "NULL"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "The explicit date lies in a leap year, so adding one day reaches February 29.",
+          "hint": "The explicit date lies in a leap year, so adding one day reaches February 29.",
+          "id": "dates-sets-choose-1",
+          "kind": "mcq",
+          "code": "SELECT date('2024-02-28',____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2024-02-29. The explicit date lies in a leap year, so adding one day reaches February 29. Use '+1 day' as the replacement literal.",
+          "answer": "'+1 day'",
+          "options": [
+            "'+1 day'",
+            "'+2 days'",
+            "'-1 day'"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "The year format extracts text from the explicit date.",
+          "hint": "The year format extracts text from the explicit date.",
+          "id": "dates-sets-read-2",
+          "kind": "mcq",
+          "code": "SELECT strftime('%Y','2024-02-29');",
+          "prompt": "What is the result?",
+          "answer": "2024",
+          "options": [
+            "2024",
+            "02",
+            "29"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "The year format extracts text from the explicit date.",
+          "hint": "The year format extracts text from the explicit date.",
+          "id": "dates-sets-choose-2",
+          "kind": "mcq",
+          "code": "SELECT ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2024. The year format extracts text from the explicit date.",
+          "answer": "strftime('%Y','2024-02-29')",
+          "options": [
+            "strftime('%Y','2024-02-29')",
+            "strftime('%m','2024-02-29')",
+            "strftime('%d','2024-02-29')"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "UNION ALL preserves duplicate result rows.",
+          "hint": "UNION ALL preserves duplicate result rows.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dates-sets-read-3",
+          "kind": "mcq",
+          "code": "SELECT COUNT(*) FROM (SELECT ${n} AS n UNION ALL SELECT ${n});",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "UNION ALL preserves duplicate result rows.",
+          "hint": "UNION ALL preserves duplicate result rows.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dates-sets-choose-3",
+          "kind": "mcq",
+          "code": "SELECT COUNT(*) FROM (SELECT ${n} AS n ____ SELECT ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. UNION ALL preserves duplicate result rows.",
+          "answer": "UNION ALL",
+          "options": [
+            "UNION ALL",
+            "UNION",
+            "EXCEPT"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "EXCEPT removes the row present in the right query.",
+          "hint": "EXCEPT removes the row present in the right query.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dates-sets-read-4",
+          "kind": "mcq",
+          "code": "SELECT COUNT(*) FROM (SELECT ${n} AS n EXCEPT SELECT ${n});",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "EXCEPT removes the row present in the right query.",
+          "hint": "EXCEPT removes the row present in the right query.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dates-sets-choose-4",
+          "kind": "mcq",
+          "code": "SELECT COUNT(*) FROM (SELECT ${n} AS n ____ SELECT ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. EXCEPT removes the row present in the right query.",
+          "answer": "EXCEPT",
+          "options": [
+            "EXCEPT",
+            "UNION",
+            "UNION ALL"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "The explicit date lies in a leap year, so adding one day reaches February 29.",
+          "hint": "The explicit date lies in a leap year, so adding one day reaches February 29.",
+          "id": "dates-sets-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "SELECT date('2024-02-28',____);",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2024-02-29. The explicit date lies in a leap year, so adding one day reaches February 29. Use '+1 day' as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "'+1 day'"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "The year format extracts text from the explicit date.",
+          "hint": "The year format extracts text from the explicit date.",
+          "id": "dates-sets-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "SELECT ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2024. The year format extracts text from the explicit date. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "strftime('%Y','2024-02-29')"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "UNION ALL preserves duplicate result rows.",
+          "hint": "UNION ALL preserves duplicate result rows.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dates-sets-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "SELECT COUNT(*) FROM (SELECT ${n} AS n ____ SELECT ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. UNION ALL preserves duplicate result rows. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "UNION ALL"
+          ]
+        },
+        {
+          "concept": "Date representations and compound queries",
+          "explanation": "EXCEPT removes the row present in the right query.",
+          "hint": "EXCEPT removes the row present in the right query.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dates-sets-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "SELECT COUNT(*) FROM (SELECT ${n} AS n ____ SELECT ${n});",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. EXCEPT removes the row present in the right query. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "EXCEPT"
+          ]
+        }
+      ]
+    },
+    {
       "id": "transactions",
       "title": "Transactions and savepoints",
       "section": "Advanced",
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. BEGIN starts an explicit transaction; COMMIT makes its changes durable; ROLLBACK discards uncommitted changes. Savepoints support partial rollback inside a transaction.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
-        "views"
+        "dates-sets"
       ],
       "questions": [
         {
@@ -3133,7 +4197,12 @@
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. Enable foreign-key enforcement on the connection. UNIQUE rejects duplicate non-null keys. SQLite ON CONFLICT can update an existing row. Constraint behavior is dialect-specific.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
         "transactions"
@@ -3160,12 +4229,13 @@
             "Unique constraint error",
             "Two duplicate rows",
             "Replaces the old row automatically"
-          ]
+          ],
+          "repair_question_id": "integrity-write-repair-1"
         },
         {
           "concept": "Uniqueness, foreign keys, and conflict handling",
-          "explanation": "The duplicate non-null key violates UNIQUE.",
-          "hint": "The duplicate non-null key violates UNIQUE.",
+          "explanation": "Use a distinct key for the new row.",
+          "hint": "Use a distinct key for the new row.",
           "parameters": {
             "n": {
               "type": "int",
@@ -3173,16 +4243,18 @@
               "max": 19
             }
           },
-          "derived": {},
-          "id": "integrity-choose-1",
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "integrity-choose-repair-1",
           "kind": "mcq",
-          "code": "CREATE TABLE item(id INTEGER UNIQUE); INSERT INTO item VALUES (${n}); INSERT INTO item VALUES (____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Unique constraint error. The duplicate non-null key violates UNIQUE. Use ${n} as the replacement literal.",
-          "answer": "${n}",
+          "code": "CREATE TABLE item(id INTEGER UNIQUE); INSERT INTO item VALUES(${n}); INSERT INTO item VALUES(____); SELECT COUNT(*) FROM item;",
+          "prompt": "Repair the code by filling ____. Use a distinct key for the new row. Target result: 2.",
+          "answer": "${next}",
           "options": [
+            "${next}",
             "${n}",
-            "0",
-            "NULL"
+            "${n}+0"
           ]
         },
         {
@@ -3206,12 +4278,13 @@
             "Foreign-key constraint error",
             "Inserts successfully",
             "Creates the parent automatically"
-          ]
+          ],
+          "repair_question_id": "integrity-write-repair-2"
         },
         {
           "concept": "Uniqueness, foreign keys, and conflict handling",
-          "explanation": "With enforcement on, the child key needs a matching parent row.",
-          "hint": "With enforcement on, the child key needs a matching parent row.",
+          "explanation": "Create the referenced parent before inserting the child; keep enforcement enabled.",
+          "hint": "Create the referenced parent before inserting the child; keep enforcement enabled.",
           "parameters": {
             "n": {
               "type": "int",
@@ -3220,15 +4293,14 @@
             }
           },
           "derived": {},
-          "id": "integrity-choose-2",
+          "id": "integrity-choose-repair-2",
           "kind": "mcq",
-          "code": "PRAGMA foreign_keys=____; CREATE TABLE parent(id INTEGER PRIMARY KEY); CREATE TABLE child(pid INTEGER REFERENCES parent(id)); INSERT INTO child VALUES (${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Foreign-key constraint error. With enforcement on, the child key needs a matching parent row.",
-          "answer": "ON",
+          "code": "PRAGMA foreign_keys=ON; CREATE TABLE parent(id INTEGER PRIMARY KEY); CREATE TABLE child(pid INTEGER REFERENCES parent(id)); ____ INSERT INTO child VALUES(${n}); SELECT COUNT(*) FROM child;",
+          "prompt": "Repair the code by filling ____. Create the referenced parent before inserting the child; keep enforcement enabled. Target result: 1.",
+          "answer": "INSERT INTO parent VALUES(${n});",
           "options": [
-            "ON",
-            "OFF",
-            "0"
+            "INSERT INTO parent VALUES(${n});",
+            "INSERT INTO parent VALUES(0);"
           ]
         },
         {
@@ -3319,8 +4391,8 @@
         },
         {
           "concept": "Uniqueness, foreign keys, and conflict handling",
-          "explanation": "The duplicate non-null key violates UNIQUE.",
-          "hint": "The duplicate non-null key violates UNIQUE.",
+          "explanation": "Use a distinct key for the new row.",
+          "hint": "Use a distinct key for the new row.",
           "parameters": {
             "n": {
               "type": "int",
@@ -3328,20 +4400,23 @@
               "max": 19
             }
           },
-          "derived": {},
-          "id": "integrity-write-1",
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "integrity-write-repair-1",
           "kind": "write",
           "checker": "exact",
-          "code": "CREATE TABLE item(id INTEGER UNIQUE); INSERT INTO item VALUES (${n}); INSERT INTO item VALUES (____);",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Unique constraint error. The duplicate non-null key violates UNIQUE. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "CREATE TABLE item(id INTEGER UNIQUE); INSERT INTO item VALUES(${n}); INSERT INTO item VALUES(____); SELECT COUNT(*) FROM item;",
+          "prompt": "Repair the code by filling ____. Use a distinct key for the new row. Target result: 2. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "${n}"
-          ]
+            "${next}"
+          ],
+          "target_answer": "2"
         },
         {
           "concept": "Uniqueness, foreign keys, and conflict handling",
-          "explanation": "With enforcement on, the child key needs a matching parent row.",
-          "hint": "With enforcement on, the child key needs a matching parent row.",
+          "explanation": "Create the referenced parent before inserting the child; keep enforcement enabled.",
+          "hint": "Create the referenced parent before inserting the child; keep enforcement enabled.",
           "parameters": {
             "n": {
               "type": "int",
@@ -3350,14 +4425,15 @@
             }
           },
           "derived": {},
-          "id": "integrity-write-2",
+          "id": "integrity-write-repair-2",
           "kind": "write",
           "checker": "exact",
-          "code": "PRAGMA foreign_keys=____; CREATE TABLE parent(id INTEGER PRIMARY KEY); CREATE TABLE child(pid INTEGER REFERENCES parent(id)); INSERT INTO child VALUES (${n});",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Foreign-key constraint error. With enforcement on, the child key needs a matching parent row. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "PRAGMA foreign_keys=ON; CREATE TABLE parent(id INTEGER PRIMARY KEY); CREATE TABLE child(pid INTEGER REFERENCES parent(id)); ____ INSERT INTO child VALUES(${n}); SELECT COUNT(*) FROM child;",
+          "prompt": "Repair the code by filling ____. Create the referenced parent before inserting the child; keep enforcement enabled. Target result: 1. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "ON"
-          ]
+            "INSERT INTO parent VALUES(${n});"
+          ],
+          "target_answer": "1"
         },
         {
           "concept": "Uniqueness, foreign keys, and conflict handling",
@@ -3407,7 +4483,12 @@
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. Window functions compute over related rows while retaining row identity. OVER defines partition and ordering. ROW_NUMBER numbers rows; an explicit frame controls a running aggregate.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
         "integrity"
@@ -3650,16 +4731,372 @@
       ]
     },
     {
+      "id": "window-frames",
+      "title": "Partitions, peers, and window frames",
+      "section": "Advanced",
+      "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. Window functions calculate across related rows while keeping each result row. PARTITION BY separates independent groups. ORDER BY inside OVER controls window ordering but does not guarantee the final query order. ROWS defines a frame by physical row positions; provide a unique ordering key when ties would make positions ambiguous. A full-partition aggregate differs from a running frame. These lessons teach analytic SQL syntax, not an implementation of ranking algorithms.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "sqlite-window"
+      ],
+      "requires": [
+        "windows"
+      ],
+      "questions": [
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "The full frame includes both rows for each result.",
+          "hint": "The full frame includes both rows for each result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "window-frames-read-1",
+          "kind": "mcq",
+          "code": "WITH t(id,n) AS (VALUES(1,${n}),(2,${m})) SELECT SUM(n) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "What is the result?",
+          "answer": "${add}",
+          "options": [
+            "${add}",
+            "${n}",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "The full frame includes both rows for each result.",
+          "hint": "The full frame includes both rows for each result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "window-frames-choose-1",
+          "kind": "mcq",
+          "code": "WITH t(id,n) AS (VALUES(1,${n}),(2,${m})) SELECT SUM(n) OVER (____) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. The full frame includes both rows for each result.",
+          "answer": "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING",
+          "options": [
+            "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING",
+            "ORDER BY id ROWS BETWEEN CURRENT ROW AND CURRENT ROW",
+            "ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "A current-row-only frame contains exactly that row.",
+          "hint": "A current-row-only frame contains exactly that row.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "window-frames-read-2",
+          "kind": "mcq",
+          "code": "WITH t(id,n) AS (VALUES(1,${n}),(2,${m})) SELECT SUM(n) OVER (ORDER BY id ROWS BETWEEN CURRENT ROW AND CURRENT ROW) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${add}",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "A current-row-only frame contains exactly that row.",
+          "hint": "A current-row-only frame contains exactly that row.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "window-frames-choose-2",
+          "kind": "mcq",
+          "code": "WITH t(id,n) AS (VALUES(1,${n}),(2,${m})) SELECT SUM(n) OVER (ORDER BY id ____) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A current-row-only frame contains exactly that row.",
+          "answer": "ROWS BETWEEN CURRENT ROW AND CURRENT ROW",
+          "options": [
+            "ROWS BETWEEN CURRENT ROW AND CURRENT ROW",
+            "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING",
+            "ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "The first row has no predecessor, so LAG returns its explicit fallback.",
+          "hint": "The first row has no predecessor, so LAG returns its explicit fallback.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "window-frames-read-3",
+          "kind": "mcq",
+          "code": "WITH t(id,n) AS (VALUES(1,${n}),(2,${m})) SELECT LAG(n,1,0) OVER (ORDER BY id) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "${n}",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "The first row has no predecessor, so LAG returns its explicit fallback.",
+          "hint": "The first row has no predecessor, so LAG returns its explicit fallback.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "window-frames-choose-3",
+          "kind": "mcq",
+          "code": "WITH t(id,n) AS (VALUES(1,${n}),(2,${m})) SELECT ____ OVER (ORDER BY id) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. The first row has no predecessor, so LAG returns its explicit fallback.",
+          "answer": "LAG(n,1,0)",
+          "options": [
+            "LAG(n,1,0)",
+            "LEAD(n,1,0)",
+            "FIRST_VALUE(n)"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "Partitioning keeps the a and b totals separate before the outer limit selects the first row.",
+          "hint": "Partitioning keeps the a and b totals separate before the outer limit selects the first row.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "window-frames-read-4",
+          "kind": "mcq",
+          "code": "WITH t(id,tag,n) AS (VALUES(1,'a',${n}),(2,'b',${m})) SELECT SUM(n) OVER (PARTITION BY tag) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${add}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "Partitioning keeps the a and b totals separate before the outer limit selects the first row.",
+          "hint": "Partitioning keeps the a and b totals separate before the outer limit selects the first row.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "window-frames-choose-4",
+          "kind": "mcq",
+          "code": "WITH t(id,tag,n) AS (VALUES(1,'a',${n}),(2,'b',${m})) SELECT SUM(n) OVER (____) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Partitioning keeps the a and b totals separate before the outer limit selects the first row.",
+          "answer": "PARTITION BY tag",
+          "options": [
+            "PARTITION BY tag",
+            "ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "The full frame includes both rows for each result.",
+          "hint": "The full frame includes both rows for each result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "window-frames-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "WITH t(id,n) AS (VALUES(1,${n}),(2,${m})) SELECT SUM(n) OVER (____) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${add}. The full frame includes both rows for each result. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "A current-row-only frame contains exactly that row.",
+          "hint": "A current-row-only frame contains exactly that row.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "window-frames-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "WITH t(id,n) AS (VALUES(1,${n}),(2,${m})) SELECT SUM(n) OVER (ORDER BY id ____) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A current-row-only frame contains exactly that row. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ROWS BETWEEN CURRENT ROW AND CURRENT ROW"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "The first row has no predecessor, so LAG returns its explicit fallback.",
+          "hint": "The first row has no predecessor, so LAG returns its explicit fallback.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "window-frames-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "WITH t(id,n) AS (VALUES(1,${n}),(2,${m})) SELECT ____ OVER (ORDER BY id) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. The first row has no predecessor, so LAG returns its explicit fallback. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "LAG(n,1,0)"
+          ]
+        },
+        {
+          "concept": "Partitions, peers, and window frames",
+          "explanation": "Partitioning keeps the a and b totals separate before the outer limit selects the first row.",
+          "hint": "Partitioning keeps the a and b totals separate before the outer limit selects the first row.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "window-frames-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "WITH t(id,tag,n) AS (VALUES(1,'a',${n}),(2,'b',${m})) SELECT SUM(n) OVER (____) FROM t ORDER BY id LIMIT 1;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Partitioning keeps the a and b totals separate before the outer limit selects the first row. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "PARTITION BY tag"
+          ]
+        }
+      ]
+    },
+    {
       "id": "safequeries",
       "title": "Parameters, triggers, and NULL pitfalls",
       "section": "Advanced",
       "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. Bind values using the database API instead of concatenating SQL. Triggers respond to table changes. NULL uses three-valued logic; NOT IN with a NULL can yield unknown.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "cs50sql",
-        "sqlite"
+        "sqlite",
+        "sqlite-types",
+        "sqlite-select",
+        "sqlite-window",
+        "sqlite-alter",
+        "sqlite-date"
       ],
       "requires": [
-        "windows"
+        "window-frames"
       ],
       "questions": [
         {
@@ -3949,6 +5386,320 @@
           "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. NEW refers to the inserted row within this trigger. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
             "NEW.size"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "schema-changes",
+      "title": "Transactional schema changes and returned writes",
+      "section": "Advanced",
+      "intro": "SQLite 3.35+; every question starts with a fresh in-memory database; result order is specified when relevant. A schema change alters contracts that application queries depend on. SQLite supports transactional DDL, so a migration can group related changes and roll back on failure. Use explicit column names when inserting to avoid depending on table order. RETURNING exposes values from changed rows in SQLite 3.35 and later, but does not imply the surrounding transaction is committed. Savepoints provide nested rollback boundaries; releasing one is not necessarily a top-level commit.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "sqlite-alter",
+        "sqlite"
+      ],
+      "requires": [
+        "safequeries"
+      ],
+      "questions": [
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "The committed added column supplies its default when existing rows are read.",
+          "hint": "The committed added column supplies its default when existing rows are read.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-read-1",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n INTEGER); INSERT INTO item VALUES(${n}); BEGIN; ALTER TABLE item ADD COLUMN label TEXT DEFAULT '${word}'; COMMIT; SELECT label FROM item;",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "NULL",
+            "No such column"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "The committed added column supplies its default when existing rows are read.",
+          "hint": "The committed added column supplies its default when existing rows are read.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-choose-1",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n INTEGER); INSERT INTO item VALUES(${n}); BEGIN; ALTER TABLE item ADD COLUMN label TEXT DEFAULT '${word}'; ____; SELECT label FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The committed added column supplies its default when existing rows are read.",
+          "answer": "COMMIT",
+          "options": [
+            "COMMIT",
+            "ROLLBACK",
+            "SAVEPOINT pending"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "Rollback discards the uncommitted update.",
+          "hint": "Rollback discards the uncommitted update.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "schema-changes-read-2",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n INTEGER); INSERT INTO item VALUES(${n}); BEGIN; UPDATE item SET n=n+1; ROLLBACK; SELECT n FROM item;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "Rollback discards the uncommitted update.",
+          "hint": "Rollback discards the uncommitted update.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-choose-2",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n INTEGER); INSERT INTO item VALUES(${n}); BEGIN; UPDATE item SET n=n+1; ____; SELECT n FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Rollback discards the uncommitted update.",
+          "answer": "ROLLBACK",
+          "options": [
+            "ROLLBACK",
+            "COMMIT",
+            "END"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "RETURNING reads the inserted n from this write; no separate query is needed.",
+          "hint": "RETURNING reads the inserted n from this write; no separate query is needed.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-read-3",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(id INTEGER PRIMARY KEY,n INTEGER); INSERT INTO item(n) VALUES(${n}) RETURNING n;",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "1",
+            "No rows"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "RETURNING reads the inserted n from this write; no separate query is needed.",
+          "hint": "RETURNING reads the inserted n from this write; no separate query is needed.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-choose-3",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(id INTEGER PRIMARY KEY,n INTEGER); INSERT INTO item(n) VALUES(${n}) ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. RETURNING reads the inserted n from this write; no separate query is needed.",
+          "answer": "RETURNING n",
+          "options": [
+            "RETURNING n",
+            "RETURNING id"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "Releasing the inner savepoint does not commit the enclosing transaction.",
+          "hint": "Releasing the inner savepoint does not commit the enclosing transaction.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-read-4",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n INTEGER); BEGIN; SAVEPOINT edit; INSERT INTO item VALUES(${n}); RELEASE edit; ROLLBACK; SELECT COUNT(*) FROM item;",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "Releasing the inner savepoint does not commit the enclosing transaction.",
+          "hint": "Releasing the inner savepoint does not commit the enclosing transaction.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-choose-4",
+          "kind": "mcq",
+          "code": "CREATE TABLE item(n INTEGER); BEGIN; SAVEPOINT edit; INSERT INTO item VALUES(${n}); RELEASE edit; ____; SELECT COUNT(*) FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Releasing the inner savepoint does not commit the enclosing transaction.",
+          "answer": "ROLLBACK",
+          "options": [
+            "ROLLBACK",
+            "COMMIT",
+            "END"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "The committed added column supplies its default when existing rows are read.",
+          "hint": "The committed added column supplies its default when existing rows are read.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE item(n INTEGER); INSERT INTO item VALUES(${n}); BEGIN; ALTER TABLE item ADD COLUMN label TEXT DEFAULT '${word}'; ____; SELECT label FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The committed added column supplies its default when existing rows are read. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "COMMIT"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "Rollback discards the uncommitted update.",
+          "hint": "Rollback discards the uncommitted update.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE item(n INTEGER); INSERT INTO item VALUES(${n}); BEGIN; UPDATE item SET n=n+1; ____; SELECT n FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Rollback discards the uncommitted update. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ROLLBACK"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "RETURNING reads the inserted n from this write; no separate query is needed.",
+          "hint": "RETURNING reads the inserted n from this write; no separate query is needed.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE item(id INTEGER PRIMARY KEY,n INTEGER); INSERT INTO item(n) VALUES(${n}) ____;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. RETURNING reads the inserted n from this write; no separate query is needed. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "RETURNING n"
+          ]
+        },
+        {
+          "concept": "Transactional schema changes and returned writes",
+          "explanation": "Releasing the inner savepoint does not commit the enclosing transaction.",
+          "hint": "Releasing the inner savepoint does not commit the enclosing transaction.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "schema-changes-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "CREATE TABLE item(n INTEGER); BEGIN; SAVEPOINT edit; INSERT INTO item VALUES(${n}); RELEASE edit; ____; SELECT COUNT(*) FROM item;",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Releasing the inner savepoint does not commit the enclosing transaction. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "ROLLBACK"
           ]
         }
       ]

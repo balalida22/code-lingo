@@ -1,3 +1,35 @@
+# Code Lingo v1.1.1 — prepared update
+
+- Routine prompts and navigation are dimmed; lesson explanations are bold cyan.
+- Press **p** in the language picker to pin/unpin a language. Pins appear first
+  with a star and persist across restarts. The line-input picker uses `p NUMBER`.
+- Removed the confusing text-line counter. A scroll hint appears only when
+  there is more text than fits on screen.
+- 78 regression tests pass; language banks and existing learning history are unchanged.
+
+---
+
+# Code Lingo v1.1.0 — prepared update
+
+This source update extends the Rust-style native curriculum review to C, C++,
+TypeScript, vanilla HTML/CSS/JavaScript, Ruby, Lua, SQL, PHP, and Perl.
+
+- 54 new lessons and 648 added exercises; 224 lessons and 2,688 exercises total.
+- Each revised track now contains 20 lessons and 240 exercises, with its own
+  prerequisite order and practical language/platform boundaries.
+- Error-reading questions lead into successful code-repair exercises.
+- Existing lesson completion and stored history are preserved; new topics and
+  repair cards start unfinished. Exams remain 25 questions and cost no hearts.
+- Python and Rust banks remain unchanged; no new specialized tracks.
+- 73 regression tests, 870 sampled native output/repair programs, and 12 expected
+  TypeScript type failures pass. Ruby, PHP, and browser-dependent behavior have
+  not been native-executed here.
+
+See [NATIVE_CURRICULA.md](NATIVE_CURRICULA.md) for topic changes, references,
+compatibility, and validation scope, and [README.md](README.md) to run with uv.
+
+---
+
 # Code Lingo v1.0.0
 
 Code Lingo is a reading-first programming language tutor for the terminal.

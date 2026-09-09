@@ -180,3 +180,24 @@ so earlier attempts do not incorrectly satisfy a replacement family. Authoring
 metadata supports explicit section and source IDs per lesson; default layouts
 remain available for other languages. Keep each section at 12 lessons or fewer
 if its 25-question exam must sample both reading and writing from every lesson.
+
+
+## Native curriculum revisions
+
+`tools/curricula/native_revision.py` assembles the nine revised courses from
+retained scenarios and the `native_*.py` topic modules. Its explicit section
+orders determine prerequisites; do not impose the Python topic order on a new
+language. `build.py` also regenerates `CURRICULA.md` from source IDs.
+
+For an intentional error prediction, attach a successful `completion` scenario.
+The emitter keeps the read ID and emits new `choose-repair-` and `write-repair-`
+IDs. The reading card links to `repair_question_id`; a repair writing card has
+`target_answer`, which is interpolated with its sampled parameters. These
+optional fields are for traceability and developer validation; they never cause
+the tutor to execute code. Preserve the original meaning of any retained ID.
+
+`tests/fixtures/v1_course_ids.json` freezes the v1.0.0 question contracts and
+lesson identities. Changed contracts should receive new IDs, not rewritten
+history or silently repurposed prior successes. Native validation is optional:
+`uv run python tools/verify_native_revision.py` runs trusted fixtures, reports
+missing runtimes, and excludes undefined behavior and host-dependent examples.

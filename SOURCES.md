@@ -85,3 +85,15 @@ Ownership and borrowing are introduced before owned collection APIs; additional
 material covers tests, Cargo workspaces, CLI design, smart pointers, concurrency,
 async semantics, trait objects, and advanced language boundaries. The revised
 examples and repair exercises are newly authored; no book project is bundled.
+
+## Native curriculum revision (1.1.0)
+
+[NATIVE_CURRICULA.md](NATIVE_CURRICULA.md) explains the review and its primary
+references. [CURRICULA.md](CURRICULA.md) provides per-lesson links emitted from
+the source IDs. New material is authored for Code Lingo; no upstream prose,
+assignments, or exercise banks are bundled. Python and Rust sources are unchanged.
+
+The C17 committee draft is listed as a language reference; its PDF could not be
+parsed by the research reader in this session. C execution checks and the
+accessible GCC/CS50 references supplement the editorial review. Reference
+availability and runtime validation are separate from the course answer checks.

@@ -3,7 +3,7 @@
   "id": "ruby",
   "title": "Ruby",
   "language": "Ruby 3.x",
-  "version": "1.0",
+  "version": "1.1",
   "sources": [
     {
       "id": "ruby",
@@ -16,9 +16,328 @@
       "title": "Ruby syntax reference",
       "url": "https://docs.ruby-lang.org/en/master/syntax_rdoc.html",
       "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "ruby-syntax",
+      "title": "Ruby 3.3 syntax reference",
+      "url": "https://docs.ruby-lang.org/en/3.3/syntax_rdoc.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "ruby-patterns",
+      "title": "Ruby pattern matching",
+      "url": "https://docs.ruby-lang.org/en/3.3/syntax/pattern_matching_rdoc.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "ruby-methods",
+      "title": "Ruby method definitions and arguments",
+      "url": "https://docs.ruby-lang.org/en/3.3/syntax/methods_rdoc.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
     }
   ],
   "lessons": [
+    {
+      "id": "cli",
+      "title": "Ruby scripts and command-line conventions",
+      "section": "Basics",
+      "intro": "Ruby 3.x. Ruby executes scripts directly, and -e evaluates a short program. ARGV contains user arguments without the executable name. A file can be both a reusable definition and a script by guarding its entry point with __FILE__ == $PROGRAM_NAME. Keep normal output on stdout and diagnostics on stderr. ruby -c checks syntax; it does not execute the program or prove its behavior. The tutor shows commands as text, and does not run them.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby-syntax"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "-c requests a syntax check; BEGIN blocks are an exception and may execute.",
+          "hint": "-c requests a syntax check; BEGIN blocks are an exception and may execute.",
+          "id": "cli-read-1",
+          "kind": "mcq",
+          "code": "$ ruby -c app.rb",
+          "prompt": "What check is requested?",
+          "answer": "Checks syntax without normally executing the script body",
+          "options": [
+            "Checks syntax without normally executing the script body",
+            "Runs the application",
+            "Installs dependencies"
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "-c requests a syntax check; BEGIN blocks are an exception and may execute.",
+          "hint": "-c requests a syntax check; BEGIN blocks are an exception and may execute.",
+          "id": "cli-choose-1",
+          "kind": "mcq",
+          "code": "$ ruby ____ app.rb",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Checks syntax without normally executing the script body. -c requests a syntax check; BEGIN blocks are an exception and may execute.",
+          "answer": "-c",
+          "options": [
+            "-c",
+            "-w",
+            "-v"
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "ARGV starts with the first user argument.",
+          "hint": "ARGV starts with the first user argument.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-read-2",
+          "kind": "mcq",
+          "code": "# Invocation: ruby app.rb ${word}\nputs ARGV[0]",
+          "prompt": "Given this invocation, what is printed?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "app.rb",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "ARGV starts with the first user argument.",
+          "hint": "ARGV starts with the first user argument.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-choose-2",
+          "kind": "mcq",
+          "code": "# Invocation: ruby app.rb ${word}\nputs ARGV[____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. ARGV starts with the first user argument.",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "The guard separates direct execution from loading as a feature.",
+          "hint": "The guard separates direct execution from loading as a feature.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-read-3",
+          "kind": "mcq",
+          "code": "if __FILE__ == $PROGRAM_NAME\n puts \"${word}\"\nend",
+          "prompt": "What is the purpose of this guard?",
+          "answer": "Runs this body when the file is the main script",
+          "options": [
+            "Runs this body when the file is the main script",
+            "Always runs on require",
+            "Defines a class"
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "The guard separates direct execution from loading as a feature.",
+          "hint": "The guard separates direct execution from loading as a feature.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-choose-3",
+          "kind": "mcq",
+          "code": "if __FILE__ ____ $PROGRAM_NAME\n puts \"${word}\"\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Runs this body when the file is the main script. The guard separates direct execution from loading as a feature.",
+          "answer": "==",
+          "options": [
+            "==",
+            "!=",
+            "<"
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "warn reports a message without itself making the process exit unsuccessfully.",
+          "hint": "warn reports a message without itself making the process exit unsuccessfully.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-read-4",
+          "kind": "mcq",
+          "code": "warn \"invalid ${word}\"",
+          "prompt": "Where does this message go?",
+          "answer": "Writes a diagnostic to stderr",
+          "options": [
+            "Writes a diagnostic to stderr",
+            "Writes only to stdout",
+            "Terminates with failure automatically"
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "warn reports a message without itself making the process exit unsuccessfully.",
+          "hint": "warn reports a message without itself making the process exit unsuccessfully.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-choose-4",
+          "kind": "mcq",
+          "code": "____ \"invalid ${word}\"",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes a diagnostic to stderr. warn reports a message without itself making the process exit unsuccessfully.",
+          "answer": "warn",
+          "options": [
+            "warn",
+            "puts",
+            "p"
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "-c requests a syntax check; BEGIN blocks are an exception and may execute.",
+          "hint": "-c requests a syntax check; BEGIN blocks are an exception and may execute.",
+          "id": "cli-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "$ ruby ____ app.rb",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Checks syntax without normally executing the script body. -c requests a syntax check; BEGIN blocks are an exception and may execute. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "-c"
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "ARGV starts with the first user argument.",
+          "hint": "ARGV starts with the first user argument.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "# Invocation: ruby app.rb ${word}\nputs ARGV[____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. ARGV starts with the first user argument. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "The guard separates direct execution from loading as a feature.",
+          "hint": "The guard separates direct execution from loading as a feature.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "if __FILE__ ____ $PROGRAM_NAME\n puts \"${word}\"\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Runs this body when the file is the main script. The guard separates direct execution from loading as a feature. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "=="
+          ]
+        },
+        {
+          "concept": "Ruby scripts and command-line conventions",
+          "explanation": "warn reports a message without itself making the process exit unsuccessfully.",
+          "hint": "warn reports a message without itself making the process exit unsuccessfully.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "cli-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ \"invalid ${word}\"",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Writes a diagnostic to stderr. warn reports a message without itself making the process exit unsuccessfully. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "warn"
+          ]
+        }
+      ]
+    },
     {
       "id": "values",
       "title": "Values and assignment",
@@ -26,9 +345,14 @@
       "intro": "Ruby 3.x. A variable names a value. Assignment updates that variable; an earlier copied number does not follow later assignments. Read statements from top to bottom.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
-      "requires": [],
+      "requires": [
+        "cli"
+      ],
       "questions": [
         {
           "concept": "Values and assignment",
@@ -359,7 +683,10 @@
       "intro": "Ruby 3.x. Multiplication binds more tightly than addition. Parentheses group expressions. Integer quotient and remainder answer different questions; all operands here are positive.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
         "values"
@@ -734,7 +1061,10 @@
       "intro": "Ruby 3.x. Double quotes interpolate expressions; single quotes usually preserve them. Symbols are immutable names, distinct from strings.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
         "arithmetic"
@@ -1085,7 +1415,10 @@
       "intro": "Ruby 3.x. Only nil and false are falsey in Ruby; zero and empty strings are truthy. == compares values; && short-circuits.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
         "strings"
@@ -1371,7 +1704,10 @@
       "intro": "Ruby 3.x. times repeats a block; each yields elements. .. includes the endpoint and ... excludes it. next skips the current iteration.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
         "conditions"
@@ -1661,7 +1997,10 @@
       "intro": "Ruby 3.x. Methods return their last expression unless return exits earlier. Defaults fill omitted arguments; keyword arguments are named.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
         "loops"
@@ -1974,16 +2313,305 @@
       ]
     },
     {
+      "id": "keywords",
+      "title": "Keyword arguments and block contracts",
+      "section": "Intermediate",
+      "intro": "Ruby 3.x. Ruby 3 separates keyword arguments from positional hashes. Use ** to forward a keyword hash and & to forward a block. A required keyword documents a method contract; omitting it raises ArgumentError. block_given? allows a method to offer a default behavior when no block was supplied. Lambdas enforce their declared arity more strictly than ordinary procs. Read these call boundaries before attempting to repair a missing argument.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby-methods"
+      ],
+      "requires": [
+        "methods"
+      ],
+      "questions": [
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "Double splat forwards the hash as keyword arguments.",
+          "hint": "Double splat forwards the hash as keyword arguments.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keywords-read-1",
+          "kind": "mcq",
+          "code": "def copies(count:); count; end\noptions={count: ${n}}\nputs copies(**options)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "ArgumentError",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "Double splat forwards the hash as keyword arguments.",
+          "hint": "Double splat forwards the hash as keyword arguments.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keywords-choose-1",
+          "kind": "mcq",
+          "code": "def copies(count:); count; end\noptions={count: ${n}}\nputs copies(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Double splat forwards the hash as keyword arguments.",
+          "answer": "**options",
+          "options": [
+            "**options",
+            "options",
+            "*options"
+          ]
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "count: is required; an empty call cannot satisfy that contract.",
+          "hint": "count: is required; an empty call cannot satisfy that contract.",
+          "id": "keywords-read-2",
+          "kind": "mcq",
+          "code": "def copies(count:); count; end\nputs copies()",
+          "prompt": "What happens at the call?",
+          "answer": "Raises ArgumentError: missing keyword count",
+          "options": [
+            "Raises ArgumentError: missing keyword count",
+            "nil",
+            "0"
+          ],
+          "repair_question_id": "keywords-write-repair-2"
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "Supply the required keyword count.",
+          "hint": "Supply the required keyword count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keywords-choose-repair-2",
+          "kind": "mcq",
+          "code": "def copies(count:); count; end\nputs copies(____)",
+          "prompt": "Repair the code by filling ____. Supply the required keyword count. Target result: ${n}.",
+          "answer": "count: ${n}",
+          "options": [
+            "count: ${n}",
+            "${n}",
+            "other: ${n}"
+          ]
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "The method uses its fallback because no block is supplied.",
+          "hint": "The method uses its fallback because no block is supplied.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keywords-read-3",
+          "kind": "mcq",
+          "code": "def run\n block_given? ? yield : ${n}\nend\nputs run",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "LocalJumpError"
+          ]
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "The method uses its fallback because no block is supplied.",
+          "hint": "The method uses its fallback because no block is supplied.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keywords-choose-3",
+          "kind": "mcq",
+          "code": "def run\n block_given? ? yield : ${n}\nend\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The method uses its fallback because no block is supplied.",
+          "answer": "run",
+          "options": [
+            "run",
+            "run { 0 }",
+            "run { 1 }"
+          ]
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "The lambda receives its required argument.",
+          "hint": "The lambda receives its required argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "keywords-read-4",
+          "kind": "mcq",
+          "code": "f=->(x){x+1}\nputs f.call(${n})",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "ArgumentError"
+          ]
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "The lambda receives its required argument.",
+          "hint": "The lambda receives its required argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "keywords-choose-4",
+          "kind": "mcq",
+          "code": "f=->(x){x+1}\nputs f.call(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The lambda receives its required argument. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${n}, ${m}"
+          ]
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "Double splat forwards the hash as keyword arguments.",
+          "hint": "Double splat forwards the hash as keyword arguments.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keywords-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "def copies(count:); count; end\noptions={count: ${n}}\nputs copies(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Double splat forwards the hash as keyword arguments. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "**options"
+          ]
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "Supply the required keyword count.",
+          "hint": "Supply the required keyword count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keywords-write-repair-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "def copies(count:); count; end\nputs copies(____)",
+          "prompt": "Repair the code by filling ____. Supply the required keyword count. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "count: ${n}"
+          ],
+          "target_answer": "${n}"
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "The method uses its fallback because no block is supplied.",
+          "hint": "The method uses its fallback because no block is supplied.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "keywords-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "def run\n block_given? ? yield : ${n}\nend\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The method uses its fallback because no block is supplied. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "run"
+          ]
+        },
+        {
+          "concept": "Keyword arguments and block contracts",
+          "explanation": "The lambda receives its required argument.",
+          "hint": "The lambda receives its required argument.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "keywords-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "f=->(x){x+1}\nputs f.call(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. The lambda receives its required argument. Use ${n} as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "${n}"
+          ]
+        }
+      ]
+    },
+    {
       "id": "collections",
       "title": "Arrays and hashes",
       "section": "Intermediate",
       "intro": "Ruby 3.x. Arrays use zero-based indexes; hashes associate keys with values. Reading a missing hash key normally returns nil. fetch can supply a fallback.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
-        "methods"
+        "keywords"
       ],
       "questions": [
         {
@@ -2304,16 +2932,363 @@
       ]
     },
     {
+      "id": "patterns",
+      "title": "Pattern matching and destructuring contracts",
+      "section": "Intermediate",
+      "intro": "Ruby 3.x. case/in matches structure and binds parts of a value. Array patterns describe positions; hash patterns normally require the named keys while permitting extra keys. **nil rejects extra keys. A pin such as ^expected compares with an existing variable instead of creating a new binding. Rightward assignment with => requires a match and raises NoMatchingPatternError otherwise. Use patterns to validate the shape of data before reading it.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby-patterns"
+      ],
+      "requires": [
+        "collections"
+      ],
+      "questions": [
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "The pattern checks each type and binds the integer to count.",
+          "hint": "The pattern checks each type and binds the integer to count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "patterns-read-1",
+          "kind": "mcq",
+          "code": "case [\"${word}\",${n}]\nin [String => name, Integer => count]\n puts count\nend",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${word}",
+            "NoMatchingPatternError"
+          ]
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "The pattern checks each type and binds the integer to count.",
+          "hint": "The pattern checks each type and binds the integer to count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "patterns-choose-1",
+          "kind": "mcq",
+          "code": "case [\"${word}\",${n}]\nin [String => name, ____]\n puts count\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The pattern checks each type and binds the integer to count.",
+          "answer": "Integer => count",
+          "options": [
+            "Integer => count",
+            "String => count",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "The pin compares with the existing expected value.",
+          "hint": "The pin compares with the existing expected value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "patterns-read-2",
+          "kind": "mcq",
+          "code": "expected=${n}\ncase ${n}\nin ^expected\n puts \"match\"\nelse\n puts \"other\"\nend",
+          "prompt": "What is the result?",
+          "answer": "match",
+          "options": [
+            "match",
+            "other",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "The pin compares with the existing expected value.",
+          "hint": "The pin compares with the existing expected value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "patterns-choose-2",
+          "kind": "mcq",
+          "code": "expected=${n}\ncase ${n}\nin ____\n puts \"match\"\nelse\n puts \"other\"\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: match. The pin compares with the existing expected value.",
+          "answer": "^expected",
+          "options": [
+            "^expected",
+            "nil",
+            "0"
+          ]
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "The hash pattern extracts name and permits the additional size key.",
+          "hint": "The hash pattern extracts name and permits the additional size key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "patterns-read-3",
+          "kind": "mcq",
+          "code": "case {name:\"${word}\",size:${n}}\nin {name:}\n puts name\nend",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "NoMatchingPatternError",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "The hash pattern extracts name and permits the additional size key.",
+          "hint": "The hash pattern extracts name and permits the additional size key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "patterns-choose-3",
+          "kind": "mcq",
+          "code": "case {name:\"${word}\",size:${n}}\nin {____}\n puts name\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The hash pattern extracts name and permits the additional size key.",
+          "answer": "name:",
+          "options": [
+            "name:",
+            "missing:",
+            "name: nil"
+          ]
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "Rightward assignment requires two elements in this exact array pattern.",
+          "hint": "Rightward assignment requires two elements in this exact array pattern.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "patterns-read-4",
+          "kind": "mcq",
+          "code": "value=[${n}]\nvalue => [first, second]",
+          "prompt": "What happens when the shape does not match?",
+          "answer": "Raises NoMatchingPatternError",
+          "options": [
+            "Raises NoMatchingPatternError",
+            "second becomes nil",
+            "Returns false"
+          ],
+          "repair_question_id": "patterns-write-repair-4"
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "Match the actual one-element structure.",
+          "hint": "Match the actual one-element structure.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "patterns-choose-repair-4",
+          "kind": "mcq",
+          "code": "value=[${n}]\nvalue => ____\nputs first",
+          "prompt": "Repair the code by filling ____. Match the actual one-element structure. Target result: ${n}.",
+          "answer": "[first]",
+          "options": [
+            "[first]",
+            "[first,second]",
+            "[]"
+          ]
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "The pattern checks each type and binds the integer to count.",
+          "hint": "The pattern checks each type and binds the integer to count.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "patterns-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "case [\"${word}\",${n}]\nin [String => name, ____]\n puts count\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The pattern checks each type and binds the integer to count. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Integer => count"
+          ]
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "The pin compares with the existing expected value.",
+          "hint": "The pin compares with the existing expected value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "patterns-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "expected=${n}\ncase ${n}\nin ____\n puts \"match\"\nelse\n puts \"other\"\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: match. The pin compares with the existing expected value. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "^expected"
+          ]
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "The hash pattern extracts name and permits the additional size key.",
+          "hint": "The hash pattern extracts name and permits the additional size key.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "patterns-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "case {name:\"${word}\",size:${n}}\nin {____}\n puts name\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The hash pattern extracts name and permits the additional size key. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "name:"
+          ]
+        },
+        {
+          "concept": "Pattern matching and destructuring contracts",
+          "explanation": "Match the actual one-element structure.",
+          "hint": "Match the actual one-element structure.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "patterns-write-repair-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "value=[${n}]\nvalue => ____\nputs first",
+          "prompt": "Repair the code by filling ____. Match the actual one-element structure. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "[first]"
+          ],
+          "target_answer": "${n}"
+        }
+      ]
+    },
+    {
       "id": "io",
       "title": "Input, output, and conversion",
       "section": "Intermediate",
       "intro": "Ruby 3.x. gets reads a line or nil at EOF; chomp removes a trailing record separator. to_i converts a leading integer. File blocks close handles automatically.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
-        "collections"
+        "patterns"
       ],
       "questions": [
         {
@@ -2614,22 +3589,21 @@
       ]
     },
     {
-      "id": "modules",
-      "title": "Modules and loading",
+      "id": "text",
+      "title": "Regular expressions and text-processing scripts",
       "section": "Intermediate",
-      "intro": "Ruby 3.x. Modules provide namespaces and reusable methods. include adds instance methods; require loads a feature once. :: accesses a constant in a namespace.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "Ruby 3.x. Ruby regular expressions return MatchData or nil; named captures make extraction readable. match? tests without producing a MatchData result for the caller. sub replaces the first match, gsub replaces all matches, and the bang versions mutate their receiver. A bang method may return nil when nothing changed, so chaining it can fail. chomp removes record separators, while strip removes surrounding whitespace. Keep these different transformations explicit in data-cleaning scripts.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
-        "ruby",
-        "ruby-doc"
+        "ruby-syntax"
       ],
       "requires": [
         "io"
       ],
       "questions": [
         {
-          "concept": "Modules and loading",
-          "explanation": ":: resolves the constant within Config.",
-          "hint": ":: resolves the constant within Config.",
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "The named capture extracts digit text from the match.",
+          "hint": "The named capture extracts digit text from the match.",
           "parameters": {
             "n": {
               "type": "int",
@@ -2638,176 +3612,21 @@
             }
           },
           "derived": {},
-          "id": "modules-read-1",
+          "id": "text-read-1",
           "kind": "mcq",
-          "code": "module Config\n SIZE = ${n}\nend\nputs Config::SIZE",
+          "code": "match=/size=(?<count>\\d+)/.match(\"size=${n}\")\nputs match[:count]",
           "prompt": "What is the result?",
           "answer": "${n}",
           "options": [
             "${n}",
             "nil",
-            "Config"
-          ]
-        },
-        {
-          "concept": "Modules and loading",
-          "explanation": ":: resolves the constant within Config.",
-          "hint": ":: resolves the constant within Config.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "modules-choose-1",
-          "kind": "mcq",
-          "code": "module Config\n SIZE = ${n}\nend\nputs Config____SIZE",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. :: resolves the constant within Config.",
-          "answer": "::",
-          "options": [
-            "::",
-            ".",
-            "->"
-          ]
-        },
-        {
-          "concept": "Modules and loading",
-          "explanation": "include makes module methods available to instances.",
-          "hint": "include makes module methods available to instances.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "modules-read-2",
-          "kind": "mcq",
-          "code": "module Tag\n def label; \"${word}\"; end\nend\nclass Item\n include Tag\nend\nputs Item.new.label",
-          "prompt": "What is the result?",
-          "answer": "${word}",
-          "options": [
-            "${word}",
-            "nil",
-            "Tag"
-          ]
-        },
-        {
-          "concept": "Modules and loading",
-          "explanation": "include makes module methods available to instances.",
-          "hint": "include makes module methods available to instances.",
-          "parameters": {
-            "word": {
-              "type": "choice",
-              "values": [
-                "cache",
-                "buffer",
-                "panel",
-                "message",
-                "record"
-              ]
-            }
-          },
-          "derived": {},
-          "id": "modules-choose-2",
-          "kind": "mcq",
-          "code": "module Tag\n def label; \"${word}\"; end\nend\nclass Item\n ____ Tag\nend\nputs Item.new.label",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. include makes module methods available to instances.",
-          "answer": "include",
-          "options": [
-            "include",
-            "extend",
-            "require"
-          ]
-        },
-        {
-          "concept": "Modules and loading",
-          "explanation": "require tracks features already loaded.",
-          "hint": "require tracks features already loaded.",
-          "id": "modules-read-3",
-          "kind": "mcq",
-          "code": "require \"set\"",
-          "prompt": "What loading rule applies?",
-          "answer": "Loads the feature at most once",
-          "options": [
-            "Loads the feature at most once",
-            "Reloads on every call",
-            "Declares a class"
-          ]
-        },
-        {
-          "concept": "Modules and loading",
-          "explanation": "require tracks features already loaded.",
-          "hint": "require tracks features already loaded.",
-          "id": "modules-choose-3",
-          "kind": "mcq",
-          "code": "____ \"set\"",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads the feature at most once. require tracks features already loaded.",
-          "answer": "require",
-          "options": [
-            "require",
-            "load",
-            "include"
-          ]
-        },
-        {
-          "concept": "Modules and loading",
-          "explanation": "A method defined on self here is called on the module object.",
-          "hint": "A method defined on self here is called on the module object.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "modules-read-4",
-          "kind": "mcq",
-          "code": "module Box\n def self.size; ${n}; end\nend\nputs Box.size",
-          "prompt": "What is the result?",
-          "answer": "${n}",
-          "options": [
-            "${n}",
-            "nil",
-            "Box"
-          ]
-        },
-        {
-          "concept": "Modules and loading",
-          "explanation": "A method defined on self here is called on the module object.",
-          "hint": "A method defined on self here is called on the module object.",
-          "parameters": {
-            "n": {
-              "type": "int",
-              "min": 3,
-              "max": 19
-            }
-          },
-          "derived": {},
-          "id": "modules-choose-4",
-          "kind": "mcq",
-          "code": "module Box\n def self.size; ${n}; end\nend\nputs ____",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A method defined on self here is called on the module object.",
-          "answer": "Box.size",
-          "options": [
-            "Box.size",
-            "Box.new.size",
             "size"
           ]
         },
         {
-          "concept": "Modules and loading",
-          "explanation": ":: resolves the constant within Config.",
-          "hint": ":: resolves the constant within Config.",
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "The named capture extracts digit text from the match.",
+          "hint": "The named capture extracts digit text from the match.",
           "parameters": {
             "n": {
               "type": "int",
@@ -2816,19 +3635,21 @@
             }
           },
           "derived": {},
-          "id": "modules-write-1",
-          "kind": "write",
-          "checker": "exact",
-          "code": "module Config\n SIZE = ${n}\nend\nputs Config____SIZE",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. :: resolves the constant within Config. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "::"
+          "id": "text-choose-1",
+          "kind": "mcq",
+          "code": "match=/size=(?<count>\\d+)/.match(\"size=${n}\")\nputs match[____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The named capture extracts digit text from the match.",
+          "answer": ":count",
+          "options": [
+            ":count",
+            ":missing",
+            "0"
           ]
         },
         {
-          "concept": "Modules and loading",
-          "explanation": "include makes module methods available to instances.",
-          "hint": "include makes module methods available to instances.",
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "gsub replaces both occurrences.",
+          "hint": "gsub replaces both occurrences.",
           "parameters": {
             "word": {
               "type": "choice",
@@ -2842,32 +3663,105 @@
             }
           },
           "derived": {},
-          "id": "modules-write-2",
-          "kind": "write",
-          "checker": "exact",
-          "code": "module Tag\n def label; \"${word}\"; end\nend\nclass Item\n ____ Tag\nend\nputs Item.new.label",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. include makes module methods available to instances. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "include"
+          "id": "text-read-2",
+          "kind": "mcq",
+          "code": "puts \"${word} ${word}\".gsub(\"${word}\",\"X\")",
+          "prompt": "What is the result?",
+          "answer": "X X",
+          "options": [
+            "X X",
+            "X ${word}",
+            "${word} X"
           ]
         },
         {
-          "concept": "Modules and loading",
-          "explanation": "require tracks features already loaded.",
-          "hint": "require tracks features already loaded.",
-          "id": "modules-write-3",
-          "kind": "write",
-          "checker": "exact",
-          "code": "____ \"set\"",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads the feature at most once. require tracks features already loaded. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
-          "accepted": [
-            "require"
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "gsub replaces both occurrences.",
+          "hint": "gsub replaces both occurrences.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "text-choose-2",
+          "kind": "mcq",
+          "code": "puts \"${word} ${word}\".____(\"${word}\",\"X\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: X X. gsub replaces both occurrences.",
+          "answer": "gsub",
+          "options": [
+            "gsub",
+            "sub",
+            "delete"
           ]
         },
         {
-          "concept": "Modules and loading",
-          "explanation": "A method defined on self here is called on the module object.",
-          "hint": "A method defined on self here is called on the module object.",
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "The mutating method returns nil because it made no replacement.",
+          "hint": "The mutating method returns nil because it made no replacement.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "text-read-3",
+          "kind": "mcq",
+          "code": "text=\"${word}\"\np text.gsub!(\"!\",\"?\")",
+          "prompt": "What is the result?",
+          "answer": "nil",
+          "options": [
+            "nil",
+            "\"${word}\"",
+            "false"
+          ]
+        },
+        {
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "The mutating method returns nil because it made no replacement.",
+          "hint": "The mutating method returns nil because it made no replacement.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "text-choose-3",
+          "kind": "mcq",
+          "code": "text=\"${word}\"\np text.____(\"!\",\"?\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. The mutating method returns nil because it made no replacement.",
+          "answer": "gsub!",
+          "options": [
+            "gsub!",
+            "gsub",
+            "upcase!"
+          ]
+        },
+        {
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "The anchors require the whole string to contain one or more digits.",
+          "hint": "The anchors require the whole string to contain one or more digits.",
           "parameters": {
             "n": {
               "type": "int",
@@ -2876,13 +3770,132 @@
             }
           },
           "derived": {},
-          "id": "modules-write-4",
+          "id": "text-read-4",
+          "kind": "mcq",
+          "code": "puts /\\A\\d+\\z/.match?(\"${n}\")",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "The anchors require the whole string to contain one or more digits.",
+          "hint": "The anchors require the whole string to contain one or more digits.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "text-choose-4",
+          "kind": "mcq",
+          "code": "puts /\\A\\d+\\z/.____(\"${n}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The anchors require the whole string to contain one or more digits.",
+          "answer": "match?",
+          "options": [
+            "match?",
+            "source",
+            "names"
+          ]
+        },
+        {
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "The named capture extracts digit text from the match.",
+          "hint": "The named capture extracts digit text from the match.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "text-write-1",
           "kind": "write",
           "checker": "exact",
-          "code": "module Box\n def self.size; ${n}; end\nend\nputs ____",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A method defined on self here is called on the module object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "match=/size=(?<count>\\d+)/.match(\"size=${n}\")\nputs match[____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The named capture extracts digit text from the match. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "Box.size"
+            ":count"
+          ]
+        },
+        {
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "gsub replaces both occurrences.",
+          "hint": "gsub replaces both occurrences.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "text-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts \"${word} ${word}\".____(\"${word}\",\"X\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: X X. gsub replaces both occurrences. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "gsub"
+          ]
+        },
+        {
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "The mutating method returns nil because it made no replacement.",
+          "hint": "The mutating method returns nil because it made no replacement.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "text-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "text=\"${word}\"\np text.____(\"!\",\"?\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: nil. The mutating method returns nil because it made no replacement. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "gsub!"
+          ]
+        },
+        {
+          "concept": "Regular expressions and text-processing scripts",
+          "explanation": "The anchors require the whole string to contain one or more digits.",
+          "hint": "The anchors require the whole string to contain one or more digits.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "text-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "puts /\\A\\d+\\z/.____(\"${n}\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. The anchors require the whole string to contain one or more digits. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "match?"
           ]
         }
       ]
@@ -2894,10 +3907,13 @@
       "intro": "Ruby 3.x. raise signals an exception, rescue handles it, and ensure runs during normal or exceptional exit. Rescue specific errors when possible.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
-        "modules"
+        "text"
       ],
       "questions": [
         {
@@ -3038,12 +4054,13 @@
             "Raises ArgumentError",
             "Returns a string",
             "Returns nil"
-          ]
+          ],
+          "repair_question_id": "errors-write-repair-3"
         },
         {
           "concept": "Exceptions and cleanup",
-          "explanation": "raise creates exceptional control flow with a message.",
-          "hint": "raise creates exceptional control flow with a message.",
+          "explanation": "Handle the argument error at a boundary that can report its message.",
+          "hint": "Handle the argument error at a boundary that can report its message.",
           "parameters": {
             "word": {
               "type": "choice",
@@ -3057,15 +4074,15 @@
             }
           },
           "derived": {},
-          "id": "errors-choose-3",
+          "id": "errors-choose-repair-3",
           "kind": "mcq",
-          "code": "____ ArgumentError, \"${word}\"",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises ArgumentError. raise creates exceptional control flow with a message.",
-          "answer": "raise",
+          "code": "begin\n raise ArgumentError,\"${word}\"\n____\n puts error.message\nend",
+          "prompt": "Repair the code by filling ____. Handle the argument error at a boundary that can report its message. Target result: ${word}.",
+          "answer": "rescue ArgumentError => error",
           "options": [
-            "raise",
-            "return",
-            "puts"
+            "rescue ArgumentError => error",
+            "rescue NameError => error",
+            "rescue NoMethodError => error"
           ]
         },
         {
@@ -3168,8 +4185,8 @@
         },
         {
           "concept": "Exceptions and cleanup",
-          "explanation": "raise creates exceptional control flow with a message.",
-          "hint": "raise creates exceptional control flow with a message.",
+          "explanation": "Handle the argument error at a boundary that can report its message.",
+          "hint": "Handle the argument error at a boundary that can report its message.",
           "parameters": {
             "word": {
               "type": "choice",
@@ -3183,14 +4200,15 @@
             }
           },
           "derived": {},
-          "id": "errors-write-3",
+          "id": "errors-write-repair-3",
           "kind": "write",
           "checker": "exact",
-          "code": "____ ArgumentError, \"${word}\"",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: Raises ArgumentError. raise creates exceptional control flow with a message. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "begin\n raise ArgumentError,\"${word}\"\n____\n puts error.message\nend",
+          "prompt": "Repair the code by filling ____. Handle the argument error at a boundary that can report its message. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "raise"
-          ]
+            "rescue ArgumentError => error"
+          ],
+          "target_answer": "${word}"
         },
         {
           "concept": "Exceptions and cleanup",
@@ -3222,7 +4240,10 @@
       "intro": "Ruby 3.x. initialize sets up new objects. @ names instance state; attr_reader exposes a getter. Instances keep separate state.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
         "errors"
@@ -3499,16 +4520,296 @@
       ]
     },
     {
+      "id": "modules",
+      "title": "Modules and loading",
+      "section": "Advanced",
+      "intro": "Ruby 3.x. Modules provide namespaces and reusable methods. include adds instance methods; require loads a feature once. :: accesses a constant in a namespace.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby",
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
+      ],
+      "requires": [
+        "objects"
+      ],
+      "questions": [
+        {
+          "concept": "Modules and loading",
+          "explanation": ":: resolves the constant within Config.",
+          "hint": ":: resolves the constant within Config.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-read-1",
+          "kind": "mcq",
+          "code": "module Config\n SIZE = ${n}\nend\nputs Config::SIZE",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "Config"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": ":: resolves the constant within Config.",
+          "hint": ":: resolves the constant within Config.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-1",
+          "kind": "mcq",
+          "code": "module Config\n SIZE = ${n}\nend\nputs Config____SIZE",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. :: resolves the constant within Config.",
+          "answer": "::",
+          "options": [
+            "::",
+            ".",
+            "->"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "include makes module methods available to instances.",
+          "hint": "include makes module methods available to instances.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "modules-read-2",
+          "kind": "mcq",
+          "code": "module Tag\n def label; \"${word}\"; end\nend\nclass Item\n include Tag\nend\nputs Item.new.label",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "nil",
+            "Tag"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "include makes module methods available to instances.",
+          "hint": "include makes module methods available to instances.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-2",
+          "kind": "mcq",
+          "code": "module Tag\n def label; \"${word}\"; end\nend\nclass Item\n ____ Tag\nend\nputs Item.new.label",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. include makes module methods available to instances.",
+          "answer": "include",
+          "options": [
+            "include",
+            "extend",
+            "require"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "require tracks features already loaded.",
+          "hint": "require tracks features already loaded.",
+          "id": "modules-read-3",
+          "kind": "mcq",
+          "code": "require \"set\"",
+          "prompt": "What loading rule applies?",
+          "answer": "Loads the feature at most once",
+          "options": [
+            "Loads the feature at most once",
+            "Reloads on every call",
+            "Declares a class"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "require tracks features already loaded.",
+          "hint": "require tracks features already loaded.",
+          "id": "modules-choose-3",
+          "kind": "mcq",
+          "code": "____ \"set\"",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads the feature at most once. require tracks features already loaded.",
+          "answer": "require",
+          "options": [
+            "require",
+            "load",
+            "include"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "A method defined on self here is called on the module object.",
+          "hint": "A method defined on self here is called on the module object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-read-4",
+          "kind": "mcq",
+          "code": "module Box\n def self.size; ${n}; end\nend\nputs Box.size",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "Box"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "A method defined on self here is called on the module object.",
+          "hint": "A method defined on self here is called on the module object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-4",
+          "kind": "mcq",
+          "code": "module Box\n def self.size; ${n}; end\nend\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A method defined on self here is called on the module object.",
+          "answer": "Box.size",
+          "options": [
+            "Box.size",
+            "Box.new.size",
+            "size"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": ":: resolves the constant within Config.",
+          "hint": ":: resolves the constant within Config.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "module Config\n SIZE = ${n}\nend\nputs Config____SIZE",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. :: resolves the constant within Config. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "::"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "include makes module methods available to instances.",
+          "hint": "include makes module methods available to instances.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "modules-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "module Tag\n def label; \"${word}\"; end\nend\nclass Item\n ____ Tag\nend\nputs Item.new.label",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. include makes module methods available to instances. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "include"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "require tracks features already loaded.",
+          "hint": "require tracks features already loaded.",
+          "id": "modules-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "____ \"set\"",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads the feature at most once. require tracks features already loaded. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "require"
+          ]
+        },
+        {
+          "concept": "Modules and loading",
+          "explanation": "A method defined on self here is called on the module object.",
+          "hint": "A method defined on self here is called on the module object.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modules-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "module Box\n def self.size; ${n}; end\nend\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A method defined on self here is called on the module object. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Box.size"
+          ]
+        }
+      ]
+    },
+    {
       "id": "blocks",
       "title": "Blocks, yield, and closures",
       "section": "Advanced",
       "intro": "Ruby 3.x. yield invokes the supplied block. A lambda is a callable object; closures retain access to captured local variables.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
-        "objects"
+        "modules"
       ],
       "questions": [
         {
@@ -3837,7 +5138,10 @@
       "intro": "Ruby 3.x. map transforms values, select keeps matches, and find returns the first match. Lazy enumerators defer traversal until values are requested.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
         "blocks"
@@ -4096,7 +5400,10 @@
       "intro": "Ruby 3.x. Assignment shares mutable objects; dup makes a shallow copy. freeze prevents mutation of that object. super delegates to the ancestor method.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "ruby",
-        "ruby-doc"
+        "ruby-doc",
+        "ruby-syntax",
+        "ruby-patterns",
+        "ruby-methods"
       ],
       "requires": [
         "enumeration"
@@ -4240,12 +5547,13 @@
             "FrozenError",
             "Appends successfully",
             "Returns nil"
-          ]
+          ],
+          "repair_question_id": "mutation-write-repair-3"
         },
         {
           "concept": "Aliasing, freezing, and method lookup",
-          "explanation": "freeze rejects attempts to modify this array.",
-          "hint": "freeze rejects attempts to modify this array.",
+          "explanation": "Duplicate the frozen array before modifying the new outer array.",
+          "hint": "Duplicate the frozen array before modifying the new outer array.",
           "parameters": {
             "n": {
               "type": "int",
@@ -4259,15 +5567,15 @@
             }
           },
           "derived": {},
-          "id": "mutation-choose-3",
+          "id": "mutation-choose-repair-3",
           "kind": "mcq",
-          "code": "a = [${n}].____\na << ${m}",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: FrozenError. freeze rejects attempts to modify this array.",
-          "answer": "freeze",
+          "code": "original=[${n}].freeze\neditable=original.____\neditable << ${m}\nputs editable.length",
+          "prompt": "Repair the code by filling ____. Duplicate the frozen array before modifying the new outer array. Target result: 2.",
+          "answer": "dup",
           "options": [
-            "freeze",
             "dup",
-            "itself"
+            "itself",
+            "freeze"
           ]
         },
         {
@@ -4374,8 +5682,8 @@
         },
         {
           "concept": "Aliasing, freezing, and method lookup",
-          "explanation": "freeze rejects attempts to modify this array.",
-          "hint": "freeze rejects attempts to modify this array.",
+          "explanation": "Duplicate the frozen array before modifying the new outer array.",
+          "hint": "Duplicate the frozen array before modifying the new outer array.",
           "parameters": {
             "n": {
               "type": "int",
@@ -4389,14 +5697,15 @@
             }
           },
           "derived": {},
-          "id": "mutation-write-3",
+          "id": "mutation-write-repair-3",
           "kind": "write",
           "checker": "exact",
-          "code": "a = [${n}].____\na << ${m}",
-          "prompt": "Complete ____ using the demonstrated construction. Target result: FrozenError. freeze rejects attempts to modify this array. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "code": "original=[${n}].freeze\neditable=original.____\neditable << ${m}\nputs editable.length",
+          "prompt": "Repair the code by filling ____. Duplicate the frozen array before modifying the new outer array. Target result: 2. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
-            "freeze"
-          ]
+            "dup"
+          ],
+          "target_answer": "2"
         },
         {
           "concept": "Aliasing, freezing, and method lookup",
@@ -4419,6 +5728,575 @@
           "prompt": "Complete ____ using the demonstrated construction. Target result: ${next}. super invokes the inherited implementation. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
             "super"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "protocols",
+      "title": "Duck typing and Ruby object protocols",
+      "section": "Advanced",
+      "intro": "Ruby 3.x. Ruby code often asks whether an object responds to a useful message rather than requiring a particular class. each is the core protocol behind Enumerable; include adds its instance methods. When no block is supplied, enum_for can expose an Enumerator instead. to_s is a display conversion while inspect targets diagnostics. respond_to? helps inspect a public capability, but cannot guarantee that a method will succeed for every input.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby-syntax"
+      ],
+      "requires": [
+        "mutation"
+      ],
+      "questions": [
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "Enumerable uses each; enum_for supplies deferred enumeration without a block.",
+          "hint": "Enumerable uses each; enum_for supplies deferred enumeration without a block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "protocols-read-1",
+          "kind": "mcq",
+          "code": "class Batch\n include Enumerable\n def each\n  return enum_for(:each) unless block_given?\n  yield ${n}\n end\nend\np Batch.new.to_a",
+          "prompt": "What is the result?",
+          "answer": "[${n}]",
+          "options": [
+            "[${n}]",
+            "[]",
+            "NoMethodError"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "Enumerable uses each; enum_for supplies deferred enumeration without a block.",
+          "hint": "Enumerable uses each; enum_for supplies deferred enumeration without a block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "protocols-choose-1",
+          "kind": "mcq",
+          "code": "class Batch\n include Enumerable\n def each\n  return ____ unless block_given?\n  yield ${n}\n end\nend\np Batch.new.to_a",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}]. Enumerable uses each; enum_for supplies deferred enumeration without a block.",
+          "answer": "enum_for(:each)",
+          "options": [
+            "enum_for(:each)",
+            "nil",
+            "[]"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "puts uses the object string representation.",
+          "hint": "puts uses the object string representation.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "protocols-read-2",
+          "kind": "mcq",
+          "code": "class Label\n def to_s; \"${word}\"; end\nend\nputs Label.new",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "nil",
+            "Label"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "puts uses the object string representation.",
+          "hint": "puts uses the object string representation.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "protocols-choose-2",
+          "kind": "mcq",
+          "code": "class Label\n def to_s; \"${word}\"; end\nend\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. puts uses the object string representation.",
+          "answer": "Label.new",
+          "options": [
+            "Label.new",
+            "Label",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "Strings expose the public upcase method.",
+          "hint": "Strings expose the public upcase method.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "protocols-read-3",
+          "kind": "mcq",
+          "code": "value=\"${word}\"\np value.respond_to?(:upcase)",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "nil"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "Strings expose the public upcase method.",
+          "hint": "Strings expose the public upcase method.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "protocols-choose-3",
+          "kind": "mcq",
+          "code": "value=\"${word}\"\np value.____(:upcase)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. Strings expose the public upcase method.",
+          "answer": "respond_to?",
+          "options": [
+            "respond_to?",
+            "instance_of?",
+            "equal?"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "Enumerable derives count from the two yielded elements.",
+          "hint": "Enumerable derives count from the two yielded elements.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "protocols-read-4",
+          "kind": "mcq",
+          "code": "class Batch\n include Enumerable\n def each; yield ${n}; yield ${m}; end\nend\nputs Batch.new.count",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "${add}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "Enumerable derives count from the two yielded elements.",
+          "hint": "Enumerable derives count from the two yielded elements.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "protocols-choose-4",
+          "kind": "mcq",
+          "code": "class Batch\n include Enumerable\n def each; yield ${n}; yield ${m}; end\nend\nputs Batch.new.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Enumerable derives count from the two yielded elements.",
+          "answer": "count",
+          "options": [
+            "count",
+            "first",
+            "sum"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "Enumerable uses each; enum_for supplies deferred enumeration without a block.",
+          "hint": "Enumerable uses each; enum_for supplies deferred enumeration without a block.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "protocols-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Batch\n include Enumerable\n def each\n  return ____ unless block_given?\n  yield ${n}\n end\nend\np Batch.new.to_a",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}]. Enumerable uses each; enum_for supplies deferred enumeration without a block. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "enum_for(:each)"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "puts uses the object string representation.",
+          "hint": "puts uses the object string representation.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "protocols-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Label\n def to_s; \"${word}\"; end\nend\nputs ____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. puts uses the object string representation. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Label.new"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "Strings expose the public upcase method.",
+          "hint": "Strings expose the public upcase method.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "protocols-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "value=\"${word}\"\np value.____(:upcase)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: true. Strings expose the public upcase method. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "respond_to?"
+          ]
+        },
+        {
+          "concept": "Duck typing and Ruby object protocols",
+          "explanation": "Enumerable derives count from the two yielded elements.",
+          "hint": "Enumerable derives count from the two yielded elements.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "protocols-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "class Batch\n include Enumerable\n def each; yield ${n}; yield ${m}; end\nend\nputs Batch.new.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Enumerable derives count from the two yielded elements. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "count"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "testing",
+      "title": "Standard-library tests and recoverable boundaries",
+      "section": "Advanced",
+      "intro": "Ruby 3.x. A useful script keeps transformation methods separate from command-line input and output. Ruby ships standard-library tools such as JSON, while Test::Unit is distributed as a bundled gem on common Ruby installations and may need installation separately. These lessons read tests without requiring a testing framework in the tutor. An assertion checks an expected outcome; a test for an exception should identify the specific failure. Rescue at a boundary where the application can decide how to respond.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "ruby-syntax"
+      ],
+      "requires": [
+        "protocols"
+      ],
+      "questions": [
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "A test_ method compares the expected and actual values.",
+          "hint": "A test_ method compares the expected and actual values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "testing-read-1",
+          "kind": "mcq",
+          "code": "require \"test/unit\"\nclass SizeTest < Test::Unit::TestCase\n def test_add\n  assert_equal ${next}, ${n}+1\n end\nend",
+          "prompt": "What is the test outcome?",
+          "answer": "Passes when run with Test::Unit available",
+          "options": [
+            "Passes when run with Test::Unit available",
+            "Fails because addition is invalid",
+            "Never discovers the method"
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "A test_ method compares the expected and actual values.",
+          "hint": "A test_ method compares the expected and actual values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "testing-choose-1",
+          "kind": "mcq",
+          "code": "require \"test/unit\"\nclass SizeTest < Test::Unit::TestCase\n def test_add\n  ____ ${next}, ${n}+1\n end\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Passes when run with Test::Unit available. A test_ method compares the expected and actual values.",
+          "answer": "assert_equal",
+          "options": [
+            "assert_equal",
+            "assert_nil",
+            "assert_false"
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "The assertion expects ArgumentError from invalid integer conversion.",
+          "hint": "The assertion expects ArgumentError from invalid integer conversion.",
+          "id": "testing-read-2",
+          "kind": "mcq",
+          "code": "require \"test/unit\"\nclass SizeTest < Test::Unit::TestCase\n def test_invalid\n  assert_raise(ArgumentError) { Integer(\"bad\") }\n end\nend",
+          "prompt": "What does the test establish?",
+          "answer": "Passes when run with Test::Unit available",
+          "options": [
+            "Passes when run with Test::Unit available",
+            "Requires every exception type",
+            "Ignores the block"
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "The assertion expects ArgumentError from invalid integer conversion.",
+          "hint": "The assertion expects ArgumentError from invalid integer conversion.",
+          "id": "testing-choose-2",
+          "kind": "mcq",
+          "code": "require \"test/unit\"\nclass SizeTest < Test::Unit::TestCase\n def test_invalid\n  ____(ArgumentError) { Integer(\"bad\") }\n end\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Passes when run with Test::Unit available. The assertion expects ArgumentError from invalid integer conversion.",
+          "answer": "assert_raise",
+          "options": [
+            "assert_raise",
+            "assert_nothing_raised",
+            "assert_nil"
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "JSON object keys are strings by default.",
+          "hint": "JSON object keys are strings by default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "testing-read-3",
+          "kind": "mcq",
+          "code": "require \"json\"\nvalue=JSON.parse('{\"count\":${n}}')\nputs value[\"count\"]",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "nil",
+            "0"
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "JSON object keys are strings by default.",
+          "hint": "JSON object keys are strings by default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "testing-choose-3",
+          "kind": "mcq",
+          "code": "require \"json\"\nvalue=JSON.parse('{\"count\":${n}}')\nputs value[____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. JSON object keys are strings by default. Use \"count\" as the replacement literal.",
+          "answer": "\"count\"",
+          "options": [
+            "\"count\"",
+            ":count",
+            "0"
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "Rescue the parser failure at the input boundary.",
+          "hint": "Rescue the parser failure at the input boundary.",
+          "id": "testing-read-4",
+          "kind": "mcq",
+          "code": "require \"json\"\nbegin\n JSON.parse(\"bad\")\nrescue JSON::ParserError\n puts \"invalid\"\nend",
+          "prompt": "What is the result?",
+          "answer": "invalid",
+          "options": [
+            "invalid",
+            "bad",
+            "Exception escapes"
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "Rescue the parser failure at the input boundary.",
+          "hint": "Rescue the parser failure at the input boundary.",
+          "id": "testing-choose-4",
+          "kind": "mcq",
+          "code": "require \"json\"\nbegin\n JSON.parse(\"bad\")\nrescue ____\n puts \"invalid\"\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: invalid. Rescue the parser failure at the input boundary.",
+          "answer": "JSON::ParserError",
+          "options": [
+            "JSON::ParserError",
+            "ArgumentError",
+            "NoMethodError"
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "A test_ method compares the expected and actual values.",
+          "hint": "A test_ method compares the expected and actual values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "testing-write-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "require \"test/unit\"\nclass SizeTest < Test::Unit::TestCase\n def test_add\n  ____ ${next}, ${n}+1\n end\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Passes when run with Test::Unit available. A test_ method compares the expected and actual values. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "assert_equal"
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "The assertion expects ArgumentError from invalid integer conversion.",
+          "hint": "The assertion expects ArgumentError from invalid integer conversion.",
+          "id": "testing-write-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "require \"test/unit\"\nclass SizeTest < Test::Unit::TestCase\n def test_invalid\n  ____(ArgumentError) { Integer(\"bad\") }\n end\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Passes when run with Test::Unit available. The assertion expects ArgumentError from invalid integer conversion. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "assert_raise"
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "JSON object keys are strings by default.",
+          "hint": "JSON object keys are strings by default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "testing-write-3",
+          "kind": "write",
+          "checker": "exact",
+          "code": "require \"json\"\nvalue=JSON.parse('{\"count\":${n}}')\nputs value[____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. JSON object keys are strings by default. Use \"count\" as the replacement literal. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "\"count\""
+          ]
+        },
+        {
+          "concept": "Standard-library tests and recoverable boundaries",
+          "explanation": "Rescue the parser failure at the input boundary.",
+          "hint": "Rescue the parser failure at the input boundary.",
+          "id": "testing-write-4",
+          "kind": "write",
+          "checker": "exact",
+          "code": "require \"json\"\nbegin\n JSON.parse(\"bad\")\nrescue ____\n puts \"invalid\"\nend",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: invalid. Rescue the parser failure at the input boundary. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "JSON::ParserError"
           ]
         }
       ]

@@ -24,9 +24,13 @@ class LanguageTests(unittest.TestCase):
     def test_complete_curricula_and_randomized_variants(self):
         self.assertEqual({c['id'] for c in course_catalog()},NEW|{'python'})
         for name,c in self.courses.items():
-            self.assertEqual(len(c.lessons),26 if name=='rust' else 14)
-            self.assertEqual(len(c.questions),312 if name=='rust' else 168)
-            self.assertEqual([l['section'] for l in c.lessons],['Basics']*8+['Intermediate']*9+['Advanced']*9 if name=='rust' else ['Basics']*5+['Intermediate']*5+['Advanced']*4)
+            self.assertEqual(len(c.lessons),26 if name=='rust' else 20)
+            self.assertEqual(len(c.questions),312 if name=='rust' else 240)
+            sections=[l['section'] for l in c.lessons]
+            rank={'Basics':0,'Intermediate':1,'Advanced':2}
+            self.assertEqual(sections,sorted(sections,key=rank.get))
+            self.assertEqual(set(sections),set(rank))
+            self.assertTrue(all(5<=sections.count(s)<=12 for s in rank))
             self.assertTrue(all(len(l['questions'])==12 for l in c.lessons))
             self.assertTrue(all([q['kind'] for q in l['questions']]==['mcq']*8+['write']*4 for l in c.lessons))
             for q in c.questions.values():

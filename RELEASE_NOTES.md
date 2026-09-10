@@ -1,3 +1,17 @@
+# Code Lingo v1.2.0 — prepared update
+
+- Schedule successfully learned, practiced, and examined questions for spaced review.
+- Review after 1 day, then 3, 7, 14, and 30 days following due successes; mistakes
+  still return after 10 minutes. Early review preserves the due date.
+- Backfill existing learned history without resetting progress or mistake schedules.
+- Show due counts in both menus and use learned questions in lesson warm-ups.
+- Remove the fixed scenario count; expand four Rust lessons to 18 questions
+  (336 Rust exercises total). Retain all existing question IDs and completions.
+- 88 tests pass. Rust compiler unavailable; new examples reviewed against the
+  Rust Book chapters on borrowing, lifetimes, smart pointers, and shared state.
+
+---
+
 # Code Lingo v1.1.2 — prepared update
 
 C/C++ writing answers now accept formatting such as `x + 6` and `x+6` as the

@@ -173,6 +173,8 @@ def curriculum():
     for (lid,index),completion in repairs.items():
         completion['goal']='Repair the code by filling ____. '+completion['explanation']+' Target result: '+completion['answer']+'.'
         all_lessons[lid]['scenarios'][index]['completion']=completion
+    from rust_depth import expand
+    expand(all_lessons)
     result=[]
     for section,ids in sections.items():
         for lid in ids:
@@ -195,6 +197,6 @@ def build():
     sources += [source('rust-'+str(n),'Rust Book chapter '+str(n)+': '+title,BOOK+url) for n,(title,url) in CHAPTERS.items()]
     emit('rust','Rust: ownership, systems, and useful tools',
          'Rust 1.90+ / edition 2024; standard library only. Rust snippets may omit main; commands and file names are labelled separately',
-         sources,curriculum(),version='2.0')
+         sources,curriculum(),version='2.1')
 
 if __name__=='__main__':build()

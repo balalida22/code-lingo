@@ -22,7 +22,7 @@ def S(code, answer, wrong, explanation, bad, prompt='What is the result?'):
                 explanation=explanation, bad=[x.replace('__OR__','||') or '(empty)' for x in bad.replace('|||','|__OR__|').strip('|').split('|')], prompt=prompt)
 
 def lesson(lid, title, notes, *scenarios):
-    assert len(scenarios)==4, (lid,len(scenarios))
+    assert scenarios, (lid, "At least one scenario is required")
     return dict(id=lid,title=title,notes=notes,scenarios=scenarios)
 
 def emit(cid,title,baseline,sources,lessons,version='1.0'):

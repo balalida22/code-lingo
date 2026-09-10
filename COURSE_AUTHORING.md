@@ -105,8 +105,11 @@ Each lesson declares:
 - `requires`: earlier lesson IDs. This ordering makes the graph acyclic.
 - `questions`: reading cards first, then writing cards.
 
-The bundled course has 12 questions per lesson, with eight reading and four
-writing. For a new course, keep lessons between 10 and 15 questions. A section
+Lesson length follows the concepts, with no fixed 12-question cap. Most bundled
+lessons have 12 questions; four Rust lessons have 18. The scenario builder accepts
+any nonempty scenario list and creates two reading cards and one writing card
+per scenario. Keep reading before writing; add original scenarios when a topic
+needs more practice rather than duplicating questions. A section
 must contain at least 25 distinct cards and each lesson must have both kinds
 for placement exams. Exams give each lesson nearly equal representation and
 include reading and writing from every lesson.

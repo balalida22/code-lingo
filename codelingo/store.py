@@ -1,4 +1,4 @@
-"""SQLite-backed progress, hearts, activity, and spaced mistake review."""
+"""SQLite-backed progress, hearts, activity, and spaced learning review."""
 
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -77,6 +77,16 @@ class Store:
                     WHERE e.state IN ('passed','failed') GROUP BY e.id""").fetchall():
                     self._completion_event('exam', str(row['id']), row['finished_at'])
                 self.db.execute("INSERT INTO migrations VALUES('completion_daily_goal')")
+
+            if not self.db.execute("SELECT 1 FROM migrations WHERE name='learned_card_reviews'").fetchone():
+                # Seed successfully learned cards, preserving every existing due date.
+                self.db.execute("""INSERT OR IGNORE INTO reviews(qid,due,stage)
+                    SELECT qid,COALESCE(last_seen,?)+86400,1 FROM progress
+                    WHERE passed=1""", (clock(),))
+                self.db.execute("""INSERT OR IGNORE INTO reviews(qid,due,stage)
+                    SELECT qid,MAX(at)+86400,1 FROM attempts
+                    WHERE correct=1 AND mode IN ('exam','practice') GROUP BY qid""")
+                self.db.execute("INSERT INTO migrations VALUES('learned_card_reviews')")
 
     def selected_course(self, course_id=None):
         if course_id is not None:
@@ -162,7 +172,8 @@ class Store:
         """Persist each answer in one transaction. Practice cannot clear lesson cards.
 
         A wrong answer restarts review at ten minutes. Only a due review
-        advances its interval. Early practice never delays a scheduled review.
+        advances its interval. Newly learned cards start at one day.
+        Early practice never delays a scheduled review.
         """
         if mode not in {"learn", "review", "practice", "exam"}:
             raise ValueError("Unknown mode")
@@ -195,6 +206,9 @@ class Store:
                 stage = review["stage"]
                 self.db.execute("UPDATE reviews SET due=?,stage=? WHERE qid=?",
                                 (now + INTERVALS[min(stage, 4)] * 86400, min(stage + 1, 4), qid))
+            elif correct and not review and mode in {"learn", "exam", "practice"}:
+                self.db.execute("INSERT INTO reviews(qid,due,stage) VALUES(?,?,1)",
+                                (qid, now + 86400))
             if correct and mode in {"review", "practice"}:
                 hearts = min(5, hearts + 1)
             combo = combo + 1 if correct and mode != 'exam' else 0

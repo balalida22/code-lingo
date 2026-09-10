@@ -372,8 +372,8 @@ class TuiApp(App):
         initial = 0
         while True:
             statuses = [self.lesson_status(l) for l in self.course.lessons]
-            choices = [f"[{tag}] {l['section']} · {l['title']}" for l, tag in zip(self.course.lessons, statuses)]
-            index = self.screen.choose('Choose a lesson', 'Green DONE · Cyan OPEN · Yellow ACTIVE · Red LOCK\n12 problems per lesson. Exam passes mark every lesson in that section done.', choices, statuses=statuses, initial=initial)
+            choices = [f"[{tag}] {l['section']} · {l['title']} · {len(l['questions'])} questions" for l, tag in zip(self.course.lessons, statuses)]
+            index = self.screen.choose('Choose a lesson', 'Green DONE · Cyan OPEN · Yellow ACTIVE · Red LOCK\nLesson length varies with the topic. Exam passes mark every lesson in that section done.', choices, statuses=statuses, initial=initial)
             if index is None:
                 return
             initial = index
@@ -429,8 +429,9 @@ class TuiApp(App):
             return
 
     def menu(self):
-        labels = ['Continue learning','Choose lesson / course map','Review due mistakes','Review upcoming mistakes','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language','Quit']
+        labels = ['Continue learning','Choose lesson / course map','Review due questions','Review upcoming questions','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language','Quit']
         while True:
+            labels[2] = f'Review due questions ({len(self.store.due(self.keys, limit=len(self.keys)))})'
             i = self.screen.choose('CODE LINGO · ' + self.course.title, 'Daily goal: finish one lesson or exam.\nNumbers, text, and contexts vary across attempts.\n\nUse the arrow keys and Enter. Your progress saves after each answer.', labels, main_menu=True)
             if i is None or i == 11:
                 return

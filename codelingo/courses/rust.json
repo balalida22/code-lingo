@@ -3,7 +3,7 @@
   "id": "rust",
   "title": "Rust: ownership, systems, and useful tools",
   "language": "Rust 1.90+ / edition 2024; standard library only. Rust snippets may omit main; commands and file names are labelled separately",
-  "version": "2.0",
+  "version": "2.1",
   "sources": [
     {
       "id": "rust",
@@ -2175,7 +2175,7 @@
       "id": "borrowing",
       "title": "References and lifetimes",
       "section": "Basics",
-      "intro": "Rust 1.90+ / edition 2024; standard library only. Rust snippets may omit main; commands and file names are labelled separately. Rust Book chapter 4. Shared references permit reading; exclusive mutable references permit updates. References cannot outlive their referents. Elision supplies common lifetime relationships automatically. Reading compiler diagnostics is part of the exercise: distinguish a rejected program from a valid program that panics or returns an error.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "Rust 1.90+ / edition 2024; standard library only. Rust snippets may omit main; commands and file names are labelled separately. Rust Book chapter 4. Shared references permit reading; exclusive mutable references permit updates. References cannot outlive their referents. Elision supplies common lifetime relationships automatically. Reading compiler diagnostics is part of the exercise: distinguish a rejected program from a valid program that panics or returns an error. A borrow can end at its last use, before the enclosing block ends; subsequent mutation or a new exclusive borrow can then be legal.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "rust-4"
       ],
@@ -2397,6 +2397,113 @@
         },
         {
           "concept": "References and lifetimes",
+          "explanation": "The shared borrow is last used before mutation, so the mutable method call is allowed even within the same block.",
+          "hint": "The shared borrow is last used before mutation, so the mutable method call is allowed even within the same block.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "borrowing-read-depth-1",
+          "kind": "mcq",
+          "code": "let mut text=String::from(\"${word}\"); let view=&text; println!(\"{view}\");\ntext.push_str(\"!\"); println!(\"{text}\");",
+          "prompt": "What is the result?",
+          "answer": "${word}\n${word}!",
+          "options": [
+            "${word}\n${word}!",
+            "Compile error",
+            "${word}\n${word}"
+          ]
+        },
+        {
+          "concept": "References and lifetimes",
+          "explanation": "The shared borrow is last used before mutation, so the mutable method call is allowed even within the same block.",
+          "hint": "The shared borrow is last used before mutation, so the mutable method call is allowed even within the same block.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "borrowing-choose-depth-1",
+          "kind": "mcq",
+          "code": "let mut text=String::from(\"${word}\"); let view=&text; println!(\"{view}\");\ntext.____(\"!\"); println!(\"{text}\");",
+          "prompt": "Fill ____ to satisfy this contract: The shared borrow is last used before mutation, so the mutable method call is allowed even within the same block. Target result: ${word}\n${word}!.",
+          "answer": "push_str",
+          "options": [
+            "push_str",
+            "clear",
+            "truncate"
+          ]
+        },
+        {
+          "concept": "References and lifetimes",
+          "explanation": "The first mutable reference is no longer used when the second borrow begins. Exclusive borrows may occur sequentially.",
+          "hint": "The first mutable reference is no longer used when the second borrow begins. Exclusive borrows may occur sequentially.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "plus2": "n+2"
+          },
+          "id": "borrowing-read-depth-2",
+          "kind": "mcq",
+          "code": "let mut value=${n}; let first=&mut value; *first+=1;\nlet second=&mut value; *second+=1; println!(\"{value}\");",
+          "prompt": "What is the result?",
+          "answer": "${plus2}",
+          "options": [
+            "${plus2}",
+            "Compile error",
+            "${next}"
+          ]
+        },
+        {
+          "concept": "References and lifetimes",
+          "explanation": "The first mutable reference is no longer used when the second borrow begins. Exclusive borrows may occur sequentially.",
+          "hint": "The first mutable reference is no longer used when the second borrow begins. Exclusive borrows may occur sequentially.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "plus2": "n+2"
+          },
+          "id": "borrowing-choose-depth-2",
+          "kind": "mcq",
+          "code": "let mut value=${n}; let first=&mut value; *first+=1;\nlet second=____; *second+=1; println!(\"{value}\");",
+          "prompt": "Fill ____ to satisfy this contract: The first mutable reference is no longer used when the second borrow begins. Exclusive borrows may occur sequentially. Target result: ${plus2}.",
+          "answer": "&mut value",
+          "options": [
+            "&mut value",
+            "&value",
+            "value"
+          ]
+        },
+        {
+          "concept": "References and lifetimes",
           "explanation": "A mutable reference permits updating x through dereference.",
           "hint": "A mutable reference permits updating x through dereference.",
           "parameters": {
@@ -2491,6 +2598,55 @@
           "prompt": "Fill ____ to satisfy this contract: The shared reference can be dereferenced for reading. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
             "&x"
+          ]
+        },
+        {
+          "concept": "References and lifetimes",
+          "explanation": "The shared borrow is last used before mutation, so the mutable method call is allowed even within the same block.",
+          "hint": "The shared borrow is last used before mutation, so the mutable method call is allowed even within the same block.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "borrowing-write-depth-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let mut text=String::from(\"${word}\"); let view=&text; println!(\"{view}\");\ntext.____(\"!\"); println!(\"{text}\");",
+          "prompt": "Fill ____ to satisfy this contract: The shared borrow is last used before mutation, so the mutable method call is allowed even within the same block. Target result: ${word}\n${word}!. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "push_str"
+          ]
+        },
+        {
+          "concept": "References and lifetimes",
+          "explanation": "The first mutable reference is no longer used when the second borrow begins. Exclusive borrows may occur sequentially.",
+          "hint": "The first mutable reference is no longer used when the second borrow begins. Exclusive borrows may occur sequentially.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "plus2": "n+2"
+          },
+          "id": "borrowing-write-depth-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "let mut value=${n}; let first=&mut value; *first+=1;\nlet second=____; *second+=1; println!(\"{value}\");",
+          "prompt": "Fill ____ to satisfy this contract: The first mutable reference is no longer used when the second borrow begins. Exclusive borrows may occur sequentially. Target result: ${plus2}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&mut value"
           ]
         }
       ]
@@ -5274,6 +5430,122 @@
         },
         {
           "concept": "Borrowed APIs and lifetime relationships",
+          "explanation": "With one borrowed input, lifetime elision ties the returned slice to that input. These generated words are ASCII.",
+          "hint": "With one borrowed input, lifetime elision ties the returned slice to that input. These generated words are ASCII.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "lifetimes-read-depth-1",
+          "kind": "mcq",
+          "code": "fn first(text:&str)->&str {&text[..1]}\nprintln!(\"{}\",first(\"${word}\"));",
+          "prompt": "What is the result?",
+          "answer": "${first}",
+          "options": [
+            "${first}",
+            "Compile error",
+            "${word}"
+          ]
+        },
+        {
+          "concept": "Borrowed APIs and lifetime relationships",
+          "explanation": "With one borrowed input, lifetime elision ties the returned slice to that input. These generated words are ASCII.",
+          "hint": "With one borrowed input, lifetime elision ties the returned slice to that input. These generated words are ASCII.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "lifetimes-choose-depth-1",
+          "kind": "mcq",
+          "code": "fn first(text:____)->&str {&text[..1]}\nprintln!(\"{}\",first(\"${word}\"));",
+          "prompt": "Fill ____ to satisfy this contract: With one borrowed input, lifetime elision ties the returned slice to that input. These generated words are ASCII. Target result: ${first}.",
+          "answer": "&str",
+          "options": [
+            "&str",
+            "String",
+            "char"
+          ]
+        },
+        {
+          "concept": "Borrowed APIs and lifetime relationships",
+          "explanation": "Either input may supply the returned borrow. The shared lifetime contract limits its use to where both input borrows are valid; it does not extend storage lifetime.",
+          "hint": "Either input may supply the returned borrow. The shared lifetime contract limits its use to where both input borrows are valid; it does not extend storage lifetime.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "lifetimes-read-depth-2",
+          "kind": "mcq",
+          "code": "fn longer<'a>(a:&'a str,b:&'a str)->&'a str {if a.len()>b.len(){a}else{b}}\nprintln!(\"{}\",longer(\"${word}\",\"x\"));",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "x",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Borrowed APIs and lifetime relationships",
+          "explanation": "Either input may supply the returned borrow. The shared lifetime contract limits its use to where both input borrows are valid; it does not extend storage lifetime.",
+          "hint": "Either input may supply the returned borrow. The shared lifetime contract limits its use to where both input borrows are valid; it does not extend storage lifetime.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "lifetimes-choose-depth-2",
+          "kind": "mcq",
+          "code": "fn longer<'a>(a:&'a str,b:&'a str)->____ {if a.len()>b.len(){a}else{b}}\nprintln!(\"{}\",longer(\"${word}\",\"x\"));",
+          "prompt": "Fill ____ to satisfy this contract: Either input may supply the returned borrow. The shared lifetime contract limits its use to where both input borrows are valid; it does not extend storage lifetime. Target result: ${word}.",
+          "answer": "&'a str",
+          "options": [
+            "&'a str",
+            "&'static str",
+            "String"
+          ]
+        },
+        {
+          "concept": "Borrowed APIs and lifetime relationships",
           "explanation": "The return lifetime is tied only to text, not the unrelated ignored input.",
           "hint": "The return lifetime is tied only to text, not the unrelated ignored input.",
           "parameters": {
@@ -5374,6 +5646,60 @@
           "prompt": "Repair the code by filling ____. Move ownership out of the inner block so the text remains alive for the final print. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
             "text"
+          ]
+        },
+        {
+          "concept": "Borrowed APIs and lifetime relationships",
+          "explanation": "With one borrowed input, lifetime elision ties the returned slice to that input. These generated words are ASCII.",
+          "hint": "With one borrowed input, lifetime elision ties the returned slice to that input. These generated words are ASCII.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {
+            "first": "word[0]"
+          },
+          "id": "lifetimes-write-depth-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "fn first(text:____)->&str {&text[..1]}\nprintln!(\"{}\",first(\"${word}\"));",
+          "prompt": "Fill ____ to satisfy this contract: With one borrowed input, lifetime elision ties the returned slice to that input. These generated words are ASCII. Target result: ${first}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&str"
+          ]
+        },
+        {
+          "concept": "Borrowed APIs and lifetime relationships",
+          "explanation": "Either input may supply the returned borrow. The shared lifetime contract limits its use to where both input borrows are valid; it does not extend storage lifetime.",
+          "hint": "Either input may supply the returned borrow. The shared lifetime contract limits its use to where both input borrows are valid; it does not extend storage lifetime.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "lifetimes-write-depth-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "fn longer<'a>(a:&'a str,b:&'a str)->____ {if a.len()>b.len(){a}else{b}}\nprintln!(\"{}\",longer(\"${word}\",\"x\"));",
+          "prompt": "Fill ____ to satisfy this contract: Either input may supply the returned borrow. The shared lifetime contract limits its use to where both input borrows are valid; it does not extend storage lifetime. Target result: ${word}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "&'a str"
           ]
         }
       ]
@@ -6335,7 +6661,7 @@
       "id": "smart-pointers",
       "title": "Box, Rc, RefCell, and Weak",
       "section": "Advanced",
-      "intro": "Rust 1.90+ / edition 2024; standard library only. Rust snippets may omit main; commands and file names are labelled separately. Rust Book chapter 15. Box<T> owns a heap allocation. Rc<T> shares ownership on one thread; cloning Rc increases its owner count rather than cloning the payload. RefCell<T> allows interior mutation but checks borrowing at runtime and panics on conflicting borrows. Use Weak for a non-owning relationship: upgrading may fail after strong owners disappear. Reference cycles made only of strong Rc pointers can leak; neither Rc nor RefCell makes shared data thread-safe.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "Rust 1.90+ / edition 2024; standard library only. Rust snippets may omit main; commands and file names are labelled separately. Rust Book chapter 15. Box<T> owns a heap allocation. Rc<T> shares ownership on one thread; cloning Rc increases its owner count rather than cloning the payload. RefCell<T> allows interior mutation but checks borrowing at runtime and panics on conflicting borrows. Use Weak for a non-owning relationship: upgrading may fail after strong owners disappear. Reference cycles made only of strong Rc pointers can leak; neither Rc nor RefCell makes shared data thread-safe. Rc::clone shares an allocation instead of cloning its value. Weak observes without keeping the value alive, and upgrade returns None after the last strong owner is dropped.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "rust-15"
       ],
@@ -6531,6 +6857,108 @@
         },
         {
           "concept": "Box, Rc, RefCell, and Weak",
+          "explanation": "Cloning an Rc adds a strong owner of the same allocation; it does not clone the contained String.",
+          "hint": "Cloning an Rc adds a strong owner of the same allocation; it does not clone the contained String.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "smart-pointers-read-depth-1",
+          "kind": "mcq",
+          "code": "use std::rc::Rc; let value=Rc::new(String::from(\"${word}\"));\nlet alias=Rc::clone(&value); println!(\"{}\",Rc::strong_count(&value)); drop(alias);",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Box, Rc, RefCell, and Weak",
+          "explanation": "Cloning an Rc adds a strong owner of the same allocation; it does not clone the contained String.",
+          "hint": "Cloning an Rc adds a strong owner of the same allocation; it does not clone the contained String.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "smart-pointers-choose-depth-1",
+          "kind": "mcq",
+          "code": "use std::rc::Rc; let value=Rc::new(String::from(\"${word}\"));\nlet alias=____; println!(\"{}\",Rc::strong_count(&value)); drop(alias);",
+          "prompt": "Fill ____ to satisfy this contract: Cloning an Rc adds a strong owner of the same allocation; it does not clone the contained String. Target result: 2.",
+          "answer": "Rc::clone(&value)",
+          "options": [
+            "Rc::clone(&value)",
+            "Rc::new((*value).clone())",
+            "&value"
+          ]
+        },
+        {
+          "concept": "Box, Rc, RefCell, and Weak",
+          "explanation": "A Weak pointer does not keep the value alive. After the last strong owner is dropped, upgrade returns None.",
+          "hint": "A Weak pointer does not keep the value alive. After the last strong owner is dropped, upgrade returns None.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "smart-pointers-read-depth-2",
+          "kind": "mcq",
+          "code": "use std::rc::Rc; let owner=Rc::new(${n}); let observer=Rc::downgrade(&owner);\ndrop(owner); println!(\"{}\",observer.upgrade().is_none());",
+          "prompt": "What is the result?",
+          "answer": "true",
+          "options": [
+            "true",
+            "false",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Box, Rc, RefCell, and Weak",
+          "explanation": "A Weak pointer does not keep the value alive. After the last strong owner is dropped, upgrade returns None.",
+          "hint": "A Weak pointer does not keep the value alive. After the last strong owner is dropped, upgrade returns None.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "smart-pointers-choose-depth-2",
+          "kind": "mcq",
+          "code": "use std::rc::Rc; let owner=Rc::new(${n}); let observer=Rc::____(&owner);\ndrop(owner); println!(\"{}\",observer.upgrade().is_none());",
+          "prompt": "Fill ____ to satisfy this contract: A Weak pointer does not keep the value alive. After the last strong owner is dropped, upgrade returns None. Target result: true.",
+          "answer": "downgrade",
+          "options": [
+            "downgrade",
+            "clone",
+            "new"
+          ]
+        },
+        {
+          "concept": "Box, Rc, RefCell, and Weak",
           "explanation": "Box owns a heap-allocated integer and supports dereferencing to its value.",
           "hint": "Box owns a heap-allocated integer and supports dereferencing to its value.",
           "parameters": {
@@ -6614,6 +7042,53 @@
           "accepted": [
             "drop(owner)"
           ]
+        },
+        {
+          "concept": "Box, Rc, RefCell, and Weak",
+          "explanation": "Cloning an Rc adds a strong owner of the same allocation; it does not clone the contained String.",
+          "hint": "Cloning an Rc adds a strong owner of the same allocation; it does not clone the contained String.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "smart-pointers-write-depth-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "use std::rc::Rc; let value=Rc::new(String::from(\"${word}\"));\nlet alias=____; println!(\"{}\",Rc::strong_count(&value)); drop(alias);",
+          "prompt": "Fill ____ to satisfy this contract: Cloning an Rc adds a strong owner of the same allocation; it does not clone the contained String. Target result: 2. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "Rc::clone(&value)"
+          ]
+        },
+        {
+          "concept": "Box, Rc, RefCell, and Weak",
+          "explanation": "A Weak pointer does not keep the value alive. After the last strong owner is dropped, upgrade returns None.",
+          "hint": "A Weak pointer does not keep the value alive. After the last strong owner is dropped, upgrade returns None.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "smart-pointers-write-depth-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "use std::rc::Rc; let owner=Rc::new(${n}); let observer=Rc::____(&owner);\ndrop(owner); println!(\"{}\",observer.upgrade().is_none());",
+          "prompt": "Fill ____ to satisfy this contract: A Weak pointer does not keep the value alive. After the last strong owner is dropped, upgrade returns None. Target result: true. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "downgrade"
+          ]
         }
       ]
     },
@@ -6621,7 +7096,7 @@
       "id": "threads",
       "title": "Threads, channels, Arc, and Mutex",
       "section": "Advanced",
-      "intro": "Rust 1.90+ / edition 2024; standard library only. Rust snippets may omit main; commands and file names are labelled separately. Rust Book chapter 16. thread::spawn runs a closure on another thread; move transfers captured ownership, and join waits for completion. Channels transfer values between owners. Arc shares ownership across threads but does not by itself permit unsynchronized mutation; combine it with Mutex for shared mutable state. A MutexGuard unlocks on drop. Send concerns transfer between threads, while Sync concerns sharing references. Rc is not a substitute for Arc in this use.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "intro": "Rust 1.90+ / edition 2024; standard library only. Rust snippets may omit main; commands and file names are labelled separately. Rust Book chapter 16. thread::spawn runs a closure on another thread; move transfers captured ownership, and join waits for completion. Channels transfer values between owners. Arc shares ownership across threads but does not by itself permit unsynchronized mutation; combine it with Mutex for shared mutable state. A MutexGuard unlocks on drop. Send concerns transfer between threads, while Sync concerns sharing references. Rc is not a substitute for Arc in this use. A MutexGuard unlocks when dropped. End its scope before locking the same mutex again, and join workers when later output depends on their completed updates.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
       "sources": [
         "rust-16"
       ],
@@ -6829,6 +7304,106 @@
         },
         {
           "concept": "Threads, channels, Arc, and Mutex",
+          "explanation": "The guard releases the mutex at the end of the inner block, allowing the second lock to succeed.",
+          "hint": "The guard releases the mutex at the end of the inner block, allowing the second lock to succeed.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "threads-read-depth-1",
+          "kind": "mcq",
+          "code": "use std::sync::Mutex; let count=Mutex::new(${n});\n{let mut guard=count.lock().unwrap(); *guard+=1;}\nprintln!(\"{}\",*count.lock().unwrap());",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "Deadlocks"
+          ]
+        },
+        {
+          "concept": "Threads, channels, Arc, and Mutex",
+          "explanation": "The guard releases the mutex at the end of the inner block, allowing the second lock to succeed.",
+          "hint": "The guard releases the mutex at the end of the inner block, allowing the second lock to succeed.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "threads-choose-depth-1",
+          "kind": "mcq",
+          "code": "use std::sync::Mutex; let count=Mutex::new(${n});\n{let mut guard=count.____; *guard+=1;}\nprintln!(\"{}\",*count.lock().unwrap());",
+          "prompt": "Fill ____ to satisfy this contract: The guard releases the mutex at the end of the inner block, allowing the second lock to succeed. Target result: ${next}.",
+          "answer": "lock().unwrap()",
+          "options": [
+            "lock().unwrap()",
+            "get_mut().unwrap()",
+            "into_inner().unwrap()"
+          ]
+        },
+        {
+          "concept": "Threads, channels, Arc, and Mutex",
+          "explanation": "Arc shares ownership, Mutex guards mutation, and join waits for the worker before the final read, making the printed value deterministic.",
+          "hint": "Arc shares ownership, Mutex guards mutation, and join waits for the worker before the final read, making the printed value deterministic.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "threads-read-depth-2",
+          "kind": "mcq",
+          "code": "use std::sync::{Arc,Mutex}; let count=Arc::new(Mutex::new(${n}));\nlet worker_count=Arc::clone(&count);\nlet worker=std::thread::spawn(move || {*worker_count.lock().unwrap()+=1;});\nworker.join().unwrap(); println!(\"{}\",*count.lock().unwrap());",
+          "prompt": "What is the result?",
+          "answer": "${next}",
+          "options": [
+            "${next}",
+            "${n}",
+            "Compile error"
+          ]
+        },
+        {
+          "concept": "Threads, channels, Arc, and Mutex",
+          "explanation": "Arc shares ownership, Mutex guards mutation, and join waits for the worker before the final read, making the printed value deterministic.",
+          "hint": "Arc shares ownership, Mutex guards mutation, and join waits for the worker before the final read, making the printed value deterministic.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "threads-choose-depth-2",
+          "kind": "mcq",
+          "code": "use std::sync::{Arc,Mutex}; let count=Arc::new(Mutex::new(${n}));\nlet worker_count=Arc::clone(&count);\nlet worker=std::thread::spawn(move || {*worker_count.lock().unwrap()+=1;});\nworker.____; println!(\"{}\",*count.lock().unwrap());",
+          "prompt": "Fill ____ to satisfy this contract: Arc shares ownership, Mutex guards mutation, and join waits for the worker before the final read, making the printed value deterministic. Target result: ${next}.",
+          "answer": "join().unwrap()",
+          "options": [
+            "join().unwrap()",
+            "thread()",
+            "is_finished()"
+          ]
+        },
+        {
+          "concept": "Threads, channels, Arc, and Mutex",
           "explanation": "move gives the spawned closure ownership of text; join returns its result.",
           "hint": "move gives the spawned closure ownership of text; join returns its result.",
           "parameters": {
@@ -6916,6 +7491,52 @@
           "prompt": "Repair the code by filling ____. Share ownership of this immutable integer across threads using the thread-safe reference-counted pointer. Target result: ${n}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
           "accepted": [
             "Arc"
+          ]
+        },
+        {
+          "concept": "Threads, channels, Arc, and Mutex",
+          "explanation": "The guard releases the mutex at the end of the inner block, allowing the second lock to succeed.",
+          "hint": "The guard releases the mutex at the end of the inner block, allowing the second lock to succeed.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "threads-write-depth-1",
+          "kind": "write",
+          "checker": "exact",
+          "code": "use std::sync::Mutex; let count=Mutex::new(${n});\n{let mut guard=count.____; *guard+=1;}\nprintln!(\"{}\",*count.lock().unwrap());",
+          "prompt": "Fill ____ to satisfy this contract: The guard releases the mutex at the end of the inner block, allowing the second lock to succeed. Target result: ${next}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "lock().unwrap()"
+          ]
+        },
+        {
+          "concept": "Threads, channels, Arc, and Mutex",
+          "explanation": "Arc shares ownership, Mutex guards mutation, and join waits for the worker before the final read, making the printed value deterministic.",
+          "hint": "Arc shares ownership, Mutex guards mutation, and join waits for the worker before the final read, making the printed value deterministic.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "threads-write-depth-2",
+          "kind": "write",
+          "checker": "exact",
+          "code": "use std::sync::{Arc,Mutex}; let count=Arc::new(Mutex::new(${n}));\nlet worker_count=Arc::clone(&count);\nlet worker=std::thread::spawn(move || {*worker_count.lock().unwrap()+=1;});\nworker.____; println!(\"{}\",*count.lock().unwrap());",
+          "prompt": "Fill ____ to satisfy this contract: Arc shares ownership, Mutex guards mutation, and join waits for the worker before the final read, making the printed value deterministic. Target result: ${next}. Enter only the missing fragment, preserving its spelling, spaces, and punctuation.",
+          "accepted": [
+            "join().unwrap()"
           ]
         }
       ]

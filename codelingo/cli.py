@@ -264,13 +264,13 @@ class App:
     def review(self, limit=5, early=False):
         self.combo = 0
         keys = self.store.due(self.keys, limit=limit, early=early)
-        self.ui.heading("Mistake review" + (" · including upcoming cards" if early else ""))
+        self.ui.heading("Spaced review" + (" · including upcoming cards" if early else ""))
         if not keys:
-            print("No reviews due." if not early else "No mistakes to review yet.")
+            print("No reviews due." if not early else "No learned questions to review yet.")
             print("Use practice for a refresher and to restore hearts.")
             return
         self.begin_session('review', [self.keys[key] for key in keys])
-        self.ui.prose("Correct answers restore one heart. Review remains available at zero hearts. Early review keeps the existing due date.")
+        self.ui.prose("Learned questions return after 1 day; successful due reviews grow the gap to 3, 7, 14, then 30 days. Mistakes return after 10 minutes. Correct answers restore one heart. Early review keeps the existing due date.")
         for key in keys:
             self.ask(self.keys[key], "review")
         self.stats()
@@ -322,7 +322,7 @@ class App:
             return
         self.store.active_lesson(self.course.id, lesson["id"])
         if warmup and self.store.due(self.keys, limit=1):
-            print("First, revisit up to two due mistakes.")
+            print("First, revisit up to two due questions.")
             self.review(limit=2)
         self.combo = 0
         self.begin_session('learn', lesson['questions'])
@@ -341,7 +341,7 @@ class App:
                     pending.append(q)
         self.store.complete(self.course.lesson_key(lesson["id"]), [self.course.key(q["id"]) for q in lesson["questions"]])
         self.ui.heading("Lesson complete · " + lesson["title"])
-        print("All cards answered correctly. Any mistakes remain in spaced review.")
+        print("All cards answered correctly. Learned questions will return in spaced review.")
         self.stats()
 
     def demo(self):
@@ -423,7 +423,8 @@ class App:
         while True:
             self.ui.heading("CODE LINGO  /  Read code. Build fluency.  /  " + self.course.title)
             self.status()
-            print("\n  1  Continue learning\n  2  Review due mistakes\n  3  Practice / restore hearts\n  4  Course map\n  5  Mistake notebook\n  6  Progress\n  7  Sources\n  8  Section exam / skip section\n  9  Shop / restore heart (10 gems)\n  10 Change language\n  q  Quit")
+            print(f"Due for review: {len(self.store.due(self.keys, limit=len(self.keys)))} questions")
+            print("\n  1  Continue learning\n  2  Review due questions\n  3  Practice / restore hearts\n  4  Course map\n  5  Mistake notebook\n  6  Progress\n  7  Sources\n  8  Section exam / skip section\n  9  Shop / restore heart (10 gems)\n  10 Change language\n  q  Quit")
             try:
                 choice = input("\nChoose > ").strip().lower()
             except (EOFError, KeyboardInterrupt):
@@ -471,8 +472,8 @@ def main(argv=None):
     exam.add_argument('section', choices=['Basics','Intermediate','Advanced','Specialized','basics','intermediate','advanced','specialized'])
     learn = sub.add_parser("learn", help="start or resume the next lesson")
     learn.add_argument("lesson", nargs="?")
-    review = sub.add_parser("review", help="revisit mistakes due now")
-    review.add_argument("--all", action="store_true", help="also include upcoming mistakes")
+    review = sub.add_parser("review", help="revisit learned questions due now")
+    review.add_argument("--all", action="store_true", help="also include upcoming questions")
     review.add_argument("--limit", type=positive_int, default=5)
     practice = sub.add_parser("practice", help="practice known cards and restore hearts")
     practice.add_argument("--limit", type=positive_int, default=5)

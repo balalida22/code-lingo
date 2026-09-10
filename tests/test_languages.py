@@ -25,14 +25,14 @@ class LanguageTests(unittest.TestCase):
         self.assertEqual({c['id'] for c in course_catalog()},NEW|{'python'})
         for name,c in self.courses.items():
             self.assertEqual(len(c.lessons),26 if name=='rust' else 20)
-            self.assertEqual(len(c.questions),312 if name=='rust' else 240)
+            self.assertEqual(len(c.questions),336 if name=='rust' else 240)
             sections=[l['section'] for l in c.lessons]
             rank={'Basics':0,'Intermediate':1,'Advanced':2}
             self.assertEqual(sections,sorted(sections,key=rank.get))
             self.assertEqual(set(sections),set(rank))
             self.assertTrue(all(5<=sections.count(s)<=12 for s in rank))
-            self.assertTrue(all(len(l['questions'])==12 for l in c.lessons))
-            self.assertTrue(all([q['kind'] for q in l['questions']]==['mcq']*8+['write']*4 for l in c.lessons))
+            self.assertTrue(all(12 <= len(l['questions']) <= 18 for l in c.lessons))
+            self.assertTrue(all([q['kind'] for q in l['questions']]==['mcq']*(2*len(l['questions'])//3)+['write']*(len(l['questions'])//3) for l in c.lessons))
             for q in c.questions.values():
                 variants=set()
                 for seed in range(30):
@@ -60,7 +60,7 @@ class LanguageTests(unittest.TestCase):
                     for q in l['questions']:
                         q=app.prepare_question(q);app.grade(q,App.solution(q),'learn')
                     self.assertTrue(store.is_complete(c.lesson_key(l['id'])))
-                    self.assertEqual(app.progress.counts,(12,0,0))
+                    self.assertEqual(app.progress.counts,(len(l['questions']),0,0))
                 self.assertEqual(store.stats()['daily'],len(c.lessons))
             finally:store.close()
 

@@ -1,11 +1,11 @@
-# Code Lingo 1.1.2
+# Code Lingo 1.2.0
 
 **Read code. Build fluency. A little every day.**
 
 A programming language tutor with an arrow-key terminal interface, daily progress,
-randomized exercises, spaced mistake review, and exams for skipping sections.
+randomized exercises, spaced review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.1.2 update and
+See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.2.0 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
 
 ## Run with uv
@@ -63,8 +63,8 @@ uv are present, `uv sync --locked --offline` works without the network.
 
 ## What changed
 
-- **11 courses, 224 lessons, and 2,688 exercises** in total.
-- **Rust follows the Rust Book:** 26 lessons × 12 exercises = 312 exercises,
+- **11 courses, 224 lessons, and 2,712 exercises** in total.
+- **Rust follows the Rust Book:** 26 lessons with 12–18 questions = 336 exercises,
   split into 8 Basics, 9 Intermediate, and 9 Advanced lessons.
 - The other nine added languages now have **20 lessons × 12 exercises** each.
   Their native topics and prerequisite order are documented in
@@ -148,8 +148,8 @@ uv run python -m codelingo tui               # explicitly launch TUI
 uv run python -m codelingo learn             # line-input lesson / resume
 uv run python -m codelingo --course python learn numpy       # choose an unlocked lesson
 uv run python -m codelingo course            # course map and prerequisites
-uv run python -m codelingo review            # due mistakes
-uv run python -m codelingo review --all       # include upcoming mistakes
+uv run python -m codelingo review            # due learned questions
+uv run python -m codelingo review --all       # include upcoming questions
 uv run python -m codelingo practice          # practice and restore hearts
 uv run python -m codelingo exam Basics       # skip-section exam
 uv run python -m codelingo mistakes          # exact past mistakes
@@ -201,9 +201,10 @@ Exam history shows abandoned/unfinished attempts as well as complete results.
 
 ## Reading, writing, and randomness
 
-Each lesson starts with teaching notes. Eight reading questions cover output,
+Each lesson starts with teaching notes. Reading questions cover output,
 control flow, API interpretation, and common mistakes. All must be answered
-correctly before four short writing exercises open. Incorrect answers requeue
+correctly before short writing exercises open. Lesson length follows the topic;
+four Rust lessons now have 18 questions, and other current lessons have 12. Incorrect answers requeue
 within that stage. Every answer is saved, so `learn` resumes unfinished work.
 
 The **CLQ v2** format lives in `codelingo/courses/python.json`. It combines typed
@@ -244,6 +245,17 @@ of scope. Collections appear as Python syntax and API usage.
 
 ## Rewards and review
 
+Use **Review due questions** in the main menu (with a live due count), or
+`uv run python -m codelingo review`. This includes successful learning, exam,
+and practice answers as well as mistakes. Before a new lesson, up to two due
+questions form a short warm-up. Review draws fresh variants where templates
+support them; it saves after each answer and remains available at zero hearts.
+`review --all` includes upcoming cards without postponing their scheduled dates.
+Existing learned history is added automatically; overdue cards are ready now,
+and existing mistake schedules and completed lessons are preserved. Exam skips
+schedule answered cards, not unattempted questions from skipped lessons.
+
+
 | Mechanic | Rule |
 | --- | --- |
 | Hearts | 5 maximum; wrong learning/practice/review answers and skips cost 1, floored at 0 |
@@ -254,6 +266,7 @@ of scope. Collections appear as Python syntax and API usage.
 | Shop | Spend 10 gems to restore 1 heart; full hearts and insufficient funds spend nothing |
 | Credit limit | One EXP/gem credit per problem ID per local day, regardless of variants |
 | Daily streak | Finish one lesson, full lesson replay, or exam to secure the day |
+| Learned cards | First due after 1 day; due successes grow the gap to 3, 7, 14, then 30 days |
 | Mistakes | First review due after 10 minutes; due successes schedule 1, 3, 7, 14, then 30 days |
 | Lapse | A later wrong answer restarts the 10-minute interval |
 | Early review | Can restore a heart, but does not postpone the existing due date |
@@ -265,7 +278,7 @@ The main menu shows `0/1 today` until you finish one lesson or exam, then
 EXP and gems as usual, but do not satisfy this goal. A full exam counts even
 if it fails; passing above 80% is still required to unlock its section.
 
-Selecting an already-completed lesson replays all 12 problems. Finishing the
+Selecting an already-completed lesson replays all its problems. Finishing the
 whole replay counts toward the daily goal; leaving partway through does not.
 A lesson is counted at most once per local date, while separate finished exams
 are separate completions. The header caps the goal at `1/1`; Stats shows the

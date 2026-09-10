@@ -1,9 +1,10 @@
 # Rust: learn the language on its own terms
 
 The Rust course follows [The Rust Programming Language](https://doc.rust-lang.org/book/)
-and uses Rust 1.90+ / edition 2024. It contains **26 lessons, 312 exercises**:
-8 Basics lessons, 9 Intermediate lessons, and 9 Advanced lessons. Every lesson
-has 8 reading MCQs followed by 4 writing exercises. Each section exam contains
+and uses Rust 1.90+ / edition 2024. It contains **26 lessons, 336 exercises**:
+8 Basics lessons, 9 Intermediate lessons, and 9 Advanced lessons. Most lessons
+have 8 reading MCQs followed by 4 writing exercises. Borrowing, lifetimes,
+smart pointers, and threads have 12 reading MCQs followed by 6 writing exercises. Each section exam contains
 25 questions, includes reading and writing from every lesson, and requires more
 than 80% (21/25) to pass. Exams cost no hearts.
 

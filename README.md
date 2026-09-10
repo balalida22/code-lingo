@@ -1,11 +1,11 @@
-# Code Lingo 1.2.0
+# Code Lingo 1.3.0
 
 **Read code. Build fluency. A little every day.**
 
 A programming language tutor with an arrow-key terminal interface, daily progress,
 randomized exercises, spaced review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.2.0 update and
+See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.3.0 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
 
 ## Run with uv
@@ -63,7 +63,10 @@ uv are present, `uv sync --locked --offline` works without the network.
 
 ## What changed
 
-- **11 courses, 224 lessons, and 2,712 exercises** in total.
+- **17 courses, 344 lessons, and 4,152 exercises** in total.
+- **Six new native tracks:** Java, Go, C#, Bash, Kotlin, and Swift, each with
+  20 lessons and 240 exercises. See [NEW_LANGUAGES.md](NEW_LANGUAGES.md) for
+  coverage, official references, and validation limits.
 - **Rust follows the Rust Book:** 26 lessons with 12–18 questions = 336 exercises,
   split into 8 Basics, 9 Intermediate, and 9 Advanced lessons.
 - The other nine added languages now have **20 lessons × 12 exercises** each.
@@ -71,7 +74,8 @@ uv are present, `uv sync --locked --offline` works without the network.
   [NATIVE_CURRICULA.md](NATIVE_CURRICULA.md): C compilation and memory contracts,
   C++ value semantics, TypeScript runtime boundaries, browser behavior, Ruby
   protocols, Lua embedding, PHP requests, Perl text processing, and SQLite semantics.
-- Each lesson has 8 reading MCQs followed by 4 writing exercises.
+- Most lessons have 8 reading MCQs followed by 4 writing exercises; the four
+  expanded Rust lessons have 12 reading and 6 writing exercises.
 - Correct feedback titles are **green**; incorrect feedback titles are **red**.
   Text labels remain explicit when color is unavailable.
 - Python retains its 18 lessons and 216 exercises, including its existing
@@ -85,6 +89,20 @@ uv are present, `uv sync --locked --offline` works without the network.
 - Additive database migration that retains existing progress.
 
 ## Choose a language
+
+The new tracks are available immediately in the language picker. Their CLI IDs
+are `java`, `go`, `csharp`, `bash`, `kotlin`, and `swift`:
+
+```bash
+uv run python -m codelingo --course go learn
+uv run python -m codelingo --course csharp course
+uv run python -m codelingo --course bash review
+```
+
+All new tracks support the same 25-question exams, pins, hearts, rewards, and
+spaced review. Their compilers are **not required to use Code Lingo**; displayed
+programs remain teaching material, and learner submissions are never executed.
+
 
 Select **Change language** on the TUI main menu (or option 10 in the line menu).
 The menu displays each course's completion count and highlights the active

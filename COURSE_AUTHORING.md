@@ -220,3 +220,26 @@ and preprocessor fragments. Existing question IDs and stored history remain
 unchanged: this intentionally broadens accepted formatting rather than changing
 the target construction. The v1 compatibility regression allows only this
 specific checker/prompt change; it still protects the original code and answers.
+
+
+## Additional native tracks (1.3.0)
+
+`tools/curricula/added_courses.py` assembles `track_java.py`, `track_go.py`,
+`track_csharp.py`, `track_bash.py`, `track_kotlin.py`, and `track_swift.py`.
+The existing course builder emits all six and regenerates the course map.
+Each has 20 lessons arranged in sections of 6, 7, and 7, with original scenarios
+and stable IDs. Only the nine legacy revision tracks use `native_revision.upgrade`.
+
+Bash parameter syntax such as `${items[@]}` and `${name:-fallback}` must remain
+literal shell code; `${n}`, `${m}`, and `${word}` are authoring placeholders.
+Avoid giving a shell variable one of those placeholder names inside braced
+expansion. Runtime tokens in Kotlin and Swift have their own interpolation rules.
+Preserve quoting and significant whitespace; the new tracks use explicit missing
+fragments with exact checking, not Python AST parsing or arbitrary execution.
+
+Run `uv run python tools/verify_added.py` to execute trusted Bash fixtures and
+Java fixtures supported by the installed JDK. It uses a temporary directory for
+every Bash case and no learner input. The Java compiler module works even where
+only the `java` command is exposed. The tool explicitly excludes command and
+conceptual cards and skips virtual threads on Java versions older than 21.
+This is not a claim of native validation for the four unavailable toolchains.

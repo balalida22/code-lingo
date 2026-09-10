@@ -8,7 +8,7 @@ def write_catalog():
     courses.sort(key=lambda c:(c['id']!='python',c['title']))
     lines=['# Course curricula','',
       'Lesson length varies by topic; every section exam contains 25 questions. '
-      'The nine revised tracks each contain 20 lessons. Python retains 18 lessons '
+      'The fifteen non-Python/non-Rust tracks each contain 20 lessons. Python retains 18 lessons '
       'and Rust retains its 26 Book-led lessons. '
       f"Total: {sum(len(c['lessons']) for c in courses)} lessons and "
       f"{sum(len(l['questions']) for c in courses for l in c['lessons']):,} exercises.",

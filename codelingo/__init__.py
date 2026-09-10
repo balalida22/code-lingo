@@ -1,3 +1,3 @@
 """Code Lingo: read a little code every day."""
 
-__version__ = "1.2.0"
+__version__ = "1.3.0"

@@ -26,7 +26,7 @@ def lesson(lid, title, notes, *scenarios):
     return dict(id=lid,title=title,notes=notes,scenarios=scenarios)
 
 def emit(cid,title,baseline,sources,lessons,version='1.0'):
-    if cid not in ('rust','python'):
+    if cid in ('c','cpp','ruby','lua','php','perl','typescript','web','sql'):
         from native_revision import upgrade
         sources,lessons=upgrade(cid,sources,lessons)
         version='1.1'
@@ -83,5 +83,7 @@ if __name__=='__main__':
     from web_types import build as web_types
     from sql_course import build as sql_course
     imperative();systems();web_types();sql_course()
+    from added_courses import build as added
+    added()
     from catalog import write_catalog
     write_catalog()

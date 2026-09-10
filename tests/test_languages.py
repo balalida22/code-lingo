@@ -15,7 +15,7 @@ from codelingo.exams import Exam
 from codelingo.cli import App,Terminal,main
 from codelingo.tui import TuiApp
 
-NEW={'c','cpp','rust','typescript','web','ruby','lua','sql','php','perl'}
+NEW={'c','cpp','rust','typescript','web','ruby','lua','sql','php','perl','java','go','csharp','bash','kotlin','swift'}
 
 class LanguageTests(unittest.TestCase):
     @classmethod
@@ -38,7 +38,10 @@ class LanguageTests(unittest.TestCase):
                 for seed in range(30):
                     sample=render(q,random.Random(seed)); variants.add(json.dumps(sample,sort_keys=True))
                     payload=json.dumps(sample)
-                    self.assertNotIn('${',payload,(name,q['id']))
+                    if name=='bash':
+                        self.assertNotRegex(payload,r'\$\{(?:n|m|word|add|mul|next|prev|length|upper|first)\}',(name,q['id']))
+                    else:
+                        self.assertNotIn('${',payload,(name,q['id']))
                     self.assertNotIn('__TILDE__',payload,(name,q['id']))
                     self.assertNotIn('\x00',sample.get('code',''))
                     answer=App.solution(sample)

@@ -97,3 +97,12 @@ The C17 committee draft is listed as a language reference; its PDF could not be
 parsed by the research reader in this session. C execution checks and the
 accessible GCC/CS50 references supplement the editorial review. Reference
 availability and runtime validation are separate from the course answer checks.
+
+## Six added tracks (1.3.0)
+
+Java, Go, C#, Bash, Kotlin, and Swift follow official language learning and
+reference material. See [NEW_LANGUAGES.md](NEW_LANGUAGES.md) for exact sources,
+baselines, native topic choices, and which reference pages or runtimes were
+unavailable during validation. All exercises and explanations are newly authored.
+The machine-readable banks include source IDs; [CURRICULA.md](CURRICULA.md)
+provides the complete per-lesson map.

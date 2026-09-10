@@ -1,3 +1,18 @@
+# Code Lingo v1.3.0 — prepared update
+
+- Add Java, Go, C#, Bash, Kotlin, and Swift: 20 lessons and 240 exercises each,
+  across Basics, Intermediate, and Advanced. No specialized framework tracks.
+- Teach native contracts: JVM APIs, Go concurrency, C# disposal/LINQ,
+  Bash expansion/processes, Kotlin nullability/extensions, and Swift ARC/actors.
+- Reuse language selection, pins, 25-question exams, and spaced review;
+  preserve all existing course banks and learning history.
+- Add native Bash/Java output auditing and regression coverage for new tracks.
+- 92 tests pass, including complete learning/exam flows for the new languages.
+  Native audit: 146 Bash and 132 Java variants pass; the Java 21 virtual-thread
+  example and Go/C#/Kotlin/Swift were not compiled in this environment.
+
+---
+
 # Code Lingo v1.2.0 — prepared update
 
 - Schedule successfully learned, practiced, and examined questions for spaced review.

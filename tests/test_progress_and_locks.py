@@ -100,7 +100,7 @@ class ProgressAndLockTests(unittest.TestCase):
 
     def test_locked_lesson_returns_to_picker_without_mutation(self):
         class Picker:
-            def __init__(self):self.selections=iter([1,None]);self.pages=[];self.statuses=[]
+            def __init__(self):self.selections=iter([0,1,None,None]);self.pages=[];self.statuses=[]
             def choose(self,*args,**kwargs):
                 self.statuses.append(kwargs['statuses'])
                 return next(self.selections)

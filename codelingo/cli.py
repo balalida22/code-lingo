@@ -108,6 +108,60 @@ class App:
             return 'ACTIVE'
         return 'OPEN'
 
+    @staticmethod
+    def preferred_lesson_index(statuses):
+        for state in ('ACTIVE', 'OPEN'):
+            if state in statuses:
+                return statuses.index(state)
+        return 0
+
+    def lesson_sections(self):
+        return list(dict.fromkeys(l['section'] for l in self.course.lessons))
+
+    def section_details(self, section):
+        lessons = [l for l in self.course.lessons if l['section'] == section]
+        states = [self.lesson_status(l) for l in lessons]
+        done = states.count('DONE')
+        state = ('DONE' if done == len(lessons) else 'ACTIVE' if 'ACTIVE' in states
+                 else 'OPEN' if 'OPEN' in states else 'LOCK')
+        return lessons, state, done
+
+    def pick_lesson(self):
+        def select(title, labels):
+            while True:
+                self.ui.heading(title)
+                for i, label in enumerate(labels, 1):
+                    print(f"  {i}  {label}")
+                answer = input("Choose a number (b to go back) > ").strip().lower()
+                if answer in {'b', 'q', ':q', ''}:
+                    return None
+                if answer.isdigit() and 1 <= int(answer) <= len(labels):
+                    return int(answer) - 1
+                print("Choose a listed number or b.")
+
+        sections = self.lesson_sections()
+        while True:
+            details = [self.section_details(section) for section in sections]
+            index = select('Choose a section · ' + self.course.title,
+                           [f"[{state}] {section} · {done}/{len(lessons)} lessons done"
+                            for section, (lessons, state, done) in zip(sections, details)])
+            if index is None:
+                return
+            section = sections[index]
+            while True:
+                lessons, _, _ = self.section_details(section)
+                selected = select(section + ' · Choose a lesson',
+                                  [f"[{self.lesson_status(l)}] {l['title']} · {len(l['questions'])} questions"
+                                   for l in lessons])
+                if selected is None:
+                    break
+                try:
+                    self.learn(lessons[selected]['id'])
+                except LeaveSession:
+                    print("Progress saved.")
+                except ValueError as exc:
+                    print(str(exc))
+
     def unlocked(self, lesson):
         return all(self.store.is_complete(self.course.lesson_key(lid)) for lid in lesson["requires"])
 
@@ -426,7 +480,7 @@ class App:
             self.ui.heading("CODE LINGO  /  Read code. Build fluency.  /  " + self.course.title)
             self.status()
             print(f"Due for review: {len(self.store.due(self.keys, limit=len(self.keys)))} questions")
-            print("\n  1  Continue learning\n  2  Review due questions\n  3  Practice / restore hearts\n  4  Course map\n  5  Mistake notebook\n  6  Progress\n  7  Sources\n  8  Section exam / skip section\n  9  Shop / restore heart (10 gems)\n  10 Change language / library\n  q  Quit")
+            print("\n  1  Continue learning\n  2  Review due questions\n  3  Practice / restore hearts\n  4  Choose section / lesson\n  5  Mistake notebook\n  6  Progress\n  7  Sources\n  8  Section exam / skip section\n  9  Shop / restore heart (10 gems)\n  10 Change language / library\n  q  Quit")
             try:
                 choice = input("\nChoose > ").strip().lower()
             except (EOFError, KeyboardInterrupt):
@@ -434,7 +488,7 @@ class App:
                 return
             if choice in {"q", ":q"}:
                 return
-            actions = {"1": self.learn, "2": self.review, "3": self.practice, "4": self.course_map, "5": self.mistakes, "6": self.stats, "7": self.sources, "8": self.exam, "9": lambda: print(self.store.buy_heart()), "10": self.pick_course}
+            actions = {"1": self.learn, "2": self.review, "3": self.practice, "4": self.pick_lesson, "5": self.mistakes, "6": self.stats, "7": self.sources, "8": self.exam, "9": lambda: print(self.store.buy_heart()), "10": self.pick_course}
             action = actions.get(choice)
             if not action:
                 print("Choose 1–10 or q.")

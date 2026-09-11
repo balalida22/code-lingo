@@ -146,7 +146,7 @@ class Screen:
         return getattr(self.c,'A_DIM',0)
 
     def choose(self, title, body, options, question=False, hint=False, statuses=None, initial=0, main_menu=False, title_color=1, pin=False):
-        selected, offset = min(initial, len(options)-1), 0
+        selected, offset = max(0, min(initial, len(options)-1)), 0
         while True:
             size = self.frame(title, main_menu=main_menu, title_color=title_color)
             if size:
@@ -156,13 +156,17 @@ class Screen:
                 budget = max(4, min(h//2, h-11))
                 start = selected
                 used = len(option_lines[selected]) + 1
-                while start > 0 and used + len(option_lines[start-1]) + 1 <= budget:
+                while start > 0 and used + len(option_lines[start-1]) + 1 <= (budget + len(option_lines[selected]) + 1) // 2:
                     start -= 1
                     used += len(option_lines[start]) + 1
                 end = selected + 1
                 while end < len(options) and used + len(option_lines[end]) + 1 <= budget:
                     used += len(option_lines[end]) + 1
                     end += 1
+                # Near the end, fill spare space above the selection.
+                while start > 0 and used + len(option_lines[start-1]) + 1 <= budget:
+                    start -= 1
+                    used += len(option_lines[start]) + 1
                 top = h - 3 - min(used, budget)
                 rendered=StyledBody(body,'muted') if not isinstance(body,StyledBody) and not question and len(options)>1 else body
                 lines = self.wrapped(rendered, w-5)
@@ -369,20 +373,43 @@ class TuiApp(App):
         return self.read_answer(q, f'PLACEMENT EXAM · {index}/{total} · need 21 correct', exam=True)
 
     def pick_lesson(self):
-        initial = 0
+        sections = self.lesson_sections()
+        section_states = [self.section_details(section)[1] for section in sections]
+        initial = self.preferred_lesson_index(section_states)
+        lesson_focus = {}
+        legend = 'Green DONE · Cyan OPEN · Yellow ACTIVE · Red LOCK'
         while True:
-            statuses = [self.lesson_status(l) for l in self.course.lessons]
-            choices = [f"[{tag}] {l['section']} · {l['title']} · {len(l['questions'])} questions" for l, tag in zip(self.course.lessons, statuses)]
-            index = self.screen.choose('Choose a lesson', 'Green DONE · Cyan OPEN · Yellow ACTIVE · Red LOCK\nLesson length varies with the topic. Exam passes mark every lesson in that section done.', choices, statuses=statuses, initial=initial)
+            details = [self.section_details(section) for section in sections]
+            choices = [f"[{state}] {section} · {done}/{len(lessons)} lessons done"
+                       for section, (lessons, state, done) in zip(sections, details)]
+            index = self.screen.choose('Choose a section · ' + self.course.title,
+                legend + '\nChoose a section to browse its lessons. Esc returns to the main menu.',
+                choices, statuses=[state for _, state, _ in details], initial=initial)
             if index is None:
                 return
             initial = index
-            lesson = self.course.lessons[index]
-            if not self.unlocked(lesson):
-                missing = [self.course.by_id[lid]['title'] for lid in lesson['requires'] if not self.store.is_complete(self.course.lesson_key(lid))]
-                self.screen.page('Lesson locked', 'First complete these lessons, or pass their section exam:\n\n' + '\n'.join('• '+title for title in missing))
-                continue
-            self.action(lambda: self.learn(lesson['id']))
+            section = sections[index]
+            while True:
+                lessons, _, _ = self.section_details(section)
+                statuses = [self.lesson_status(l) for l in lessons]
+                choices = [f"[{tag}] {l['title']} · {len(l['questions'])} questions"
+                           for l, tag in zip(lessons, statuses)]
+                selected = self.screen.choose(section + ' · Choose a lesson',
+                    legend + '\nEsc returns to sections. Section exams are on the main menu.',
+                    choices, statuses=statuses, initial=lesson_focus.get(section, self.preferred_lesson_index(statuses)))
+                if selected is None:
+                    break
+                lesson_focus[section] = selected
+                lesson = lessons[selected]
+                if not self.unlocked(lesson):
+                    missing = [self.course.by_id[lid]['title'] for lid in lesson['requires']
+                               if not self.store.is_complete(self.course.lesson_key(lid))]
+                    self.screen.page('Lesson locked',
+                        'First complete these lessons, or pass their section exam:\n\n' +
+                        '\n'.join('• ' + title for title in missing))
+                    continue
+                self.action(lambda: self.learn(lesson['id']))
+                lesson_focus.pop(section, None)
 
     def pick_exam(self):
         sections = list(dict.fromkeys(l['section'] for l in self.course.lessons))
@@ -429,7 +456,7 @@ class TuiApp(App):
             return
 
     def menu(self):
-        labels = ['Continue learning','Choose lesson / course map','Review due questions','Review upcoming questions','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language / library','Quit']
+        labels = ['Continue learning','Choose section / lesson','Review due questions','Review upcoming questions','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language / library','Quit']
         while True:
             labels[2] = f'Review due questions ({len(self.store.due(self.keys, limit=len(self.keys)))})'
             i = self.screen.choose('CODE LINGO · ' + self.course.title, 'Daily goal: finish one lesson or exam.\nNumbers, text, and contexts vary across attempts.\n\nUse the arrow keys and Enter. Your progress saves after each answer.', labels, main_menu=True)

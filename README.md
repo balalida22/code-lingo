@@ -1,11 +1,11 @@
-# Code Lingo 1.4.0
+# Code Lingo 1.4.1
 
 **Read code. Build fluency. A little every day.**
 
 A programming language tutor with an arrow-key terminal interface, daily progress,
 randomized exercises, spaced review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.4.0 update and
+See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.4.1 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
 
 ## Run with uv
@@ -384,3 +384,12 @@ The code remains separated into course/templates, persistence, exams, line CLI,
 and TUI modules. See `COURSE_AUTHORING.md` for CLQ and `SOURCES.md` for provenance.
 Code is MIT licensed; course prose/exercises are CC BY 4.0. No affiliation with
 Duolingo or source-course providers is implied.
+
+### Section navigation
+
+Choose **Choose section / lesson** to browse sections with completion counts and
+status colors, then open one section to see its lessons. The cursor starts on
+the active lesson, or the first open lesson, and stays near the middle as you
+scroll. Esc returns from lessons to sections, then to the main menu (use `b` in
+the plain menu). Section exams remain available from the main menu. The `course`
+command still prints the full map for reference.

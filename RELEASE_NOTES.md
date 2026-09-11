@@ -1,3 +1,14 @@
+# Code Lingo v1.4.1 — prepared update
+
+- Browse sections first, then only the lessons in the selected section, in both menus.
+- Show section status and completed lesson counts; preserve locked-lesson explanations.
+- Initially select the active lesson or first open lesson and center scrolling menus.
+- After a session, focus the next available lesson; Back returns to the section picker.
+- Keep course banks, saved progress, and main-menu section exams unchanged.
+- 101 regression tests pass, including section navigation and centered scrolling.
+
+---
+
 # Code Lingo v1.4.0 — prepared update
 
 - Add dedicated NumPy, Matplotlib, PyTorch, and Transformers tracks: each has

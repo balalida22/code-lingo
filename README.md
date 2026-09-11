@@ -1,11 +1,11 @@
-# Code Lingo 1.5.0
+# Code Lingo 1.5.1
 
 **Read code. Build fluency. A little every day.**
 
 A programming language tutor with an arrow-key terminal interface, daily progress,
 randomized exercises, spaced review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.5.0 update and
+See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.5.1 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
 
 ## Run with uv
@@ -418,3 +418,10 @@ uv run python -m codelingo analytics --filter rust
 
 The plain menu also offers numbered course filters. Analytics only reads saved
 history; it does not spend hearts, award EXP, or alter review schedules.
+
+### Practice heart rewards
+
+Every **five correct practice answers** restore one heart. Partial progress saves
+across sessions and courses, and feedback shows your progress out of five. Wrong
+answers still cost a heart, but do not reset earned progress. Correct answers
+while hearts are full are not banked for future rewards.

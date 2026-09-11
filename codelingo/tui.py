@@ -363,6 +363,8 @@ class TuiApp(App):
             message = f"Correct! +{result['xp']} EXP · +{result['gems']} gems · Combo {result['combo']}"
         else:
             message = 'Not quite. One heart lost; combo reset. A fresh variant will return in review.'
+        if mode == 'practice':
+            message += '\n' + self.store.practice_heart_message(result)
         body = self.question_body(q) + StyledBody('\n\n'+message,'muted') + '\n\nAnswer: ' + self.solution(q) + StyledBody('\n\nExplanation\n'+q['explanation'],'explanation')
         if not self.screen.page('Correct' if result['correct'] else 'Incorrect · Learn from this one', body,
                                 title_color=2 if result['correct'] else 4):
@@ -489,7 +491,7 @@ class TuiApp(App):
             elif i == 5:
                 self.pick_exam()
             elif i == 8:
-                choice = self.screen.choose('Gem shop', 'Earn 2 gems per newly credited correct problem each day, and 20 for a first exam pass. A heart costs 10 gems. Practice restores hearts for free.', ['Buy one heart · 10 gems','Back'])
+                choice = self.screen.choose('Gem shop', 'Earn 2 gems per newly credited correct problem each day, and 20 for a first exam pass. A heart costs 10 gems. Five correct practice answers restore one heart for free.', ['Buy one heart · 10 gems','Back'])
                 if choice == 0:
                     self.screen.page('Gem shop', self.store.buy_heart())
             else:

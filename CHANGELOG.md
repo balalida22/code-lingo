@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.1 — prepared, not published
+
+- Practice now restores one heart per five correct answers instead of every answer.
+- Save partial heart progress across sessions and courses; mistakes do not reset it.
+- Show progress toward the next heart and a message when a heart is earned.
+- Do not bank correct practice answers while hearts are full.
+- 113 regression tests pass. Existing review rewards and exam rules are unchanged.
+
 ## 1.5.0 — prepared, not published
 
 - Add Overall analytics to both menus, with an all-course overview and filters

@@ -9,6 +9,7 @@ import json
 INTERVALS = (1, 3, 7, 14, 30)
 HEART_SECONDS = 1800
 DAILY_GOAL = 1
+PRACTICE_HEART_GOAL = 5
 
 
 class Store:
@@ -209,8 +210,21 @@ class Store:
             elif correct and not review and mode in {"learn", "exam", "practice"}:
                 self.db.execute("INSERT INTO reviews(qid,due,stage) VALUES(?,?,1)",
                                 (qid, now + 86400))
-            if correct and mode in {"review", "practice"}:
+            heart_earned = False
+            if correct and mode == "review":
                 hearts = min(5, hearts + 1)
+            if mode == 'practice':
+                progress = self.practice_heart_progress()
+                if hearts >= 5:
+                    progress = 0
+                elif correct:
+                    progress += 1
+                    if progress >= PRACTICE_HEART_GOAL:
+                        hearts += 1
+                        progress = 0
+                        heart_earned = True
+                self.db.execute("INSERT INTO settings VALUES('practice_heart_progress',?) "
+                                "ON CONFLICT(name) DO UPDATE SET value=excluded.value", (str(progress),))
             combo = combo + 1 if correct and mode != 'exam' else 0
             xp = 0
             if correct and mode != 'exam':
@@ -221,7 +235,18 @@ class Store:
             gems = 2 if xp else 0
             self.db.execute("UPDATE player SET hearts=?,xp=xp+?,gems=gems+?,best_combo=MAX(best_combo,?) WHERE id=1",
                             (hearts, xp, gems, combo))
-        return {"xp": xp, "gems": gems, "combo": combo, "hearts": hearts, "correct": correct}
+        return {"xp": xp, "gems": gems, "combo": combo, "hearts": hearts, "correct": correct, "heart_earned": heart_earned}
+
+    def practice_heart_progress(self):
+        row = self.db.execute("SELECT value FROM settings WHERE name='practice_heart_progress'").fetchone()
+        return int(row[0]) if row else 0
+
+    def practice_heart_message(self, result):
+        if result.get('heart_earned'):
+            return 'One heart earned! Five correct practice answers completed.'
+        if result['hearts'] >= 5:
+            return 'Hearts are full.'
+        return f"Next practice heart: {self.practice_heart_progress()}/{PRACTICE_HEART_GOAL} correct answers."
 
     def last_variant(self, key, snapshot=None):
         row = self.db.execute('SELECT snapshot FROM variants WHERE qid=?', (key,)).fetchone()

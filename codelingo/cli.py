@@ -337,6 +337,8 @@ class App:
             print(self.ui.style(f"\nIncorrect.  Hearts {result['hearts']}/5  |  Combo reset", "31"))
             print("Answer: " + self.solution(q))
             print("Added to review; it will return in 10 minutes.")
+        if mode == "practice":
+            print(self.store.practice_heart_message(result))
         self.ui.prose(q["explanation"])
         return correct
 
@@ -368,7 +370,7 @@ class App:
                 self.ui.prose(first["intro"])
                 pool = [q for q in first["questions"] if q["kind"] == "mcq"]
         self.ui.heading("Practice · earn back hearts")
-        self.ui.prose("Correct answers restore a heart. Practice does not unlock lessons; return to learn to finish your course.")
+        self.ui.prose("Every five correct practice answers restore one heart. Progress carries across sessions; mistakes do not reset it. Practice does not unlock lessons; return to learn to finish your course.")
         selected = self.rng.sample(pool, min(limit, len(pool)))
         self.begin_session('practice', selected)
         if lesson:

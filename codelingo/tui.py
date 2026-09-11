@@ -455,14 +455,34 @@ class TuiApp(App):
             self.screen.progress = None
             return
 
+    def pick_analytics(self):
+        from .analytics import snapshot, report
+        data = snapshot(self.store, self.course)
+        entries = [c for c in data['courses'].values() if c['attempted']]
+        selected = None
+        while True:
+            title = data['courses'][selected]['title'] if selected else 'All courses'
+            choice = self.screen.choose('Overall analytics', StyledBody(report(data, selected)),
+                ['Filter: ' + title, 'Back'])
+            if choice is None or choice == 1:
+                return
+            ids = [None] + [c['id'] for c in entries]
+            index = self.screen.choose('Filter analytics',
+                'Only courses with saved activity appear here. Esc keeps the current filter.',
+                ['All courses'] + [c['title'] for c in entries], initial=ids.index(selected))
+            if index is not None:
+                selected = ids[index]
+
     def menu(self):
-        labels = ['Continue learning','Choose section / lesson','Review due questions','Review upcoming questions','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language / library','Quit']
+        labels = ['Continue learning','Choose section / lesson','Review due questions','Review upcoming questions','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language / library','Overall analytics','Quit']
         while True:
             labels[2] = f'Review due questions ({len(self.store.due(self.keys, limit=len(self.keys)))})'
             i = self.screen.choose('CODE LINGO · ' + self.course.title, 'Daily goal: finish one lesson or exam.\nNumbers, text, and contexts vary across attempts.\n\nUse the arrow keys and Enter. Your progress saves after each answer.', labels, main_menu=True)
-            if i is None or i == 11:
+            if i is None or i == 12:
                 return
-            if i == 10:
+            if i == 11:
+                self.pick_analytics()
+            elif i == 10:
                 self.pick_course()
             elif i == 1:
                 self.pick_lesson()

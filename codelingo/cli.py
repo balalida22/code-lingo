@@ -193,6 +193,31 @@ class App:
             if s.get("license_url"):
                 print(s["license_url"])
 
+    def analytics(self, course_id=None):
+        from .analytics import snapshot, report
+        print(report(snapshot(self.store, self.course), course_id))
+
+    def pick_analytics(self):
+        from .analytics import snapshot, report
+        data = snapshot(self.store, self.course)
+        entries = [c for c in data['courses'].values() if c['attempted']]
+        selected = None
+        while True:
+            print(report(data, selected))
+            print("\n0  All courses")
+            for i, course in enumerate(entries, 1):
+                print(f"{i}  {course['title']}")
+            try:
+                answer = input("Filter by number (b to go back) > ").strip().lower()
+            except (EOFError, KeyboardInterrupt):
+                return
+            if answer in {'b', 'q', ':q', ''}:
+                return
+            if answer.isdigit() and 0 <= int(answer) <= len(entries):
+                selected = entries[int(answer)-1]['id'] if int(answer) else None
+            else:
+                print("Choose a listed number or b.")
+
     def stats(self):
         self.ui.heading("Your progress")
         s = self.status()
@@ -480,7 +505,7 @@ class App:
             self.ui.heading("CODE LINGO  /  Read code. Build fluency.  /  " + self.course.title)
             self.status()
             print(f"Due for review: {len(self.store.due(self.keys, limit=len(self.keys)))} questions")
-            print("\n  1  Continue learning\n  2  Review due questions\n  3  Practice / restore hearts\n  4  Choose section / lesson\n  5  Mistake notebook\n  6  Progress\n  7  Sources\n  8  Section exam / skip section\n  9  Shop / restore heart (10 gems)\n  10 Change language / library\n  q  Quit")
+            print("\n  1  Continue learning\n  2  Review due questions\n  3  Practice / restore hearts\n  4  Choose section / lesson\n  5  Mistake notebook\n  6  Progress\n  7  Sources\n  8  Section exam / skip section\n  9  Shop / restore heart (10 gems)\n  10 Change language / library\n  11 Overall analytics\n  q  Quit")
             try:
                 choice = input("\nChoose > ").strip().lower()
             except (EOFError, KeyboardInterrupt):
@@ -488,10 +513,10 @@ class App:
                 return
             if choice in {"q", ":q"}:
                 return
-            actions = {"1": self.learn, "2": self.review, "3": self.practice, "4": self.pick_lesson, "5": self.mistakes, "6": self.stats, "7": self.sources, "8": self.exam, "9": lambda: print(self.store.buy_heart()), "10": self.pick_course}
+            actions = {"1": self.learn, "2": self.review, "3": self.practice, "4": self.pick_lesson, "5": self.mistakes, "6": self.stats, "7": self.sources, "8": self.exam, "9": lambda: print(self.store.buy_heart()), "10": self.pick_course, "11": self.pick_analytics}
             action = actions.get(choice)
             if not action:
-                print("Choose 1–10 or q.")
+                print("Choose 1–11 or q.")
                 continue
             try:
                 action()
@@ -535,6 +560,8 @@ def main(argv=None):
     practice.add_argument("--limit", type=positive_int, default=5)
     for command, help_text in [("course", "show the curriculum and unlocks"), ("stats", "show daily progress"), ("mistakes", "show your mistake notebook"), ("sources", "show curriculum references"), ("demo", "watch a demo with temporary progress"), ("validate", "validate the course file")]:
         sub.add_parser(command, help=help_text)
+    analytics = sub.add_parser('analytics', help='show analytics across all courses')
+    analytics.add_argument('--filter', metavar='COURSE_ID', help='limit analytics to a course ID')
     args = parser.parse_args(argv)
     store = None
     try:
@@ -568,6 +595,8 @@ def main(argv=None):
             app.review(args.limit, args.all)
         elif args.command == "practice":
             app.practice(args.limit)
+        elif args.command == "analytics":
+            app.analytics(args.filter)
         elif args.command == "course":
             app.course_map()
         elif args.command:

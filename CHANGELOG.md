@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.5.0 — prepared, not published
+
+- Add Overall analytics to both menus, with an all-course overview and filters
+  limited to courses with saved activity; filtering does not switch learning courses.
+- Draw terminal bar charts for lesson completion, accuracy by mode, and daily
+  answer counts over seven local calendar days, including days with no activity.
+- Report answer-weighted accuracy, unique questions seen, reviews due, and
+  passed/finished exams. Count section-exam lesson completions without counting
+  unfinished exams as finished; retain visibility of older/custom course history.
+- Add `analytics` and `analytics --filter COURSE_ID` commands. No database migration.
+- 108 regression tests pass, including filter isolation, read-only aggregation,
+  empty history, date boundaries, and scrolling in a 60×18 terminal.
+
 ## 1.4.1 — prepared, not published
 
 - Browse sections first, then only the lessons in the selected section, in both menus.

@@ -1,11 +1,11 @@
-# Code Lingo 1.4.1
+# Code Lingo 1.5.0
 
 **Read code. Build fluency. A little every day.**
 
 A programming language tutor with an arrow-key terminal interface, daily progress,
 randomized exercises, spaced review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.4.1 update and
+See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.5.0 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
 
 ## Run with uv
@@ -393,3 +393,28 @@ the active lesson, or the first open lesson, and stays near the middle as you
 scroll. Esc returns from lessons to sections, then to the main menu (use `b` in
 the plain menu). Section exams remain available from the main menu. The `course`
 command still prints the full map for reference.
+
+### Overall analytics
+
+Choose **Overall analytics** on the main menu for a dashboard spanning all your
+languages and Python libraries. Select **Filter** to view any course with saved
+activity, or return to **All courses**. This does not change the course you are
+learning. Use PgUp/PgDn to scroll the charts and Esc to go back.
+
+Bar charts show completed lessons by course, answer accuracy by mode (learning,
+review, practice, exam), and daily answer counts for the last seven local days.
+The dashboard also shows unique questions encountered, due reviews, and exam
+passes versus finished exams. Accuracy counts recorded answers, including retries
+and skipped questions, and is weighted by answer count across courses. Lessons
+marked done by a passing section exam count toward completion. Historical progress
+without an answer log contributes to questions seen, but cannot supply accuracy.
+Older custom courses remain visible by ID when their course file is unavailable;
+their lesson totals are shown as unavailable.
+
+```bash
+uv run python -m codelingo analytics
+uv run python -m codelingo analytics --filter rust
+```
+
+The plain menu also offers numbered course filters. Analytics only reads saved
+history; it does not spend hearts, award EXP, or alter review schedules.

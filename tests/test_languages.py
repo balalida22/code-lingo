@@ -22,7 +22,7 @@ class LanguageTests(unittest.TestCase):
     def setUpClass(cls):cls.courses={name:load_course(name) for name in NEW}
 
     def test_complete_curricula_and_randomized_variants(self):
-        self.assertEqual({c['id'] for c in course_catalog()},NEW|{'python'})
+        self.assertEqual({c['id'] for c in course_catalog()},NEW|{'python','numpy','matplotlib','pytorch','transformers'})
         for name,c in self.courses.items():
             self.assertEqual(len(c.lessons),26 if name=='rust' else 20)
             self.assertEqual(len(c.questions),336 if name=='rust' else 240)

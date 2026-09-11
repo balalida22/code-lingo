@@ -106,3 +106,14 @@ baselines, native topic choices, and which reference pages or runtimes were
 unavailable during validation. All exercises and explanations are newly authored.
 The machine-readable banks include source IDs; [CURRICULA.md](CURRICULA.md)
 provides the complete per-lesson map.
+
+
+## Python library expansion (1.4.0)
+
+The dedicated NumPy, Matplotlib, PyTorch, and Transformers courses use official
+API guides listed in [PYTHON_LIBRARIES.md](PYTHON_LIBRARIES.md). The Transformers
+course explicitly targets the documented 4.57 API family instead of silently
+following breaking major-version changes. Exact token IDs, model output values,
+and generated text are never inferred from an unspecified checkpoint.
+All examples and explanations are original, and source pages are references
+rather than copied course assignments.

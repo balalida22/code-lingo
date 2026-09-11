@@ -24,6 +24,15 @@ def check_answer(question, answer):
         return answer == question["answer"]
     if question.get("checker", "python_ast") == "exact":
         return answer.strip() in question["accepted"]
+    if question.get('checker')=='python_fragment':
+        code=question.get('code','')
+        if code.count('____') != 1 or len(answer)>2000:
+            return False
+        try:
+            submitted=syntax_tree(code.replace('____',answer))
+            return any(submitted==syntax_tree(code.replace('____',a)) for a in question['accepted'])
+        except (SyntaxError,ValueError,RecursionError):
+            return False
     if question.get('checker')=='c_tokens':
         return any(c_equivalent(answer,a) for a in question['accepted'])
     try:
@@ -87,7 +96,11 @@ class Course:
                 else:
                     writing = True
                     require(bool(q.get("accepted")), "missing accepted answers")
-                    require(q.get("checker", "python_ast") in {"python_ast", "exact", "c_tokens"}, "checker")
+                    require(q.get("checker", "python_ast") in {"python_ast", "python_fragment", "exact", "c_tokens"}, "checker")
+                    if q.get('checker') == 'python_fragment':
+                        require(q.get('code','').count('____')==1, 'fragment needs one blank')
+                        for a in q['accepted']:
+                            syntax_tree(q['code'].replace('____',a))
                     if q.get("checker", "python_ast") == "python_ast":
                         for a in q["accepted"]:
                             syntax_tree(a)

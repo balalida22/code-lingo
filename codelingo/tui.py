@@ -417,7 +417,7 @@ class TuiApp(App):
                 labels.append(('★ ' if c['id'] in pins else '')+f"{c['title']} · {done}/{c['lessons']} lessons")
                 statuses.append(status)
             body=StyledBody('★ Pinned languages appear first. Press p to pin/unpin the highlighted language.\nEach language keeps its own lessons, exams, and mistakes.','muted')
-            choice=self.screen.choose('Choose language',body,labels,statuses=statuses,initial=selected,pin=True)
+            choice=self.screen.choose('Choose language or library',body,labels,statuses=statuses,initial=selected,pin=True)
             if choice is None:
                 return
             if isinstance(choice,tuple) and choice[0]=='pin':
@@ -429,7 +429,7 @@ class TuiApp(App):
             return
 
     def menu(self):
-        labels = ['Continue learning','Choose lesson / course map','Review due questions','Review upcoming questions','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language','Quit']
+        labels = ['Continue learning','Choose lesson / course map','Review due questions','Review upcoming questions','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language / library','Quit']
         while True:
             labels[2] = f'Review due questions ({len(self.store.due(self.keys, limit=len(self.keys)))})'
             i = self.screen.choose('CODE LINGO · ' + self.course.title, 'Daily goal: finish one lesson or exam.\nNumbers, text, and contexts vary across attempts.\n\nUse the arrow keys and Enter. Your progress saves after each answer.', labels, main_menu=True)

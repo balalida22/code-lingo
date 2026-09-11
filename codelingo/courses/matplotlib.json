@@ -1,0 +1,3435 @@
+{
+  "schema_version": 2,
+  "id": "matplotlib",
+  "title": "Python · Matplotlib: figures and plotting workflows",
+  "language": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code",
+  "version": "1.0",
+  "sources": [
+    {
+      "id": "matplotlib-0",
+      "title": "Matplotlib quick start",
+      "url": "https://matplotlib.org/stable/users/explain/quick_start.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "matplotlib-1",
+      "title": "Figure and Axes API",
+      "url": "https://matplotlib.org/stable/api/axes_api.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "objects",
+      "title": "Figure, Axes, and artists",
+      "section": "Basics",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. A Figure owns the overall canvas; an Axes owns one plotting region. Lines, text, images, and patches are artists attached to these objects. Prefer explicit fig/ax references over relying on the implicit current plot. All code can use a noninteractive backend.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "subplots creates a figure containing one Axes by default.",
+          "hint": "subplots creates a figure containing one Axes by default.",
+          "id": "objects-read-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nprint(len(fig.axes))",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "subplots creates a figure containing one Axes by default.",
+          "hint": "subplots creates a figure containing one Axes by default.",
+          "id": "objects-choose-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.____()\nprint(len(fig.axes))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. subplots creates a figure containing one Axes by default.",
+          "answer": "subplots",
+          "options": [
+            "subplots",
+            "figure",
+            "axes"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "The Axes retains a reference to its owning Figure.",
+          "hint": "The Axes retains a reference to its owning Figure.",
+          "id": "objects-read-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nprint(ax.figure is fig)",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "The Axes retains a reference to its owning Figure.",
+          "hint": "The Axes retains a reference to its owning Figure.",
+          "id": "objects-choose-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. The Axes retains a reference to its owning Figure.",
+          "answer": "ax.figure is fig",
+          "options": [
+            "ax.figure is fig",
+            "ax is fig",
+            "ax.figure is None"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "plot adds one Line2D artist for this pair of vectors.",
+          "hint": "plot adds one Line2D artist for this pair of vectors.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.plot([0,1],[0,${n}])\nprint(len(ax.lines))",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "2",
+            "0"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "plot adds one Line2D artist for this pair of vectors.",
+          "hint": "plot adds one Line2D artist for this pair of vectors.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.plot([0,1],[0,${n}])\nprint(len(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. plot adds one Line2D artist for this pair of vectors.",
+          "answer": "ax.lines",
+          "options": [
+            "ax.lines",
+            "fig.axes",
+            "ax.collections"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "The title is text belonging to this Axes.",
+          "hint": "The title is text belonging to this Axes.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "objects-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.set_title(\"${word}\")\nprint(ax.get_title())",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Empty string",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "The title is text belonging to this Axes.",
+          "hint": "The title is text belonging to this Axes.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "objects-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.____(\"${word}\")\nprint(ax.get_title())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The title is text belonging to this Axes.",
+          "answer": "set_title",
+          "options": [
+            "set_title",
+            "set_xlabel",
+            "set_ylabel"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "subplots creates a figure containing one Axes by default.",
+          "hint": "subplots creates a figure containing one Axes by default.",
+          "id": "objects-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.____()\nprint(len(fig.axes))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. subplots creates a figure containing one Axes by default. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "subplots"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "The Axes retains a reference to its owning Figure.",
+          "hint": "The Axes retains a reference to its owning Figure.",
+          "id": "objects-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. The Axes retains a reference to its owning Figure. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "ax.figure is fig"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "plot adds one Line2D artist for this pair of vectors.",
+          "hint": "plot adds one Line2D artist for this pair of vectors.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "objects-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nax.plot([0,1],[0,${n}])\nprint(len(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. plot adds one Line2D artist for this pair of vectors. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "ax.lines"
+          ]
+        },
+        {
+          "concept": "Figure, Axes, and artists",
+          "explanation": "The title is text belonging to this Axes.",
+          "hint": "The title is text belonging to this Axes.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "objects-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nax.____(\"${word}\")\nprint(ax.get_title())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The title is text belonging to this Axes. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "set_title"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lines",
+      "title": "Line data and artist properties",
+      "section": "Basics",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. plot pairs x and y coordinates and returns a list of lines. A label is metadata used by legends; it does not change the data. Line properties can be supplied on creation or changed through the returned artist.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "objects"
+      ],
+      "questions": [
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "The returned Line2D stores the supplied y coordinates.",
+          "hint": "The returned Line2D stores the supplied y coordinates.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "lines-read-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[${n},${m}])\nprint(line.get_ydata().tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${m}]",
+          "options": [
+            "[${n}, ${m}]",
+            "[0, 1]",
+            "[]"
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "The returned Line2D stores the supplied y coordinates.",
+          "hint": "The returned Line2D stores the supplied y coordinates.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "lines-choose-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[${n},${m}])\nprint(line.____.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. The returned Line2D stores the supplied y coordinates.",
+          "answer": "get_ydata()",
+          "options": [
+            "get_ydata()",
+            "get_xdata()",
+            "get_label()"
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "label names the series without altering its coordinates.",
+          "hint": "label names the series without altering its coordinates.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "lines-read-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],label=\"${word}\")\nprint(line.get_label())",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Empty string",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "label names the series without altering its coordinates.",
+          "hint": "label names the series without altering its coordinates.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "lines-choose-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],label=____)\nprint(line.get_label())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. label names the series without altering its coordinates. Use \"${word}\" as the replacement literal.",
+          "answer": "\"${word}\"",
+          "options": [
+            "\"${word}\"",
+            "\"other\"",
+            "\"\""
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "linewidth is a display property measured in points.",
+          "hint": "linewidth is a display property measured in points.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "lines-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],linewidth=2)\nprint(line.get_linewidth())",
+          "prompt": "What is the result?",
+          "answer": "2.0",
+          "options": [
+            "2.0",
+            "1.0",
+            "${n}.0"
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "linewidth is a display property measured in points.",
+          "hint": "linewidth is a display property measured in points.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "lines-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],linewidth=____)\nprint(line.get_linewidth())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2.0. linewidth is a display property measured in points.",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "A setter updates the artist property after creation.",
+          "hint": "A setter updates the artist property after creation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "lines-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}])\nline.set_color(\"red\")\nprint(line.get_color())",
+          "prompt": "What is the result?",
+          "answer": "red",
+          "options": [
+            "red",
+            "blue",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "A setter updates the artist property after creation.",
+          "hint": "A setter updates the artist property after creation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "lines-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}])\nline.____(\"red\")\nprint(line.get_color())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: red. A setter updates the artist property after creation.",
+          "answer": "set_color",
+          "options": [
+            "set_color",
+            "set_label",
+            "set_marker"
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "The returned Line2D stores the supplied y coordinates.",
+          "hint": "The returned Line2D stores the supplied y coordinates.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "lines-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[${n},${m}])\nprint(line.____.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. The returned Line2D stores the supplied y coordinates. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "get_ydata()"
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "label names the series without altering its coordinates.",
+          "hint": "label names the series without altering its coordinates.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "lines-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],label=____)\nprint(line.get_label())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. label names the series without altering its coordinates. Use \"${word}\" as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "\"${word}\""
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "linewidth is a display property measured in points.",
+          "hint": "linewidth is a display property measured in points.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "lines-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],linewidth=____)\nprint(line.get_linewidth())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2.0. linewidth is a display property measured in points. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "2"
+          ]
+        },
+        {
+          "concept": "Line data and artist properties",
+          "explanation": "A setter updates the artist property after creation.",
+          "hint": "A setter updates the artist property after creation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "lines-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}])\nline.____(\"red\")\nprint(line.get_color())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: red. A setter updates the artist property after creation. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "set_color"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scatter",
+      "title": "Scatter plots and collections",
+      "section": "Basics",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. scatter creates a PathCollection rather than Line2D. Its s argument specifies marker area in points squared. Offsets hold the data positions. Color values may be literal colors or numbers mapped through a colormap.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "lines"
+      ],
+      "questions": [
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "The collection stores two x/y coordinate pairs.",
+          "hint": "The collection stores two x/y coordinate pairs.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scatter-read-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\npoints=ax.scatter([0,1],[${n},${m}])\nprint(points.get_offsets().shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 2)",
+          "options": [
+            "(2, 2)",
+            "(2,)",
+            "(1, 2)"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "The collection stores two x/y coordinate pairs.",
+          "hint": "The collection stores two x/y coordinate pairs.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scatter-choose-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\npoints=ax.____([0,1],[${n},${m}])\nprint(points.get_offsets().shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). The collection stores two x/y coordinate pairs.",
+          "answer": "scatter",
+          "options": [
+            "scatter",
+            "plot",
+            "bar"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "s is area, not radius or diameter.",
+          "hint": "s is area, not radius or diameter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scatter-read-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\npoints=ax.scatter([0],[${n}],s=36)\nprint(int(points.get_sizes()[0]))",
+          "prompt": "What is the result?",
+          "answer": "36",
+          "options": [
+            "36",
+            "6",
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "s is area, not radius or diameter.",
+          "hint": "s is area, not radius or diameter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scatter-choose-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\npoints=ax.scatter([0],[${n}],s=____)\nprint(int(points.get_sizes()[0]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 36. s is area, not radius or diameter.",
+          "answer": "36",
+          "options": [
+            "36",
+            "6",
+            "12"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "Scatter adds a collection to the Axes.",
+          "hint": "Scatter adds a collection to the Axes.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scatter-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.scatter([0],[${n}])\nprint(len(ax.collections))",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "Scatter adds a collection to the Axes.",
+          "hint": "Scatter adds a collection to the Axes.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scatter-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.scatter([0],[${n}])\nprint(len(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Scatter adds a collection to the Axes.",
+          "answer": "ax.collections",
+          "options": [
+            "ax.collections",
+            "ax.lines",
+            "ax.texts"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "Replacing offsets changes the stored point positions.",
+          "hint": "Replacing offsets changes the stored point positions.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scatter-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\npoints=ax.scatter([0,1],[${n},${m}])\npoints.set_offsets([[2,3]])\nprint(points.get_offsets().shape)",
+          "prompt": "What is the result?",
+          "answer": "(1, 2)",
+          "options": [
+            "(1, 2)",
+            "(2, 2)",
+            "(2,)"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "Replacing offsets changes the stored point positions.",
+          "hint": "Replacing offsets changes the stored point positions.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scatter-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\npoints=ax.scatter([0,1],[${n},${m}])\npoints.____([[2,3]])\nprint(points.get_offsets().shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 2). Replacing offsets changes the stored point positions.",
+          "answer": "set_offsets",
+          "options": [
+            "set_offsets",
+            "set_sizes",
+            "set_array"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "The collection stores two x/y coordinate pairs.",
+          "hint": "The collection stores two x/y coordinate pairs.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scatter-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\npoints=ax.____([0,1],[${n},${m}])\nprint(points.get_offsets().shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). The collection stores two x/y coordinate pairs. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "scatter"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "s is area, not radius or diameter.",
+          "hint": "s is area, not radius or diameter.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scatter-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\npoints=ax.scatter([0],[${n}],s=____)\nprint(int(points.get_sizes()[0]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 36. s is area, not radius or diameter. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "36"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "Scatter adds a collection to the Axes.",
+          "hint": "Scatter adds a collection to the Axes.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "scatter-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nax.scatter([0],[${n}])\nprint(len(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Scatter adds a collection to the Axes. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "ax.collections"
+          ]
+        },
+        {
+          "concept": "Scatter plots and collections",
+          "explanation": "Replacing offsets changes the stored point positions.",
+          "hint": "Replacing offsets changes the stored point positions.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "scatter-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\npoints=ax.scatter([0,1],[${n},${m}])\npoints.____([[2,3]])\nprint(points.get_offsets().shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 2). Replacing offsets changes the stored point positions. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "set_offsets"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "labels",
+      "title": "Labels, legends, and annotations",
+      "section": "Basics",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Axis labels describe coordinates; titles describe panels. A legend uses labeled artists. Annotation text can be positioned independently from the referenced data location. Good labels clarify units and quantities without modifying the plotted data.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "scatter"
+      ],
+      "questions": [
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "This labels the horizontal axis.",
+          "hint": "This labels the horizontal axis.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "labels-read-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.set_xlabel(\"${word}\")\nprint(ax.get_xlabel())",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Empty string",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "This labels the horizontal axis.",
+          "hint": "This labels the horizontal axis.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "labels-choose-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.____(\"${word}\")\nprint(ax.get_xlabel())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. This labels the horizontal axis.",
+          "answer": "set_xlabel",
+          "options": [
+            "set_xlabel",
+            "set_ylabel",
+            "set_title"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "legend collects the labeled line.",
+          "hint": "legend collects the labeled line.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "labels-read-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.plot([0,1],[0,${n}],label=\"${word}\")\nlegend=ax.legend()\nprint(legend.get_texts()[0].get_text())",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Empty string",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "legend collects the labeled line.",
+          "hint": "legend collects the labeled line.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "labels-choose-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.plot([0,1],[0,${n}],label=\"${word}\")\nlegend=ax.____()\nprint(legend.get_texts()[0].get_text())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. legend collects the labeled line.",
+          "answer": "legend",
+          "options": [
+            "legend",
+            "get_legend",
+            "text"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "annotate attaches text to a specified reference location.",
+          "hint": "annotate attaches text to a specified reference location.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "labels-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\ntext=ax.annotate(\"${word}\",xy=(0,${n}))\nprint(text.get_text())",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "${n}",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "annotate attaches text to a specified reference location.",
+          "hint": "annotate attaches text to a specified reference location.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "labels-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\ntext=ax.____(\"${word}\",xy=(0,${n}))\nprint(text.get_text())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. annotate attaches text to a specified reference location.",
+          "answer": "annotate",
+          "options": [
+            "annotate",
+            "set_title",
+            "set_xlabel"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "Changing a label leaves the underlying coordinates intact.",
+          "hint": "Changing a label leaves the underlying coordinates intact.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "labels-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[${n},${m}])\nax.set_ylabel(\"changed\")\nprint(line.get_ydata().tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${m}]",
+          "options": [
+            "[${n}, ${m}]",
+            "[0, 1]",
+            "[]"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "Changing a label leaves the underlying coordinates intact.",
+          "hint": "Changing a label leaves the underlying coordinates intact.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "labels-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[${n},${m}])\nax.set_ylabel(\"changed\")\nprint(line.____.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. Changing a label leaves the underlying coordinates intact.",
+          "answer": "get_ydata()",
+          "options": [
+            "get_ydata()",
+            "get_xdata()",
+            "get_label()"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "This labels the horizontal axis.",
+          "hint": "This labels the horizontal axis.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "labels-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nax.____(\"${word}\")\nprint(ax.get_xlabel())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. This labels the horizontal axis. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "set_xlabel"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "legend collects the labeled line.",
+          "hint": "legend collects the labeled line.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "labels-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nax.plot([0,1],[0,${n}],label=\"${word}\")\nlegend=ax.____()\nprint(legend.get_texts()[0].get_text())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. legend collects the labeled line. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "legend"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "annotate attaches text to a specified reference location.",
+          "hint": "annotate attaches text to a specified reference location.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "labels-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\ntext=ax.____(\"${word}\",xy=(0,${n}))\nprint(text.get_text())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. annotate attaches text to a specified reference location. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "annotate"
+          ]
+        },
+        {
+          "concept": "Labels, legends, and annotations",
+          "explanation": "Changing a label leaves the underlying coordinates intact.",
+          "hint": "Changing a label leaves the underlying coordinates intact.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "labels-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[${n},${m}])\nax.set_ylabel(\"changed\")\nprint(line.____.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. Changing a label leaves the underlying coordinates intact. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "get_ydata()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "panels",
+      "title": "Subplots, grids, and axis sharing",
+      "section": "Intermediate",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. subplots can return a scalar Axes or an array, depending on grid size and squeeze. squeeze=False makes the axes container predictably two-dimensional. Shared axes coordinate limits across panels. Use fig.suptitle for a whole-figure heading.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "labels"
+      ],
+      "questions": [
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "The default array mirrors the requested row/column grid.",
+          "hint": "The default array mirrors the requested row/column grid.",
+          "id": "panels-read-1",
+          "kind": "mcq",
+          "code": "fig,axes=plt.subplots(2,3)\nprint(axes.shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 3)",
+          "options": [
+            "(2, 3)",
+            "(6,)",
+            "(3, 2)"
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "The default array mirrors the requested row/column grid.",
+          "hint": "The default array mirrors the requested row/column grid.",
+          "id": "panels-choose-1",
+          "kind": "mcq",
+          "code": "fig,axes=plt.subplots(2,3)\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). The default array mirrors the requested row/column grid.",
+          "answer": "axes.shape",
+          "options": [
+            "axes.shape",
+            "axes.size",
+            "len(fig.axes)"
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "Disabling squeezing retains a two-dimensional axes array.",
+          "hint": "Disabling squeezing retains a two-dimensional axes array.",
+          "id": "panels-read-2",
+          "kind": "mcq",
+          "code": "fig,axes=plt.subplots(1,1,squeeze=False)\nprint(axes.shape)",
+          "prompt": "What is the result?",
+          "answer": "(1, 1)",
+          "options": [
+            "(1, 1)",
+            "()",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "Disabling squeezing retains a two-dimensional axes array.",
+          "hint": "Disabling squeezing retains a two-dimensional axes array.",
+          "id": "panels-choose-2",
+          "kind": "mcq",
+          "code": "fig,axes=plt.subplots(1,1,squeeze=____)\nprint(axes.shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 1). Disabling squeezing retains a two-dimensional axes array.",
+          "answer": "False",
+          "options": [
+            "False",
+            "True",
+            "None"
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "Shared x limits propagate to the other panel.",
+          "hint": "Shared x limits propagate to the other panel.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "panels-read-3",
+          "kind": "mcq",
+          "code": "fig,axes=plt.subplots(2,1,sharex=True)\naxes[0].set_xlim(0,${n})\nprint(tuple(map(float,axes[1].get_xlim())))",
+          "prompt": "What is the result?",
+          "answer": "(0.0, ${n}.0)",
+          "options": [
+            "(0.0, ${n}.0)",
+            "(0.0, 1.0)",
+            "(1.0, 0.0)"
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "Shared x limits propagate to the other panel.",
+          "hint": "Shared x limits propagate to the other panel.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "panels-choose-3",
+          "kind": "mcq",
+          "code": "fig,axes=plt.subplots(2,1,sharex=____)\naxes[0].set_xlim(0,${n})\nprint(tuple(map(float,axes[1].get_xlim())))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (0.0, ${n}.0). Shared x limits propagate to the other panel.",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "\"none\""
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "suptitle belongs to the Figure rather than one panel.",
+          "hint": "suptitle belongs to the Figure rather than one panel.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "panels-read-4",
+          "kind": "mcq",
+          "code": "fig,axes=plt.subplots(1,2)\ntext=fig.suptitle(\"${word}\")\nprint(text.get_text())",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Empty string",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "suptitle belongs to the Figure rather than one panel.",
+          "hint": "suptitle belongs to the Figure rather than one panel.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "panels-choose-4",
+          "kind": "mcq",
+          "code": "fig,axes=plt.subplots(1,2)\ntext=fig.____(\"${word}\")\nprint(text.get_text())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. suptitle belongs to the Figure rather than one panel.",
+          "answer": "suptitle",
+          "options": [
+            "suptitle",
+            "get_suptitle",
+            "title"
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "The default array mirrors the requested row/column grid.",
+          "hint": "The default array mirrors the requested row/column grid.",
+          "id": "panels-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,axes=plt.subplots(2,3)\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). The default array mirrors the requested row/column grid. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "axes.shape"
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "Disabling squeezing retains a two-dimensional axes array.",
+          "hint": "Disabling squeezing retains a two-dimensional axes array.",
+          "id": "panels-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,axes=plt.subplots(1,1,squeeze=____)\nprint(axes.shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 1). Disabling squeezing retains a two-dimensional axes array. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "False"
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "Shared x limits propagate to the other panel.",
+          "hint": "Shared x limits propagate to the other panel.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "panels-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,axes=plt.subplots(2,1,sharex=____)\naxes[0].set_xlim(0,${n})\nprint(tuple(map(float,axes[1].get_xlim())))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (0.0, ${n}.0). Shared x limits propagate to the other panel. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "True"
+          ]
+        },
+        {
+          "concept": "Subplots, grids, and axis sharing",
+          "explanation": "suptitle belongs to the Figure rather than one panel.",
+          "hint": "suptitle belongs to the Figure rather than one panel.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "panels-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,axes=plt.subplots(1,2)\ntext=fig.____(\"${word}\")\nprint(text.get_text())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. suptitle belongs to the Figure rather than one panel. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "suptitle"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "title": "Limits, scales, and ticks",
+      "section": "Intermediate",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Limits control the visible range; scales transform the axis mapping. Logarithmic scales need meaningful positive data. Ticks specify positions and labels. Zooming changes the view, not the stored points.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "panels"
+      ],
+      "questions": [
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "set_xlim sets the visible horizontal interval.",
+          "hint": "set_xlim sets the visible horizontal interval.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "limits-read-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.set_xlim(0,${n})\nprint(tuple(map(float,ax.get_xlim())))",
+          "prompt": "What is the result?",
+          "answer": "(0.0, ${n}.0)",
+          "options": [
+            "(0.0, ${n}.0)",
+            "(0.0, 1.0)",
+            "(${n}.0, 0.0)"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "set_xlim sets the visible horizontal interval.",
+          "hint": "set_xlim sets the visible horizontal interval.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "limits-choose-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.____(0,${n})\nprint(tuple(map(float,ax.get_xlim())))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (0.0, ${n}.0). set_xlim sets the visible horizontal interval.",
+          "answer": "set_xlim",
+          "options": [
+            "set_xlim",
+            "set_ylim",
+            "set_xticks"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "The scale controls how coordinates map onto the axis.",
+          "hint": "The scale controls how coordinates map onto the axis.",
+          "id": "limits-read-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.set_xscale(\"log\")\nprint(ax.get_xscale())",
+          "prompt": "What is the result?",
+          "answer": "log",
+          "options": [
+            "log",
+            "linear",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "The scale controls how coordinates map onto the axis.",
+          "hint": "The scale controls how coordinates map onto the axis.",
+          "id": "limits-choose-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.____(\"log\")\nprint(ax.get_xscale())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: log. The scale controls how coordinates map onto the axis.",
+          "answer": "set_xscale",
+          "options": [
+            "set_xscale",
+            "set_xlabel",
+            "set_title"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "The positions are data coordinates; labels can be configured separately.",
+          "hint": "The positions are data coordinates; labels can be configured separately.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "limits-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.set_xticks([0,${n}])\nprint(ax.get_xticks().tolist())",
+          "prompt": "What is the result?",
+          "answer": "[0, ${n}]",
+          "options": [
+            "[0, ${n}]",
+            "[0, 1]",
+            "[]"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "The positions are data coordinates; labels can be configured separately.",
+          "hint": "The positions are data coordinates; labels can be configured separately.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "limits-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.set_xticks(____)\nprint(ax.get_xticks().tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [0, ${n}]. The positions are data coordinates; labels can be configured separately.",
+          "answer": "[0,${n}]",
+          "options": [
+            "[0,${n}]",
+            "[0,1]",
+            "[]"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "Clipping the visible range leaves the line data unchanged.",
+          "hint": "Clipping the visible range leaves the line data unchanged.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "limits-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[${n},${m}])\nax.set_ylim(0,1)\nprint(line.get_ydata().tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${m}]",
+          "options": [
+            "[${n}, ${m}]",
+            "[0, 1]",
+            "[]"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "Clipping the visible range leaves the line data unchanged.",
+          "hint": "Clipping the visible range leaves the line data unchanged.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "limits-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[${n},${m}])\nax.set_ylim(0,1)\nprint(line.____.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. Clipping the visible range leaves the line data unchanged.",
+          "answer": "get_ydata()",
+          "options": [
+            "get_ydata()",
+            "get_xdata()",
+            "get_label()"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "set_xlim sets the visible horizontal interval.",
+          "hint": "set_xlim sets the visible horizontal interval.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "limits-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nax.____(0,${n})\nprint(tuple(map(float,ax.get_xlim())))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (0.0, ${n}.0). set_xlim sets the visible horizontal interval. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "set_xlim"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "The scale controls how coordinates map onto the axis.",
+          "hint": "The scale controls how coordinates map onto the axis.",
+          "id": "limits-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nax.____(\"log\")\nprint(ax.get_xscale())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: log. The scale controls how coordinates map onto the axis. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "set_xscale"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "The positions are data coordinates; labels can be configured separately.",
+          "hint": "The positions are data coordinates; labels can be configured separately.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "limits-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nax.set_xticks(____)\nprint(ax.get_xticks().tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [0, ${n}]. The positions are data coordinates; labels can be configured separately. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "[0,${n}]"
+          ]
+        },
+        {
+          "concept": "Limits, scales, and ticks",
+          "explanation": "Clipping the visible range leaves the line data unchanged.",
+          "hint": "Clipping the visible range leaves the line data unchanged.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "limits-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[${n},${m}])\nax.set_ylim(0,1)\nprint(line.____.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. Clipping the visible range leaves the line data unchanged. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "get_ydata()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bars",
+      "title": "Bars, histograms, and counts",
+      "section": "Intermediate",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. bar plots values at specified positions; hist computes bin counts from samples. Histogram edges define the intervals, with the final right edge included. Interpret returned counts and edges rather than assuming a picture proves a distribution claim.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "limits"
+      ],
+      "questions": [
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "Each input pair creates one bar patch.",
+          "hint": "Each input pair creates one bar patch.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "bars-read-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nbars=ax.bar([0,1],[${n},${m}])\nprint(len(bars))",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "Each input pair creates one bar patch.",
+          "hint": "Each input pair creates one bar patch.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "bars-choose-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nbars=ax.____([0,1],[${n},${m}])\nprint(len(bars))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Each input pair creates one bar patch.",
+          "answer": "bar",
+          "options": [
+            "bar",
+            "plot",
+            "scatter"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "The patch height reflects the supplied bar value.",
+          "hint": "The patch height reflects the supplied bar value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "bars-read-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nbars=ax.bar([0],[${n}])\nprint(int(bars[0].get_height()))",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "1"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "The patch height reflects the supplied bar value.",
+          "hint": "The patch height reflects the supplied bar value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "bars-choose-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nbars=ax.bar([0],[${n}])\nprint(int(bars[0].____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The patch height reflects the supplied bar value.",
+          "answer": "get_height()",
+          "options": [
+            "get_height()",
+            "get_width()",
+            "get_x()"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "The first bin contains two zeros and the second one one.",
+          "hint": "The first bin contains two zeros and the second one one.",
+          "id": "bars-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\ncounts,edges,_=ax.hist([0,0,1],bins=[-0.5,0.5,1.5])\nprint(counts.tolist())",
+          "prompt": "What is the result?",
+          "answer": "[2.0, 1.0]",
+          "options": [
+            "[2.0, 1.0]",
+            "[1.0, 2.0]",
+            "[3.0]"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "The first bin contains two zeros and the second one one.",
+          "hint": "The first bin contains two zeros and the second one one.",
+          "id": "bars-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\ncounts,edges,_=ax.hist([0,0,1],bins=____)\nprint(counts.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [2.0, 1.0]. The first bin contains two zeros and the second one one.",
+          "answer": "[-0.5,0.5,1.5]",
+          "options": [
+            "[-0.5,0.5,1.5]",
+            "[-0.5,1.5]",
+            "[0.5,1.5]"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "Two bins require three boundaries.",
+          "hint": "Two bins require three boundaries.",
+          "id": "bars-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\ncounts,edges,_=ax.hist([0,1,2],bins=2)\nprint(len(edges))",
+          "prompt": "What is the result?",
+          "answer": "3",
+          "options": [
+            "3",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "Two bins require three boundaries.",
+          "hint": "Two bins require three boundaries.",
+          "id": "bars-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\ncounts,edges,_=ax.hist([0,1,2],bins=____)\nprint(len(edges))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. Two bins require three boundaries.",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "Each input pair creates one bar patch.",
+          "hint": "Each input pair creates one bar patch.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "bars-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nbars=ax.____([0,1],[${n},${m}])\nprint(len(bars))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Each input pair creates one bar patch. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "bar"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "The patch height reflects the supplied bar value.",
+          "hint": "The patch height reflects the supplied bar value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "bars-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nbars=ax.bar([0],[${n}])\nprint(int(bars[0].____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The patch height reflects the supplied bar value. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "get_height()"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "The first bin contains two zeros and the second one one.",
+          "hint": "The first bin contains two zeros and the second one one.",
+          "id": "bars-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\ncounts,edges,_=ax.hist([0,0,1],bins=____)\nprint(counts.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [2.0, 1.0]. The first bin contains two zeros and the second one one. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "[-0.5,0.5,1.5]"
+          ]
+        },
+        {
+          "concept": "Bars, histograms, and counts",
+          "explanation": "Two bins require three boundaries.",
+          "hint": "Two bins require three boundaries.",
+          "id": "bars-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\ncounts,edges,_=ax.hist([0,1,2],bins=____)\nprint(len(edges))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. Two bins require three boundaries. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "images",
+      "title": "Images, colormaps, and colorbars",
+      "section": "Intermediate",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. imshow maps an array to an image artist. Numeric values can map through a colormap and normalization; a colorbar explains that mapping. Origin and extent control spatial interpretation. A colorbar creates its own Axes in a simple figure.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "bars"
+      ],
+      "questions": [
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "The image artist stores the two-dimensional data.",
+          "hint": "The image artist stores the two-dimensional data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "images-read-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nimg=ax.imshow([[${n},0],[${m},1]])\nprint(img.get_array().shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 2)",
+          "options": [
+            "(2, 2)",
+            "(4,)",
+            "(1, 4)"
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "The image artist stores the two-dimensional data.",
+          "hint": "The image artist stores the two-dimensional data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "images-choose-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nimg=ax.____([[${n},0],[${m},1]])\nprint(img.get_array().shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). The image artist stores the two-dimensional data.",
+          "answer": "imshow",
+          "options": [
+            "imshow",
+            "plot",
+            "scatter"
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "cmap selects the numeric-to-color palette.",
+          "hint": "cmap selects the numeric-to-color palette.",
+          "id": "images-read-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nimg=ax.imshow([[0,1]],cmap=\"viridis\")\nprint(img.get_cmap().name)",
+          "prompt": "What is the result?",
+          "answer": "viridis",
+          "options": [
+            "viridis",
+            "gray",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "cmap selects the numeric-to-color palette.",
+          "hint": "cmap selects the numeric-to-color palette.",
+          "id": "images-choose-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nimg=ax.imshow([[0,1]],cmap=____)\nprint(img.get_cmap().name)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: viridis. cmap selects the numeric-to-color palette. Use \"viridis\" as the replacement literal.",
+          "answer": "\"viridis\"",
+          "options": [
+            "\"viridis\"",
+            "\"gray\"",
+            "\"plasma\""
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "The color limits define the normalization endpoints.",
+          "hint": "The color limits define the normalization endpoints.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "images-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nimg=ax.imshow([[0,${n}]],vmin=0,vmax=${n})\nprint(img.get_clim())",
+          "prompt": "What is the result?",
+          "answer": "(0.0, ${n}.0)",
+          "options": [
+            "(0.0, ${n}.0)",
+            "(0.0, 1.0)",
+            "None"
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "The color limits define the normalization endpoints.",
+          "hint": "The color limits define the normalization endpoints.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "images-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nimg=ax.imshow([[0,${n}]],vmin=0,vmax=____)\nprint(img.get_clim())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (0.0, ${n}.0). The color limits define the normalization endpoints. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "1",
+            "100"
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "The colorbar adds a second Axes beside the data Axes.",
+          "hint": "The colorbar adds a second Axes beside the data Axes.",
+          "id": "images-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nimg=ax.imshow([[0,1]])\nfig.colorbar(img,ax=ax)\nprint(len(fig.axes))",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "The colorbar adds a second Axes beside the data Axes.",
+          "hint": "The colorbar adds a second Axes beside the data Axes.",
+          "id": "images-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nimg=ax.imshow([[0,1]])\nfig.____(img,ax=ax)\nprint(len(fig.axes))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The colorbar adds a second Axes beside the data Axes.",
+          "answer": "colorbar",
+          "options": [
+            "colorbar",
+            "suptitle",
+            "legend"
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "The image artist stores the two-dimensional data.",
+          "hint": "The image artist stores the two-dimensional data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "images-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nimg=ax.____([[${n},0],[${m},1]])\nprint(img.get_array().shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). The image artist stores the two-dimensional data. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "imshow"
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "cmap selects the numeric-to-color palette.",
+          "hint": "cmap selects the numeric-to-color palette.",
+          "id": "images-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nimg=ax.imshow([[0,1]],cmap=____)\nprint(img.get_cmap().name)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: viridis. cmap selects the numeric-to-color palette. Use \"viridis\" as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "\"viridis\""
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "The color limits define the normalization endpoints.",
+          "hint": "The color limits define the normalization endpoints.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "images-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nimg=ax.imshow([[0,${n}]],vmin=0,vmax=____)\nprint(img.get_clim())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (0.0, ${n}.0). The color limits define the normalization endpoints. Use ${n} as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Images, colormaps, and colorbars",
+          "explanation": "The colorbar adds a second Axes beside the data Axes.",
+          "hint": "The colorbar adds a second Axes beside the data Axes.",
+          "id": "images-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nimg=ax.imshow([[0,1]])\nfig.____(img,ax=ax)\nprint(len(fig.axes))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The colorbar adds a second Axes beside the data Axes. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "colorbar"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coordinates",
+      "title": "Data and axes coordinate systems",
+      "section": "Advanced",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Transform objects specify how coordinates are interpreted. ax.transData uses data units; ax.transAxes uses fractions of the panel. An annotation may reference a data point but offset its text in points. Mixing coordinate systems intentionally makes stable labels.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "images"
+      ],
+      "questions": [
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "Axes fractions keep this text at the panel center when limits change.",
+          "hint": "Axes fractions keep this text at the panel center when limits change.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coordinates-read-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nt=ax.text(0.5,0.5,\"${word}\",transform=ax.transAxes)\nprint(t.get_transform() is ax.transAxes)",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "Axes fractions keep this text at the panel center when limits change.",
+          "hint": "Axes fractions keep this text at the panel center when limits change.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coordinates-choose-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nt=ax.text(0.5,0.5,\"${word}\",transform=____)\nprint(t.get_transform() is ax.transAxes)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Axes fractions keep this text at the panel center when limits change.",
+          "answer": "ax.transAxes",
+          "options": [
+            "ax.transAxes",
+            "ax.transData",
+            "fig.transFigure"
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "Data coordinates tie the text to the plotted quantity.",
+          "hint": "Data coordinates tie the text to the plotted quantity.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coordinates-read-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nt=ax.text(${n},0,\"${word}\",transform=ax.transData)\nprint(t.get_position())",
+          "prompt": "What is the result?",
+          "answer": "(${n}, 0)",
+          "options": [
+            "(${n}, 0)",
+            "(0.5, 0.5)",
+            "(0, 0)"
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "Data coordinates tie the text to the plotted quantity.",
+          "hint": "Data coordinates tie the text to the plotted quantity.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coordinates-choose-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nt=ax.text(${n},0,\"${word}\",transform=____)\nprint(t.get_position())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (${n}, 0). Data coordinates tie the text to the plotted quantity.",
+          "answer": "ax.transData",
+          "options": [
+            "ax.transData",
+            "ax.transAxes",
+            "fig.transFigure"
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "The text is offset from the reference point in display points.",
+          "hint": "The text is offset from the reference point in display points.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coordinates-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nt=ax.annotate(\"${word}\",xy=(0,0),xytext=(5,5),textcoords=\"offset points\")\nprint(t.get_text())",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "Empty string",
+            "ValueError"
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "The text is offset from the reference point in display points.",
+          "hint": "The text is offset from the reference point in display points.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coordinates-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nt=ax.annotate(\"${word}\",xy=(0,0),xytext=(5,5),textcoords=____)\nprint(t.get_text())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The text is offset from the reference point in display points. Use \"offset points\" as the replacement literal.",
+          "answer": "\"offset points\"",
+          "options": [
+            "\"offset points\"",
+            "\"invalid\"",
+            "\"unknown\""
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "axhline holds y in data units while spanning axes-fraction x positions.",
+          "hint": "axhline holds y in data units while spanning axes-fraction x positions.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "coordinates-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline=ax.axhline(${n})\nprint(list(line.get_ydata()))",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${n}]",
+          "options": [
+            "[${n}, ${n}]",
+            "[0, 1]",
+            "[${n}]"
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "axhline holds y in data units while spanning axes-fraction x positions.",
+          "hint": "axhline holds y in data units while spanning axes-fraction x positions.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "coordinates-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline=ax.____(${n})\nprint(list(line.get_ydata()))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${n}]. axhline holds y in data units while spanning axes-fraction x positions.",
+          "answer": "axhline",
+          "options": [
+            "axhline",
+            "axvline",
+            "plot"
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "Axes fractions keep this text at the panel center when limits change.",
+          "hint": "Axes fractions keep this text at the panel center when limits change.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coordinates-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nt=ax.text(0.5,0.5,\"${word}\",transform=____)\nprint(t.get_transform() is ax.transAxes)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Axes fractions keep this text at the panel center when limits change. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "ax.transAxes"
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "Data coordinates tie the text to the plotted quantity.",
+          "hint": "Data coordinates tie the text to the plotted quantity.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coordinates-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nt=ax.text(${n},0,\"${word}\",transform=____)\nprint(t.get_position())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (${n}, 0). Data coordinates tie the text to the plotted quantity. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "ax.transData"
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "The text is offset from the reference point in display points.",
+          "hint": "The text is offset from the reference point in display points.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "coordinates-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nt=ax.annotate(\"${word}\",xy=(0,0),xytext=(5,5),textcoords=____)\nprint(t.get_text())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The text is offset from the reference point in display points. Use \"offset points\" as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "\"offset points\""
+          ]
+        },
+        {
+          "concept": "Data and axes coordinate systems",
+          "explanation": "axhline holds y in data units while spanning axes-fraction x positions.",
+          "hint": "axhline holds y in data units while spanning axes-fraction x positions.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "coordinates-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline=ax.____(${n})\nprint(list(line.get_ydata()))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${n}]. axhline holds y in data units while spanning axes-fraction x positions. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "axhline"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "styles",
+      "title": "Scoped styles and reusable presentation",
+      "section": "Advanced",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. rcParams control defaults for new artists. rc_context temporarily changes defaults and restores them on exit. Existing artists generally keep their assigned properties. Keep styling separate from data preparation so reusable plotting functions remain predictable.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "coordinates"
+      ],
+      "questions": [
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "The context supplies a temporary default for the new line.",
+          "hint": "The context supplies a temporary default for the new line.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "styles-read-1",
+          "kind": "mcq",
+          "code": "with plt.rc_context({\"lines.linewidth\":3}):\n    fig,ax=plt.subplots()\n    line,=ax.plot([0,1],[0,${n}])\n    print(line.get_linewidth())",
+          "prompt": "What is the result?",
+          "answer": "3.0",
+          "options": [
+            "3.0",
+            "1.0",
+            "0.0"
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "The context supplies a temporary default for the new line.",
+          "hint": "The context supplies a temporary default for the new line.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "styles-choose-1",
+          "kind": "mcq",
+          "code": "with plt.____({\"lines.linewidth\":3}):\n    fig,ax=plt.subplots()\n    line,=ax.plot([0,1],[0,${n}])\n    print(line.get_linewidth())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3.0. The context supplies a temporary default for the new line.",
+          "answer": "rc_context",
+          "options": [
+            "rc_context",
+            "style.use",
+            "figure"
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "rc_context restores the earlier value after the block.",
+          "hint": "rc_context restores the earlier value after the block.",
+          "id": "styles-read-2",
+          "kind": "mcq",
+          "code": "before=plt.rcParams[\"lines.linewidth\"]\nwith plt.rc_context({\"lines.linewidth\":7}):\n    pass\nprint(plt.rcParams[\"lines.linewidth\"]==before)",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "rc_context restores the earlier value after the block.",
+          "hint": "rc_context restores the earlier value after the block.",
+          "id": "styles-choose-2",
+          "kind": "mcq",
+          "code": "before=plt.rcParams[\"lines.linewidth\"]\nwith plt.rc_context({\"lines.linewidth\":7}):\n    pass\nprint(plt.rcParams[\"lines.linewidth\"]____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. rc_context restores the earlier value after the block.",
+          "answer": "==before",
+          "options": [
+            "==before",
+            "==7",
+            "is None"
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "alpha controls artist opacity without rescaling its numeric data.",
+          "hint": "alpha controls artist opacity without rescaling its numeric data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "styles-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],alpha=0.5)\nprint(line.get_alpha())",
+          "prompt": "What is the result?",
+          "answer": "0.5",
+          "options": [
+            "0.5",
+            "1.0",
+            "None"
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "alpha controls artist opacity without rescaling its numeric data.",
+          "hint": "alpha controls artist opacity without rescaling its numeric data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "styles-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],alpha=____)\nprint(line.get_alpha())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0.5. alpha controls artist opacity without rescaling its numeric data.",
+          "answer": "0.5",
+          "options": [
+            "0.5",
+            "1.0",
+            "None"
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "The line style changes the drawn stroke pattern.",
+          "hint": "The line style changes the drawn stroke pattern.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "styles-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],linestyle=\"--\")\nprint(line.get_linestyle())",
+          "prompt": "What is the result?",
+          "answer": "--",
+          "options": [
+            "--",
+            "-",
+            "None"
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "The line style changes the drawn stroke pattern.",
+          "hint": "The line style changes the drawn stroke pattern.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "styles-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],linestyle=____)\nprint(line.get_linestyle())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: --. The line style changes the drawn stroke pattern. Use \"--\" as the replacement literal.",
+          "answer": "\"--\"",
+          "options": [
+            "\"--\"",
+            "\"-\"",
+            "\"None\""
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "The context supplies a temporary default for the new line.",
+          "hint": "The context supplies a temporary default for the new line.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "styles-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "with plt.____({\"lines.linewidth\":3}):\n    fig,ax=plt.subplots()\n    line,=ax.plot([0,1],[0,${n}])\n    print(line.get_linewidth())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3.0. The context supplies a temporary default for the new line. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "rc_context"
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "rc_context restores the earlier value after the block.",
+          "hint": "rc_context restores the earlier value after the block.",
+          "id": "styles-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "before=plt.rcParams[\"lines.linewidth\"]\nwith plt.rc_context({\"lines.linewidth\":7}):\n    pass\nprint(plt.rcParams[\"lines.linewidth\"]____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. rc_context restores the earlier value after the block. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "==before"
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "alpha controls artist opacity without rescaling its numeric data.",
+          "hint": "alpha controls artist opacity without rescaling its numeric data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "styles-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],alpha=____)\nprint(line.get_alpha())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0.5. alpha controls artist opacity without rescaling its numeric data. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "0.5"
+          ]
+        },
+        {
+          "concept": "Scoped styles and reusable presentation",
+          "explanation": "The line style changes the drawn stroke pattern.",
+          "hint": "The line style changes the drawn stroke pattern.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "styles-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}],linestyle=____)\nprint(line.get_linestyle())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: --. The line style changes the drawn stroke pattern. Use \"--\" as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "\"--\""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "updates",
+      "title": "Updating artists and autoscaling",
+      "section": "Advanced",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Reusing artists avoids accumulating duplicates during repeated updates. set_data changes a line but does not always recompute limits. relim recomputes data limits and autoscale_view updates the view. Test artist counts and values to catch plotting-state mistakes.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "styles"
+      ],
+      "questions": [
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "Update the existing line instead of creating another one.",
+          "hint": "Update the existing line instead of creating another one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "updates-read-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,1])\nline.set_ydata([${n},${m}])\nprint(list(line.get_ydata()))",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${m}]",
+          "options": [
+            "[${n}, ${m}]",
+            "[0, 1]",
+            "[]"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "Update the existing line instead of creating another one.",
+          "hint": "Update the existing line instead of creating another one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "updates-choose-1",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,1])\nline.____([${n},${m}])\nprint(list(line.get_ydata()))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. Update the existing line instead of creating another one.",
+          "answer": "set_ydata",
+          "options": [
+            "set_ydata",
+            "set_xdata",
+            "set_label"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "Changing data on one artist does not add a new line.",
+          "hint": "Changing data on one artist does not add a new line.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "updates-read-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,1])\nline.set_ydata([${n},${m}])\nprint(len(ax.lines))",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "2",
+            "0"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "Changing data on one artist does not add a new line.",
+          "hint": "Changing data on one artist does not add a new line.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "updates-choose-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,1])\nline.set_ydata([${n},${m}])\nprint(len(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Changing data on one artist does not add a new line.",
+          "answer": "ax.lines",
+          "options": [
+            "ax.lines",
+            "ax.collections",
+            "ax.patches"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "Removing an artist detaches it from the Axes.",
+          "hint": "Removing an artist detaches it from the Axes.",
+          "id": "updates-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,1])\nline.remove()\nprint(len(ax.lines))",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "Removing an artist detaches it from the Axes.",
+          "hint": "Removing an artist detaches it from the Axes.",
+          "id": "updates-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,1])\nline.____()\nprint(len(ax.lines))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Removing an artist detaches it from the Axes.",
+          "answer": "remove",
+          "options": [
+            "remove",
+            "get_label",
+            "get_color"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "clear removes plot content from this Axes; the Figure still exists.",
+          "hint": "clear removes plot content from this Axes; the Figure still exists.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "updates-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}])\nax.clear()\nprint(len(ax.lines))",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "clear removes plot content from this Axes; the Figure still exists.",
+          "hint": "clear removes plot content from this Axes; the Figure still exists.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "updates-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}])\nax.____()\nprint(len(ax.lines))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. clear removes plot content from this Axes; the Figure still exists.",
+          "answer": "clear",
+          "options": [
+            "clear",
+            "relim",
+            "autoscale_view"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "Update the existing line instead of creating another one.",
+          "hint": "Update the existing line instead of creating another one.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "updates-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,1])\nline.____([${n},${m}])\nprint(list(line.get_ydata()))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. Update the existing line instead of creating another one. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "set_ydata"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "Changing data on one artist does not add a new line.",
+          "hint": "Changing data on one artist does not add a new line.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "updates-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,1])\nline.set_ydata([${n},${m}])\nprint(len(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. Changing data on one artist does not add a new line. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "ax.lines"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "Removing an artist detaches it from the Axes.",
+          "hint": "Removing an artist detaches it from the Axes.",
+          "id": "updates-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,1])\nline.____()\nprint(len(ax.lines))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Removing an artist detaches it from the Axes. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "remove"
+          ]
+        },
+        {
+          "concept": "Updating artists and autoscaling",
+          "explanation": "clear removes plot content from this Axes; the Figure still exists.",
+          "hint": "clear removes plot content from this Axes; the Figure still exists.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "updates-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nline,=ax.plot([0,1],[0,${n}])\nax.____()\nprint(len(ax.lines))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. clear removes plot content from this Axes; the Figure still exists. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "clear"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "export",
+      "title": "Saving, closing, and testing figures",
+      "section": "Advanced",
+      "intro": "Matplotlib 3.8+. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Save through the explicit Figure to avoid exporting the wrong current figure. dpi and figsize determine raster pixel dimensions. Vector formats preserve supported vector elements. Close finished figures in batch jobs. Tests can inspect artists without opening a GUI.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "matplotlib-0",
+        "matplotlib-1"
+      ],
+      "requires": [
+        "updates"
+      ],
+      "questions": [
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "savefig writes a PNG into the in-memory binary buffer.",
+          "hint": "savefig writes a PNG into the in-memory binary buffer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "export-read-1",
+          "kind": "mcq",
+          "code": "import io\nfig,ax=plt.subplots()\nax.plot([0,1],[0,${n}])\nout=io.BytesIO()\nfig.savefig(out,format=\"png\")\nprint(out.getvalue().startswith(b\"\\x89PNG\"))",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "savefig writes a PNG into the in-memory binary buffer.",
+          "hint": "savefig writes a PNG into the in-memory binary buffer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "export-choose-1",
+          "kind": "mcq",
+          "code": "import io\nfig,ax=plt.subplots()\nax.plot([0,1],[0,${n}])\nout=io.BytesIO()\nfig.____(out,format=\"png\")\nprint(out.getvalue().startswith(b\"\\x89PNG\"))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. savefig writes a PNG into the in-memory binary buffer.",
+          "answer": "savefig",
+          "options": [
+            "savefig",
+            "show",
+            "clear"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "In a standard noninteractive canvas, inches times dpi yields pixel dimensions.",
+          "hint": "In a standard noninteractive canvas, inches times dpi yields pixel dimensions.",
+          "id": "export-read-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots(figsize=(4,3),dpi=100)\nprint(tuple(fig.canvas.get_width_height()))",
+          "prompt": "What is the result?",
+          "answer": "(400, 300)",
+          "options": [
+            "(400, 300)",
+            "(4, 3)",
+            "(300, 400)"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "In a standard noninteractive canvas, inches times dpi yields pixel dimensions.",
+          "hint": "In a standard noninteractive canvas, inches times dpi yields pixel dimensions.",
+          "id": "export-choose-2",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots(figsize=(4,3),dpi=____)\nprint(tuple(fig.canvas.get_width_height()))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (400, 300). In a standard noninteractive canvas, inches times dpi yields pixel dimensions.",
+          "answer": "100",
+          "options": [
+            "100",
+            "50",
+            "200"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "Closing removes this figure from pyplot management.",
+          "hint": "Closing removes this figure from pyplot management.",
+          "id": "export-read-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nnumber=fig.number\nplt.close(fig)\nprint(plt.fignum_exists(number))",
+          "prompt": "What is the result?",
+          "answer": "False",
+          "options": [
+            "False",
+            "True",
+            "None"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "Closing removes this figure from pyplot management.",
+          "hint": "Closing removes this figure from pyplot management.",
+          "id": "export-choose-3",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nnumber=fig.number\nplt.____(fig)\nprint(plt.fignum_exists(number))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: False. Closing removes this figure from pyplot management.",
+          "answer": "close",
+          "options": [
+            "close",
+            "figure",
+            "show"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "Inspecting artists provides a deterministic structural test without visual guessing.",
+          "hint": "Inspecting artists provides a deterministic structural test without visual guessing.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "export-read-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.plot([0,1],[0,${n}])\nassert len(ax.lines)==1\nprint(\"ready\")",
+          "prompt": "What is the result?",
+          "answer": "ready",
+          "options": [
+            "ready",
+            "AssertionError",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "Inspecting artists provides a deterministic structural test without visual guessing.",
+          "hint": "Inspecting artists provides a deterministic structural test without visual guessing.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "export-choose-4",
+          "kind": "mcq",
+          "code": "fig,ax=plt.subplots()\nax.plot([0,1],[0,${n}])\nassert len(ax.lines)==____\nprint(\"ready\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ready. Inspecting artists provides a deterministic structural test without visual guessing.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "savefig writes a PNG into the in-memory binary buffer.",
+          "hint": "savefig writes a PNG into the in-memory binary buffer.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "export-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "import io\nfig,ax=plt.subplots()\nax.plot([0,1],[0,${n}])\nout=io.BytesIO()\nfig.____(out,format=\"png\")\nprint(out.getvalue().startswith(b\"\\x89PNG\"))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. savefig writes a PNG into the in-memory binary buffer. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "savefig"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "In a standard noninteractive canvas, inches times dpi yields pixel dimensions.",
+          "hint": "In a standard noninteractive canvas, inches times dpi yields pixel dimensions.",
+          "id": "export-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots(figsize=(4,3),dpi=____)\nprint(tuple(fig.canvas.get_width_height()))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (400, 300). In a standard noninteractive canvas, inches times dpi yields pixel dimensions. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "100"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "Closing removes this figure from pyplot management.",
+          "hint": "Closing removes this figure from pyplot management.",
+          "id": "export-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nnumber=fig.number\nplt.____(fig)\nprint(plt.fignum_exists(number))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: False. Closing removes this figure from pyplot management. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "close"
+          ]
+        },
+        {
+          "concept": "Saving, closing, and testing figures",
+          "explanation": "Inspecting artists provides a deterministic structural test without visual guessing.",
+          "hint": "Inspecting artists provides a deterministic structural test without visual guessing.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "export-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "fig,ax=plt.subplots()\nax.plot([0,1],[0,${n}])\nassert len(ax.lines)==____\nprint(\"ready\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ready. Inspecting artists provides a deterministic structural test without visual guessing. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "1"
+          ]
+        }
+      ]
+    }
+  ]
+}

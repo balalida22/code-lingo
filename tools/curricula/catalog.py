@@ -9,7 +9,8 @@ def write_catalog():
     lines=['# Course curricula','',
       'Lesson length varies by topic; every section exam contains 25 questions. '
       'The fifteen non-Python/non-Rust tracks each contain 20 lessons. Python retains 18 lessons '
-      'and Rust retains its 26 Book-led lessons. '
+      'and Rust retains its 26 Book-led lessons. Four dedicated Python library tracks '
+      'each contain 12 lessons, separate from the original Python samplers. '
       f"Total: {sum(len(c['lessons']) for c in courses)} lessons and "
       f"{sum(len(l['questions']) for c in courses for l in c['lessons']):,} exercises.",
       '', 'See [NATIVE_CURRICULA.md](NATIVE_CURRICULA.md) for the review, native topic choices, '

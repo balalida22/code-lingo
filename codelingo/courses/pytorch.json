@@ -1,0 +1,3048 @@
+{
+  "schema_version": 2,
+  "id": "pytorch",
+  "title": "Python · PyTorch: tensors, modules, and training code",
+  "language": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code",
+  "version": "1.0",
+  "sources": [
+    {
+      "id": "pytorch-0",
+      "title": "PyTorch beginner tutorials",
+      "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "pytorch-1",
+      "title": "Autograd mechanics",
+      "url": "https://docs.pytorch.org/docs/stable/notes/autograd.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "pytorch-2",
+      "title": "Serialization notes",
+      "url": "https://docs.pytorch.org/docs/stable/notes/serialization.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "tensors",
+      "title": "Tensor creation, shape, and dtype",
+      "section": "Basics",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Tensors combine values with shape, dtype, and device. Explicitly distinguish floating tensors used for differentiable operations from integer tensors used for indices. Print lists or scalar items for stable examples. No GPU is required for these exercises.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "The nested input creates two rows and two columns.",
+          "hint": "The nested input creates two rows and two columns.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tensors-read-1",
+          "kind": "mcq",
+          "code": "x=torch.tensor([[${n},0],[${m},1]])\nprint(tuple(x.shape))",
+          "prompt": "What is the result?",
+          "answer": "(2, 2)",
+          "options": [
+            "(2, 2)",
+            "(4,)",
+            "(2,)"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "The nested input creates two rows and two columns.",
+          "hint": "The nested input creates two rows and two columns.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tensors-choose-1",
+          "kind": "mcq",
+          "code": "x=torch.tensor([[${n},0],[${m},1]])\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). The nested input creates two rows and two columns.",
+          "answer": "tuple(x.shape)",
+          "options": [
+            "tuple(x.shape)",
+            "x.numel()",
+            "x.ndim"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "numel counts every tensor element.",
+          "hint": "numel counts every tensor element.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "twom": "m*2"
+          },
+          "id": "tensors-read-2",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,${m}))\nprint(x.numel())",
+          "prompt": "What is the result?",
+          "answer": "${twom}",
+          "options": [
+            "${twom}",
+            "2",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "numel counts every tensor element.",
+          "hint": "numel counts every tensor element.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "twom": "m*2"
+          },
+          "id": "tensors-choose-2",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,${m}))\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${twom}. numel counts every tensor element.",
+          "answer": "x.numel()",
+          "options": [
+            "x.numel()",
+            "x.ndim",
+            "tuple(x.shape)"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "The explicit dtype selects floating-point storage.",
+          "hint": "The explicit dtype selects floating-point storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tensors-read-3",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}],dtype=torch.float32)\nprint(x.dtype)",
+          "prompt": "What is the result?",
+          "answer": "torch.float32",
+          "options": [
+            "torch.float32",
+            "torch.int64",
+            "torch.bool"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "The explicit dtype selects floating-point storage.",
+          "hint": "The explicit dtype selects floating-point storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tensors-choose-3",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}],dtype=____)\nprint(x.dtype)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: torch.float32. The explicit dtype selects floating-point storage.",
+          "answer": "torch.float32",
+          "options": [
+            "torch.float32",
+            "torch.int64",
+            "torch.bool"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "item extracts a Python number from a one-element tensor.",
+          "hint": "item extracts a Python number from a one-element tensor.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tensors-read-4",
+          "kind": "mcq",
+          "code": "x=torch.tensor(${n})\nprint(x.item())",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "[${n}]",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "item extracts a Python number from a one-element tensor.",
+          "hint": "item extracts a Python number from a one-element tensor.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tensors-choose-4",
+          "kind": "mcq",
+          "code": "x=torch.tensor(${n})\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. item extracts a Python number from a one-element tensor.",
+          "answer": "x.item()",
+          "options": [
+            "x.item()",
+            "x.tolist()+1",
+            "x.numel()"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "The nested input creates two rows and two columns.",
+          "hint": "The nested input creates two rows and two columns.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tensors-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([[${n},0],[${m},1]])\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). The nested input creates two rows and two columns. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "tuple(x.shape)"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "numel counts every tensor element.",
+          "hint": "numel counts every tensor element.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "twom": "m*2"
+          },
+          "id": "tensors-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.zeros((2,${m}))\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${twom}. numel counts every tensor element. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "x.numel()"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "The explicit dtype selects floating-point storage.",
+          "hint": "The explicit dtype selects floating-point storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tensors-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([${n}],dtype=____)\nprint(x.dtype)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: torch.float32. The explicit dtype selects floating-point storage. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "torch.float32"
+          ]
+        },
+        {
+          "concept": "Tensor creation, shape, and dtype",
+          "explanation": "item extracts a Python number from a one-element tensor.",
+          "hint": "item extracts a Python number from a one-element tensor.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "tensors-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor(${n})\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. item extracts a Python number from a one-element tensor. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "x.item()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shapes",
+      "title": "Views, reshaping, and axis movement",
+      "section": "Basics",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. reshape changes shape while preserving element count and may copy. view requires a compatible layout. transpose swaps selected axes; permute gives a complete axis order. contiguous can materialize a contiguous layout after a permutation.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "tensors"
+      ],
+      "questions": [
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "The new shape retains all six elements.",
+          "hint": "The new shape retains all six elements.",
+          "id": "shapes-read-1",
+          "kind": "mcq",
+          "code": "x=torch.arange(6)\nprint(tuple(x.reshape(2,3).shape))",
+          "prompt": "What is the result?",
+          "answer": "(2, 3)",
+          "options": [
+            "(2, 3)",
+            "(3, 2)",
+            "(6,)"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "The new shape retains all six elements.",
+          "hint": "The new shape retains all six elements.",
+          "id": "shapes-choose-1",
+          "kind": "mcq",
+          "code": "x=torch.arange(6)\nprint(tuple(x.reshape(____).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). The new shape retains all six elements.",
+          "answer": "2,3",
+          "options": [
+            "2,3",
+            "3,2",
+            "6"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "transpose exchanges the two axes.",
+          "hint": "transpose exchanges the two axes.",
+          "id": "shapes-read-2",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,3))\nprint(tuple(x.transpose(0,1).shape))",
+          "prompt": "What is the result?",
+          "answer": "(3, 2)",
+          "options": [
+            "(3, 2)",
+            "(2, 3)",
+            "(6,)"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "transpose exchanges the two axes.",
+          "hint": "transpose exchanges the two axes.",
+          "id": "shapes-choose-2",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,3))\nprint(tuple(x.transpose(____).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (3, 2). transpose exchanges the two axes.",
+          "answer": "0,1",
+          "options": [
+            "0,1",
+            "0,0",
+            "1,1"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "permute lists the old axis at each new position.",
+          "hint": "permute lists the old axis at each new position.",
+          "id": "shapes-read-3",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,3,4))\nprint(tuple(x.permute(2,0,1).shape))",
+          "prompt": "What is the result?",
+          "answer": "(4, 2, 3)",
+          "options": [
+            "(4, 2, 3)",
+            "(2, 3, 4)",
+            "(3, 2, 4)"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "permute lists the old axis at each new position.",
+          "hint": "permute lists the old axis at each new position.",
+          "id": "shapes-choose-3",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,3,4))\nprint(tuple(x.permute(____).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (4, 2, 3). permute lists the old axis at each new position.",
+          "answer": "2,0,1",
+          "options": [
+            "2,0,1",
+            "0,1,2",
+            "1,0,2"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "contiguous returns a contiguous representation, copying when necessary.",
+          "hint": "contiguous returns a contiguous representation, copying when necessary.",
+          "id": "shapes-read-4",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,3)).t()\nprint(x.contiguous().is_contiguous())",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "contiguous returns a contiguous representation, copying when necessary.",
+          "hint": "contiguous returns a contiguous representation, copying when necessary.",
+          "id": "shapes-choose-4",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,3)).t()\nprint(x.____.is_contiguous())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. contiguous returns a contiguous representation, copying when necessary.",
+          "answer": "contiguous()",
+          "options": [
+            "contiguous()",
+            "transpose(0,0)",
+            "detach()"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "The new shape retains all six elements.",
+          "hint": "The new shape retains all six elements.",
+          "id": "shapes-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.arange(6)\nprint(tuple(x.reshape(____).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). The new shape retains all six elements. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "2,3"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "transpose exchanges the two axes.",
+          "hint": "transpose exchanges the two axes.",
+          "id": "shapes-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.zeros((2,3))\nprint(tuple(x.transpose(____).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (3, 2). transpose exchanges the two axes. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "0,1"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "permute lists the old axis at each new position.",
+          "hint": "permute lists the old axis at each new position.",
+          "id": "shapes-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.zeros((2,3,4))\nprint(tuple(x.permute(____).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (4, 2, 3). permute lists the old axis at each new position. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "2,0,1"
+          ]
+        },
+        {
+          "concept": "Views, reshaping, and axis movement",
+          "explanation": "contiguous returns a contiguous representation, copying when necessary.",
+          "hint": "contiguous returns a contiguous representation, copying when necessary.",
+          "id": "shapes-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.zeros((2,3)).t()\nprint(x.____.is_contiguous())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. contiguous returns a contiguous representation, copying when necessary. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "contiguous()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "indexing",
+      "title": "Indexing and batch-preserving operations",
+      "section": "Basics",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. An integer index removes an axis; a slice preserves it. unsqueeze adds a singleton axis, and squeeze removes selected singleton dimensions. Avoid an unrestricted squeeze when a batch of one must retain its batch axis.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "shapes"
+      ],
+      "questions": [
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "Select row one and column zero.",
+          "hint": "Select row one and column zero.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "indexing-read-1",
+          "kind": "mcq",
+          "code": "x=torch.tensor([[${n},0],[${m},1]])\nprint(x[1,0].item())",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "1"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "Select row one and column zero.",
+          "hint": "Select row one and column zero.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "indexing-choose-1",
+          "kind": "mcq",
+          "code": "x=torch.tensor([[${n},0],[${m},1]])\nprint(x[____].item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Select row one and column zero.",
+          "answer": "1,0",
+          "options": [
+            "1,0",
+            "0,0",
+            "1,1"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "A slice preserves the leading batch dimension.",
+          "hint": "A slice preserves the leading batch dimension.",
+          "id": "indexing-read-2",
+          "kind": "mcq",
+          "code": "x=torch.zeros((1,3))\nprint(tuple(x[0:1].shape))",
+          "prompt": "What is the result?",
+          "answer": "(1, 3)",
+          "options": [
+            "(1, 3)",
+            "(3,)",
+            "(0, 3)"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "A slice preserves the leading batch dimension.",
+          "hint": "A slice preserves the leading batch dimension.",
+          "id": "indexing-choose-2",
+          "kind": "mcq",
+          "code": "x=torch.zeros((1,3))\nprint(tuple(x[____].shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 3). A slice preserves the leading batch dimension.",
+          "answer": "0:1",
+          "options": [
+            "0:1",
+            "0",
+            "1:2"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "unsqueeze inserts a length-one dimension at the specified position.",
+          "hint": "unsqueeze inserts a length-one dimension at the specified position.",
+          "id": "indexing-read-3",
+          "kind": "mcq",
+          "code": "x=torch.zeros(3)\nprint(tuple(x.unsqueeze(0).shape))",
+          "prompt": "What is the result?",
+          "answer": "(1, 3)",
+          "options": [
+            "(1, 3)",
+            "(3, 1)",
+            "(3,)"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "unsqueeze inserts a length-one dimension at the specified position.",
+          "hint": "unsqueeze inserts a length-one dimension at the specified position.",
+          "id": "indexing-choose-3",
+          "kind": "mcq",
+          "code": "x=torch.zeros(3)\nprint(tuple(x.____.shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 3). unsqueeze inserts a length-one dimension at the specified position.",
+          "answer": "unsqueeze(0)",
+          "options": [
+            "unsqueeze(0)",
+            "unsqueeze(1)",
+            "clone()"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "Squeezing only the final axis preserves the batch dimension.",
+          "hint": "Squeezing only the final axis preserves the batch dimension.",
+          "id": "indexing-read-4",
+          "kind": "mcq",
+          "code": "x=torch.zeros((1,3,1))\nprint(tuple(x.squeeze(-1).shape))",
+          "prompt": "What is the result?",
+          "answer": "(1, 3)",
+          "options": [
+            "(1, 3)",
+            "(3,)",
+            "(3, 1)"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "Squeezing only the final axis preserves the batch dimension.",
+          "hint": "Squeezing only the final axis preserves the batch dimension.",
+          "id": "indexing-choose-4",
+          "kind": "mcq",
+          "code": "x=torch.zeros((1,3,1))\nprint(tuple(x.____.shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 3). Squeezing only the final axis preserves the batch dimension.",
+          "answer": "squeeze(-1)",
+          "options": [
+            "squeeze(-1)",
+            "squeeze()",
+            "squeeze(0)"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "Select row one and column zero.",
+          "hint": "Select row one and column zero.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "indexing-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([[${n},0],[${m},1]])\nprint(x[____].item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Select row one and column zero. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "1,0"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "A slice preserves the leading batch dimension.",
+          "hint": "A slice preserves the leading batch dimension.",
+          "id": "indexing-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.zeros((1,3))\nprint(tuple(x[____].shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 3). A slice preserves the leading batch dimension. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "0:1"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "unsqueeze inserts a length-one dimension at the specified position.",
+          "hint": "unsqueeze inserts a length-one dimension at the specified position.",
+          "id": "indexing-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.zeros(3)\nprint(tuple(x.____.shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 3). unsqueeze inserts a length-one dimension at the specified position. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "unsqueeze(0)"
+          ]
+        },
+        {
+          "concept": "Indexing and batch-preserving operations",
+          "explanation": "Squeezing only the final axis preserves the batch dimension.",
+          "hint": "Squeezing only the final axis preserves the batch dimension.",
+          "id": "indexing-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.zeros((1,3,1))\nprint(tuple(x.____.shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 3). Squeezing only the final axis preserves the batch dimension. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "squeeze(-1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "title": "Broadcasting and reductions",
+      "section": "Basics",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Elementwise operations align shapes from the right, with singleton dimensions expanding. dim chooses the axis for reductions. keepdim preserves a length-one axis. Matrix multiplication has different shape rules from elementwise multiplication.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "indexing"
+      ],
+      "questions": [
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "A feature vector broadcasts across two rows.",
+          "hint": "A feature vector broadcasts across two rows.",
+          "id": "operations-read-1",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,3)); bias=torch.ones(3)\nprint(tuple((x+bias).shape))",
+          "prompt": "What is the result?",
+          "answer": "(2, 3)",
+          "options": [
+            "(2, 3)",
+            "(3, 2)",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "A feature vector broadcasts across two rows.",
+          "hint": "A feature vector broadcasts across two rows.",
+          "id": "operations-choose-1",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,3)); bias=torch.ones(3)\nprint(tuple((____).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). A feature vector broadcasts across two rows.",
+          "answer": "x+bias",
+          "options": [
+            "x+bias",
+            "x.t()+bias[:,None]",
+            "bias"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "Reducing the row axis leaves one total per column.",
+          "hint": "Reducing the row axis leaves one total per column.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mnext": "m+1",
+            "add1": "n+m+1"
+          },
+          "id": "operations-read-2",
+          "kind": "mcq",
+          "code": "x=torch.tensor([[${n},0],[${m},1]])\nprint(x.sum(dim=0).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${add}, 1]",
+          "options": [
+            "[${add}, 1]",
+            "[${n}, ${mnext}]",
+            "${add1}"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "Reducing the row axis leaves one total per column.",
+          "hint": "Reducing the row axis leaves one total per column.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "operations-choose-2",
+          "kind": "mcq",
+          "code": "x=torch.tensor([[${n},0],[${m},1]])\nprint(x.sum(dim=____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${add}, 1]. Reducing the row axis leaves one total per column.",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "None"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "keepdim retains the reduced axis.",
+          "hint": "keepdim retains the reduced axis.",
+          "id": "operations-read-3",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,3))\nprint(tuple(x.sum(dim=1,keepdim=True).shape))",
+          "prompt": "What is the result?",
+          "answer": "(2, 1)",
+          "options": [
+            "(2, 1)",
+            "(2,)",
+            "(1, 3)"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "keepdim retains the reduced axis.",
+          "hint": "keepdim retains the reduced axis.",
+          "id": "operations-choose-3",
+          "kind": "mcq",
+          "code": "x=torch.zeros((2,3))\nprint(tuple(x.sum(dim=1,keepdim=____).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 1). keepdim retains the reduced axis.",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "Matrix multiplication contracts the inner dimension.",
+          "hint": "Matrix multiplication contracts the inner dimension.",
+          "id": "operations-read-4",
+          "kind": "mcq",
+          "code": "a=torch.ones((2,3)); b=torch.ones((3,4))\nprint(tuple((a@b).shape))",
+          "prompt": "What is the result?",
+          "answer": "(2, 4)",
+          "options": [
+            "(2, 4)",
+            "(2, 3)",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "Matrix multiplication contracts the inner dimension.",
+          "hint": "Matrix multiplication contracts the inner dimension.",
+          "id": "operations-choose-4",
+          "kind": "mcq",
+          "code": "a=torch.ones((2,3)); b=torch.ones((3,4))\nprint(tuple((a____b).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 4). Matrix multiplication contracts the inner dimension.",
+          "answer": "@",
+          "options": [
+            "@",
+            "*",
+            "+"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "A feature vector broadcasts across two rows.",
+          "hint": "A feature vector broadcasts across two rows.",
+          "id": "operations-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.zeros((2,3)); bias=torch.ones(3)\nprint(tuple((____).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). A feature vector broadcasts across two rows. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "x+bias"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "Reducing the row axis leaves one total per column.",
+          "hint": "Reducing the row axis leaves one total per column.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "operations-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([[${n},0],[${m},1]])\nprint(x.sum(dim=____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${add}, 1]. Reducing the row axis leaves one total per column. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "keepdim retains the reduced axis.",
+          "hint": "keepdim retains the reduced axis.",
+          "id": "operations-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.zeros((2,3))\nprint(tuple(x.sum(dim=1,keepdim=____).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 1). keepdim retains the reduced axis. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "True"
+          ]
+        },
+        {
+          "concept": "Broadcasting and reductions",
+          "explanation": "Matrix multiplication contracts the inner dimension.",
+          "hint": "Matrix multiplication contracts the inner dimension.",
+          "id": "operations-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=torch.ones((2,3)); b=torch.ones((3,4))\nprint(tuple((a____b).shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 4). Matrix multiplication contracts the inner dimension. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "@"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "autograd",
+      "title": "Autograd graphs and leaf gradients",
+      "section": "Intermediate",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. requires_grad enables recording for suitable floating/complex tensors. backward computes gradients and accumulates them in leaf .grad fields. A scalar loss needs no explicit gradient argument. These exercises inspect API behavior rather than deriving an optimization algorithm.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "operations"
+      ],
+      "questions": [
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "The scalar multiplication produces a gradient of two for this leaf.",
+          "hint": "The scalar multiplication produces a gradient of two for this leaf.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "double": "n*2"
+          },
+          "id": "autograd-read-1",
+          "kind": "mcq",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\ny=x*2; y.backward()\nprint(x.grad.item())",
+          "prompt": "What is the result?",
+          "answer": "2.0",
+          "options": [
+            "2.0",
+            "${double}.0",
+            "None"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "The scalar multiplication produces a gradient of two for this leaf.",
+          "hint": "The scalar multiplication produces a gradient of two for this leaf.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-choose-1",
+          "kind": "mcq",
+          "code": "x=torch.tensor(float(${n}),requires_grad=____)\ny=x*2; y.backward()\nprint(x.grad.item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2.0. The scalar multiplication produces a gradient of two for this leaf.",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "Gradients accumulate across backward calls unless cleared.",
+          "hint": "Gradients accumulate across backward calls unless cleared.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-read-2",
+          "kind": "mcq",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\n(x*2).backward(); (x*3).backward()\nprint(x.grad.item())",
+          "prompt": "What is the result?",
+          "answer": "5.0",
+          "options": [
+            "5.0",
+            "3.0",
+            "2.0"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "Gradients accumulate across backward calls unless cleared.",
+          "hint": "Gradients accumulate across backward calls unless cleared.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-choose-2",
+          "kind": "mcq",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\n(x*2).backward(); (x*3).backward()\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 5.0. Gradients accumulate across backward calls unless cleared.",
+          "answer": "x.grad.item()",
+          "options": [
+            "x.grad.item()",
+            "x.item()",
+            "x.numel()"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "Setting grad to None removes the accumulated gradient for the next computation.",
+          "hint": "Setting grad to None removes the accumulated gradient for the next computation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-read-3",
+          "kind": "mcq",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\n(x*2).backward()\nx.grad=None\nprint(x.grad is None)",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "Setting grad to None removes the accumulated gradient for the next computation.",
+          "hint": "Setting grad to None removes the accumulated gradient for the next computation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-choose-3",
+          "kind": "mcq",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\n(x*2).backward()\nx.grad=____\nprint(x.grad is None)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Setting grad to None removes the accumulated gradient for the next computation.",
+          "answer": "None",
+          "options": [
+            "None",
+            "torch.zeros_like(x)",
+            "x"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "An operation involving a tracked input produces a tracked result here.",
+          "hint": "An operation involving a tracked input produces a tracked result here.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-read-4",
+          "kind": "mcq",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\ny=x*2\nprint(y.requires_grad)",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "An operation involving a tracked input produces a tracked result here.",
+          "hint": "An operation involving a tracked input produces a tracked result here.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-choose-4",
+          "kind": "mcq",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\ny=x*2\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. An operation involving a tracked input produces a tracked result here.",
+          "answer": "y.requires_grad",
+          "options": [
+            "y.requires_grad",
+            "y.is_leaf",
+            "x.grad is not None"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "The scalar multiplication produces a gradient of two for this leaf.",
+          "hint": "The scalar multiplication produces a gradient of two for this leaf.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor(float(${n}),requires_grad=____)\ny=x*2; y.backward()\nprint(x.grad.item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2.0. The scalar multiplication produces a gradient of two for this leaf. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "True"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "Gradients accumulate across backward calls unless cleared.",
+          "hint": "Gradients accumulate across backward calls unless cleared.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\n(x*2).backward(); (x*3).backward()\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 5.0. Gradients accumulate across backward calls unless cleared. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "x.grad.item()"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "Setting grad to None removes the accumulated gradient for the next computation.",
+          "hint": "Setting grad to None removes the accumulated gradient for the next computation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\n(x*2).backward()\nx.grad=____\nprint(x.grad is None)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Setting grad to None removes the accumulated gradient for the next computation. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "None"
+          ]
+        },
+        {
+          "concept": "Autograd graphs and leaf gradients",
+          "explanation": "An operation involving a tracked input produces a tracked result here.",
+          "hint": "An operation involving a tracked input produces a tracked result here.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "autograd-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\ny=x*2\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. An operation involving a tracked input produces a tracked result here. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "y.requires_grad"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "storage",
+      "title": "Detach, clone, and storage sharing",
+      "section": "Intermediate",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. detach disconnects autograd history but shares storage. clone copies data and can still participate in autograd. detach().clone() gives an independent untracked snapshot. Understand aliasing before in-place updates, especially when autograd has saved values.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "autograd"
+      ],
+      "questions": [
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "detach removes graph tracking for this result.",
+          "hint": "detach removes graph tracking for this result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-read-1",
+          "kind": "mcq",
+          "code": "x=torch.tensor([float(${n})],requires_grad=True)\ny=x.detach()\nprint(y.requires_grad)",
+          "prompt": "What is the result?",
+          "answer": "False",
+          "options": [
+            "False",
+            "True",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "detach removes graph tracking for this result.",
+          "hint": "detach removes graph tracking for this result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-choose-1",
+          "kind": "mcq",
+          "code": "x=torch.tensor([float(${n})],requires_grad=True)\ny=x.____\nprint(y.requires_grad)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: False. detach removes graph tracking for this result.",
+          "answer": "detach()",
+          "options": [
+            "detach()",
+            "clone()",
+            "reshape(1)"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "Detaching does not copy the backing storage.",
+          "hint": "Detaching does not copy the backing storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-read-2",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}]); y=x.detach(); y[0]=0\nprint(x.item())",
+          "prompt": "What is the result?",
+          "answer": "0",
+          "options": [
+            "0",
+            "${n}",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "Detaching does not copy the backing storage.",
+          "hint": "Detaching does not copy the backing storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-choose-2",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}]); y=x.____; y[0]=0\nprint(x.item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Detaching does not copy the backing storage.",
+          "answer": "detach()",
+          "options": [
+            "detach()",
+            "clone()",
+            "detach().clone()"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "clone creates independent data.",
+          "hint": "clone creates independent data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-read-3",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}]); y=x.clone(); y[0]=0\nprint(x.item())",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "clone creates independent data.",
+          "hint": "clone creates independent data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-choose-3",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}]); y=x.____; y[0]=0\nprint(x.item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. clone creates independent data.",
+          "answer": "clone()",
+          "options": [
+            "clone()",
+            "detach()",
+            "view(1)"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "The combination disconnects the graph and allocates separate storage.",
+          "hint": "The combination disconnects the graph and allocates separate storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-read-4",
+          "kind": "mcq",
+          "code": "x=torch.tensor([float(${n})],requires_grad=True)\ny=x.detach().clone()\nprint(y.requires_grad, y.data_ptr()==x.data_ptr())",
+          "prompt": "What is the result?",
+          "answer": "False False",
+          "options": [
+            "False False",
+            "False True",
+            "True False"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "The combination disconnects the graph and allocates separate storage.",
+          "hint": "The combination disconnects the graph and allocates separate storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-choose-4",
+          "kind": "mcq",
+          "code": "x=torch.tensor([float(${n})],requires_grad=True)\ny=x.____\nprint(y.requires_grad, y.data_ptr()==x.data_ptr())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: False False. The combination disconnects the graph and allocates separate storage.",
+          "answer": "detach().clone()",
+          "options": [
+            "detach().clone()",
+            "detach()",
+            "clone()"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "detach removes graph tracking for this result.",
+          "hint": "detach removes graph tracking for this result.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([float(${n})],requires_grad=True)\ny=x.____\nprint(y.requires_grad)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: False. detach removes graph tracking for this result. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "detach()"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "Detaching does not copy the backing storage.",
+          "hint": "Detaching does not copy the backing storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([${n}]); y=x.____; y[0]=0\nprint(x.item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0. Detaching does not copy the backing storage. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "detach()"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "clone creates independent data.",
+          "hint": "clone creates independent data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([${n}]); y=x.____; y[0]=0\nprint(x.item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. clone creates independent data. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "clone()"
+          ]
+        },
+        {
+          "concept": "Detach, clone, and storage sharing",
+          "explanation": "The combination disconnects the graph and allocates separate storage.",
+          "hint": "The combination disconnects the graph and allocates separate storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "storage-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([float(${n})],requires_grad=True)\ny=x.____\nprint(y.requires_grad, y.data_ptr()==x.data_ptr())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: False False. The combination disconnects the graph and allocates separate storage. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "detach().clone()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modules",
+      "title": "Modules, parameters, and forward calls",
+      "section": "Intermediate",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. nn.Module registers parameters and child modules assigned as attributes. Calling model(x) invokes the module call machinery around forward. Linear maps the final feature dimension; its weight shape is out_features by in_features. Registered state drives optimization and saving.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "storage"
+      ],
+      "questions": [
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "Linear replaces the final feature dimension with out_features.",
+          "hint": "Linear replaces the final feature dimension with out_features.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-read-1",
+          "kind": "mcq",
+          "code": "layer=torch.nn.Linear(3,${m})\nx=torch.zeros((2,3))\nprint(tuple(layer(x).shape))",
+          "prompt": "What is the result?",
+          "answer": "(2, ${m})",
+          "options": [
+            "(2, ${m})",
+            "(${m}, 2)",
+            "(2, 3)"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "Linear replaces the final feature dimension with out_features.",
+          "hint": "Linear replaces the final feature dimension with out_features.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-1",
+          "kind": "mcq",
+          "code": "layer=torch.nn.Linear(3,${m})\nx=torch.zeros((2,3))\nprint(tuple(____.shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, ${m}). Linear replaces the final feature dimension with out_features.",
+          "answer": "layer(x)",
+          "options": [
+            "layer(x)",
+            "layer.weight",
+            "x"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "The weight stores one row per output feature.",
+          "hint": "The weight stores one row per output feature.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-read-2",
+          "kind": "mcq",
+          "code": "layer=torch.nn.Linear(3,${m})\nprint(tuple(layer.weight.shape))",
+          "prompt": "What is the result?",
+          "answer": "(${m}, 3)",
+          "options": [
+            "(${m}, 3)",
+            "(3, ${m})",
+            "(${m},)"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "The weight stores one row per output feature.",
+          "hint": "The weight stores one row per output feature.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-choose-2",
+          "kind": "mcq",
+          "code": "layer=torch.nn.Linear(3,${m})\nprint(tuple(layer.____.shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (${m}, 3). The weight stores one row per output feature.",
+          "answer": "weight",
+          "options": [
+            "weight",
+            "bias",
+            "weight.t()"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "With no bias, only the weight parameter is registered.",
+          "hint": "With no bias, only the weight parameter is registered.",
+          "id": "modules-read-3",
+          "kind": "mcq",
+          "code": "layer=torch.nn.Linear(3,2,bias=False)\nprint(len(list(layer.parameters())))",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "2",
+            "0"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "With no bias, only the weight parameter is registered.",
+          "hint": "With no bias, only the weight parameter is registered.",
+          "id": "modules-choose-3",
+          "kind": "mcq",
+          "code": "layer=torch.nn.Linear(3,2,bias=____)\nprint(len(list(layer.parameters())))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. With no bias, only the weight parameter is registered.",
+          "answer": "False",
+          "options": [
+            "False",
+            "True",
+            "None"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "Sequential applies each registered module in order.",
+          "hint": "Sequential applies each registered module in order.",
+          "id": "modules-read-4",
+          "kind": "mcq",
+          "code": "model=torch.nn.Sequential(torch.nn.Linear(3,2),torch.nn.ReLU())\nprint(tuple(model(torch.zeros((4,3))).shape))",
+          "prompt": "What is the result?",
+          "answer": "(4, 2)",
+          "options": [
+            "(4, 2)",
+            "(4, 3)",
+            "(2, 4)"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "Sequential applies each registered module in order.",
+          "hint": "Sequential applies each registered module in order.",
+          "id": "modules-choose-4",
+          "kind": "mcq",
+          "code": "model=torch.nn.Sequential(torch.nn.Linear(3,2),torch.nn.ReLU())\nprint(tuple(____.shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (4, 2). Sequential applies each registered module in order.",
+          "answer": "model(torch.zeros((4,3)))",
+          "options": [
+            "model(torch.zeros((4,3)))",
+            "model[0].weight",
+            "torch.zeros((3,4))"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "Linear replaces the final feature dimension with out_features.",
+          "hint": "Linear replaces the final feature dimension with out_features.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "layer=torch.nn.Linear(3,${m})\nx=torch.zeros((2,3))\nprint(tuple(____.shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, ${m}). Linear replaces the final feature dimension with out_features. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "layer(x)"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "The weight stores one row per output feature.",
+          "hint": "The weight stores one row per output feature.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "modules-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "layer=torch.nn.Linear(3,${m})\nprint(tuple(layer.____.shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (${m}, 3). The weight stores one row per output feature. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "weight"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "With no bias, only the weight parameter is registered.",
+          "hint": "With no bias, only the weight parameter is registered.",
+          "id": "modules-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "layer=torch.nn.Linear(3,2,bias=____)\nprint(len(list(layer.parameters())))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. With no bias, only the weight parameter is registered. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "False"
+          ]
+        },
+        {
+          "concept": "Modules, parameters, and forward calls",
+          "explanation": "Sequential applies each registered module in order.",
+          "hint": "Sequential applies each registered module in order.",
+          "id": "modules-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "model=torch.nn.Sequential(torch.nn.Linear(3,2),torch.nn.ReLU())\nprint(tuple(____.shape))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (4, 2). Sequential applies each registered module in order. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "model(torch.zeros((4,3)))"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modes",
+      "title": "Training mode versus gradient recording",
+      "section": "Intermediate",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. eval changes training-sensitive modules such as Dropout and BatchNorm. It does not disable autograd. no_grad disables recording in its block; inference_mode is a stronger inference context with additional tensor restrictions. Choose mode and gradient policy separately.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "modules"
+      ],
+      "questions": [
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "eval sets training=False for the module and its children.",
+          "hint": "eval sets training=False for the module and its children.",
+          "id": "modes-read-1",
+          "kind": "mcq",
+          "code": "model=torch.nn.Dropout(p=0.5)\nmodel.eval()\nprint(model.training)",
+          "prompt": "What is the result?",
+          "answer": "False",
+          "options": [
+            "False",
+            "True",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "eval sets training=False for the module and its children.",
+          "hint": "eval sets training=False for the module and its children.",
+          "id": "modes-choose-1",
+          "kind": "mcq",
+          "code": "model=torch.nn.Dropout(p=0.5)\nmodel.____\nprint(model.training)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: False. eval sets training=False for the module and its children.",
+          "answer": "eval()",
+          "options": [
+            "eval()",
+            "train()",
+            "requires_grad_(False)"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "Evaluation mode alone does not turn off autograd.",
+          "hint": "Evaluation mode alone does not turn off autograd.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modes-read-2",
+          "kind": "mcq",
+          "code": "model=torch.nn.Identity().eval()\nx=torch.tensor(float(${n}),requires_grad=True)\ny=model(x)*2\nprint(y.requires_grad)",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "Evaluation mode alone does not turn off autograd.",
+          "hint": "Evaluation mode alone does not turn off autograd.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modes-choose-2",
+          "kind": "mcq",
+          "code": "model=torch.nn.Identity().eval()\nx=torch.tensor(float(${n}),requires_grad=True)\ny=model(x)*2\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Evaluation mode alone does not turn off autograd.",
+          "answer": "y.requires_grad",
+          "options": [
+            "y.requires_grad",
+            "y.is_leaf",
+            "x.grad is not None"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "no_grad suppresses recording for the multiplication.",
+          "hint": "no_grad suppresses recording for the multiplication.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modes-read-3",
+          "kind": "mcq",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\nwith torch.no_grad():\n    y=x*2\nprint(y.requires_grad)",
+          "prompt": "What is the result?",
+          "answer": "False",
+          "options": [
+            "False",
+            "True",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "no_grad suppresses recording for the multiplication.",
+          "hint": "no_grad suppresses recording for the multiplication.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modes-choose-3",
+          "kind": "mcq",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\nwith torch.____():\n    y=x*2\nprint(y.requires_grad)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: False. no_grad suppresses recording for the multiplication.",
+          "answer": "no_grad",
+          "options": [
+            "no_grad",
+            "enable_grad",
+            "set_default_device"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "Dropout acts as identity in evaluation mode.",
+          "hint": "Dropout acts as identity in evaluation mode.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modes-read-4",
+          "kind": "mcq",
+          "code": "drop=torch.nn.Dropout(p=1.0)\ndrop.eval()\nprint(drop(torch.tensor([float(${n})])).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${n}.0]",
+          "options": [
+            "[${n}.0]",
+            "[0.0]",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "Dropout acts as identity in evaluation mode.",
+          "hint": "Dropout acts as identity in evaluation mode.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modes-choose-4",
+          "kind": "mcq",
+          "code": "drop=torch.nn.Dropout(p=1.0)\n____\nprint(drop(torch.tensor([float(${n})])).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}.0]. Dropout acts as identity in evaluation mode.",
+          "answer": "drop.eval()",
+          "options": [
+            "drop.eval()",
+            "drop.train()",
+            "drop.requires_grad_(False)"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "eval sets training=False for the module and its children.",
+          "hint": "eval sets training=False for the module and its children.",
+          "id": "modes-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "model=torch.nn.Dropout(p=0.5)\nmodel.____\nprint(model.training)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: False. eval sets training=False for the module and its children. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "eval()"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "Evaluation mode alone does not turn off autograd.",
+          "hint": "Evaluation mode alone does not turn off autograd.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modes-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "model=torch.nn.Identity().eval()\nx=torch.tensor(float(${n}),requires_grad=True)\ny=model(x)*2\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Evaluation mode alone does not turn off autograd. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "y.requires_grad"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "no_grad suppresses recording for the multiplication.",
+          "hint": "no_grad suppresses recording for the multiplication.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modes-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor(float(${n}),requires_grad=True)\nwith torch.____():\n    y=x*2\nprint(y.requires_grad)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: False. no_grad suppresses recording for the multiplication. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "no_grad"
+          ]
+        },
+        {
+          "concept": "Training mode versus gradient recording",
+          "explanation": "Dropout acts as identity in evaluation mode.",
+          "hint": "Dropout acts as identity in evaluation mode.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "modes-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "drop=torch.nn.Dropout(p=1.0)\n____\nprint(drop(torch.tensor([float(${n})])).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}.0]. Dropout acts as identity in evaluation mode. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "drop.eval()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "title": "Datasets, batches, and loader contracts",
+      "section": "Advanced",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. A Dataset provides examples; DataLoader groups them into batches and can shuffle. drop_last discards a short final batch. Shuffle affects order, not the total number of examples. Use deterministic shapes and explicit seeds when testing input pipelines.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "modes"
+      ],
+      "questions": [
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "TensorDataset length follows the shared first dimension of its tensors.",
+          "hint": "TensorDataset length follows the shared first dimension of its tensors.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "data-read-1",
+          "kind": "mcq",
+          "code": "data=torch.utils.data.TensorDataset(torch.arange(${n}))\nprint(len(data))",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "TensorDataset length follows the shared first dimension of its tensors.",
+          "hint": "TensorDataset length follows the shared first dimension of its tensors.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "data-choose-1",
+          "kind": "mcq",
+          "code": "data=torch.utils.data.TensorDataset(torch.arange(${n}))\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. TensorDataset length follows the shared first dimension of its tensors.",
+          "answer": "len(data)",
+          "options": [
+            "len(data)",
+            "len(data.tensors)",
+            "len(data[0])"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "The final batch retains the remaining example by default.",
+          "hint": "The final batch retains the remaining example by default.",
+          "id": "data-read-2",
+          "kind": "mcq",
+          "code": "loader=torch.utils.data.DataLoader(torch.arange(5),batch_size=2,shuffle=False)\nprint([len(batch) for batch in loader])",
+          "prompt": "What is the result?",
+          "answer": "[2, 2, 1]",
+          "options": [
+            "[2, 2, 1]",
+            "[2, 2]",
+            "[5]"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "The final batch retains the remaining example by default.",
+          "hint": "The final batch retains the remaining example by default.",
+          "id": "data-choose-2",
+          "kind": "mcq",
+          "code": "loader=torch.utils.data.DataLoader(torch.arange(5),batch_size=____,shuffle=False)\nprint([len(batch) for batch in loader])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [2, 2, 1]. The final batch retains the remaining example by default.",
+          "answer": "2",
+          "options": [
+            "2",
+            "5",
+            "1"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "drop_last removes the incomplete final batch.",
+          "hint": "drop_last removes the incomplete final batch.",
+          "id": "data-read-3",
+          "kind": "mcq",
+          "code": "loader=torch.utils.data.DataLoader(torch.arange(5),batch_size=2,drop_last=True)\nprint([len(batch) for batch in loader])",
+          "prompt": "What is the result?",
+          "answer": "[2, 2]",
+          "options": [
+            "[2, 2]",
+            "[2, 2, 1]",
+            "[5]"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "drop_last removes the incomplete final batch.",
+          "hint": "drop_last removes the incomplete final batch.",
+          "id": "data-choose-3",
+          "kind": "mcq",
+          "code": "loader=torch.utils.data.DataLoader(torch.arange(5),batch_size=2,drop_last=____)\nprint([len(batch) for batch in loader])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [2, 2]. drop_last removes the incomplete final batch.",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "Without shuffling the first batch follows dataset order.",
+          "hint": "Without shuffling the first batch follows dataset order.",
+          "id": "data-read-4",
+          "kind": "mcq",
+          "code": "loader=torch.utils.data.DataLoader(torch.arange(5),batch_size=2,shuffle=False)\nprint(next(iter(loader)).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[0, 1]",
+          "options": [
+            "[0, 1]",
+            "[3, 4]",
+            "[0, 1, 2, 3, 4]"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "Without shuffling the first batch follows dataset order.",
+          "hint": "Without shuffling the first batch follows dataset order.",
+          "id": "data-choose-4",
+          "kind": "mcq",
+          "code": "loader=torch.utils.data.DataLoader(torch.arange(5),batch_size=2,shuffle=____)\nprint(next(iter(loader)).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [0, 1]. Without shuffling the first batch follows dataset order.",
+          "answer": "False",
+          "options": [
+            "False",
+            "True",
+            "None"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "TensorDataset length follows the shared first dimension of its tensors.",
+          "hint": "TensorDataset length follows the shared first dimension of its tensors.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "data-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "data=torch.utils.data.TensorDataset(torch.arange(${n}))\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. TensorDataset length follows the shared first dimension of its tensors. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "len(data)"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "The final batch retains the remaining example by default.",
+          "hint": "The final batch retains the remaining example by default.",
+          "id": "data-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "loader=torch.utils.data.DataLoader(torch.arange(5),batch_size=____,shuffle=False)\nprint([len(batch) for batch in loader])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [2, 2, 1]. The final batch retains the remaining example by default. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "2"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "drop_last removes the incomplete final batch.",
+          "hint": "drop_last removes the incomplete final batch.",
+          "id": "data-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "loader=torch.utils.data.DataLoader(torch.arange(5),batch_size=2,drop_last=____)\nprint([len(batch) for batch in loader])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [2, 2]. drop_last removes the incomplete final batch. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "True"
+          ]
+        },
+        {
+          "concept": "Datasets, batches, and loader contracts",
+          "explanation": "Without shuffling the first batch follows dataset order.",
+          "hint": "Without shuffling the first batch follows dataset order.",
+          "id": "data-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "loader=torch.utils.data.DataLoader(torch.arange(5),batch_size=2,shuffle=____)\nprint(next(iter(loader)).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [0, 1]. Without shuffling the first batch follows dataset order. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "False"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "optimization",
+      "title": "Reading a training step",
+      "section": "Advanced",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. A typical step clears old gradients, runs forward, computes a scalar loss, calls backward, then updates parameters with optimizer.step. backward alone does not change parameter values. The exercise focuses on state transitions and code order, not optimization theory.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "data"
+      ],
+      "questions": [
+        {
+          "concept": "Reading a training step",
+          "explanation": "step applies the accumulated gradient update; here a unit learning rate subtracts two.",
+          "hint": "step applies the accumulated gradient update; here a unit learning rate subtracts two.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "nminus2": "n-2"
+          },
+          "id": "optimization-read-1",
+          "kind": "mcq",
+          "code": "p=torch.nn.Parameter(torch.tensor(float(${n})))\nopt=torch.optim.SGD([p],lr=1.0)\n(p*2).backward(); opt.step()\nprint(p.item())",
+          "prompt": "What is the result?",
+          "answer": "${nminus2}.0",
+          "options": [
+            "${nminus2}.0",
+            "${n}.0",
+            "2.0"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "step applies the accumulated gradient update; here a unit learning rate subtracts two.",
+          "hint": "step applies the accumulated gradient update; here a unit learning rate subtracts two.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "nminus2": "n-2"
+          },
+          "id": "optimization-choose-1",
+          "kind": "mcq",
+          "code": "p=torch.nn.Parameter(torch.tensor(float(${n})))\nopt=torch.optim.SGD([p],lr=1.0)\n(p*2).backward(); opt.____\nprint(p.item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${nminus2}.0. step applies the accumulated gradient update; here a unit learning rate subtracts two.",
+          "answer": "step()",
+          "options": [
+            "step()",
+            "zero_grad()",
+            "state_dict()"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "backward records a gradient without updating the parameter itself.",
+          "hint": "backward records a gradient without updating the parameter itself.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "nminus2": "n-2"
+          },
+          "id": "optimization-read-2",
+          "kind": "mcq",
+          "code": "p=torch.nn.Parameter(torch.tensor(float(${n})))\n(p*2).backward()\nprint(p.item())",
+          "prompt": "What is the result?",
+          "answer": "${n}.0",
+          "options": [
+            "${n}.0",
+            "${nminus2}.0",
+            "2.0"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "backward records a gradient without updating the parameter itself.",
+          "hint": "backward records a gradient without updating the parameter itself.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "optimization-choose-2",
+          "kind": "mcq",
+          "code": "p=torch.nn.Parameter(torch.tensor(float(${n})))\n(p*2).backward()\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}.0. backward records a gradient without updating the parameter itself.",
+          "answer": "p.item()",
+          "options": [
+            "p.item()",
+            "p.grad.item()",
+            "p.numel()"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "Clearing gradients prevents unintentional accumulation into the next step.",
+          "hint": "Clearing gradients prevents unintentional accumulation into the next step.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "optimization-read-3",
+          "kind": "mcq",
+          "code": "p=torch.nn.Parameter(torch.tensor(float(${n})))\nopt=torch.optim.SGD([p],lr=1.0)\n(p*2).backward(); opt.zero_grad(set_to_none=True)\nprint(p.grad is None)",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "Clearing gradients prevents unintentional accumulation into the next step.",
+          "hint": "Clearing gradients prevents unintentional accumulation into the next step.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "optimization-choose-3",
+          "kind": "mcq",
+          "code": "p=torch.nn.Parameter(torch.tensor(float(${n})))\nopt=torch.optim.SGD([p],lr=1.0)\n(p*2).backward(); opt.____(set_to_none=True)\nprint(p.grad is None)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Clearing gradients prevents unintentional accumulation into the next step.",
+          "answer": "zero_grad",
+          "options": [
+            "zero_grad",
+            "step",
+            "add_param_group"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "Matching prediction and target have zero mean squared error.",
+          "hint": "Matching prediction and target have zero mean squared error.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "optimization-read-4",
+          "kind": "mcq",
+          "code": "prediction=torch.tensor([float(${n})]); target=prediction.clone()\nloss=torch.nn.functional.mse_loss(prediction,target)\nprint(loss.item())",
+          "prompt": "What is the result?",
+          "answer": "0.0",
+          "options": [
+            "0.0",
+            "1.0",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "Matching prediction and target have zero mean squared error.",
+          "hint": "Matching prediction and target have zero mean squared error.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "optimization-choose-4",
+          "kind": "mcq",
+          "code": "prediction=torch.tensor([float(${n})]); target=prediction.clone()\nloss=torch.nn.functional.____(prediction,target)\nprint(loss.item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0.0. Matching prediction and target have zero mean squared error.",
+          "answer": "mse_loss",
+          "options": [
+            "mse_loss",
+            "cross_entropy",
+            "cosine_similarity"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "step applies the accumulated gradient update; here a unit learning rate subtracts two.",
+          "hint": "step applies the accumulated gradient update; here a unit learning rate subtracts two.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "nminus2": "n-2"
+          },
+          "id": "optimization-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "p=torch.nn.Parameter(torch.tensor(float(${n})))\nopt=torch.optim.SGD([p],lr=1.0)\n(p*2).backward(); opt.____\nprint(p.item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${nminus2}.0. step applies the accumulated gradient update; here a unit learning rate subtracts two. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "step()"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "backward records a gradient without updating the parameter itself.",
+          "hint": "backward records a gradient without updating the parameter itself.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "optimization-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "p=torch.nn.Parameter(torch.tensor(float(${n})))\n(p*2).backward()\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}.0. backward records a gradient without updating the parameter itself. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "p.item()"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "Clearing gradients prevents unintentional accumulation into the next step.",
+          "hint": "Clearing gradients prevents unintentional accumulation into the next step.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "optimization-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "p=torch.nn.Parameter(torch.tensor(float(${n})))\nopt=torch.optim.SGD([p],lr=1.0)\n(p*2).backward(); opt.____(set_to_none=True)\nprint(p.grad is None)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Clearing gradients prevents unintentional accumulation into the next step. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "zero_grad"
+          ]
+        },
+        {
+          "concept": "Reading a training step",
+          "explanation": "Matching prediction and target have zero mean squared error.",
+          "hint": "Matching prediction and target have zero mean squared error.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "optimization-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "prediction=torch.tensor([float(${n})]); target=prediction.clone()\nloss=torch.nn.functional.____(prediction,target)\nprint(loss.item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 0.0. Matching prediction and target have zero mean squared error. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "mse_loss"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "devices",
+      "title": "Device and dtype boundaries",
+      "section": "Advanced",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Tensor.to returns the converted tensor; assign its result when needed. Inputs and parameters must use compatible devices and dtypes for operations. For NumPy conversion, detach gradients and move to CPU first. non_blocking transfer is not a universal promise of overlap.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "optimization"
+      ],
+      "questions": [
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "The requested conversion returns a float tensor.",
+          "hint": "The requested conversion returns a float tensor.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-read-1",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}],dtype=torch.int64)\ny=x.to(dtype=torch.float32)\nprint(y.dtype)",
+          "prompt": "What is the result?",
+          "answer": "torch.float32",
+          "options": [
+            "torch.float32",
+            "torch.int64",
+            "torch.bool"
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "The requested conversion returns a float tensor.",
+          "hint": "The requested conversion returns a float tensor.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-choose-1",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}],dtype=torch.int64)\ny=x.to(dtype=____)\nprint(y.dtype)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: torch.float32. The requested conversion returns a float tensor.",
+          "answer": "torch.float32",
+          "options": [
+            "torch.float32",
+            "torch.int64",
+            "torch.bool"
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "Ignoring the converted result leaves x bound to the original tensor.",
+          "hint": "Ignoring the converted result leaves x bound to the original tensor.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-read-2",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}],dtype=torch.int64)\nx.to(torch.float32)\nprint(x.dtype)",
+          "prompt": "What is the result?",
+          "answer": "torch.int64",
+          "options": [
+            "torch.int64",
+            "torch.float32",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "Ignoring the converted result leaves x bound to the original tensor.",
+          "hint": "Ignoring the converted result leaves x bound to the original tensor.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-choose-2",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}],dtype=torch.int64)\nx.to(torch.float32)\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: torch.int64. Ignoring the converted result leaves x bound to the original tensor.",
+          "answer": "x.dtype",
+          "options": [
+            "x.dtype",
+            "x.shape",
+            "x.numel()"
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "Detach and CPU conversion satisfy the normal NumPy conversion requirements.",
+          "hint": "Detach and CPU conversion satisfy the normal NumPy conversion requirements.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-read-3",
+          "kind": "mcq",
+          "code": "x=torch.tensor([float(${n})],requires_grad=True)\na=x.detach().cpu().numpy()\nprint(a.tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${n}.0]",
+          "options": [
+            "[${n}.0]",
+            "RuntimeError",
+            "[0.0]"
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "Detach and CPU conversion satisfy the normal NumPy conversion requirements.",
+          "hint": "Detach and CPU conversion satisfy the normal NumPy conversion requirements.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-choose-3",
+          "kind": "mcq",
+          "code": "x=torch.tensor([float(${n})],requires_grad=True)\na=x.____\nprint(a.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}.0]. Detach and CPU conversion satisfy the normal NumPy conversion requirements.",
+          "answer": "detach().cpu().numpy()",
+          "options": [
+            "detach().cpu().numpy()",
+            "numpy()",
+            "cpu().numpy()"
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "This explicit device works without a GPU.",
+          "hint": "This explicit device works without a GPU.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-read-4",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}],device=\"cpu\")\nprint(x.device.type)",
+          "prompt": "What is the result?",
+          "answer": "cpu",
+          "options": [
+            "cpu",
+            "cuda",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "This explicit device works without a GPU.",
+          "hint": "This explicit device works without a GPU.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-choose-4",
+          "kind": "mcq",
+          "code": "x=torch.tensor([${n}],device=____)\nprint(x.device.type)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: cpu. This explicit device works without a GPU. Use \"cpu\" as the replacement literal.",
+          "answer": "\"cpu\"",
+          "options": [
+            "\"cpu\"",
+            "\"cuda\"",
+            "\"meta\""
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "The requested conversion returns a float tensor.",
+          "hint": "The requested conversion returns a float tensor.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([${n}],dtype=torch.int64)\ny=x.to(dtype=____)\nprint(y.dtype)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: torch.float32. The requested conversion returns a float tensor. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "torch.float32"
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "Ignoring the converted result leaves x bound to the original tensor.",
+          "hint": "Ignoring the converted result leaves x bound to the original tensor.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([${n}],dtype=torch.int64)\nx.to(torch.float32)\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: torch.int64. Ignoring the converted result leaves x bound to the original tensor. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "x.dtype"
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "Detach and CPU conversion satisfy the normal NumPy conversion requirements.",
+          "hint": "Detach and CPU conversion satisfy the normal NumPy conversion requirements.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([float(${n})],requires_grad=True)\na=x.____\nprint(a.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}.0]. Detach and CPU conversion satisfy the normal NumPy conversion requirements. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "detach().cpu().numpy()"
+          ]
+        },
+        {
+          "concept": "Device and dtype boundaries",
+          "explanation": "This explicit device works without a GPU.",
+          "hint": "This explicit device works without a GPU.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "devices-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "x=torch.tensor([${n}],device=____)\nprint(x.device.type)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: cpu. This explicit device works without a GPU. Use \"cpu\" as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "\"cpu\""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "checkpoints",
+      "title": "State dictionaries and inference checkpoints",
+      "section": "Advanced",
+      "intro": "PyTorch 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. state_dict includes registered parameters and persistent buffers. Its tensors are not automatically an independent snapshot, so copy or serialize when preserving a point in time. Load into a compatible architecture and set evaluation mode explicitly for inference. Use weights_only loading for tensor-oriented checkpoints.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "pytorch-0",
+        "pytorch-1",
+        "pytorch-2"
+      ],
+      "requires": [
+        "devices"
+      ],
+      "questions": [
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "The state dictionary exposes the registered weight and bias.",
+          "hint": "The state dictionary exposes the registered weight and bias.",
+          "id": "checkpoints-read-1",
+          "kind": "mcq",
+          "code": "layer=torch.nn.Linear(3,2)\nstate=layer.state_dict()\nprint(sorted(state.keys()))",
+          "prompt": "What is the result?",
+          "answer": "['bias', 'weight']",
+          "options": [
+            "['bias', 'weight']",
+            "['training']",
+            "[]"
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "The state dictionary exposes the registered weight and bias.",
+          "hint": "The state dictionary exposes the registered weight and bias.",
+          "id": "checkpoints-choose-1",
+          "kind": "mcq",
+          "code": "layer=torch.nn.Linear(3,2)\nstate=layer.____\nprint(sorted(state.keys()))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ['bias', 'weight']. The state dictionary exposes the registered weight and bias.",
+          "answer": "state_dict()",
+          "options": [
+            "state_dict()",
+            "named_parameters()",
+            "parameters()"
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "Loading compatible state copies the learned tensor values into b.",
+          "hint": "Loading compatible state copies the learned tensor values into b.",
+          "id": "checkpoints-read-2",
+          "kind": "mcq",
+          "code": "a=torch.nn.Linear(3,2); b=torch.nn.Linear(3,2)\nb.load_state_dict(a.state_dict())\nprint(torch.equal(a.weight,b.weight))",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "Loading compatible state copies the learned tensor values into b.",
+          "hint": "Loading compatible state copies the learned tensor values into b.",
+          "id": "checkpoints-choose-2",
+          "kind": "mcq",
+          "code": "a=torch.nn.Linear(3,2); b=torch.nn.Linear(3,2)\nb.____(a.state_dict())\nprint(torch.equal(a.weight,b.weight))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Loading compatible state copies the learned tensor values into b.",
+          "answer": "load_state_dict",
+          "options": [
+            "load_state_dict",
+            "register_buffer",
+            "add_module"
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "The tensor-only payload can be loaded with the restricted weights-only path.",
+          "hint": "The tensor-only payload can be loaded with the restricted weights-only path.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "checkpoints-read-3",
+          "kind": "mcq",
+          "code": "import io\nbuf=io.BytesIO(); torch.save({\"x\":torch.tensor([${n}])},buf); buf.seek(0)\nstate=torch.load(buf,weights_only=True)\nprint(state[\"x\"].item())",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "RuntimeError"
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "The tensor-only payload can be loaded with the restricted weights-only path.",
+          "hint": "The tensor-only payload can be loaded with the restricted weights-only path.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "checkpoints-choose-3",
+          "kind": "mcq",
+          "code": "import io\nbuf=io.BytesIO(); torch.save({\"x\":torch.tensor([${n}])},buf); buf.seek(0)\nstate=torch.load(buf,weights_only=____)\nprint(state[\"x\"].item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The tensor-only payload can be loaded with the restricted weights-only path.",
+          "answer": "True",
+          "options": [
+            "True",
+            "None",
+            "\"True\""
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "Loading weights does not switch a freshly created module out of training mode.",
+          "hint": "Loading weights does not switch a freshly created module out of training mode.",
+          "id": "checkpoints-read-4",
+          "kind": "mcq",
+          "code": "model=torch.nn.Linear(3,2)\nmodel.load_state_dict(model.state_dict())\nprint(model.training)",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "Loading weights does not switch a freshly created module out of training mode.",
+          "hint": "Loading weights does not switch a freshly created module out of training mode.",
+          "id": "checkpoints-choose-4",
+          "kind": "mcq",
+          "code": "model=torch.nn.Linear(3,2)\nmodel.load_state_dict(model.state_dict())\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Loading weights does not switch a freshly created module out of training mode.",
+          "answer": "model.training",
+          "options": [
+            "model.training",
+            "not model.training",
+            "model.bias is None"
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "The state dictionary exposes the registered weight and bias.",
+          "hint": "The state dictionary exposes the registered weight and bias.",
+          "id": "checkpoints-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "layer=torch.nn.Linear(3,2)\nstate=layer.____\nprint(sorted(state.keys()))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ['bias', 'weight']. The state dictionary exposes the registered weight and bias. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "state_dict()"
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "Loading compatible state copies the learned tensor values into b.",
+          "hint": "Loading compatible state copies the learned tensor values into b.",
+          "id": "checkpoints-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=torch.nn.Linear(3,2); b=torch.nn.Linear(3,2)\nb.____(a.state_dict())\nprint(torch.equal(a.weight,b.weight))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Loading compatible state copies the learned tensor values into b. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "load_state_dict"
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "The tensor-only payload can be loaded with the restricted weights-only path.",
+          "hint": "The tensor-only payload can be loaded with the restricted weights-only path.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "checkpoints-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "import io\nbuf=io.BytesIO(); torch.save({\"x\":torch.tensor([${n}])},buf); buf.seek(0)\nstate=torch.load(buf,weights_only=____)\nprint(state[\"x\"].item())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. The tensor-only payload can be loaded with the restricted weights-only path. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "True"
+          ]
+        },
+        {
+          "concept": "State dictionaries and inference checkpoints",
+          "explanation": "Loading weights does not switch a freshly created module out of training mode.",
+          "hint": "Loading weights does not switch a freshly created module out of training mode.",
+          "id": "checkpoints-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "model=torch.nn.Linear(3,2)\nmodel.load_state_dict(model.state_dict())\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Loading weights does not switch a freshly created module out of training mode. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "model.training"
+          ]
+        }
+      ]
+    }
+  ]
+}

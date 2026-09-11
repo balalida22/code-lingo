@@ -85,5 +85,7 @@ if __name__=='__main__':
     imperative();systems();web_types();sql_course()
     from added_courses import build as added
     added()
+    from python_libraries import build as libraries
+    libraries()
     from catalog import write_catalog
     write_catalog()

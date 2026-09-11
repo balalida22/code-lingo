@@ -1,3 +1,17 @@
+# Code Lingo v1.4.0 — prepared update
+
+- Add dedicated NumPy, Matplotlib, PyTorch, and Transformers tracks: each has
+  12 lessons and 144 exercises across three sections, with 25-question exams.
+- Preserve original Python samplers and all previous course banks/history.
+- Rename the course picker action to Change language / library; sampler lessons
+  point learners toward their deeper library track.
+- Add contextual Python AST matching for writing fragments, supporting slices,
+  operators, keyword arguments, and equivalent whitespace without execution.
+- 97 regression tests pass. Native NumPy/Matplotlib audit passes 291 sampled
+  output/repair programs; PyTorch and Transformers runtimes are unavailable.
+
+---
+
 # Code Lingo v1.3.0 — prepared update
 
 - Add Java, Go, C#, Bash, Kotlin, and Swift: 20 lessons and 240 exercises each,

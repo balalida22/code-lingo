@@ -1,11 +1,11 @@
-# Code Lingo 1.3.0
+# Code Lingo 1.4.0
 
 **Read code. Build fluency. A little every day.**
 
 A programming language tutor with an arrow-key terminal interface, daily progress,
 randomized exercises, spaced review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.3.0 update and
+See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.4.0 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
 
 ## Run with uv
@@ -63,7 +63,10 @@ uv are present, `uv sync --locked --offline` works without the network.
 
 ## What changed
 
-- **17 courses, 344 lessons, and 4,152 exercises** in total.
+- **21 courses, 392 lessons, and 4,728 exercises** in total.
+- **Four dedicated Python library tracks:** NumPy, Matplotlib, PyTorch, and
+  Transformers now each have 12 lessons and 144 exercises. The original
+  Python samplers remain intact. See [PYTHON_LIBRARIES.md](PYTHON_LIBRARIES.md).
 - **Six new native tracks:** Java, Go, C#, Bash, Kotlin, and Swift, each with
   20 lessons and 240 exercises. See [NEW_LANGUAGES.md](NEW_LANGUAGES.md) for
   coverage, official references, and validation limits.
@@ -79,7 +82,7 @@ uv are present, `uv sync --locked --offline` works without the network.
 - Correct feedback titles are **green**; incorrect feedback titles are **red**.
   Text labels remain explicit when color is unavailable.
 - Python retains its 18 lessons and 216 exercises, including its existing
-  specialized tracks. New courses have no specialized library tracks.
+  specialized tracks. The non-Python language tracks have no specialized library lessons.
 - New numerical values, strings, and contexts on template encounters; answers,
   distractors, and explanations are generated together.
 - **25-question section exams** with a strict **>80%** threshold: **21/25 passes;
@@ -88,7 +91,22 @@ uv are present, `uv sync --locked --offline` works without the network.
 - Earnable gems and a small heart-recovery shop.
 - Additive database migration that retains existing progress.
 
-## Choose a language
+## Choose a language or library
+
+Choose **Change language / library**, then **Python · NumPy**, **Python ·
+Matplotlib**, **Python · PyTorch**, or **Python · Transformers** for a deeper
+library track. Each has four foundation lessons, four workflow lessons, and
+four advanced lessons, with an independent 25-question exam for each section.
+You can pin these tracks just like languages. They assume Python fundamentals
+but do not require the libraries to be installed to use the tutor.
+
+```bash
+uv run python -m codelingo --course numpy learn
+uv run python -m codelingo --course matplotlib course
+uv run python -m codelingo --course pytorch review
+uv run python -m codelingo --course transformers learn
+```
+
 
 The new tracks are available immediately in the language picker. Their CLI IDs
 are `java`, `go`, `csharp`, `bash`, `kotlin`, and `swift`:
@@ -104,7 +122,7 @@ spaced review. Their compilers are **not required to use Code Lingo**; displayed
 programs remain teaching material, and learner submissions are never executed.
 
 
-Select **Change language** on the TUI main menu (or option 10 in the line menu).
+Select **Change language / library** on the TUI main menu (or option 10 in the line menu).
 The menu displays each course's completion count and highlights the active
 course. Press **p** to pin/unpin the highlighted language. Pinned languages
 show **★**, appear first, and persist across restarts. With pins present, the
@@ -148,7 +166,7 @@ See [RUST_BOOK.md](RUST_BOOK.md) for the chapter-to-lesson map and validation sc
 The standard library is included; third-party runtime/framework tracks are not.
 The 1.1.0 revision extends this approach to the other nine added languages with
 54 new lessons and diagnosis-to-repair sequences. Python's existing idiomatic
-course and Rust's Book-led course are unchanged. No new specialized tracks or
+course and Rust's Book-led course were unchanged in that revision. It added no specialized tracks or
 algorithm/data-structure implementation lessons are added.
 
 Existing EXP, gems, streaks, and stored history survive. Retained lesson IDs keep

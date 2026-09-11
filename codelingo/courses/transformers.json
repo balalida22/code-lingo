@@ -1,0 +1,2827 @@
+{
+  "schema_version": 2,
+  "id": "transformers",
+  "title": "Python · Transformers: tokenizers, models, and inference",
+  "language": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code",
+  "version": "1.0",
+  "sources": [
+    {
+      "id": "transformers-0",
+      "title": "Transformers quick tour",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/quicktour",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "transformers-1",
+      "title": "Padding and truncation",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/pad_truncation",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "transformers-2",
+      "title": "Generation",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/main_classes/text_generation",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "transformers-3",
+      "title": "Chat templates",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/chat_templating",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "assets",
+      "title": "Models, tokenizers, and task heads",
+      "section": "Basics",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. A checkpoint identifies compatible configuration, vocabulary/tokenizer rules, and weights. Auto classes choose implementations from metadata. A base model produces representations; task-specific heads produce task outputs. Examples name local fixtures and never require a model download.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "The tokenizer loader restores text-processing assets, distinct from a model.",
+          "hint": "The tokenizer loader restores text-processing assets, distinct from a model.",
+          "id": "assets-read-1",
+          "kind": "mcq",
+          "code": "# Assume local-checkpoint contains compatible saved assets.\ntokenizer=AutoTokenizer.from_pretrained(\"local-checkpoint\",local_files_only=True)",
+          "prompt": "What is loaded?",
+          "answer": "Loads the tokenizer from local assets",
+          "options": [
+            "Loads the tokenizer from local assets",
+            "Trains a tokenizer from scratch",
+            "Loads model weights only"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "The tokenizer loader restores text-processing assets, distinct from a model.",
+          "hint": "The tokenizer loader restores text-processing assets, distinct from a model.",
+          "id": "assets-choose-1",
+          "kind": "mcq",
+          "code": "# Assume local-checkpoint contains compatible saved assets.\ntokenizer=AutoTokenizer.____(\"local-checkpoint\",local_files_only=True)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads the tokenizer from local assets. The tokenizer loader restores text-processing assets, distinct from a model.",
+          "answer": "from_pretrained",
+          "options": [
+            "from_pretrained",
+            "from_config",
+            "save_pretrained"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "Configuration describes architecture but does not itself contain pretrained parameters.",
+          "hint": "Configuration describes architecture but does not itself contain pretrained parameters.",
+          "id": "assets-read-2",
+          "kind": "mcq",
+          "code": "# Assume cfg is a valid architecture configuration.\nmodel=AutoModel.from_config(cfg)",
+          "prompt": "What weights should a reviewer expect?",
+          "answer": "Constructs a model with newly initialized weights",
+          "options": [
+            "Constructs a model with newly initialized weights",
+            "Loads pretrained weights automatically",
+            "Tokenizes a document"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "Configuration describes architecture but does not itself contain pretrained parameters.",
+          "hint": "Configuration describes architecture but does not itself contain pretrained parameters.",
+          "id": "assets-choose-2",
+          "kind": "mcq",
+          "code": "# Assume cfg is a valid architecture configuration.\nmodel=AutoModel.____(cfg)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Constructs a model with newly initialized weights. Configuration describes architecture but does not itself contain pretrained parameters.",
+          "answer": "from_config",
+          "options": [
+            "from_config",
+            "from_pretrained",
+            "save_pretrained"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "The task-specific Auto class selects the causal LM output contract.",
+          "hint": "The task-specific Auto class selects the causal LM output contract.",
+          "id": "assets-read-3",
+          "kind": "mcq",
+          "code": "# Assume checkpoint supports causal generation.\nmodel=AutoModelForCausalLM.from_pretrained(\"local-checkpoint\",local_files_only=True)",
+          "prompt": "What task contract is requested?",
+          "answer": "Loads a model with a causal-language-model head",
+          "options": [
+            "Loads a model with a causal-language-model head",
+            "Loads only a tokenizer",
+            "Loads only a sentence classifier"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "The task-specific Auto class selects the causal LM output contract.",
+          "hint": "The task-specific Auto class selects the causal LM output contract.",
+          "id": "assets-choose-3",
+          "kind": "mcq",
+          "code": "# Assume checkpoint supports causal generation.\nmodel=____.from_pretrained(\"local-checkpoint\",local_files_only=True)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads a model with a causal-language-model head. The task-specific Auto class selects the causal LM output contract.",
+          "answer": "AutoModelForCausalLM",
+          "options": [
+            "AutoModelForCausalLM",
+            "AutoTokenizer",
+            "AutoModelForSequenceClassification"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "A sequence classifier predicts a label distribution for each input sequence.",
+          "hint": "A sequence classifier predicts a label distribution for each input sequence.",
+          "id": "assets-read-4",
+          "kind": "mcq",
+          "code": "# Assume a compatible sequence-classification checkpoint.\nmodel=AutoModelForSequenceClassification.from_pretrained(\"local-checkpoint\",local_files_only=True)",
+          "prompt": "What head does this loader request?",
+          "answer": "Loads a sequence-classification head",
+          "options": [
+            "Loads a sequence-classification head",
+            "Loads a text-to-image pipeline",
+            "Loads a tokenizer only"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "A sequence classifier predicts a label distribution for each input sequence.",
+          "hint": "A sequence classifier predicts a label distribution for each input sequence.",
+          "id": "assets-choose-4",
+          "kind": "mcq",
+          "code": "# Assume a compatible sequence-classification checkpoint.\nmodel=____.from_pretrained(\"local-checkpoint\",local_files_only=True)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads a sequence-classification head. A sequence classifier predicts a label distribution for each input sequence.",
+          "answer": "AutoModelForSequenceClassification",
+          "options": [
+            "AutoModelForSequenceClassification",
+            "AutoTokenizer",
+            "AutoModelForCausalLM"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "The tokenizer loader restores text-processing assets, distinct from a model.",
+          "hint": "The tokenizer loader restores text-processing assets, distinct from a model.",
+          "id": "assets-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume local-checkpoint contains compatible saved assets.\ntokenizer=AutoTokenizer.____(\"local-checkpoint\",local_files_only=True)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads the tokenizer from local assets. The tokenizer loader restores text-processing assets, distinct from a model. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "from_pretrained"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "Configuration describes architecture but does not itself contain pretrained parameters.",
+          "hint": "Configuration describes architecture but does not itself contain pretrained parameters.",
+          "id": "assets-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume cfg is a valid architecture configuration.\nmodel=AutoModel.____(cfg)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Constructs a model with newly initialized weights. Configuration describes architecture but does not itself contain pretrained parameters. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "from_config"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "The task-specific Auto class selects the causal LM output contract.",
+          "hint": "The task-specific Auto class selects the causal LM output contract.",
+          "id": "assets-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume checkpoint supports causal generation.\nmodel=____.from_pretrained(\"local-checkpoint\",local_files_only=True)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads a model with a causal-language-model head. The task-specific Auto class selects the causal LM output contract. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "AutoModelForCausalLM"
+          ]
+        },
+        {
+          "concept": "Models, tokenizers, and task heads",
+          "explanation": "A sequence classifier predicts a label distribution for each input sequence.",
+          "hint": "A sequence classifier predicts a label distribution for each input sequence.",
+          "id": "assets-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume a compatible sequence-classification checkpoint.\nmodel=____.from_pretrained(\"local-checkpoint\",local_files_only=True)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Loads a sequence-classification head. A sequence classifier predicts a label distribution for each input sequence. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "AutoModelForSequenceClassification"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tokenization",
+      "title": "Tokenization and explicit input contracts",
+      "section": "Basics",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Tokenizer calls return model-input mappings, usually including input_ids and attention_mask. Token IDs depend on the tokenizer vocabulary and are not word counts. Explicit fixtures are provided whenever an exercise asks for exact IDs or lengths.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "assets"
+      ],
+      "questions": [
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "The return_tensors setting selects the tensor framework.",
+          "hint": "The return_tensors setting selects the tensor framework.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "tokenization-read-1",
+          "kind": "mcq",
+          "code": "# Assume tokenizer is compatible with the chosen model.\nbatch=tokenizer(\"${word}\",return_tensors=\"pt\")",
+          "prompt": "What representation is requested?",
+          "answer": "Returns tensor-valued inputs for PyTorch",
+          "options": [
+            "Returns tensor-valued inputs for PyTorch",
+            "Returns decoded strings only",
+            "Runs the model forward pass"
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "The return_tensors setting selects the tensor framework.",
+          "hint": "The return_tensors setting selects the tensor framework.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "tokenization-choose-1",
+          "kind": "mcq",
+          "code": "# Assume tokenizer is compatible with the chosen model.\nbatch=tokenizer(\"${word}\",return_tensors=____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Returns tensor-valued inputs for PyTorch. The return_tensors setting selects the tensor framework. Use \"pt\" as the replacement literal.",
+          "answer": "\"pt\"",
+          "options": [
+            "\"pt\"",
+            "\"np\"",
+            "None"
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "input_ids holds vocabulary IDs; the mask has a separate purpose.",
+          "hint": "input_ids holds vocabulary IDs; the mask has a separate purpose.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tokenization-read-2",
+          "kind": "mcq",
+          "code": "batch={\"input_ids\":[[${n},${m}]],\"attention_mask\":[[1,1]]}\nprint(batch[\"input_ids\"][0])",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${m}]",
+          "options": [
+            "[${n}, ${m}]",
+            "[1, 1]",
+            "KeyError"
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "input_ids holds vocabulary IDs; the mask has a separate purpose.",
+          "hint": "input_ids holds vocabulary IDs; the mask has a separate purpose.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tokenization-choose-2",
+          "kind": "mcq",
+          "code": "batch={\"input_ids\":[[${n},${m}]],\"attention_mask\":[[1,1]]}\nprint(batch[____][0])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. input_ids holds vocabulary IDs; the mask has a separate purpose. Use \"input_ids\" as the replacement literal.",
+          "answer": "\"input_ids\"",
+          "options": [
+            "\"input_ids\"",
+            "\"attention_mask\"",
+            "\"labels\""
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "In this fixture, ones identify the two non-padding positions.",
+          "hint": "In this fixture, ones identify the two non-padding positions.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "tokenization-read-3",
+          "kind": "mcq",
+          "code": "batch={\"input_ids\":[[${n},${m},0]],\"attention_mask\":[[1,1,0]]}\nprint(sum(batch[\"attention_mask\"][0]))",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "3",
+            "${add}"
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "In this fixture, ones identify the two non-padding positions.",
+          "hint": "In this fixture, ones identify the two non-padding positions.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tokenization-choose-3",
+          "kind": "mcq",
+          "code": "batch={\"input_ids\":[[${n},${m},0]],\"attention_mask\":[[1,1,0]]}\nprint(sum(batch[____][0]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. In this fixture, ones identify the two non-padding positions. Use \"attention_mask\" as the replacement literal.",
+          "answer": "\"attention_mask\"",
+          "options": [
+            "\"attention_mask\"",
+            "\"input_ids\"",
+            "\"labels\""
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "This flag controls added structural tokens, not vocabulary segmentation.",
+          "hint": "This flag controls added structural tokens, not vocabulary segmentation.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "tokenization-read-4",
+          "kind": "mcq",
+          "code": "# tokenizer is a configured text tokenizer.\nencoded=tokenizer(\"${word}\",add_special_tokens=False)",
+          "prompt": "What tokenization behavior changes?",
+          "answer": "Does not automatically add special tokens in this call",
+          "options": [
+            "Does not automatically add special tokens in this call",
+            "Removes all punctuation",
+            "Guarantees one token per word"
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "This flag controls added structural tokens, not vocabulary segmentation.",
+          "hint": "This flag controls added structural tokens, not vocabulary segmentation.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "tokenization-choose-4",
+          "kind": "mcq",
+          "code": "# tokenizer is a configured text tokenizer.\nencoded=tokenizer(\"${word}\",____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Does not automatically add special tokens in this call. This flag controls added structural tokens, not vocabulary segmentation.",
+          "answer": "add_special_tokens=False",
+          "options": [
+            "add_special_tokens=False",
+            "add_special_tokens=True",
+            "return_attention_mask=False"
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "The return_tensors setting selects the tensor framework.",
+          "hint": "The return_tensors setting selects the tensor framework.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "tokenization-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume tokenizer is compatible with the chosen model.\nbatch=tokenizer(\"${word}\",return_tensors=____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Returns tensor-valued inputs for PyTorch. The return_tensors setting selects the tensor framework. Use \"pt\" as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "\"pt\""
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "input_ids holds vocabulary IDs; the mask has a separate purpose.",
+          "hint": "input_ids holds vocabulary IDs; the mask has a separate purpose.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tokenization-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "batch={\"input_ids\":[[${n},${m}]],\"attention_mask\":[[1,1]]}\nprint(batch[____][0])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. input_ids holds vocabulary IDs; the mask has a separate purpose. Use \"input_ids\" as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "\"input_ids\""
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "In this fixture, ones identify the two non-padding positions.",
+          "hint": "In this fixture, ones identify the two non-padding positions.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "tokenization-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "batch={\"input_ids\":[[${n},${m},0]],\"attention_mask\":[[1,1,0]]}\nprint(sum(batch[____][0]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. In this fixture, ones identify the two non-padding positions. Use \"attention_mask\" as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "\"attention_mask\""
+          ]
+        },
+        {
+          "concept": "Tokenization and explicit input contracts",
+          "explanation": "This flag controls added structural tokens, not vocabulary segmentation.",
+          "hint": "This flag controls added structural tokens, not vocabulary segmentation.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "tokenization-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# tokenizer is a configured text tokenizer.\nencoded=tokenizer(\"${word}\",____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Does not automatically add special tokens in this call. This flag controls added structural tokens, not vocabulary segmentation. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "add_special_tokens=False"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "padding",
+      "title": "Padding, truncation, and batch length",
+      "section": "Basics",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Padding aligns sequence lengths; truncation limits long sequences. padding=True pads to the longest sequence in the batch, not necessarily max_length. padding=\"max_length\" requests a fixed padded width. A valid pad token is required for tokenizers that do not define one.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "tokenization"
+      ],
+      "questions": [
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "True selects longest-in-batch padding.",
+          "hint": "True selects longest-in-batch padding.",
+          "id": "padding-read-1",
+          "kind": "mcq",
+          "code": "# Assume tokenizer has a pad token.\nbatch=tokenizer(texts,padding=True,return_tensors=\"pt\")",
+          "prompt": "How is padding width chosen?",
+          "answer": "Pads to the longest sequence in this batch",
+          "options": [
+            "Pads to the longest sequence in this batch",
+            "Always pads to model maximum length",
+            "Removes all long sequences"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "True selects longest-in-batch padding.",
+          "hint": "True selects longest-in-batch padding.",
+          "id": "padding-choose-1",
+          "kind": "mcq",
+          "code": "# Assume tokenizer has a pad token.\nbatch=tokenizer(texts,padding=____,return_tensors=\"pt\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Pads to the longest sequence in this batch. True selects longest-in-batch padding.",
+          "answer": "True",
+          "options": [
+            "True",
+            "\"max_length\"",
+            "False"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "With fixed-length padding and truncation, max_length sets encoded sequence width.",
+          "hint": "With fixed-length padding and truncation, max_length sets encoded sequence width.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "padding-read-2",
+          "kind": "mcq",
+          "code": "# Assume the tokenizer supports these lengths and has a pad token.\nbatch=tokenizer(texts,padding=\"max_length\",truncation=True,max_length=${n},return_tensors=\"pt\")",
+          "prompt": "What length contract is requested?",
+          "answer": "Requests padded/truncated sequences of length ${n}",
+          "options": [
+            "Requests padded/truncated sequences of length ${n}",
+            "Adds exactly ${n} new generated tokens",
+            "Creates ${n} documents"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "With fixed-length padding and truncation, max_length sets encoded sequence width.",
+          "hint": "With fixed-length padding and truncation, max_length sets encoded sequence width.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "padding-choose-2",
+          "kind": "mcq",
+          "code": "# Assume the tokenizer supports these lengths and has a pad token.\nbatch=tokenizer(texts,padding=\"max_length\",truncation=True,max_length=____,return_tensors=\"pt\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests padded/truncated sequences of length ${n}. With fixed-length padding and truncation, max_length sets encoded sequence width. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "Longest-in-batch padding selects the maximum encoded length.",
+          "hint": "Longest-in-batch padding selects the maximum encoded length.",
+          "id": "padding-read-3",
+          "kind": "mcq",
+          "code": "lengths=[2,4]\n# Fixture: pad both sequences to the longest encoded length.\nwidth=max(lengths)\nprint(width)",
+          "prompt": "What is the result?",
+          "answer": "4",
+          "options": [
+            "4",
+            "2",
+            "6"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "Longest-in-batch padding selects the maximum encoded length.",
+          "hint": "Longest-in-batch padding selects the maximum encoded length.",
+          "id": "padding-choose-3",
+          "kind": "mcq",
+          "code": "lengths=[2,4]\n# Fixture: pad both sequences to the longest encoded length.\nwidth=____\nprint(width)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 4. Longest-in-batch padding selects the maximum encoded length.",
+          "answer": "max(lengths)",
+          "options": [
+            "max(lengths)",
+            "min(lengths)",
+            "sum(lengths)"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "Truncation controls shortening; padding must be requested separately.",
+          "hint": "Truncation controls shortening; padding must be requested separately.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "padding-read-4",
+          "kind": "mcq",
+          "code": "# Assume tokenizer has a pad token.\nbatch=tokenizer(texts,truncation=True,max_length=${n})",
+          "prompt": "What does this option enable?",
+          "answer": "Limits encoded length according to the truncation strategy",
+          "options": [
+            "Limits encoded length according to the truncation strategy",
+            "Guarantees fixed-width padding",
+            "Generates new tokens"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "Truncation controls shortening; padding must be requested separately.",
+          "hint": "Truncation controls shortening; padding must be requested separately.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "padding-choose-4",
+          "kind": "mcq",
+          "code": "# Assume tokenizer has a pad token.\nbatch=tokenizer(texts,truncation=____,max_length=${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Limits encoded length according to the truncation strategy. Truncation controls shortening; padding must be requested separately.",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "True selects longest-in-batch padding.",
+          "hint": "True selects longest-in-batch padding.",
+          "id": "padding-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume tokenizer has a pad token.\nbatch=tokenizer(texts,padding=____,return_tensors=\"pt\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Pads to the longest sequence in this batch. True selects longest-in-batch padding. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "True"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "With fixed-length padding and truncation, max_length sets encoded sequence width.",
+          "hint": "With fixed-length padding and truncation, max_length sets encoded sequence width.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "padding-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume the tokenizer supports these lengths and has a pad token.\nbatch=tokenizer(texts,padding=\"max_length\",truncation=True,max_length=____,return_tensors=\"pt\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests padded/truncated sequences of length ${n}. With fixed-length padding and truncation, max_length sets encoded sequence width. Use ${n} as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "Longest-in-batch padding selects the maximum encoded length.",
+          "hint": "Longest-in-batch padding selects the maximum encoded length.",
+          "id": "padding-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "lengths=[2,4]\n# Fixture: pad both sequences to the longest encoded length.\nwidth=____\nprint(width)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 4. Longest-in-batch padding selects the maximum encoded length. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "max(lengths)"
+          ]
+        },
+        {
+          "concept": "Padding, truncation, and batch length",
+          "explanation": "Truncation controls shortening; padding must be requested separately.",
+          "hint": "Truncation controls shortening; padding must be requested separately.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "padding-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume tokenizer has a pad token.\nbatch=tokenizer(texts,truncation=____,max_length=${n})",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Limits encoded length according to the truncation strategy. Truncation controls shortening; padding must be requested separately. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "True"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "batches",
+      "title": "Batch dictionaries and model arguments",
+      "section": "Basics",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. **batch expands mapping entries into keyword arguments. The model expects compatible names, integer token IDs, and correctly shaped masks. Batch dimension comes first for common text models. Keep tensor device placement aligned with a single-device model.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "padding"
+      ],
+      "questions": [
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "The explicit stub demonstrates dictionary-to-keyword expansion used by model calls.",
+          "hint": "The explicit stub demonstrates dictionary-to-keyword expansion used by model calls.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "batches-read-1",
+          "kind": "mcq",
+          "code": "batch={\"input_ids\":[[${n},${m}]]}\ndef model(*,input_ids): return len(input_ids)\nprint(model(**batch))",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "2",
+            "TypeError"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "The explicit stub demonstrates dictionary-to-keyword expansion used by model calls.",
+          "hint": "The explicit stub demonstrates dictionary-to-keyword expansion used by model calls.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "batches-choose-1",
+          "kind": "mcq",
+          "code": "batch={\"input_ids\":[[${n},${m}]]}\ndef model(*,input_ids): return len(input_ids)\nprint(model(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. The explicit stub demonstrates dictionary-to-keyword expansion used by model calls.",
+          "answer": "**batch",
+          "options": [
+            "**batch",
+            "batch",
+            "*batch"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "The outer dimension counts input sequences.",
+          "hint": "The outer dimension counts input sequences.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "batches-read-2",
+          "kind": "mcq",
+          "code": "batch={\"input_ids\":[[${n},0],[${m},0]],\"attention_mask\":[[1,0],[1,0]]}\nprint(len(batch[\"input_ids\"]))",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "1",
+            "4"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "The outer dimension counts input sequences.",
+          "hint": "The outer dimension counts input sequences.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "batches-choose-2",
+          "kind": "mcq",
+          "code": "batch={\"input_ids\":[[${n},0],[${m},0]],\"attention_mask\":[[1,0],[1,0]]}\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The outer dimension counts input sequences.",
+          "answer": "len(batch[\"input_ids\"])",
+          "options": [
+            "len(batch[\"input_ids\"])",
+            "len(batch)",
+            "sum(batch[\"attention_mask\"][0])"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "BatchEncoding.to forwards device placement to its tensor values.",
+          "hint": "BatchEncoding.to forwards device placement to its tensor values.",
+          "id": "batches-read-3",
+          "kind": "mcq",
+          "code": "# Assume batch is a tensor-valued BatchEncoding and model uses one device.\nbatch=batch.to(model.device)",
+          "prompt": "What does this operation change?",
+          "answer": "Moves batch tensors to the model device",
+          "options": [
+            "Moves batch tensors to the model device",
+            "Changes every token ID to floating point",
+            "Loads another model"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "BatchEncoding.to forwards device placement to its tensor values.",
+          "hint": "BatchEncoding.to forwards device placement to its tensor values.",
+          "id": "batches-choose-3",
+          "kind": "mcq",
+          "code": "# Assume batch is a tensor-valued BatchEncoding and model uses one device.\nbatch=batch.____(model.device)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Moves batch tensors to the model device. BatchEncoding.to forwards device placement to its tensor values.",
+          "answer": "to",
+          "options": [
+            "to",
+            "decode",
+            "save_pretrained"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "The argument names the valid-attention input separately from labels and IDs.",
+          "hint": "The argument names the valid-attention input separately from labels and IDs.",
+          "id": "batches-read-4",
+          "kind": "mcq",
+          "code": "# Assume model accepts input_ids and attention_mask.\noutputs=model(input_ids=ids,attention_mask=mask)",
+          "prompt": "What is being passed?",
+          "answer": "Supplies the explicit attention mask",
+          "options": [
+            "Supplies the explicit attention mask",
+            "Requests output probabilities",
+            "Sets the training labels"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "The argument names the valid-attention input separately from labels and IDs.",
+          "hint": "The argument names the valid-attention input separately from labels and IDs.",
+          "id": "batches-choose-4",
+          "kind": "mcq",
+          "code": "# Assume model accepts input_ids and attention_mask.\noutputs=model(input_ids=ids,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Supplies the explicit attention mask. The argument names the valid-attention input separately from labels and IDs.",
+          "answer": "attention_mask=mask",
+          "options": [
+            "attention_mask=mask",
+            "labels=mask",
+            "output_attentions=True"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "The explicit stub demonstrates dictionary-to-keyword expansion used by model calls.",
+          "hint": "The explicit stub demonstrates dictionary-to-keyword expansion used by model calls.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "batches-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "batch={\"input_ids\":[[${n},${m}]]}\ndef model(*,input_ids): return len(input_ids)\nprint(model(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. The explicit stub demonstrates dictionary-to-keyword expansion used by model calls. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "**batch"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "The outer dimension counts input sequences.",
+          "hint": "The outer dimension counts input sequences.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "batches-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "batch={\"input_ids\":[[${n},0],[${m},0]],\"attention_mask\":[[1,0],[1,0]]}\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. The outer dimension counts input sequences. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "len(batch[\"input_ids\"])"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "BatchEncoding.to forwards device placement to its tensor values.",
+          "hint": "BatchEncoding.to forwards device placement to its tensor values.",
+          "id": "batches-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume batch is a tensor-valued BatchEncoding and model uses one device.\nbatch=batch.____(model.device)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Moves batch tensors to the model device. BatchEncoding.to forwards device placement to its tensor values. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "to"
+          ]
+        },
+        {
+          "concept": "Batch dictionaries and model arguments",
+          "explanation": "The argument names the valid-attention input separately from labels and IDs.",
+          "hint": "The argument names the valid-attention input separately from labels and IDs.",
+          "id": "batches-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume model accepts input_ids and attention_mask.\noutputs=model(input_ids=ids,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Supplies the explicit attention mask. The argument names the valid-attention input separately from labels and IDs. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "attention_mask=mask"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "outputs",
+      "title": "ModelOutput objects and task-dependent shapes",
+      "section": "Intermediate",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Outputs expose named fields whose presence depends on the model and requested options. Sequence classification logits commonly have shape batch-by-labels; causal LM logits are batch-by-sequence-by-vocabulary. Raw logits are not normalized probabilities. Avoid relying on positional tuple indices when optional fields can change.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "batches"
+      ],
+      "questions": [
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "This explicit output fixture demonstrates named-field access.",
+          "hint": "This explicit output fixture demonstrates named-field access.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "outputs-read-1",
+          "kind": "mcq",
+          "code": "from types import SimpleNamespace\noutputs=SimpleNamespace(logits=[[0,${n}]])\nprint(outputs.logits[0][1])",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "This explicit output fixture demonstrates named-field access.",
+          "hint": "This explicit output fixture demonstrates named-field access.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "outputs-choose-1",
+          "kind": "mcq",
+          "code": "from types import SimpleNamespace\noutputs=SimpleNamespace(logits=[[0,${n}]])\nprint(outputs.____[0][1])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. This explicit output fixture demonstrates named-field access.",
+          "answer": "logits",
+          "options": [
+            "logits",
+            "loss",
+            "hidden_states"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "The final dimension indexes labels for this task head.",
+          "hint": "The final dimension indexes labels for this task head.",
+          "id": "outputs-read-2",
+          "kind": "mcq",
+          "code": "# Sequence-classification fixture: two examples, three labels.\nshape=(2,3)\nprint(shape[-1])",
+          "prompt": "What is the result?",
+          "answer": "3",
+          "options": [
+            "3",
+            "2",
+            "(2, 3)"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "The final dimension indexes labels for this task head.",
+          "hint": "The final dimension indexes labels for this task head.",
+          "id": "outputs-choose-2",
+          "kind": "mcq",
+          "code": "# Sequence-classification fixture: two examples, three labels.\nshape=(2,3)\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. The final dimension indexes labels for this task head.",
+          "answer": "shape[-1]",
+          "options": [
+            "shape[-1]",
+            "shape[0]",
+            "shape"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "The middle dimension contains per-position predictions.",
+          "hint": "The middle dimension contains per-position predictions.",
+          "id": "outputs-read-3",
+          "kind": "mcq",
+          "code": "# Causal-LM fixture: batch=2, sequence=4, vocabulary=100.\nshape=(2,4,100)\nprint(shape[1])",
+          "prompt": "What is the result?",
+          "answer": "4",
+          "options": [
+            "4",
+            "2",
+            "100"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "The middle dimension contains per-position predictions.",
+          "hint": "The middle dimension contains per-position predictions.",
+          "id": "outputs-choose-3",
+          "kind": "mcq",
+          "code": "# Causal-LM fixture: batch=2, sequence=4, vocabulary=100.\nshape=(2,4,100)\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 4. The middle dimension contains per-position predictions.",
+          "answer": "shape[1]",
+          "options": [
+            "shape[1]",
+            "shape[0]",
+            "shape[2]"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "The final axis is the label axis for the stated task.",
+          "hint": "The final axis is the label axis for the stated task.",
+          "id": "outputs-read-4",
+          "kind": "mcq",
+          "code": "# Assume classification outputs have logits shaped (batch, labels).\nprobabilities=outputs.logits.softmax(dim=-1)",
+          "prompt": "What does this postprocessing do?",
+          "answer": "Normalizes scores across labels for each example",
+          "options": [
+            "Normalizes scores across labels for each example",
+            "Normalizes across examples",
+            "Changes the model to evaluation mode"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "The final axis is the label axis for the stated task.",
+          "hint": "The final axis is the label axis for the stated task.",
+          "id": "outputs-choose-4",
+          "kind": "mcq",
+          "code": "# Assume classification outputs have logits shaped (batch, labels).\nprobabilities=outputs.logits.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Normalizes scores across labels for each example. The final axis is the label axis for the stated task.",
+          "answer": "softmax(dim=-1)",
+          "options": [
+            "softmax(dim=-1)",
+            "softmax(dim=0)",
+            "detach()"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "This explicit output fixture demonstrates named-field access.",
+          "hint": "This explicit output fixture demonstrates named-field access.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "outputs-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "from types import SimpleNamespace\noutputs=SimpleNamespace(logits=[[0,${n}]])\nprint(outputs.____[0][1])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. This explicit output fixture demonstrates named-field access. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "logits"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "The final dimension indexes labels for this task head.",
+          "hint": "The final dimension indexes labels for this task head.",
+          "id": "outputs-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Sequence-classification fixture: two examples, three labels.\nshape=(2,3)\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. The final dimension indexes labels for this task head. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "shape[-1]"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "The middle dimension contains per-position predictions.",
+          "hint": "The middle dimension contains per-position predictions.",
+          "id": "outputs-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Causal-LM fixture: batch=2, sequence=4, vocabulary=100.\nshape=(2,4,100)\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 4. The middle dimension contains per-position predictions. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "shape[1]"
+          ]
+        },
+        {
+          "concept": "ModelOutput objects and task-dependent shapes",
+          "explanation": "The final axis is the label axis for the stated task.",
+          "hint": "The final axis is the label axis for the stated task.",
+          "id": "outputs-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume classification outputs have logits shaped (batch, labels).\nprobabilities=outputs.logits.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Normalizes scores across labels for each example. The final axis is the label axis for the stated task. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "softmax(dim=-1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inference",
+      "title": "Evaluation mode and bounded inference contexts",
+      "section": "Intermediate",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Model mode and autograd policy are separate. eval sets inference behavior for training-sensitive modules. inference_mode suppresses autograd overhead with additional restrictions. Inputs and outputs may occupy substantial device memory even without gradients.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "outputs"
+      ],
+      "questions": [
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "eval changes module behavior; it is not a gradient context manager.",
+          "hint": "eval changes module behavior; it is not a gradient context manager.",
+          "id": "inference-read-1",
+          "kind": "mcq",
+          "code": "# model is a PyTorch-backed Transformers model.\nmodel.eval()",
+          "prompt": "What changes?",
+          "answer": "Switches training-sensitive modules to evaluation behavior",
+          "options": [
+            "Switches training-sensitive modules to evaluation behavior",
+            "Disables all gradient recording globally",
+            "Moves weights to CPU"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "eval changes module behavior; it is not a gradient context manager.",
+          "hint": "eval changes module behavior; it is not a gradient context manager.",
+          "id": "inference-choose-1",
+          "kind": "mcq",
+          "code": "# model is a PyTorch-backed Transformers model.\nmodel.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Switches training-sensitive modules to evaluation behavior. eval changes module behavior; it is not a gradient context manager.",
+          "answer": "eval()",
+          "options": [
+            "eval()",
+            "train()",
+            "zero_grad()"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "The context controls autograd behavior, not a model generation strategy.",
+          "hint": "The context controls autograd behavior, not a model generation strategy.",
+          "id": "inference-read-2",
+          "kind": "mcq",
+          "code": "# Assume compatible model and tensor batch.\nwith torch.inference_mode():\n    outputs=model(**batch)",
+          "prompt": "What execution contract is selected?",
+          "answer": "Runs this forward pass without recording an autograd graph",
+          "options": [
+            "Runs this forward pass without recording an autograd graph",
+            "Trains the model automatically",
+            "Guarantees sampling is deterministic"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "The context controls autograd behavior, not a model generation strategy.",
+          "hint": "The context controls autograd behavior, not a model generation strategy.",
+          "id": "inference-choose-2",
+          "kind": "mcq",
+          "code": "# Assume compatible model and tensor batch.\nwith torch.____():\n    outputs=model(**batch)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Runs this forward pass without recording an autograd graph. The context controls autograd behavior, not a model generation strategy.",
+          "answer": "inference_mode",
+          "options": [
+            "inference_mode",
+            "enable_grad",
+            "manual_seed"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "detach removes graph linkage and cpu moves data when needed.",
+          "hint": "detach removes graph linkage and cpu moves data when needed.",
+          "id": "inference-read-3",
+          "kind": "mcq",
+          "code": "# Given an output tensor on a single-device model:\nsnapshot=outputs.logits.detach().cpu()",
+          "prompt": "What transformation is requested?",
+          "answer": "Produces an untracked CPU view or copy of the scores",
+          "options": [
+            "Produces an untracked CPU view or copy of the scores",
+            "Converts logits into probabilities",
+            "Updates model parameters"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "detach removes graph linkage and cpu moves data when needed.",
+          "hint": "detach removes graph linkage and cpu moves data when needed.",
+          "id": "inference-choose-3",
+          "kind": "mcq",
+          "code": "# Given an output tensor on a single-device model:\nsnapshot=outputs.logits.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Produces an untracked CPU view or copy of the scores. detach removes graph linkage and cpu moves data when needed.",
+          "answer": "detach().cpu()",
+          "options": [
+            "detach().cpu()",
+            "softmax(dim=-1)",
+            "argmax(dim=-1)"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "Evaluation mode and gradient recording are independent settings.",
+          "hint": "Evaluation mode and gradient recording are independent settings.",
+          "id": "inference-read-4",
+          "kind": "mcq",
+          "code": "# Assume a normal PyTorch-backed model in eval mode.\nmodel.eval()\nwith torch.enable_grad():\n    outputs=model(**batch)",
+          "prompt": "What is true of the forward pass?",
+          "answer": "Gradients can still be recorded for tracked parameters",
+          "options": [
+            "Gradients can still be recorded for tracked parameters",
+            "eval makes gradient recording impossible",
+            "The model is switched to training mode"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "Evaluation mode and gradient recording are independent settings.",
+          "hint": "Evaluation mode and gradient recording are independent settings.",
+          "id": "inference-choose-4",
+          "kind": "mcq",
+          "code": "# Assume a normal PyTorch-backed model in eval mode.\nmodel.eval()\nwith torch.____():\n    outputs=model(**batch)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Gradients can still be recorded for tracked parameters. Evaluation mode and gradient recording are independent settings.",
+          "answer": "enable_grad",
+          "options": [
+            "enable_grad",
+            "no_grad",
+            "inference_mode"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "eval changes module behavior; it is not a gradient context manager.",
+          "hint": "eval changes module behavior; it is not a gradient context manager.",
+          "id": "inference-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# model is a PyTorch-backed Transformers model.\nmodel.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Switches training-sensitive modules to evaluation behavior. eval changes module behavior; it is not a gradient context manager. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "eval()"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "The context controls autograd behavior, not a model generation strategy.",
+          "hint": "The context controls autograd behavior, not a model generation strategy.",
+          "id": "inference-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume compatible model and tensor batch.\nwith torch.____():\n    outputs=model(**batch)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Runs this forward pass without recording an autograd graph. The context controls autograd behavior, not a model generation strategy. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "inference_mode"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "detach removes graph linkage and cpu moves data when needed.",
+          "hint": "detach removes graph linkage and cpu moves data when needed.",
+          "id": "inference-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Given an output tensor on a single-device model:\nsnapshot=outputs.logits.____",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Produces an untracked CPU view or copy of the scores. detach removes graph linkage and cpu moves data when needed. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "detach().cpu()"
+          ]
+        },
+        {
+          "concept": "Evaluation mode and bounded inference contexts",
+          "explanation": "Evaluation mode and gradient recording are independent settings.",
+          "hint": "Evaluation mode and gradient recording are independent settings.",
+          "id": "inference-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume a normal PyTorch-backed model in eval mode.\nmodel.eval()\nwith torch.____():\n    outputs=model(**batch)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Gradients can still be recorded for tracked parameters. Evaluation mode and gradient recording are independent settings. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "enable_grad"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "generation",
+      "title": "Generation budgets and stopping",
+      "section": "Intermediate",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. generate performs iterative decoding rather than a single forward call. max_new_tokens bounds newly generated tokens; max_length includes the input length for decoder-only generation. EOS can stop earlier. Generated content is model-dependent, so exercises test API contracts instead of guessing text.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "inference"
+      ],
+      "questions": [
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "The budget counts tokens after the prompt; EOS can end generation earlier.",
+          "hint": "The budget counts tokens after the prompt; EOS can end generation earlier.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "generation-read-1",
+          "kind": "mcq",
+          "code": "generated=model.generate(**batch,max_new_tokens=${n})",
+          "prompt": "What budget is set?",
+          "answer": "Generates at most ${n} new tokens per sequence",
+          "options": [
+            "Generates at most ${n} new tokens per sequence",
+            "Always generates exactly ${n} words",
+            "Sets batch size to ${n}"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "The budget counts tokens after the prompt; EOS can end generation earlier.",
+          "hint": "The budget counts tokens after the prompt; EOS can end generation earlier.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "next": "n+1"
+          },
+          "id": "generation-choose-1",
+          "kind": "mcq",
+          "code": "generated=model.generate(**batch,max_new_tokens=____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Generates at most ${n} new tokens per sequence. The budget counts tokens after the prompt; EOS can end generation earlier. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "With one beam and sampling disabled, ordinary decoding chooses a highest-scoring next token.",
+          "hint": "With one beam and sampling disabled, ordinary decoding chooses a highest-scoring next token.",
+          "id": "generation-read-2",
+          "kind": "mcq",
+          "code": "generated=model.generate(**batch,do_sample=False,num_beams=1)",
+          "prompt": "What decoding policy is requested?",
+          "answer": "Requests greedy decoding under ordinary generation settings",
+          "options": [
+            "Requests greedy decoding under ordinary generation settings",
+            "Requests random sampling",
+            "Always uses beam search with multiple beams"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "With one beam and sampling disabled, ordinary decoding chooses a highest-scoring next token.",
+          "hint": "With one beam and sampling disabled, ordinary decoding chooses a highest-scoring next token.",
+          "id": "generation-choose-2",
+          "kind": "mcq",
+          "code": "generated=model.generate(**batch,do_sample=____,num_beams=1)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests greedy decoding under ordinary generation settings. With one beam and sampling disabled, ordinary decoding chooses a highest-scoring next token.",
+          "answer": "False",
+          "options": [
+            "False",
+            "True",
+            "None"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "Temperature affects the sampling distribution when sampling is enabled.",
+          "hint": "Temperature affects the sampling distribution when sampling is enabled.",
+          "id": "generation-read-3",
+          "kind": "mcq",
+          "code": "generated=model.generate(**batch,do_sample=True,temperature=0.7)",
+          "prompt": "What behavior is enabled?",
+          "answer": "Enables sampling with temperature scaling",
+          "options": [
+            "Enables sampling with temperature scaling",
+            "Guarantees the same text on every run",
+            "Limits output to seven tokens"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "Temperature affects the sampling distribution when sampling is enabled.",
+          "hint": "Temperature affects the sampling distribution when sampling is enabled.",
+          "id": "generation-choose-3",
+          "kind": "mcq",
+          "code": "generated=model.generate(**batch,do_sample=____,temperature=0.7)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Enables sampling with temperature scaling. Temperature affects the sampling distribution when sampling is enabled.",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "num_beams controls decoding search width, not input batch size.",
+          "hint": "num_beams controls decoding search width, not input batch size.",
+          "id": "generation-read-4",
+          "kind": "mcq",
+          "code": "generated=model.generate(**batch,num_beams=4,do_sample=False)",
+          "prompt": "What does this option control?",
+          "answer": "Requests beam search with four beams",
+          "options": [
+            "Requests beam search with four beams",
+            "Requests a batch of four inputs",
+            "Creates four independent models"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "num_beams controls decoding search width, not input batch size.",
+          "hint": "num_beams controls decoding search width, not input batch size.",
+          "id": "generation-choose-4",
+          "kind": "mcq",
+          "code": "generated=model.generate(**batch,____,do_sample=False)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests beam search with four beams. num_beams controls decoding search width, not input batch size.",
+          "answer": "num_beams=4",
+          "options": [
+            "num_beams=4",
+            "num_beams=1",
+            "num_return_sequences=4"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "The budget counts tokens after the prompt; EOS can end generation earlier.",
+          "hint": "The budget counts tokens after the prompt; EOS can end generation earlier.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "generation-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "generated=model.generate(**batch,max_new_tokens=____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Generates at most ${n} new tokens per sequence. The budget counts tokens after the prompt; EOS can end generation earlier. Use ${n} as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "With one beam and sampling disabled, ordinary decoding chooses a highest-scoring next token.",
+          "hint": "With one beam and sampling disabled, ordinary decoding chooses a highest-scoring next token.",
+          "id": "generation-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "generated=model.generate(**batch,do_sample=____,num_beams=1)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests greedy decoding under ordinary generation settings. With one beam and sampling disabled, ordinary decoding chooses a highest-scoring next token. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "False"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "Temperature affects the sampling distribution when sampling is enabled.",
+          "hint": "Temperature affects the sampling distribution when sampling is enabled.",
+          "id": "generation-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "generated=model.generate(**batch,do_sample=____,temperature=0.7)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Enables sampling with temperature scaling. Temperature affects the sampling distribution when sampling is enabled. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "True"
+          ]
+        },
+        {
+          "concept": "Generation budgets and stopping",
+          "explanation": "num_beams controls decoding search width, not input batch size.",
+          "hint": "num_beams controls decoding search width, not input batch size.",
+          "id": "generation-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "generated=model.generate(**batch,____,do_sample=False)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests beam search with four beams. num_beams controls decoding search width, not input batch size. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "num_beams=4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decoding",
+      "title": "Separating prompt tokens from continuations",
+      "section": "Intermediate",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Decoder-only generate normally returns the prompt prefix plus continuation. Slice by encoded input width before decoding new tokens. This contract differs from encoder-decoder generation. decode handles one sequence and batch_decode handles multiple sequences; special-token skipping changes presentation.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "generation"
+      ],
+      "questions": [
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "Slicing at prompt width keeps only the continuation.",
+          "hint": "Slicing at prompt width keeps only the continuation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "decoding-read-1",
+          "kind": "mcq",
+          "code": "# Decoder-only fixture: prompt is the first two IDs.\nids=[${n},${m},7,8]\nprint(ids[2:])",
+          "prompt": "What is the result?",
+          "answer": "[7, 8]",
+          "options": [
+            "[7, 8]",
+            "[${n}, ${m}]",
+            "[${n}, ${m}, 7, 8]"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "Slicing at prompt width keeps only the continuation.",
+          "hint": "Slicing at prompt width keeps only the continuation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "decoding-choose-1",
+          "kind": "mcq",
+          "code": "# Decoder-only fixture: prompt is the first two IDs.\nids=[${n},${m},7,8]\nprint(ids[____])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [7, 8]. Slicing at prompt width keeps only the continuation.",
+          "answer": "2:",
+          "options": [
+            "2:",
+            ":2",
+            ":"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "The second dimension is token position for this fixture.",
+          "hint": "The second dimension is token position for this fixture.",
+          "id": "decoding-read-2",
+          "kind": "mcq",
+          "code": "# Assume decoder-only generated is (batch, prompt+new).\nnew_ids=generated[:,batch[\"input_ids\"].shape[1]:]",
+          "prompt": "What does this slice select?",
+          "answer": "Removes the encoded prompt-width prefix",
+          "options": [
+            "Removes the encoded prompt-width prefix",
+            "Keeps only the prompt",
+            "Removes the first batch example"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "The second dimension is token position for this fixture.",
+          "hint": "The second dimension is token position for this fixture.",
+          "id": "decoding-choose-2",
+          "kind": "mcq",
+          "code": "# Assume decoder-only generated is (batch, prompt+new).\nnew_ids=generated[:,____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Removes the encoded prompt-width prefix. The second dimension is token position for this fixture.",
+          "answer": "batch[\"input_ids\"].shape[1]:",
+          "options": [
+            "batch[\"input_ids\"].shape[1]:",
+            ":batch[\"input_ids\"].shape[1]",
+            "0:1"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "The option affects special-token presentation, not prompt slicing.",
+          "hint": "The option affects special-token presentation, not prompt slicing.",
+          "id": "decoding-read-3",
+          "kind": "mcq",
+          "code": "text=tokenizer.decode(ids,skip_special_tokens=True)",
+          "prompt": "What cleanup is requested?",
+          "answer": "Omits registered special tokens from decoded text",
+          "options": [
+            "Omits registered special tokens from decoded text",
+            "Removes every punctuation token",
+            "Drops the prompt automatically"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "The option affects special-token presentation, not prompt slicing.",
+          "hint": "The option affects special-token presentation, not prompt slicing.",
+          "id": "decoding-choose-3",
+          "kind": "mcq",
+          "code": "text=tokenizer.decode(ids,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Omits registered special tokens from decoded text. The option affects special-token presentation, not prompt slicing.",
+          "answer": "skip_special_tokens=True",
+          "options": [
+            "skip_special_tokens=True",
+            "skip_special_tokens=False",
+            "clean_up_tokenization_spaces=False"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "batch_decode handles a batch, unlike a single-sequence decode call.",
+          "hint": "batch_decode handles a batch, unlike a single-sequence decode call.",
+          "id": "decoding-read-4",
+          "kind": "mcq",
+          "code": "texts=tokenizer.batch_decode(generated,skip_special_tokens=True)",
+          "prompt": "What does this operation produce?",
+          "answer": "Decodes each generated sequence into a string",
+          "options": [
+            "Decodes each generated sequence into a string",
+            "Returns logits for each sequence",
+            "Trains the tokenizer"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "batch_decode handles a batch, unlike a single-sequence decode call.",
+          "hint": "batch_decode handles a batch, unlike a single-sequence decode call.",
+          "id": "decoding-choose-4",
+          "kind": "mcq",
+          "code": "texts=tokenizer.____(generated,skip_special_tokens=True)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Decodes each generated sequence into a string. batch_decode handles a batch, unlike a single-sequence decode call.",
+          "answer": "batch_decode",
+          "options": [
+            "batch_decode",
+            "encode",
+            "tokenize"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "Slicing at prompt width keeps only the continuation.",
+          "hint": "Slicing at prompt width keeps only the continuation.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "decoding-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Decoder-only fixture: prompt is the first two IDs.\nids=[${n},${m},7,8]\nprint(ids[____])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [7, 8]. Slicing at prompt width keeps only the continuation. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "2:"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "The second dimension is token position for this fixture.",
+          "hint": "The second dimension is token position for this fixture.",
+          "id": "decoding-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume decoder-only generated is (batch, prompt+new).\nnew_ids=generated[:,____]",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Removes the encoded prompt-width prefix. The second dimension is token position for this fixture. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "batch[\"input_ids\"].shape[1]:"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "The option affects special-token presentation, not prompt slicing.",
+          "hint": "The option affects special-token presentation, not prompt slicing.",
+          "id": "decoding-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "text=tokenizer.decode(ids,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Omits registered special tokens from decoded text. The option affects special-token presentation, not prompt slicing. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "skip_special_tokens=True"
+          ]
+        },
+        {
+          "concept": "Separating prompt tokens from continuations",
+          "explanation": "batch_decode handles a batch, unlike a single-sequence decode call.",
+          "hint": "batch_decode handles a batch, unlike a single-sequence decode call.",
+          "id": "decoding-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "texts=tokenizer.____(generated,skip_special_tokens=True)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Decodes each generated sequence into a string. batch_decode handles a batch, unlike a single-sequence decode call. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "batch_decode"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chat",
+      "title": "Chat templates and model-specific formatting",
+      "section": "Advanced",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Chat messages use role/content fields, but models consume token sequences. apply_chat_template uses the tokenizer checkpoint formatting. Some templates add a generation prompt and some ignore that flag. Avoid duplicating special tokens when formatting to text before tokenizing.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "decoding"
+      ],
+      "questions": [
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "The message content is separate from its speaker role.",
+          "hint": "The message content is separate from its speaker role.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "chat-read-1",
+          "kind": "mcq",
+          "code": "messages=[{\"role\":\"user\",\"content\":\"${word}\"}]\nprint(messages[0][\"content\"])",
+          "prompt": "What is the result?",
+          "answer": "${word}",
+          "options": [
+            "${word}",
+            "user",
+            "KeyError"
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "The message content is separate from its speaker role.",
+          "hint": "The message content is separate from its speaker role.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "chat-choose-1",
+          "kind": "mcq",
+          "code": "messages=[{\"role\":\"user\",\"content\":\"${word}\"}]\nprint(messages[0][____])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The message content is separate from its speaker role. Use \"content\" as the replacement literal.",
+          "answer": "\"content\"",
+          "options": [
+            "\"content\"",
+            "\"role\"",
+            "\"text\""
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "With tokenize=False the operation creates formatted text, not model output.",
+          "hint": "With tokenize=False the operation creates formatted text, not model output.",
+          "id": "chat-read-2",
+          "kind": "mcq",
+          "code": "formatted=tokenizer.apply_chat_template(messages,tokenize=False)",
+          "prompt": "What does this call do?",
+          "answer": "Formats messages using the tokenizer chat template",
+          "options": [
+            "Formats messages using the tokenizer chat template",
+            "Always returns a PyTorch tensor",
+            "Generates an assistant reply"
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "With tokenize=False the operation creates formatted text, not model output.",
+          "hint": "With tokenize=False the operation creates formatted text, not model output.",
+          "id": "chat-choose-2",
+          "kind": "mcq",
+          "code": "formatted=tokenizer.____(messages,tokenize=False)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Formats messages using the tokenizer chat template. With tokenize=False the operation creates formatted text, not model output.",
+          "answer": "apply_chat_template",
+          "options": [
+            "apply_chat_template",
+            "batch_decode",
+            "save_pretrained"
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "A chat template normally supplies its own structural tokens; later tokenization should not duplicate them.",
+          "hint": "A chat template normally supplies its own structural tokens; later tokenization should not duplicate them.",
+          "id": "chat-read-3",
+          "kind": "mcq",
+          "code": "formatted=tokenizer.apply_chat_template(messages,tokenize=False)\nbatch=tokenizer(formatted,add_special_tokens=False,return_tensors=\"pt\")",
+          "prompt": "Why use this option?",
+          "answer": "Avoids adding another layer of special tokens",
+          "options": [
+            "Avoids adding another layer of special tokens",
+            "Disables all attention masks",
+            "Removes model weights"
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "A chat template normally supplies its own structural tokens; later tokenization should not duplicate them.",
+          "hint": "A chat template normally supplies its own structural tokens; later tokenization should not duplicate them.",
+          "id": "chat-choose-3",
+          "kind": "mcq",
+          "code": "formatted=tokenizer.apply_chat_template(messages,tokenize=False)\nbatch=tokenizer(formatted,____,return_tensors=\"pt\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Avoids adding another layer of special tokens. A chat template normally supplies its own structural tokens; later tokenization should not duplicate them.",
+          "answer": "add_special_tokens=False",
+          "options": [
+            "add_special_tokens=False",
+            "add_special_tokens=True",
+            "return_attention_mask=False"
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "Generation-prompt behavior belongs to the specific template, not a universal chat encoding.",
+          "hint": "Generation-prompt behavior belongs to the specific template, not a universal chat encoding.",
+          "id": "chat-read-4",
+          "kind": "mcq",
+          "code": "ids=tokenizer.apply_chat_template(messages,tokenize=True,add_generation_prompt=True)",
+          "prompt": "What is requested?",
+          "answer": "Requests an assistant-turn prompt where the template supports it",
+          "options": [
+            "Requests an assistant-turn prompt where the template supports it",
+            "Always appends the same universal token",
+            "Generates the reply immediately"
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "Generation-prompt behavior belongs to the specific template, not a universal chat encoding.",
+          "hint": "Generation-prompt behavior belongs to the specific template, not a universal chat encoding.",
+          "id": "chat-choose-4",
+          "kind": "mcq",
+          "code": "ids=tokenizer.apply_chat_template(messages,tokenize=True,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests an assistant-turn prompt where the template supports it. Generation-prompt behavior belongs to the specific template, not a universal chat encoding.",
+          "answer": "add_generation_prompt=True",
+          "options": [
+            "add_generation_prompt=True",
+            "add_generation_prompt=False",
+            "continue_final_message=True"
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "The message content is separate from its speaker role.",
+          "hint": "The message content is separate from its speaker role.",
+          "parameters": {
+            "word": {
+              "type": "choice",
+              "values": [
+                "cache",
+                "buffer",
+                "panel",
+                "message",
+                "record"
+              ]
+            }
+          },
+          "derived": {},
+          "id": "chat-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "messages=[{\"role\":\"user\",\"content\":\"${word}\"}]\nprint(messages[0][____])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${word}. The message content is separate from its speaker role. Use \"content\" as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "\"content\""
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "With tokenize=False the operation creates formatted text, not model output.",
+          "hint": "With tokenize=False the operation creates formatted text, not model output.",
+          "id": "chat-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "formatted=tokenizer.____(messages,tokenize=False)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Formats messages using the tokenizer chat template. With tokenize=False the operation creates formatted text, not model output. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "apply_chat_template"
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "A chat template normally supplies its own structural tokens; later tokenization should not duplicate them.",
+          "hint": "A chat template normally supplies its own structural tokens; later tokenization should not duplicate them.",
+          "id": "chat-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "formatted=tokenizer.apply_chat_template(messages,tokenize=False)\nbatch=tokenizer(formatted,____,return_tensors=\"pt\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Avoids adding another layer of special tokens. A chat template normally supplies its own structural tokens; later tokenization should not duplicate them. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "add_special_tokens=False"
+          ]
+        },
+        {
+          "concept": "Chat templates and model-specific formatting",
+          "explanation": "Generation-prompt behavior belongs to the specific template, not a universal chat encoding.",
+          "hint": "Generation-prompt behavior belongs to the specific template, not a universal chat encoding.",
+          "id": "chat-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "ids=tokenizer.apply_chat_template(messages,tokenize=True,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests an assistant-turn prompt where the template supports it. Generation-prompt behavior belongs to the specific template, not a universal chat encoding. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "add_generation_prompt=True"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "labels",
+      "title": "Labels, ignored positions, and collators",
+      "section": "Advanced",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Training input labels depend on the task. Common PyTorch loss paths ignore label -100; an attention mask and ignored labels serve different purposes. DataCollatorWithPadding batches and pads examples at runtime. Read actual label alignment rather than assuming every task shifts in the same place.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "chat"
+      ],
+      "questions": [
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "Two target positions remain eligible for a loss that ignores -100.",
+          "hint": "Two target positions remain eligible for a loss that ignores -100.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "labels-read-1",
+          "kind": "mcq",
+          "code": "labels=[${n},${m},-100]\nprint(sum(x!=-100 for x in labels))",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "3",
+            "1"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "Two target positions remain eligible for a loss that ignores -100.",
+          "hint": "Two target positions remain eligible for a loss that ignores -100.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "labels-choose-1",
+          "kind": "mcq",
+          "code": "labels=[${n},${m},-100]\nprint(sum(x____ for x in labels))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Two target positions remain eligible for a loss that ignores -100.",
+          "answer": "!=-100",
+          "options": [
+            "!=-100",
+            "==-100",
+            ">100"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "Passing labels enables the task head loss path; masking labels remains the caller/collator responsibility.",
+          "hint": "Passing labels enables the task head loss path; masking labels remains the caller/collator responsibility.",
+          "id": "labels-read-2",
+          "kind": "mcq",
+          "code": "# Assume a standard causal LM handles label shifting internally.\noutputs=model(input_ids=ids,attention_mask=mask,labels=labels)",
+          "prompt": "What additional output can this enable?",
+          "answer": "Requests a training loss using target labels",
+          "options": [
+            "Requests a training loss using target labels",
+            "Changes the tokenizer vocabulary",
+            "Requests only generated text"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "Passing labels enables the task head loss path; masking labels remains the caller/collator responsibility.",
+          "hint": "Passing labels enables the task head loss path; masking labels remains the caller/collator responsibility.",
+          "id": "labels-choose-2",
+          "kind": "mcq",
+          "code": "# Assume a standard causal LM handles label shifting internally.\noutputs=model(input_ids=ids,attention_mask=mask,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests a training loss using target labels. Passing labels enables the task head loss path; masking labels remains the caller/collator responsibility.",
+          "answer": "labels=labels",
+          "options": [
+            "labels=labels",
+            "output_hidden_states=True",
+            "use_cache=True"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "This collator handles padding, not the distinct masked-language-model corruption task.",
+          "hint": "This collator handles padding, not the distinct masked-language-model corruption task.",
+          "id": "labels-read-3",
+          "kind": "mcq",
+          "code": "collator=DataCollatorWithPadding(tokenizer=tokenizer)\nbatch=collator(features)",
+          "prompt": "What is the batching role?",
+          "answer": "Pads the provided examples into a batch",
+          "options": [
+            "Pads the provided examples into a batch",
+            "Always masks random tokens for MLM",
+            "Trains a model"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "This collator handles padding, not the distinct masked-language-model corruption task.",
+          "hint": "This collator handles padding, not the distinct masked-language-model corruption task.",
+          "id": "labels-choose-3",
+          "kind": "mcq",
+          "code": "collator=____(tokenizer=tokenizer)\nbatch=collator(features)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Pads the provided examples into a batch. This collator handles padding, not the distinct masked-language-model corruption task.",
+          "answer": "DataCollatorWithPadding",
+          "options": [
+            "DataCollatorWithPadding",
+            "DataCollatorForLanguageModeling",
+            "AutoTokenizer"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "This explicit fixture excludes padding from a loss whose ignore index is -100.",
+          "hint": "This explicit fixture excludes padding from a loss whose ignore index is -100.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "labels-read-4",
+          "kind": "mcq",
+          "code": "attention_mask=[1,1,0]\nlabels=[${n},${m},0]\nlabels=[token if keep else -100 for token,keep in zip(labels,attention_mask)]\nprint(labels)",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${m}, -100]",
+          "options": [
+            "[${n}, ${m}, -100]",
+            "[${n}, ${m}, 0]",
+            "[-100, -100, -100]"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "This explicit fixture excludes padding from a loss whose ignore index is -100.",
+          "hint": "This explicit fixture excludes padding from a loss whose ignore index is -100.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "labels-choose-4",
+          "kind": "mcq",
+          "code": "attention_mask=[1,1,0]\nlabels=[${n},${m},0]\nlabels=[token if keep else ____ for token,keep in zip(labels,attention_mask)]\nprint(labels)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}, -100]. This explicit fixture excludes padding from a loss whose ignore index is -100.",
+          "answer": "-100",
+          "options": [
+            "-100",
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "Two target positions remain eligible for a loss that ignores -100.",
+          "hint": "Two target positions remain eligible for a loss that ignores -100.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "labels-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "labels=[${n},${m},-100]\nprint(sum(x____ for x in labels))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. Two target positions remain eligible for a loss that ignores -100. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "!=-100"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "Passing labels enables the task head loss path; masking labels remains the caller/collator responsibility.",
+          "hint": "Passing labels enables the task head loss path; masking labels remains the caller/collator responsibility.",
+          "id": "labels-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume a standard causal LM handles label shifting internally.\noutputs=model(input_ids=ids,attention_mask=mask,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests a training loss using target labels. Passing labels enables the task head loss path; masking labels remains the caller/collator responsibility. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "labels=labels"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "This collator handles padding, not the distinct masked-language-model corruption task.",
+          "hint": "This collator handles padding, not the distinct masked-language-model corruption task.",
+          "id": "labels-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "collator=____(tokenizer=tokenizer)\nbatch=collator(features)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Pads the provided examples into a batch. This collator handles padding, not the distinct masked-language-model corruption task. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "DataCollatorWithPadding"
+          ]
+        },
+        {
+          "concept": "Labels, ignored positions, and collators",
+          "explanation": "This explicit fixture excludes padding from a loss whose ignore index is -100.",
+          "hint": "This explicit fixture excludes padding from a loss whose ignore index is -100.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "labels-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "attention_mask=[1,1,0]\nlabels=[${n},${m},0]\nlabels=[token if keep else ____ for token,keep in zip(labels,attention_mask)]\nprint(labels)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}, -100]. This explicit fixture excludes padding from a loss whose ignore index is -100. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "-100"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "persistence",
+      "title": "Saving assets and reproducible loading",
+      "section": "Advanced",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Save both model and tokenizer assets for a reusable checkpoint. A revision can pin a model repository snapshot. local_files_only prevents fetching missing remote assets. A cache directory is not the same as an explicit exported checkpoint. Remote custom code requires separate deliberate review.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "labels"
+      ],
+      "questions": [
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "The two calls preserve compatible model and preprocessing assets for later loading.",
+          "hint": "The two calls preserve compatible model and preprocessing assets for later loading.",
+          "id": "persistence-read-1",
+          "kind": "mcq",
+          "code": "model.save_pretrained(\"export\")\ntokenizer.save_pretrained(\"export\")",
+          "prompt": "What is saved locally?",
+          "answer": "Saves model and tokenizer assets into export",
+          "options": [
+            "Saves model and tokenizer assets into export",
+            "Only writes a Python pickle of one object",
+            "Uploads automatically to the Hub"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "The two calls preserve compatible model and preprocessing assets for later loading.",
+          "hint": "The two calls preserve compatible model and preprocessing assets for later loading.",
+          "id": "persistence-choose-1",
+          "kind": "mcq",
+          "code": "model.____(\"export\")\ntokenizer.save_pretrained(\"export\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Saves model and tokenizer assets into export. The two calls preserve compatible model and preprocessing assets for later loading.",
+          "answer": "save_pretrained",
+          "options": [
+            "save_pretrained",
+            "push_to_hub",
+            "from_pretrained"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "This option prevents resolving missing assets through a download.",
+          "hint": "This option prevents resolving missing assets through a download.",
+          "id": "persistence-read-2",
+          "kind": "mcq",
+          "code": "model=AutoModel.from_pretrained(\"local-checkpoint\",local_files_only=True)",
+          "prompt": "What loading constraint applies?",
+          "answer": "Uses local assets and fails if required files are unavailable",
+          "options": [
+            "Uses local assets and fails if required files are unavailable",
+            "Downloads missing files automatically",
+            "Guarantees the model is small"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "This option prevents resolving missing assets through a download.",
+          "hint": "This option prevents resolving missing assets through a download.",
+          "id": "persistence-choose-2",
+          "kind": "mcq",
+          "code": "model=AutoModel.from_pretrained(\"local-checkpoint\",____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Uses local assets and fails if required files are unavailable. This option prevents resolving missing assets through a download.",
+          "answer": "local_files_only=True",
+          "options": [
+            "local_files_only=True",
+            "local_files_only=False",
+            "force_download=True"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "A repository revision fixes which files are resolved, not all runtime behavior.",
+          "hint": "A repository revision fixes which files are resolved, not all runtime behavior.",
+          "id": "persistence-read-3",
+          "kind": "mcq",
+          "code": "# Assume commit is a full model-repository commit identifier.\nmodel=AutoModel.from_pretrained(checkpoint,revision=commit)",
+          "prompt": "What does revision control?",
+          "answer": "Pins the requested asset revision",
+          "options": [
+            "Pins the requested asset revision",
+            "Fixes every random seed",
+            "Selects the training learning rate"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "A repository revision fixes which files are resolved, not all runtime behavior.",
+          "hint": "A repository revision fixes which files are resolved, not all runtime behavior.",
+          "id": "persistence-choose-3",
+          "kind": "mcq",
+          "code": "# Assume commit is a full model-repository commit identifier.\nmodel=AutoModel.from_pretrained(checkpoint,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Pins the requested asset revision. A repository revision fixes which files are resolved, not all runtime behavior.",
+          "answer": "revision=commit",
+          "options": [
+            "revision=commit",
+            "cache_dir=commit",
+            "subfolder=commit"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "The flag controls custom code opt-in; it is not a general sandbox or provenance guarantee.",
+          "hint": "The flag controls custom code opt-in; it is not a general sandbox or provenance guarantee.",
+          "id": "persistence-read-4",
+          "kind": "mcq",
+          "code": "tokenizer=AutoTokenizer.from_pretrained(checkpoint,trust_remote_code=False)",
+          "prompt": "What boundary does this flag enforce?",
+          "answer": "Does not opt into executing repository-supplied custom code",
+          "options": [
+            "Does not opt into executing repository-supplied custom code",
+            "Proves all assets harmless",
+            "Runs custom code in a secure sandbox"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "The flag controls custom code opt-in; it is not a general sandbox or provenance guarantee.",
+          "hint": "The flag controls custom code opt-in; it is not a general sandbox or provenance guarantee.",
+          "id": "persistence-choose-4",
+          "kind": "mcq",
+          "code": "tokenizer=AutoTokenizer.from_pretrained(checkpoint,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Does not opt into executing repository-supplied custom code. The flag controls custom code opt-in; it is not a general sandbox or provenance guarantee.",
+          "answer": "trust_remote_code=False",
+          "options": [
+            "trust_remote_code=False",
+            "trust_remote_code=True",
+            "local_files_only=False"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "The two calls preserve compatible model and preprocessing assets for later loading.",
+          "hint": "The two calls preserve compatible model and preprocessing assets for later loading.",
+          "id": "persistence-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "model.____(\"export\")\ntokenizer.save_pretrained(\"export\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Saves model and tokenizer assets into export. The two calls preserve compatible model and preprocessing assets for later loading. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "save_pretrained"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "This option prevents resolving missing assets through a download.",
+          "hint": "This option prevents resolving missing assets through a download.",
+          "id": "persistence-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "model=AutoModel.from_pretrained(\"local-checkpoint\",____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Uses local assets and fails if required files are unavailable. This option prevents resolving missing assets through a download. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "local_files_only=True"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "A repository revision fixes which files are resolved, not all runtime behavior.",
+          "hint": "A repository revision fixes which files are resolved, not all runtime behavior.",
+          "id": "persistence-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume commit is a full model-repository commit identifier.\nmodel=AutoModel.from_pretrained(checkpoint,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Pins the requested asset revision. A repository revision fixes which files are resolved, not all runtime behavior. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "revision=commit"
+          ]
+        },
+        {
+          "concept": "Saving assets and reproducible loading",
+          "explanation": "The flag controls custom code opt-in; it is not a general sandbox or provenance guarantee.",
+          "hint": "The flag controls custom code opt-in; it is not a general sandbox or provenance guarantee.",
+          "id": "persistence-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "tokenizer=AutoTokenizer.from_pretrained(checkpoint,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Does not opt into executing repository-supplied custom code. The flag controls custom code opt-in; it is not a general sandbox or provenance guarantee. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "trust_remote_code=False"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "debugging",
+      "title": "Diagnosing integration mistakes",
+      "section": "Advanced",
+      "intro": "Hugging Face Transformers 4.57 API baseline; PyTorch backend. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Check tokenizer/model compatibility, tensor shape and dtype, device placement, and generation return type before blaming model quality. Additional hidden states, attention tensors, or generation scores can consume substantial memory. Optional outputs should be requested only when they serve the task.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "transformers-0",
+        "transformers-1",
+        "transformers-2",
+        "transformers-3"
+      ],
+      "requires": [
+        "persistence"
+      ],
+      "questions": [
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Class IDs need the matching checkpoint label mapping for interpretation.",
+          "hint": "Class IDs need the matching checkpoint label mapping for interpretation.",
+          "id": "debugging-read-1",
+          "kind": "mcq",
+          "code": "# Assume config has id2label={0:\"negative\",1:\"positive\"}.\nconfig={0:\"negative\",1:\"positive\"}\nprediction=1\nprint(config[prediction])",
+          "prompt": "What is the result?",
+          "answer": "positive",
+          "options": [
+            "positive",
+            "negative",
+            "KeyError"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Class IDs need the matching checkpoint label mapping for interpretation.",
+          "hint": "Class IDs need the matching checkpoint label mapping for interpretation.",
+          "id": "debugging-choose-1",
+          "kind": "mcq",
+          "code": "# Assume config has id2label={0:\"negative\",1:\"positive\"}.\nconfig={0:\"negative\",1:\"positive\"}\nprediction=1\nprint(config[____])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: positive. Class IDs need the matching checkpoint label mapping for interpretation.",
+          "answer": "prediction",
+          "options": [
+            "prediction",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Extra intermediate tensors can increase retained output memory.",
+          "hint": "Extra intermediate tensors can increase retained output memory.",
+          "id": "debugging-read-2",
+          "kind": "mcq",
+          "code": "outputs=model(**batch,output_hidden_states=True)",
+          "prompt": "What extra data is requested?",
+          "answer": "Requests hidden-state outputs where supported",
+          "options": [
+            "Requests hidden-state outputs where supported",
+            "Guarantees lower memory use",
+            "Changes tokenizer padding"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Extra intermediate tensors can increase retained output memory.",
+          "hint": "Extra intermediate tensors can increase retained output memory.",
+          "id": "debugging-choose-2",
+          "kind": "mcq",
+          "code": "outputs=model(**batch,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests hidden-state outputs where supported. Extra intermediate tensors can increase retained output memory.",
+          "answer": "output_hidden_states=True",
+          "options": [
+            "output_hidden_states=True",
+            "output_hidden_states=False",
+            "return_dict=False"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Structured output exposes fields such as sequences; scores remain model/generation outputs requiring interpretation.",
+          "hint": "Structured output exposes fields such as sequences; scores remain model/generation outputs requiring interpretation.",
+          "id": "debugging-read-3",
+          "kind": "mcq",
+          "code": "result=model.generate(**batch,return_dict_in_generate=True,output_scores=True)",
+          "prompt": "What return contract is selected?",
+          "answer": "Requests structured generation outputs including available scores",
+          "options": [
+            "Requests structured generation outputs including available scores",
+            "Returns only decoded strings",
+            "Converts scores to probabilities automatically"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Structured output exposes fields such as sequences; scores remain model/generation outputs requiring interpretation.",
+          "hint": "Structured output exposes fields such as sequences; scores remain model/generation outputs requiring interpretation.",
+          "id": "debugging-choose-3",
+          "kind": "mcq",
+          "code": "result=model.generate(**batch,____,output_scores=True)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests structured generation outputs including available scores. Structured output exposes fields such as sequences; scores remain model/generation outputs requiring interpretation.",
+          "answer": "return_dict_in_generate=True",
+          "options": [
+            "return_dict_in_generate=True",
+            "return_dict_in_generate=False",
+            "output_attentions=False"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Read token sequences from the named field in this explicit structured-output fixture.",
+          "hint": "Read token sequences from the named field in this explicit structured-output fixture.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "debugging-read-4",
+          "kind": "mcq",
+          "code": "from types import SimpleNamespace\nresult=SimpleNamespace(sequences=[[${n},7,8]],scores=())\nprint(result.sequences[0][-1])",
+          "prompt": "What is the result?",
+          "answer": "8",
+          "options": [
+            "8",
+            "${n}",
+            "AttributeError"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Read token sequences from the named field in this explicit structured-output fixture.",
+          "hint": "Read token sequences from the named field in this explicit structured-output fixture.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "debugging-choose-4",
+          "kind": "mcq",
+          "code": "from types import SimpleNamespace\nresult=SimpleNamespace(sequences=[[${n},7,8]],scores=())\nprint(result.____[0][-1])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 8. Read token sequences from the named field in this explicit structured-output fixture.",
+          "answer": "sequences",
+          "options": [
+            "sequences",
+            "scores",
+            "logits"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Class IDs need the matching checkpoint label mapping for interpretation.",
+          "hint": "Class IDs need the matching checkpoint label mapping for interpretation.",
+          "id": "debugging-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume config has id2label={0:\"negative\",1:\"positive\"}.\nconfig={0:\"negative\",1:\"positive\"}\nprediction=1\nprint(config[____])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: positive. Class IDs need the matching checkpoint label mapping for interpretation. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "prediction"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Extra intermediate tensors can increase retained output memory.",
+          "hint": "Extra intermediate tensors can increase retained output memory.",
+          "id": "debugging-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "outputs=model(**batch,____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests hidden-state outputs where supported. Extra intermediate tensors can increase retained output memory. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "output_hidden_states=True"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Structured output exposes fields such as sequences; scores remain model/generation outputs requiring interpretation.",
+          "hint": "Structured output exposes fields such as sequences; scores remain model/generation outputs requiring interpretation.",
+          "id": "debugging-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "result=model.generate(**batch,____,output_scores=True)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: Requests structured generation outputs including available scores. Structured output exposes fields such as sequences; scores remain model/generation outputs requiring interpretation. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "return_dict_in_generate=True"
+          ]
+        },
+        {
+          "concept": "Diagnosing integration mistakes",
+          "explanation": "Read token sequences from the named field in this explicit structured-output fixture.",
+          "hint": "Read token sequences from the named field in this explicit structured-output fixture.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "debugging-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "from types import SimpleNamespace\nresult=SimpleNamespace(sequences=[[${n},7,8]],scores=())\nprint(result.____[0][-1])",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 8. Read token sequences from the named field in this explicit structured-output fixture. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "sequences"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3277 @@
+{
+  "schema_version": 2,
+  "id": "numpy",
+  "title": "Python · NumPy: arrays and numerical workflows",
+  "language": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code",
+  "version": "1.0",
+  "sources": [
+    {
+      "id": "numpy-0",
+      "title": "NumPy beginner guide",
+      "url": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "numpy-1",
+      "title": "NumPy broadcasting",
+      "url": "https://numpy.org/doc/stable/user/basics.broadcasting.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    },
+    {
+      "id": "numpy-2",
+      "title": "NumPy copies and views",
+      "url": "https://numpy.org/doc/stable/user/basics.copies.html",
+      "usage": "Curriculum and language-behavior reference. Code Lingo explanations and exercises are newly authored; source assignments and prose are not reproduced."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "arrays",
+      "title": "Array creation and structural metadata",
+      "section": "Basics",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. An ndarray has a shape, a rank (ndim), an element count (size), and one dtype. A shape tuple names axis lengths in order. Use explicit dtypes when representation matters. These exercises print Python lists or scalar values to avoid version-dependent array formatting.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [],
+      "questions": [
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "shape reports two rows and two columns.",
+          "hint": "shape reports two rows and two columns.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-1",
+          "kind": "mcq",
+          "code": "a=np.array([[${n},${m}],[0,1]])\nprint(a.shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 2)",
+          "options": [
+            "(2, 2)",
+            "(4,)",
+            "(2,)"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "shape reports two rows and two columns.",
+          "hint": "shape reports two rows and two columns.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-1",
+          "kind": "mcq",
+          "code": "a=np.array([[${n},${m}],[0,1]])\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). shape reports two rows and two columns.",
+          "answer": "a.shape",
+          "options": [
+            "a.shape",
+            "a.size",
+            "a.ndim"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "ndim counts axes, not elements along an axis.",
+          "hint": "ndim counts axes, not elements along an axis.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-2",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,${m}))\nprint(a.ndim)",
+          "prompt": "What is the result?",
+          "answer": "2",
+          "options": [
+            "2",
+            "${m}",
+            "1"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "ndim counts axes, not elements along an axis.",
+          "hint": "ndim counts axes, not elements along an axis.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-2",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,${m}))\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. ndim counts axes, not elements along an axis.",
+          "answer": "a.ndim",
+          "options": [
+            "a.ndim",
+            "a.size",
+            "a.shape"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "size is the product of all axis lengths.",
+          "hint": "size is the product of all axis lengths.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "twom": "m*2"
+          },
+          "id": "arrays-read-3",
+          "kind": "mcq",
+          "code": "a=np.ones((2,${m}))\nprint(a.size)",
+          "prompt": "What is the result?",
+          "answer": "${twom}",
+          "options": [
+            "${twom}",
+            "2",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "size is the product of all axis lengths.",
+          "hint": "size is the product of all axis lengths.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "twom": "m*2"
+          },
+          "id": "arrays-choose-3",
+          "kind": "mcq",
+          "code": "a=np.ones((2,${m}))\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${twom}. size is the product of all axis lengths.",
+          "answer": "a.size",
+          "options": [
+            "a.size",
+            "a.ndim",
+            "a.shape"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "An explicit dtype makes this array floating point.",
+          "hint": "An explicit dtype makes this array floating point.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "arrays-read-4",
+          "kind": "mcq",
+          "code": "a=np.array([${n}],dtype=np.float64)\nprint(a.dtype.name)",
+          "prompt": "What is the result?",
+          "answer": "float64",
+          "options": [
+            "float64",
+            "int64",
+            "bool"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "An explicit dtype makes this array floating point.",
+          "hint": "An explicit dtype makes this array floating point.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "arrays-choose-4",
+          "kind": "mcq",
+          "code": "a=np.array([${n}],dtype=____)\nprint(a.dtype.name)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: float64. An explicit dtype makes this array floating point.",
+          "answer": "np.float64",
+          "options": [
+            "np.float64",
+            "np.int64",
+            "bool"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "shape reports two rows and two columns.",
+          "hint": "shape reports two rows and two columns.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([[${n},${m}],[0,1]])\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). shape reports two rows and two columns. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a.shape"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "ndim counts axes, not elements along an axis.",
+          "hint": "ndim counts axes, not elements along an axis.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.zeros((2,${m}))\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 2. ndim counts axes, not elements along an axis. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a.ndim"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "size is the product of all axis lengths.",
+          "hint": "size is the product of all axis lengths.",
+          "parameters": {
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "twom": "m*2"
+          },
+          "id": "arrays-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.ones((2,${m}))\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${twom}. size is the product of all axis lengths. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a.size"
+          ]
+        },
+        {
+          "concept": "Array creation and structural metadata",
+          "explanation": "An explicit dtype makes this array floating point.",
+          "hint": "An explicit dtype makes this array floating point.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "arrays-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n}],dtype=____)\nprint(a.dtype.name)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: float64. An explicit dtype makes this array floating point. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "np.float64"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "creation",
+      "title": "Ranges, grids, and initialization",
+      "section": "Basics",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. arange uses a step and excludes the endpoint. linspace specifies a number of evenly spaced samples and includes the endpoint by default. zeros, ones, and full initialize values; empty does not promise initialized numeric contents.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "arrays"
+      ],
+      "questions": [
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "A positive single argument produces integers from zero to ${prev}.",
+          "hint": "A positive single argument produces integers from zero to ${prev}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "prev": "n-1"
+          },
+          "id": "creation-read-1",
+          "kind": "mcq",
+          "code": "print(np.arange(${n}).size)",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "A positive single argument produces integers from zero to ${prev}.",
+          "hint": "A positive single argument produces integers from zero to ${prev}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "prev": "n-1"
+          },
+          "id": "creation-choose-1",
+          "kind": "mcq",
+          "code": "print(np.arange(____).size)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A positive single argument produces integers from zero to ${prev}. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "${next}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "num controls the sample count independently of endpoint values.",
+          "hint": "num controls the sample count independently of endpoint values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "creation-read-2",
+          "kind": "mcq",
+          "code": "print(np.linspace(0,${n},num=3).size)",
+          "prompt": "What is the result?",
+          "answer": "3",
+          "options": [
+            "3",
+            "${n}",
+            "2"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "num controls the sample count independently of endpoint values.",
+          "hint": "num controls the sample count independently of endpoint values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "creation-choose-2",
+          "kind": "mcq",
+          "code": "print(np.linspace(0,${n},num=____).size)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. num controls the sample count independently of endpoint values.",
+          "answer": "3",
+          "options": [
+            "3",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "full fills every element with the supplied value.",
+          "hint": "full fills every element with the supplied value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "creation-read-3",
+          "kind": "mcq",
+          "code": "a=np.full((2,),${n})\nprint(a.tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${n}]",
+          "options": [
+            "[${n}, ${n}]",
+            "[0, 0]",
+            "[${n}]"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "full fills every element with the supplied value.",
+          "hint": "full fills every element with the supplied value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "creation-choose-3",
+          "kind": "mcq",
+          "code": "a=np.full((2,),____)\nprint(a.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${n}]. full fills every element with the supplied value. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "${m}"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "empty allocates the requested shape; reading its uninitialized numbers is not a predictable output exercise.",
+          "hint": "empty allocates the requested shape; reading its uninitialized numbers is not a predictable output exercise.",
+          "id": "creation-read-4",
+          "kind": "mcq",
+          "code": "a=np.empty(3)\nprint(a.shape)",
+          "prompt": "What is the result?",
+          "answer": "(3,)",
+          "options": [
+            "(3,)",
+            "(0,)",
+            "(1, 3)"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "empty allocates the requested shape; reading its uninitialized numbers is not a predictable output exercise.",
+          "hint": "empty allocates the requested shape; reading its uninitialized numbers is not a predictable output exercise.",
+          "id": "creation-choose-4",
+          "kind": "mcq",
+          "code": "a=np.empty(3)\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (3,). empty allocates the requested shape; reading its uninitialized numbers is not a predictable output exercise.",
+          "answer": "a.shape",
+          "options": [
+            "a.shape",
+            "a.ndim",
+            "a.size"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "A positive single argument produces integers from zero to ${prev}.",
+          "hint": "A positive single argument produces integers from zero to ${prev}.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {
+            "prev": "n-1"
+          },
+          "id": "creation-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "print(np.arange(____).size)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. A positive single argument produces integers from zero to ${prev}. Use ${n} as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "num controls the sample count independently of endpoint values.",
+          "hint": "num controls the sample count independently of endpoint values.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "creation-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "print(np.linspace(0,${n},num=____).size)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 3. num controls the sample count independently of endpoint values. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "3"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "full fills every element with the supplied value.",
+          "hint": "full fills every element with the supplied value.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "creation-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.full((2,),____)\nprint(a.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${n}]. full fills every element with the supplied value. Use ${n} as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "${n}"
+          ]
+        },
+        {
+          "concept": "Ranges, grids, and initialization",
+          "explanation": "empty allocates the requested shape; reading its uninitialized numbers is not a predictable output exercise.",
+          "hint": "empty allocates the requested shape; reading its uninitialized numbers is not a predictable output exercise.",
+          "id": "creation-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.empty(3)\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (3,). empty allocates the requested shape; reading its uninitialized numbers is not a predictable output exercise. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a.shape"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "indexing",
+      "title": "Indices, slices, and axis selection",
+      "section": "Basics",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. A comma separates indexing operations on different axes. Integer indexing removes an axis; a slice preserves it. Negative indices count from the end. Basic slices generally share storage with their source.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "creation"
+      ],
+      "questions": [
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "Row one, column zero selects the lower-left element.",
+          "hint": "Row one, column zero selects the lower-left element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "indexing-read-1",
+          "kind": "mcq",
+          "code": "a=np.array([[${n},0],[${m},1]])\nprint(int(a[1,0]))",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "1"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "Row one, column zero selects the lower-left element.",
+          "hint": "Row one, column zero selects the lower-left element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "indexing-choose-1",
+          "kind": "mcq",
+          "code": "a=np.array([[${n},0],[${m},1]])\nprint(int(a[____]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Row one, column zero selects the lower-left element.",
+          "answer": "1,0",
+          "options": [
+            "1,0",
+            "0,0",
+            "1,1"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "An integer row index removes the first axis.",
+          "hint": "An integer row index removes the first axis.",
+          "id": "indexing-read-2",
+          "kind": "mcq",
+          "code": "a=np.zeros((3,4))\nprint(a[0].shape)",
+          "prompt": "What is the result?",
+          "answer": "(4,)",
+          "options": [
+            "(4,)",
+            "(1, 4)",
+            "(3, 4)"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "An integer row index removes the first axis.",
+          "hint": "An integer row index removes the first axis.",
+          "id": "indexing-choose-2",
+          "kind": "mcq",
+          "code": "a=np.zeros((3,4))\nprint(a[____].shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (4,). An integer row index removes the first axis.",
+          "answer": "0",
+          "options": [
+            "0",
+            "0:1",
+            ":"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "A one-row slice retains the row axis.",
+          "hint": "A one-row slice retains the row axis.",
+          "id": "indexing-read-3",
+          "kind": "mcq",
+          "code": "a=np.zeros((3,4))\nprint(a[0:1].shape)",
+          "prompt": "What is the result?",
+          "answer": "(1, 4)",
+          "options": [
+            "(1, 4)",
+            "(4,)",
+            "(3, 4)"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "A one-row slice retains the row axis.",
+          "hint": "A one-row slice retains the row axis.",
+          "id": "indexing-choose-3",
+          "kind": "mcq",
+          "code": "a=np.zeros((3,4))\nprint(a[____].shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 4). A one-row slice retains the row axis.",
+          "answer": "0:1",
+          "options": [
+            "0:1",
+            "0",
+            ":"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "The negative index selects the final element.",
+          "hint": "The negative index selects the final element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "indexing-read-4",
+          "kind": "mcq",
+          "code": "a=np.array([${n},${m}])\nprint(int(a[-1]))",
+          "prompt": "What is the result?",
+          "answer": "${m}",
+          "options": [
+            "${m}",
+            "${n}",
+            "IndexError"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "The negative index selects the final element.",
+          "hint": "The negative index selects the final element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "indexing-choose-4",
+          "kind": "mcq",
+          "code": "a=np.array([${n},${m}])\nprint(int(a[____]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The negative index selects the final element.",
+          "answer": "-1",
+          "options": [
+            "-1",
+            "0",
+            "2"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "Row one, column zero selects the lower-left element.",
+          "hint": "Row one, column zero selects the lower-left element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "indexing-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([[${n},0],[${m},1]])\nprint(int(a[____]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. Row one, column zero selects the lower-left element. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "1,0"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "An integer row index removes the first axis.",
+          "hint": "An integer row index removes the first axis.",
+          "id": "indexing-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.zeros((3,4))\nprint(a[____].shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (4,). An integer row index removes the first axis. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "A one-row slice retains the row axis.",
+          "hint": "A one-row slice retains the row axis.",
+          "id": "indexing-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.zeros((3,4))\nprint(a[____].shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (1, 4). A one-row slice retains the row axis. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "0:1"
+          ]
+        },
+        {
+          "concept": "Indices, slices, and axis selection",
+          "explanation": "The negative index selects the final element.",
+          "hint": "The negative index selects the final element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "indexing-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},${m}])\nprint(int(a[____]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${m}. The negative index selects the final element. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "-1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "title": "Elementwise operations and comparisons",
+      "section": "Basics",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Arithmetic on arrays usually acts elementwise, not as matrix multiplication. Comparisons produce boolean arrays. Use elementwise logical operators with parentheses; Python and/or try to interpret a whole array as one truth value.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "indexing"
+      ],
+      "questions": [
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "Scalar addition applies to each element.",
+          "hint": "Scalar addition applies to each element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "mnext": "m+1"
+          },
+          "id": "operations-read-1",
+          "kind": "mcq",
+          "code": "a=np.array([${n},${m}])\nprint((a+1).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${next}, ${mnext}]",
+          "options": [
+            "[${next}, ${mnext}]",
+            "[${n}, ${m}]",
+            "[1, 1]"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "Scalar addition applies to each element.",
+          "hint": "Scalar addition applies to each element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "mnext": "m+1"
+          },
+          "id": "operations-choose-1",
+          "kind": "mcq",
+          "code": "a=np.array([${n},${m}])\nprint((a____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${next}, ${mnext}]. Scalar addition applies to each element.",
+          "answer": "+1",
+          "options": [
+            "+1",
+            "*0",
+            "+0"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "Comparison tests each element independently.",
+          "hint": "Comparison tests each element independently.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "operations-read-2",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0])\nprint((a>0).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[True, False]",
+          "options": [
+            "[True, False]",
+            "[True, True]",
+            "[False, True]"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "Comparison tests each element independently.",
+          "hint": "Comparison tests each element independently.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "operations-choose-2",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0])\nprint((a____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [True, False]. Comparison tests each element independently.",
+          "answer": ">0",
+          "options": [
+            ">0",
+            ">=0",
+            "<0"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "count_nonzero counts nonzero entries without a Python truth test on the array.",
+          "hint": "count_nonzero counts nonzero entries without a Python truth test on the array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "operations-read-3",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0])\nprint(np.count_nonzero(a))",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "2",
+            "0"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "count_nonzero counts nonzero entries without a Python truth test on the array.",
+          "hint": "count_nonzero counts nonzero entries without a Python truth test on the array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "operations-choose-3",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0])\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. count_nonzero counts nonzero entries without a Python truth test on the array.",
+          "answer": "np.count_nonzero(a)",
+          "options": [
+            "np.count_nonzero(a)",
+            "a.size",
+            "a.ndim-1"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "Parenthesized conditions combine elementwise with bitwise-and syntax.",
+          "hint": "Parenthesized conditions combine elementwise with bitwise-and syntax.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "operations-read-4",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0])\nprint(((a>0) & (a<100)).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[True, False]",
+          "options": [
+            "[True, False]",
+            "[True, True]",
+            "ValueError"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "Parenthesized conditions combine elementwise with bitwise-and syntax.",
+          "hint": "Parenthesized conditions combine elementwise with bitwise-and syntax.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "operations-choose-4",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0])\nprint(((a>0) ____ (a<100)).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [True, False]. Parenthesized conditions combine elementwise with bitwise-and syntax.",
+          "answer": "&",
+          "options": [
+            "&",
+            "or",
+            "and"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "Scalar addition applies to each element.",
+          "hint": "Scalar addition applies to each element.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "next": "n+1",
+            "mnext": "m+1"
+          },
+          "id": "operations-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},${m}])\nprint((a____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${next}, ${mnext}]. Scalar addition applies to each element. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "+1"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "Comparison tests each element independently.",
+          "hint": "Comparison tests each element independently.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "operations-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},0])\nprint((a____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [True, False]. Comparison tests each element independently. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            ">0"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "count_nonzero counts nonzero entries without a Python truth test on the array.",
+          "hint": "count_nonzero counts nonzero entries without a Python truth test on the array.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "operations-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},0])\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. count_nonzero counts nonzero entries without a Python truth test on the array. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "np.count_nonzero(a)"
+          ]
+        },
+        {
+          "concept": "Elementwise operations and comparisons",
+          "explanation": "Parenthesized conditions combine elementwise with bitwise-and syntax.",
+          "hint": "Parenthesized conditions combine elementwise with bitwise-and syntax.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "operations-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},0])\nprint(((a>0) ____ (a<100)).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [True, False]. Parenthesized conditions combine elementwise with bitwise-and syntax. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "&"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reductions",
+      "title": "Reductions, axes, and keepdims",
+      "section": "Intermediate",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. A reduction removes its chosen axis unless keepdims retains a length-one axis. On a 2D table, axis=0 combines rows and axis=1 combines columns. Explicit axes avoid accidental aggregation across a batch or feature dimension.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "operations"
+      ],
+      "questions": [
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "Axis zero combines rows, leaving one result per column.",
+          "hint": "Axis zero combines rows, leaving one result per column.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mnext": "m+1",
+            "add1": "n+m+1"
+          },
+          "id": "reductions-read-1",
+          "kind": "mcq",
+          "code": "a=np.array([[${n},0],[${m},1]])\nprint(a.sum(axis=0).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${add}, 1]",
+          "options": [
+            "[${add}, 1]",
+            "[${n}, ${mnext}]",
+            "${add1}"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "Axis zero combines rows, leaving one result per column.",
+          "hint": "Axis zero combines rows, leaving one result per column.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "reductions-choose-1",
+          "kind": "mcq",
+          "code": "a=np.array([[${n},0],[${m},1]])\nprint(a.sum(axis=____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${add}, 1]. Axis zero combines rows, leaving one result per column.",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "None"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "Axis one combines columns, leaving one result per row.",
+          "hint": "Axis one combines columns, leaving one result per row.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m",
+            "mnext": "m+1",
+            "add1": "n+m+1"
+          },
+          "id": "reductions-read-2",
+          "kind": "mcq",
+          "code": "a=np.array([[${n},0],[${m},1]])\nprint(a.sum(axis=1).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${mnext}]",
+          "options": [
+            "[${n}, ${mnext}]",
+            "[${add}, 1]",
+            "${add1}"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "Axis one combines columns, leaving one result per row.",
+          "hint": "Axis one combines columns, leaving one result per row.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mnext": "m+1"
+          },
+          "id": "reductions-choose-2",
+          "kind": "mcq",
+          "code": "a=np.array([[${n},0],[${m},1]])\nprint(a.sum(axis=____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${mnext}]. Axis one combines columns, leaving one result per row.",
+          "answer": "1",
+          "options": [
+            "1",
+            "0",
+            "None"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "keepdims keeps the reduced axis so later broadcasting is explicit.",
+          "hint": "keepdims keeps the reduced axis so later broadcasting is explicit.",
+          "id": "reductions-read-3",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,3))\nprint(a.sum(axis=1,keepdims=True).shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 1)",
+          "options": [
+            "(2, 1)",
+            "(2,)",
+            "(1, 3)"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "keepdims keeps the reduced axis so later broadcasting is explicit.",
+          "hint": "keepdims keeps the reduced axis so later broadcasting is explicit.",
+          "id": "reductions-choose-3",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,3))\nprint(a.sum(axis=1,keepdims=____).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 1). keepdims keeps the reduced axis so later broadcasting is explicit.",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "any reduces a boolean array to whether at least one element is true.",
+          "hint": "any reduces a boolean array to whether at least one element is true.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "reductions-read-4",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0])\nprint(bool(np.any(a>0)))",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "ValueError"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "any reduces a boolean array to whether at least one element is true.",
+          "hint": "any reduces a boolean array to whether at least one element is true.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "reductions-choose-4",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0])\nprint(bool(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. any reduces a boolean array to whether at least one element is true.",
+          "answer": "np.any(a>0)",
+          "options": [
+            "np.any(a>0)",
+            "np.all(a>0)",
+            "a>0"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "Axis zero combines rows, leaving one result per column.",
+          "hint": "Axis zero combines rows, leaving one result per column.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "add": "n+m"
+          },
+          "id": "reductions-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([[${n},0],[${m},1]])\nprint(a.sum(axis=____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${add}, 1]. Axis zero combines rows, leaving one result per column. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "Axis one combines columns, leaving one result per row.",
+          "hint": "Axis one combines columns, leaving one result per row.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {
+            "mnext": "m+1"
+          },
+          "id": "reductions-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([[${n},0],[${m},1]])\nprint(a.sum(axis=____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${mnext}]. Axis one combines columns, leaving one result per row. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "1"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "keepdims keeps the reduced axis so later broadcasting is explicit.",
+          "hint": "keepdims keeps the reduced axis so later broadcasting is explicit.",
+          "id": "reductions-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.zeros((2,3))\nprint(a.sum(axis=1,keepdims=____).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 1). keepdims keeps the reduced axis so later broadcasting is explicit. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "True"
+          ]
+        },
+        {
+          "concept": "Reductions, axes, and keepdims",
+          "explanation": "any reduces a boolean array to whether at least one element is true.",
+          "hint": "any reduces a boolean array to whether at least one element is true.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "reductions-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},0])\nprint(bool(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. any reduces a boolean array to whether at least one element is true. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "np.any(a>0)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "broadcasting",
+      "title": "Broadcasting without accidental axes",
+      "section": "Intermediate",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. NumPy aligns shapes from the right. Dimensions are compatible when equal or one; missing leading dimensions act as ones. Broadcasting avoids explicit repetition, but a misplaced singleton axis can create a much larger output than intended.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "reductions"
+      ],
+      "questions": [
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "The length-three vector broadcasts across rows.",
+          "hint": "The length-three vector broadcasts across rows.",
+          "id": "broadcasting-read-1",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,3)); b=np.ones(3)\nprint((a+b).shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 3)",
+          "options": [
+            "(2, 3)",
+            "(3, 2)",
+            "(6,)"
+          ]
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "The length-three vector broadcasts across rows.",
+          "hint": "The length-three vector broadcasts across rows.",
+          "id": "broadcasting-choose-1",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,3)); b=np.ones(3)\nprint((____).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). The length-three vector broadcasts across rows.",
+          "answer": "a+b",
+          "options": [
+            "a+b",
+            "a.T+b[:,None]",
+            "a.ravel()"
+          ]
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "The complementary singleton dimensions expand to a 2-by-3 result.",
+          "hint": "The complementary singleton dimensions expand to a 2-by-3 result.",
+          "id": "broadcasting-read-2",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,1)); b=np.ones((1,3))\nprint((a+b).shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 3)",
+          "options": [
+            "(2, 3)",
+            "(2, 1)",
+            "(1, 3)"
+          ]
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "The complementary singleton dimensions expand to a 2-by-3 result.",
+          "hint": "The complementary singleton dimensions expand to a 2-by-3 result.",
+          "id": "broadcasting-choose-2",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,1)); b=np.ones((1,3))\nprint((____).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). The complementary singleton dimensions expand to a 2-by-3 result.",
+          "answer": "a+b",
+          "options": [
+            "a+b",
+            "a",
+            "b"
+          ]
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "None inserts a singleton column axis.",
+          "hint": "None inserts a singleton column axis.",
+          "id": "broadcasting-read-3",
+          "kind": "mcq",
+          "code": "a=np.arange(3)\nprint(a[:,None].shape)",
+          "prompt": "What is the result?",
+          "answer": "(3, 1)",
+          "options": [
+            "(3, 1)",
+            "(1, 3)",
+            "(3,)"
+          ]
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "None inserts a singleton column axis.",
+          "hint": "None inserts a singleton column axis.",
+          "id": "broadcasting-choose-3",
+          "kind": "mcq",
+          "code": "a=np.arange(3)\nprint(a[____].shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (3, 1). None inserts a singleton column axis.",
+          "answer": ":,None",
+          "options": [
+            ":,None",
+            "None,:",
+            ":"
+          ]
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "The trailing dimensions three and two cannot broadcast.",
+          "hint": "The trailing dimensions three and two cannot broadcast.",
+          "id": "broadcasting-read-4",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,3)); b=np.ones(2)\nprint((a+b).shape)",
+          "prompt": "Why does this operation fail?",
+          "answer": "ValueError: incompatible broadcast shapes",
+          "options": [
+            "ValueError: incompatible broadcast shapes",
+            "(2, 3)",
+            "(2, 2)"
+          ],
+          "repair_question_id": "broadcasting-write-repair-4"
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "Insert a singleton column axis so the row offsets broadcast across columns.",
+          "hint": "Insert a singleton column axis so the row offsets broadcast across columns.",
+          "id": "broadcasting-choose-repair-4",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,3)); b=np.ones(2)\nprint((a+____).shape)",
+          "prompt": "Repair ____ to meet this contract: Insert a singleton column axis so the row offsets broadcast across columns. Target result: (2, 3).",
+          "answer": "b[:,None]",
+          "options": [
+            "b[:,None]",
+            "b",
+            "b[None,:]"
+          ]
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "The length-three vector broadcasts across rows.",
+          "hint": "The length-three vector broadcasts across rows.",
+          "id": "broadcasting-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.zeros((2,3)); b=np.ones(3)\nprint((____).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). The length-three vector broadcasts across rows. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a+b"
+          ]
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "The complementary singleton dimensions expand to a 2-by-3 result.",
+          "hint": "The complementary singleton dimensions expand to a 2-by-3 result.",
+          "id": "broadcasting-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.zeros((2,1)); b=np.ones((1,3))\nprint((____).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). The complementary singleton dimensions expand to a 2-by-3 result. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a+b"
+          ]
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "None inserts a singleton column axis.",
+          "hint": "None inserts a singleton column axis.",
+          "id": "broadcasting-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.arange(3)\nprint(a[____].shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (3, 1). None inserts a singleton column axis. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            ":,None"
+          ]
+        },
+        {
+          "concept": "Broadcasting without accidental axes",
+          "explanation": "Insert a singleton column axis so the row offsets broadcast across columns.",
+          "hint": "Insert a singleton column axis so the row offsets broadcast across columns.",
+          "id": "broadcasting-write-repair-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.zeros((2,3)); b=np.ones(2)\nprint((a+____).shape)",
+          "prompt": "Repair ____ to meet this contract: Insert a singleton column axis so the row offsets broadcast across columns. Target result: (2, 3). Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "b[:,None]"
+          ],
+          "target_answer": "(2, 3)"
+        }
+      ]
+    },
+    {
+      "id": "views",
+      "title": "Views, copies, and advanced indexing",
+      "section": "Intermediate",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Basic slicing normally creates a view; integer-array and boolean indexing produce copies on reads. Assignment through an index expression still updates the destination. copy makes independence explicit. np.shares_memory checks actual overlap.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "broadcasting"
+      ],
+      "questions": [
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "The basic slice shares the original storage.",
+          "hint": "The basic slice shares the original storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "views-read-1",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0]); b=a[:1]; b[0]=1\nprint(int(a[0]))",
+          "prompt": "What is the result?",
+          "answer": "1",
+          "options": [
+            "1",
+            "${n}",
+            "0"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "The basic slice shares the original storage.",
+          "hint": "The basic slice shares the original storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "views-choose-1",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0]); b=____; b[0]=1\nprint(int(a[0]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. The basic slice shares the original storage.",
+          "answer": "a[:1]",
+          "options": [
+            "a[:1]",
+            "a[:1].copy()",
+            "a[[0]]"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "copy allocates independent data.",
+          "hint": "copy allocates independent data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "views-read-2",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0]); b=a.copy(); b[0]=1\nprint(int(a[0]))",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "copy allocates independent data.",
+          "hint": "copy allocates independent data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "views-choose-2",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0]); b=____; b[0]=1\nprint(int(a[0]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. copy allocates independent data.",
+          "answer": "a.copy()",
+          "options": [
+            "a.copy()",
+            "a",
+            "a[:]"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "Advanced integer indexing returns copied data for this read.",
+          "hint": "Advanced integer indexing returns copied data for this read.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "views-read-3",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0]); b=a[[0]]; b[0]=1\nprint(int(a[0]))",
+          "prompt": "What is the result?",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "Advanced integer indexing returns copied data for this read.",
+          "hint": "Advanced integer indexing returns copied data for this read.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "views-choose-3",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0]); b=____; b[0]=1\nprint(int(a[0]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Advanced integer indexing returns copied data for this read.",
+          "answer": "a[[0]]",
+          "options": [
+            "a[[0]]",
+            "a[:1]",
+            "a"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "The slices overlap the same backing allocation.",
+          "hint": "The slices overlap the same backing allocation.",
+          "id": "views-read-4",
+          "kind": "mcq",
+          "code": "a=np.arange(4); b=a[1:]\nprint(np.shares_memory(a,b))",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "None"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "The slices overlap the same backing allocation.",
+          "hint": "The slices overlap the same backing allocation.",
+          "id": "views-choose-4",
+          "kind": "mcq",
+          "code": "a=np.arange(4); b=a[1:]\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. The slices overlap the same backing allocation.",
+          "answer": "np.shares_memory(a,b)",
+          "options": [
+            "np.shares_memory(a,b)",
+            "np.array_equal(a,b)",
+            "a is b"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "The basic slice shares the original storage.",
+          "hint": "The basic slice shares the original storage.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "views-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},0]); b=____; b[0]=1\nprint(int(a[0]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: 1. The basic slice shares the original storage. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a[:1]"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "copy allocates independent data.",
+          "hint": "copy allocates independent data.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "views-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},0]); b=____; b[0]=1\nprint(int(a[0]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. copy allocates independent data. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a.copy()"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "Advanced integer indexing returns copied data for this read.",
+          "hint": "Advanced integer indexing returns copied data for this read.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "views-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},0]); b=____; b[0]=1\nprint(int(a[0]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}. Advanced integer indexing returns copied data for this read. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a[[0]]"
+          ]
+        },
+        {
+          "concept": "Views, copies, and advanced indexing",
+          "explanation": "The slices overlap the same backing allocation.",
+          "hint": "The slices overlap the same backing allocation.",
+          "id": "views-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.arange(4); b=a[1:]\nprint(____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. The slices overlap the same backing allocation. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "np.shares_memory(a,b)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "masks",
+      "title": "Filtering and conditional selection",
+      "section": "Intermediate",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Boolean indexing selects elements whose corresponding mask is true. np.where chooses between values elementwise; its arguments are evaluated before selection, so it does not automatically prevent invalid arithmetic. Masked assignment changes the original array.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "views"
+      ],
+      "questions": [
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "The mask selects only positive entries.",
+          "hint": "The mask selects only positive entries.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "masks-read-1",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0,${m}])\nprint(a[a>0].tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${m}]",
+          "options": [
+            "[${n}, ${m}]",
+            "[0]",
+            "[${n}, 0, ${m}]"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "The mask selects only positive entries.",
+          "hint": "The mask selects only positive entries.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "masks-choose-1",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0,${m}])\nprint(a[____].tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. The mask selects only positive entries.",
+          "answer": "a>0",
+          "options": [
+            "a>0",
+            "a==0",
+            "a>=0"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "where uses array values at true positions and the fallback elsewhere.",
+          "hint": "where uses array values at true positions and the fallback elsewhere.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "masks-read-2",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0])\nprint(np.where(a>0,a, -1).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${n}, -1]",
+          "options": [
+            "[${n}, -1]",
+            "[-1, -1]",
+            "[${n}, 0]"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "where uses array values at true positions and the fallback elsewhere.",
+          "hint": "where uses array values at true positions and the fallback elsewhere.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "masks-choose-2",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0])\nprint(np.where(a>0,____, -1).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, -1]. where uses array values at true positions and the fallback elsewhere.",
+          "answer": "a",
+          "options": [
+            "a",
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "Assignment through the mask updates matching positions in a.",
+          "hint": "Assignment through the mask updates matching positions in a.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "masks-read-3",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0]); a[a==0]=${m}\nprint(a.tolist())",
+          "prompt": "What is the result?",
+          "answer": "[${n}, ${m}]",
+          "options": [
+            "[${n}, ${m}]",
+            "[${m}, 0]",
+            "[${n}, 0]"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "Assignment through the mask updates matching positions in a.",
+          "hint": "Assignment through the mask updates matching positions in a.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "masks-choose-3",
+          "kind": "mcq",
+          "code": "a=np.array([${n},0]); a[____]=${m}\nprint(a.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. Assignment through the mask updates matching positions in a.",
+          "answer": "a==0",
+          "options": [
+            "a==0",
+            "a>0",
+            "a<0"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "clip bounds each value between zero and the chosen upper limit.",
+          "hint": "clip bounds each value between zero and the chosen upper limit.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "masks-read-4",
+          "kind": "mcq",
+          "code": "a=np.array([-1,${n},100])\nprint(np.clip(a,0,${n}).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[0, ${n}, ${n}]",
+          "options": [
+            "[0, ${n}, ${n}]",
+            "[-1, ${n}, 100]",
+            "[0, 0, 0]"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "clip bounds each value between zero and the chosen upper limit.",
+          "hint": "clip bounds each value between zero and the chosen upper limit.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "masks-choose-4",
+          "kind": "mcq",
+          "code": "a=np.array([-1,${n},100])\nprint(np.clip(a,0,____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [0, ${n}, ${n}]. clip bounds each value between zero and the chosen upper limit. Use ${n} as the replacement literal.",
+          "answer": "${n}",
+          "options": [
+            "${n}",
+            "0",
+            "100"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "The mask selects only positive entries.",
+          "hint": "The mask selects only positive entries.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "masks-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},0,${m}])\nprint(a[____].tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. The mask selects only positive entries. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a>0"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "where uses array values at true positions and the fallback elsewhere.",
+          "hint": "where uses array values at true positions and the fallback elsewhere.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "masks-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},0])\nprint(np.where(a>0,____, -1).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, -1]. where uses array values at true positions and the fallback elsewhere. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "Assignment through the mask updates matching positions in a.",
+          "hint": "Assignment through the mask updates matching positions in a.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "masks-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},0]); a[____]=${m}\nprint(a.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [${n}, ${m}]. Assignment through the mask updates matching positions in a. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "a==0"
+          ]
+        },
+        {
+          "concept": "Filtering and conditional selection",
+          "explanation": "clip bounds each value between zero and the chosen upper limit.",
+          "hint": "clip bounds each value between zero and the chosen upper limit.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "masks-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([-1,${n},100])\nprint(np.clip(a,0,____).tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [0, ${n}, ${n}]. clip bounds each value between zero and the chosen upper limit. Use ${n} as the replacement literal. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "${n}"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shape",
+      "title": "Reshaping, transposing, and joining",
+      "section": "Advanced",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. reshape preserves element count, while transpose reorders axes. A reshape may copy when required by layout; do not universally assume it is a view. stack adds a new axis and concatenate joins along an existing one.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "masks"
+      ],
+      "questions": [
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "The requested shape contains the same six elements.",
+          "hint": "The requested shape contains the same six elements.",
+          "id": "shape-read-1",
+          "kind": "mcq",
+          "code": "a=np.arange(6)\nprint(a.reshape(2,3).shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 3)",
+          "options": [
+            "(2, 3)",
+            "(3, 2)",
+            "(6,)"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "The requested shape contains the same six elements.",
+          "hint": "The requested shape contains the same six elements.",
+          "id": "shape-choose-1",
+          "kind": "mcq",
+          "code": "a=np.arange(6)\nprint(a.reshape(____).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). The requested shape contains the same six elements.",
+          "answer": "2,3",
+          "options": [
+            "2,3",
+            "3,2",
+            "6"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "The permutation lists the old axis for each new position.",
+          "hint": "The permutation lists the old axis for each new position.",
+          "id": "shape-read-2",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,3,4))\nprint(a.transpose(2,0,1).shape)",
+          "prompt": "What is the result?",
+          "answer": "(4, 2, 3)",
+          "options": [
+            "(4, 2, 3)",
+            "(3, 2, 4)",
+            "(2, 3, 4)"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "The permutation lists the old axis for each new position.",
+          "hint": "The permutation lists the old axis for each new position.",
+          "id": "shape-choose-2",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,3,4))\nprint(a.transpose(____).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (4, 2, 3). The permutation lists the old axis for each new position.",
+          "answer": "2,0,1",
+          "options": [
+            "2,0,1",
+            "1,0,2",
+            "0,1,2"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "stack introduces a new leading axis by default.",
+          "hint": "stack introduces a new leading axis by default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "shape-read-3",
+          "kind": "mcq",
+          "code": "a=np.array([${n},${m}])\nprint(np.stack([a,a]).shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 2)",
+          "options": [
+            "(2, 2)",
+            "(4,)",
+            "(2,)"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "stack introduces a new leading axis by default.",
+          "hint": "stack introduces a new leading axis by default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "shape-choose-3",
+          "kind": "mcq",
+          "code": "a=np.array([${n},${m}])\nprint(np.____([a,a]).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). stack introduces a new leading axis by default.",
+          "answer": "stack",
+          "options": [
+            "stack",
+            "concatenate",
+            "array_equal"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "concatenate joins the two vectors along their existing axis.",
+          "hint": "concatenate joins the two vectors along their existing axis.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "shape-read-4",
+          "kind": "mcq",
+          "code": "a=np.array([${n},${m}])\nprint(np.concatenate([a,a]).shape)",
+          "prompt": "What is the result?",
+          "answer": "(4,)",
+          "options": [
+            "(4,)",
+            "(2, 2)",
+            "(2,)"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "concatenate joins the two vectors along their existing axis.",
+          "hint": "concatenate joins the two vectors along their existing axis.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "shape-choose-4",
+          "kind": "mcq",
+          "code": "a=np.array([${n},${m}])\nprint(np.____([a,a]).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (4,). concatenate joins the two vectors along their existing axis.",
+          "answer": "concatenate",
+          "options": [
+            "concatenate",
+            "stack",
+            "array_equal"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "The requested shape contains the same six elements.",
+          "hint": "The requested shape contains the same six elements.",
+          "id": "shape-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.arange(6)\nprint(a.reshape(____).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). The requested shape contains the same six elements. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "2,3"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "The permutation lists the old axis for each new position.",
+          "hint": "The permutation lists the old axis for each new position.",
+          "id": "shape-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.zeros((2,3,4))\nprint(a.transpose(____).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (4, 2, 3). The permutation lists the old axis for each new position. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "2,0,1"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "stack introduces a new leading axis by default.",
+          "hint": "stack introduces a new leading axis by default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "shape-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},${m}])\nprint(np.____([a,a]).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). stack introduces a new leading axis by default. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "stack"
+          ]
+        },
+        {
+          "concept": "Reshaping, transposing, and joining",
+          "explanation": "concatenate joins the two vectors along their existing axis.",
+          "hint": "concatenate joins the two vectors along their existing axis.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "shape-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n},${m}])\nprint(np.____([a,a]).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (4,). concatenate joins the two vectors along their existing axis. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "concatenate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dtypes",
+      "title": "Dtypes, missing values, and numerical checks",
+      "section": "Advanced",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Dtypes constrain representation and arithmetic. astype converts values and may copy. NaN is not equal to itself; isnan detects it. allclose supports approximate comparisons, whereas exact equality is appropriate for discrete contracts.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "shape"
+      ],
+      "questions": [
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "astype explicitly converts the stored element type.",
+          "hint": "astype explicitly converts the stored element type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dtypes-read-1",
+          "kind": "mcq",
+          "code": "a=np.array([${n}],dtype=np.int64)\nprint(a.astype(np.float64).dtype.name)",
+          "prompt": "What is the result?",
+          "answer": "float64",
+          "options": [
+            "float64",
+            "int64",
+            "bool"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "astype explicitly converts the stored element type.",
+          "hint": "astype explicitly converts the stored element type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dtypes-choose-1",
+          "kind": "mcq",
+          "code": "a=np.array([${n}],dtype=np.int64)\nprint(a.astype(____).dtype.name)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: float64. astype explicitly converts the stored element type.",
+          "answer": "np.float64",
+          "options": [
+            "np.float64",
+            "np.int64",
+            "bool"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "isnan detects the missing floating value directly.",
+          "hint": "isnan detects the missing floating value directly.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dtypes-read-2",
+          "kind": "mcq",
+          "code": "a=np.array([np.nan,${n}])\nprint(np.isnan(a).tolist())",
+          "prompt": "What is the result?",
+          "answer": "[True, False]",
+          "options": [
+            "[True, False]",
+            "[False, False]",
+            "[True, True]"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "isnan detects the missing floating value directly.",
+          "hint": "isnan detects the missing floating value directly.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dtypes-choose-2",
+          "kind": "mcq",
+          "code": "a=np.array([np.nan,${n}])\nprint(____.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [True, False]. isnan detects the missing floating value directly.",
+          "answer": "np.isnan(a)",
+          "options": [
+            "np.isnan(a)",
+            "(a==np.nan)",
+            "(a>0)"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "nanmean ignores NaN entries when computing a mean.",
+          "hint": "nanmean ignores NaN entries when computing a mean.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dtypes-read-3",
+          "kind": "mcq",
+          "code": "a=np.array([np.nan,${n}])\nprint(float(np.nanmean(a)))",
+          "prompt": "What is the result?",
+          "answer": "${n}.0",
+          "options": [
+            "${n}.0",
+            "nan",
+            "0.0"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "nanmean ignores NaN entries when computing a mean.",
+          "hint": "nanmean ignores NaN entries when computing a mean.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dtypes-choose-3",
+          "kind": "mcq",
+          "code": "a=np.array([np.nan,${n}])\nprint(float(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}.0. nanmean ignores NaN entries when computing a mean.",
+          "answer": "np.nanmean(a)",
+          "options": [
+            "np.nanmean(a)",
+            "np.mean(a)",
+            "np.sum(a)"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "allclose allows a small floating-point tolerance.",
+          "hint": "allclose allows a small floating-point tolerance.",
+          "id": "dtypes-read-4",
+          "kind": "mcq",
+          "code": "print(np.allclose([0.1+0.2],[0.3]))",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "ValueError"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "allclose allows a small floating-point tolerance.",
+          "hint": "allclose allows a small floating-point tolerance.",
+          "id": "dtypes-choose-4",
+          "kind": "mcq",
+          "code": "print(____([0.1+0.2],[0.3]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. allclose allows a small floating-point tolerance.",
+          "answer": "np.allclose",
+          "options": [
+            "np.allclose",
+            "np.array_equal",
+            "np.shares_memory"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "astype explicitly converts the stored element type.",
+          "hint": "astype explicitly converts the stored element type.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dtypes-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([${n}],dtype=np.int64)\nprint(a.astype(____).dtype.name)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: float64. astype explicitly converts the stored element type. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "np.float64"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "isnan detects the missing floating value directly.",
+          "hint": "isnan detects the missing floating value directly.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dtypes-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([np.nan,${n}])\nprint(____.tolist())",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: [True, False]. isnan detects the missing floating value directly. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "np.isnan(a)"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "nanmean ignores NaN entries when computing a mean.",
+          "hint": "nanmean ignores NaN entries when computing a mean.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "dtypes-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([np.nan,${n}])\nprint(float(____))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ${n}.0. nanmean ignores NaN entries when computing a mean. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "np.nanmean(a)"
+          ]
+        },
+        {
+          "concept": "Dtypes, missing values, and numerical checks",
+          "explanation": "allclose allows a small floating-point tolerance.",
+          "hint": "allclose allows a small floating-point tolerance.",
+          "id": "dtypes-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "print(____([0.1+0.2],[0.3]))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. allclose allows a small floating-point tolerance. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "np.allclose"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "random",
+      "title": "Generators and reproducible sampling",
+      "section": "Advanced",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. default_rng creates a Generator whose state advances with each draw. Equal seeds and matching draw sequences reproduce results within the chosen generator setup. Test ranges and shapes instead of memorizing random values. Separate generators avoid accidental global-state coupling.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "dtypes"
+      ],
+      "questions": [
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "size specifies the output shape independently of the sampled range.",
+          "hint": "size specifies the output shape independently of the sampled range.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "random-read-1",
+          "kind": "mcq",
+          "code": "rng=np.random.default_rng(7)\na=rng.integers(0,${n},size=(2,3))\nprint(a.shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 3)",
+          "options": [
+            "(2, 3)",
+            "(3, 2)",
+            "(6,)"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "size specifies the output shape independently of the sampled range.",
+          "hint": "size specifies the output shape independently of the sampled range.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "random-choose-1",
+          "kind": "mcq",
+          "code": "rng=np.random.default_rng(7)\na=rng.integers(0,${n},size=____)\nprint(a.shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). size specifies the output shape independently of the sampled range.",
+          "answer": "(2,3)",
+          "options": [
+            "(2,3)",
+            "(3,2)",
+            "6"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "Separate generators with the same seed and calls produce equal samples.",
+          "hint": "Separate generators with the same seed and calls produce equal samples.",
+          "id": "random-read-2",
+          "kind": "mcq",
+          "code": "a=np.random.default_rng(7).integers(0,100,10)\nb=np.random.default_rng(7).integers(0,100,10)\nprint(np.array_equal(a,b))",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "ValueError"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "Separate generators with the same seed and calls produce equal samples.",
+          "hint": "Separate generators with the same seed and calls produce equal samples.",
+          "id": "random-choose-2",
+          "kind": "mcq",
+          "code": "a=np.random.default_rng(7).integers(0,100,10)\nb=np.random.default_rng(____).integers(0,100,10)\nprint(np.array_equal(a,b))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Separate generators with the same seed and calls produce equal samples.",
+          "answer": "7",
+          "options": [
+            "7",
+            "8",
+            "9"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "The upper bound is excluded by default.",
+          "hint": "The upper bound is excluded by default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "random-read-3",
+          "kind": "mcq",
+          "code": "a=np.random.default_rng(7).integers(0,${n},100)\nprint(bool(np.all(a<${n})))",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "ValueError"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "The upper bound is excluded by default.",
+          "hint": "The upper bound is excluded by default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "random-choose-3",
+          "kind": "mcq",
+          "code": "a=np.random.default_rng(7).integers(0,${n},100)\nprint(bool(np.all(a____)))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. The upper bound is excluded by default.",
+          "answer": "<${n}",
+          "options": [
+            "<${n}",
+            "<0",
+            "<1"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "Generator.random produces float64 by default.",
+          "hint": "Generator.random produces float64 by default.",
+          "id": "random-read-4",
+          "kind": "mcq",
+          "code": "a=np.random.default_rng(7).random((2,3))\nprint(a.dtype.name)",
+          "prompt": "What is the result?",
+          "answer": "float64",
+          "options": [
+            "float64",
+            "int64",
+            "bool"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "Generator.random produces float64 by default.",
+          "hint": "Generator.random produces float64 by default.",
+          "id": "random-choose-4",
+          "kind": "mcq",
+          "code": "a=np.random.default_rng(7).random((2,3))\nprint(a.____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: float64. Generator.random produces float64 by default.",
+          "answer": "dtype.name",
+          "options": [
+            "dtype.name",
+            "shape",
+            "size"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "size specifies the output shape independently of the sampled range.",
+          "hint": "size specifies the output shape independently of the sampled range.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "random-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "rng=np.random.default_rng(7)\na=rng.integers(0,${n},size=____)\nprint(a.shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 3). size specifies the output shape independently of the sampled range. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "(2,3)"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "Separate generators with the same seed and calls produce equal samples.",
+          "hint": "Separate generators with the same seed and calls produce equal samples.",
+          "id": "random-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.random.default_rng(7).integers(0,100,10)\nb=np.random.default_rng(____).integers(0,100,10)\nprint(np.array_equal(a,b))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Separate generators with the same seed and calls produce equal samples. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "7"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "The upper bound is excluded by default.",
+          "hint": "The upper bound is excluded by default.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            }
+          },
+          "derived": {},
+          "id": "random-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.random.default_rng(7).integers(0,${n},100)\nprint(bool(np.all(a____)))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. The upper bound is excluded by default. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "<${n}"
+          ]
+        },
+        {
+          "concept": "Generators and reproducible sampling",
+          "explanation": "Generator.random produces float64 by default.",
+          "hint": "Generator.random produces float64 by default.",
+          "id": "random-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.random.default_rng(7).random((2,3))\nprint(a.____)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: float64. Generator.random produces float64 by default. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "dtype.name"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "workflows",
+      "title": "Reading numerical workflows and persistence",
+      "section": "Advanced",
+      "intro": "NumPy 2.x. Assumes Python functions, collections, and imports. Standard aliases: np=numpy, plt=matplotlib.pyplot, torch=PyTorch. Snippets are independent; stated model/tokenizer/file fixtures are assumed. The tutor never downloads models or executes learner code. Read each pipeline as a sequence of shape, dtype, and ownership contracts. @ performs matrix multiplication while * is elementwise. Save/load preserves array data; avoid allowing pickle for untrusted object arrays. Assertions should check shapes and intended tolerances.\n\nRead each snippet, identify its effect, then complete a fragment. Examples are independent unless stated otherwise. Snippets may omit surrounding entry points and standard imports; displayed code is never executed by the tutor.",
+      "sources": [
+        "numpy-0",
+        "numpy-1",
+        "numpy-2"
+      ],
+      "requires": [
+        "random"
+      ],
+      "questions": [
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "The shared inner dimension is contracted by matrix multiplication.",
+          "hint": "The shared inner dimension is contracted by matrix multiplication.",
+          "id": "workflows-read-1",
+          "kind": "mcq",
+          "code": "a=np.ones((2,3)); b=np.ones((3,4))\nprint((a@b).shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 4)",
+          "options": [
+            "(2, 4)",
+            "(2, 3)",
+            "ValueError"
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "The shared inner dimension is contracted by matrix multiplication.",
+          "hint": "The shared inner dimension is contracted by matrix multiplication.",
+          "id": "workflows-choose-1",
+          "kind": "mcq",
+          "code": "a=np.ones((2,3)); b=np.ones((3,4))\nprint((a____b).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 4). The shared inner dimension is contracted by matrix multiplication.",
+          "answer": "@",
+          "options": [
+            "@",
+            "*",
+            "+"
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "Keeping a row of column means makes the centering broadcast explicit.",
+          "hint": "Keeping a row of column means makes the centering broadcast explicit.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "workflows-read-2",
+          "kind": "mcq",
+          "code": "a=np.array([[${n},0],[${m},0]],dtype=float)\nb=a-a.mean(axis=0,keepdims=True)\nprint(b.shape)",
+          "prompt": "What is the result?",
+          "answer": "(2, 2)",
+          "options": [
+            "(2, 2)",
+            "(2,)",
+            "(1, 2)"
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "Keeping a row of column means makes the centering broadcast explicit.",
+          "hint": "Keeping a row of column means makes the centering broadcast explicit.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "workflows-choose-2",
+          "kind": "mcq",
+          "code": "a=np.array([[${n},0],[${m},0]],dtype=float)\nb=a-a.mean(axis=____,keepdims=True)\nprint(b.shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). Keeping a row of column means makes the centering broadcast explicit.",
+          "answer": "0",
+          "options": [
+            "0",
+            "1",
+            "None"
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "Numeric arrays round-trip without permitting pickled objects.",
+          "hint": "Numeric arrays round-trip without permitting pickled objects.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "workflows-read-3",
+          "kind": "mcq",
+          "code": "# Assume a writable temporary directory.\na=np.array([${n},${m}]); np.save(\"values.npy\",a)\nb=np.load(\"values.npy\",allow_pickle=False)\nprint(np.array_equal(a,b))",
+          "prompt": "What is the result?",
+          "answer": "True",
+          "options": [
+            "True",
+            "False",
+            "ValueError"
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "Numeric arrays round-trip without permitting pickled objects.",
+          "hint": "Numeric arrays round-trip without permitting pickled objects.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "workflows-choose-3",
+          "kind": "mcq",
+          "code": "# Assume a writable temporary directory.\na=np.array([${n},${m}]); np.save(\"values.npy\",a)\nb=np.load(\"values.npy\",allow_pickle=____)\nprint(np.array_equal(a,b))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Numeric arrays round-trip without permitting pickled objects.",
+          "answer": "False",
+          "options": [
+            "False",
+            "None",
+            "\"False\""
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "The assertion verifies the expected two-axis shape.",
+          "hint": "The assertion verifies the expected two-axis shape.",
+          "id": "workflows-read-4",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,3))\nassert a.shape==(2,3)\nprint(\"ready\")",
+          "prompt": "What is the result?",
+          "answer": "ready",
+          "options": [
+            "ready",
+            "AssertionError",
+            "ValueError"
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "The assertion verifies the expected two-axis shape.",
+          "hint": "The assertion verifies the expected two-axis shape.",
+          "id": "workflows-choose-4",
+          "kind": "mcq",
+          "code": "a=np.zeros((2,3))\nassert a.shape==____\nprint(\"ready\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ready. The assertion verifies the expected two-axis shape.",
+          "answer": "(2,3)",
+          "options": [
+            "(2,3)",
+            "(3,2)",
+            "(6,)"
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "The shared inner dimension is contracted by matrix multiplication.",
+          "hint": "The shared inner dimension is contracted by matrix multiplication.",
+          "id": "workflows-write-1",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.ones((2,3)); b=np.ones((3,4))\nprint((a____b).shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 4). The shared inner dimension is contracted by matrix multiplication. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "@"
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "Keeping a row of column means makes the centering broadcast explicit.",
+          "hint": "Keeping a row of column means makes the centering broadcast explicit.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "workflows-write-2",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.array([[${n},0],[${m},0]],dtype=float)\nb=a-a.mean(axis=____,keepdims=True)\nprint(b.shape)",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: (2, 2). Keeping a row of column means makes the centering broadcast explicit. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "Numeric arrays round-trip without permitting pickled objects.",
+          "hint": "Numeric arrays round-trip without permitting pickled objects.",
+          "parameters": {
+            "n": {
+              "type": "int",
+              "min": 3,
+              "max": 19
+            },
+            "m": {
+              "type": "int",
+              "min": 2,
+              "max": 7
+            }
+          },
+          "derived": {},
+          "id": "workflows-write-3",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "# Assume a writable temporary directory.\na=np.array([${n},${m}]); np.save(\"values.npy\",a)\nb=np.load(\"values.npy\",allow_pickle=____)\nprint(np.array_equal(a,b))",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: True. Numeric arrays round-trip without permitting pickled objects. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "False"
+          ]
+        },
+        {
+          "concept": "Reading numerical workflows and persistence",
+          "explanation": "The assertion verifies the expected two-axis shape.",
+          "hint": "The assertion verifies the expected two-axis shape.",
+          "id": "workflows-write-4",
+          "kind": "write",
+          "checker": "python_fragment",
+          "code": "a=np.zeros((2,3))\nassert a.shape==____\nprint(\"ready\")",
+          "prompt": "Complete ____ using the demonstrated construction. Target result: ready. The assertion verifies the expected two-axis shape. Enter only the missing fragment, using equivalent Python syntax; spacing and quote style may vary.",
+          "accepted": [
+            "(2,3)"
+          ]
+        }
+      ]
+    }
+  ]
+}

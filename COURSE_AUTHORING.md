@@ -243,3 +243,28 @@ every Bash case and no learner input. The Java compiler module works even where
 only the `java` command is exposed. The tool explicitly excludes command and
 conceptual cards and skips virtual threads on Java versions older than 21.
 This is not a claim of native validation for the four unavailable toolchains.
+
+
+## Python library tracks and contextual fragments (1.4.0)
+
+`python_libraries.py` assembles the four `library_*.py` source modules into
+independent course IDs `numpy`, `matplotlib`, `pytorch`, and `transformers`.
+These are distinct from legacy questions such as `python:numpy-1`. Do not
+migrate those sampler passes into the much larger new tracks. Original banks
+and attempts retain their meaning. Four lessons per section keep the balanced
+25-question exam within its supported size.
+
+The new `python_fragment` checker requires exactly one `____` in the snippet.
+It replaces the blank with a submitted fragment and compares that complete
+Python AST with the AST produced by each accepted fragment. This permits
+`0 : 1`, keyword arguments, and operator fragments that are invalid as standalone
+Python programs. It never executes code, imports submitted names, or evaluates
+expressions. Literal contents and structural changes remain significant.
+Code and answers retain the existing bounded parser lengths.
+
+Build with `uv run python tools/curricula/build.py`. NumPy-specific derived
+values are added by the library assembler and pruned from unrelated templates.
+Run `python tools/verify_python_libraries.py` using an interpreter containing
+NumPy and Matplotlib for the optional native audit. It uses Agg, closes every
+figure, and confines authored save/load examples to temporary directories.
+No library is added to the application's runtime dependencies.

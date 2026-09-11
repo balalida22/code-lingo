@@ -328,6 +328,8 @@ class App:
         self.begin_session('learn', lesson['questions'])
         self.ui.heading(lesson["section"] + " · " + lesson["title"])
         self.ui.prose(lesson["intro"])
+        if self.course.id=='python' and lesson['id'] in {'numpy','matplotlib','pytorch','transformers'}:
+            self.ui.prose('Continue beyond this sampler: choose Change language / library, then the dedicated Python · '+lesson['title'].split(':')[0]+' track (12 lessons).')
         self.ui.prose(f"\n{len(lesson['questions'])} problems · Read → explain → write. Each answer saves immediately; :q leaves safely.")
         # Two stages ensure missed reading questions are corrected before writing.
         for kind in ("mcq", "write"):
@@ -424,7 +426,7 @@ class App:
             self.ui.heading("CODE LINGO  /  Read code. Build fluency.  /  " + self.course.title)
             self.status()
             print(f"Due for review: {len(self.store.due(self.keys, limit=len(self.keys)))} questions")
-            print("\n  1  Continue learning\n  2  Review due questions\n  3  Practice / restore hearts\n  4  Course map\n  5  Mistake notebook\n  6  Progress\n  7  Sources\n  8  Section exam / skip section\n  9  Shop / restore heart (10 gems)\n  10 Change language\n  q  Quit")
+            print("\n  1  Continue learning\n  2  Review due questions\n  3  Practice / restore hearts\n  4  Course map\n  5  Mistake notebook\n  6  Progress\n  7  Sources\n  8  Section exam / skip section\n  9  Shop / restore heart (10 gems)\n  10 Change language / library\n  q  Quit")
             try:
                 choice = input("\nChoose > ").strip().lower()
             except (EOFError, KeyboardInterrupt):
@@ -460,7 +462,7 @@ def main(argv=None):
     parser.add_argument("--version", action="version", version=__version__)
     parser.add_argument("--data-dir", type=Path, help="progress directory (default: XDG_DATA_HOME/code-lingo)")
     selection = parser.add_mutually_exclusive_group()
-    selection.add_argument("--course", choices=[c["id"] for c in course_catalog()], help="select a built-in language")
+    selection.add_argument("--course", choices=[c["id"] for c in course_catalog()], help="select a built-in language or Python library")
     selection.add_argument("--course-file", type=Path, help="load an additional JSON course")
     parser.add_argument("--plain", action="store_true", help="disable ANSI styling")
     parser.add_argument("--seed", type=int, help="repeatable option shuffling")

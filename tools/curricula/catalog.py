@@ -24,6 +24,7 @@ def write_catalog():
             sources='; '.join('['+refs[s]['title']+']('+refs[s]['url']+')' for s in lesson['sources'])
             lines.append('| '+lesson['section']+' | '+lesson['title']+' | '+str(len(lesson['questions']))+' | '+sources+' |')
         lines.append('')
-    (root/'CURRICULA.md').write_text('\n'.join(lines).rstrip()+'\n')
+    (root/'docs').mkdir(exist_ok=True)
+    (root/'docs/CURRICULA.md').write_text('\n'.join(lines).rstrip()+'\n')
 
 if __name__=='__main__':write_catalog()

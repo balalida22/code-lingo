@@ -5,8 +5,9 @@
 A programming language tutor with an arrow-key terminal interface, daily progress,
 randomized exercises, spaced review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the prepared v1.5.1 update and
+See [RELEASE_NOTES.md](docs/RELEASE_NOTES.md) for the prepared v1.5.1 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
+Browse the [documentation index](docs/README.md) for course guides and authoring references.
 
 ## Run with uv
 
@@ -66,15 +67,15 @@ uv are present, `uv sync --locked --offline` works without the network.
 - **21 courses, 392 lessons, and 4,728 exercises** in total.
 - **Four dedicated Python library tracks:** NumPy, Matplotlib, PyTorch, and
   Transformers now each have 12 lessons and 144 exercises. The original
-  Python samplers remain intact. See [PYTHON_LIBRARIES.md](PYTHON_LIBRARIES.md).
+  Python samplers remain intact. See [PYTHON_LIBRARIES.md](docs/PYTHON_LIBRARIES.md).
 - **Six new native tracks:** Java, Go, C#, Bash, Kotlin, and Swift, each with
-  20 lessons and 240 exercises. See [NEW_LANGUAGES.md](NEW_LANGUAGES.md) for
+  20 lessons and 240 exercises. See [NEW_LANGUAGES.md](docs/NEW_LANGUAGES.md) for
   coverage, official references, and validation limits.
 - **Rust follows the Rust Book:** 26 lessons with 12–18 questions = 336 exercises,
   split into 8 Basics, 9 Intermediate, and 9 Advanced lessons.
 - The other nine added languages now have **20 lessons × 12 exercises** each.
   Their native topics and prerequisite order are documented in
-  [NATIVE_CURRICULA.md](NATIVE_CURRICULA.md): C compilation and memory contracts,
+  [NATIVE_CURRICULA.md](docs/NATIVE_CURRICULA.md): C compilation and memory contracts,
   C++ value semantics, TypeScript runtime boundaries, browser behavior, Ruby
   protocols, Lua embedding, PHP requests, Perl text processing, and SQLite semantics.
 - Most lessons have 8 reading MCQs followed by 4 writing exercises; the four
@@ -152,7 +153,7 @@ uv run python -m codelingo --course web course
 | `php` | PHP | PHP 8.2+ |
 | `perl` | Perl | Perl 5, strict and warnings |
 
-See [CURRICULA.md](CURRICULA.md) for every lesson. All new courses focus on
+See [CURRICULA.md](docs/CURRICULA.md) for every lesson. All new courses focus on
 reading and writing language features; there are no algorithm or data-structure
 implementation lessons. Ordinary use of native arrays, maps, and standard
 language types remains part of learning the syntax.
@@ -162,7 +163,7 @@ language types remains part of learning the syntax.
 Rust now follows its own progression: Cargo and immutable bindings, ownership
 and borrowing, UTF-8 and domain modeling, recoverable errors, generic and borrowed
 APIs, then tests, useful CLI boundaries, smart pointers, concurrency, and async.
-See [RUST_BOOK.md](RUST_BOOK.md) for the chapter-to-lesson map and validation scope.
+See [RUST_BOOK.md](docs/RUST_BOOK.md) for the chapter-to-lesson map and validation scope.
 The standard library is included; third-party runtime/framework tracks are not.
 The 1.1.0 revision extends this approach to the other nine added languages with
 54 new lessons and diagnosis-to-repair sequences. Python's existing idiomatic
@@ -362,7 +363,7 @@ including expected constraint failures. Ruby and PHP executables
 were unavailable, so those revisions received schema/variant and reference-based
 review rather than native execution. DOM/CSS examples were reviewed against MDN;
 a browser runtime was unavailable. Rust remains unchanged and its optional audit
-still requires rustc. See [NATIVE_CURRICULA.md](NATIVE_CURRICULA.md) for scope.
+still requires rustc. See [NATIVE_CURRICULA.md](docs/NATIVE_CURRICULA.md) for scope.
 
 The real TUI was also checked for arrow navigation, language switching, course
 map access, persistence of the selected course, and clean exit. Correct/incorrect title colors and reset to a neutral title
@@ -381,7 +382,8 @@ accept every semantically equivalent program. The app never executes learner
 input and does not need the taught languages installed.
 
 The code remains separated into course/templates, persistence, exams, line CLI,
-and TUI modules. See `COURSE_AUTHORING.md` for CLQ and `SOURCES.md` for provenance.
+and TUI modules. See [Course authoring](docs/COURSE_AUTHORING.md) for CLQ and
+[Sources and reuse](docs/SOURCES.md) for provenance.
 Code is MIT licensed; course prose/exercises are CC BY 4.0. No affiliation with
 Duolingo or source-course providers is implied.
 

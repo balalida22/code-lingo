@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Organize detailed guides under `docs/`, add a documentation index, and update
+  relative links and the generated curriculum destination.
+
 ## 1.5.1 — prepared, not published
 
 - Practice now restores one heart per five correct answers instead of every answer.
@@ -100,7 +105,7 @@ First major release of Code Lingo. Promotes the reviewed 0.3.1
 implementation to v1.0.0, with GitHub CI, source-control exclusions, and release
 notes. No course or gameplay behavior changes are introduced by this version bump.
 
-See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the release features and validation.
+See [RELEASE_NOTES.md](docs/RELEASE_NOTES.md) for the release features and validation.
 
 ## 0.3.1
 

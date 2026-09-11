@@ -116,7 +116,7 @@ TypeScript, vanilla HTML/CSS/JavaScript, Ruby, Lua, SQL, PHP, and Perl.
   not been native-executed here.
 
 See [NATIVE_CURRICULA.md](NATIVE_CURRICULA.md) for topic changes, references,
-compatibility, and validation scope, and [README.md](README.md) to run with uv.
+compatibility, and validation scope, and [README.md](../README.md) to run with uv.
 
 ---
 

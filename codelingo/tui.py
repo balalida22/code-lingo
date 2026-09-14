@@ -475,14 +475,29 @@ class TuiApp(App):
             if index is not None:
                 selected = ids[index]
 
+    def pick_streak_recovery(self):
+        while True:
+            choice = self.screen.choose('Streak recovery', self.streak_recovery_text(),
+                ['Restore streak', 'Choose a lesson', 'Review questions (up to 20)', 'Back'])
+            if choice is None or choice == 3:
+                return
+            if choice == 0:
+                self.action(self.recover_streak)
+            elif choice == 1:
+                self.pick_lesson()
+            else:
+                self.action(lambda: self.review(limit=20, early=True))
+
     def menu(self):
-        labels = ['Continue learning','Choose section / lesson','Review due questions','Review upcoming questions','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language / library','Overall analytics','Quit']
+        labels = ['Continue learning','Choose section / lesson','Review due questions','Review upcoming questions','Practice / recover hearts','Skip section · take exam','Mistake notebook','Progress & exam history','Shop · heart for 10 gems','Course sources','Change language / library','Overall analytics','Streak recovery','Quit']
         while True:
             labels[2] = f'Review due questions ({len(self.store.due(self.keys, limit=len(self.keys)))})'
             i = self.screen.choose('CODE LINGO · ' + self.course.title, 'Daily goal: finish one lesson or exam.\nNumbers, text, and contexts vary across attempts.\n\nUse the arrow keys and Enter. Your progress saves after each answer.', labels, main_menu=True)
-            if i is None or i == 12:
+            if i is None or i == 13:
                 return
-            if i == 11:
+            if i == 12:
+                self.pick_streak_recovery()
+            elif i == 11:
                 self.pick_analytics()
             elif i == 10:
                 self.pick_course()

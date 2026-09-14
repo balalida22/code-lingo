@@ -50,6 +50,8 @@ class Store:
             CREATE TABLE IF NOT EXISTS daily_completions (
                 day TEXT NOT NULL, kind TEXT NOT NULL, activity TEXT NOT NULL,
                 at REAL NOT NULL, PRIMARY KEY(day,kind,activity));
+            CREATE TABLE IF NOT EXISTS streak_repairs (
+                day TEXT PRIMARY KEY, repaired_at REAL NOT NULL);
             CREATE TABLE IF NOT EXISTS settings (name TEXT PRIMARY KEY, value TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS migrations (name TEXT PRIMARY KEY);
         """)
@@ -272,9 +274,49 @@ class Store:
         row = self.db.execute('SELECT origin FROM completed WHERE lid=?', (lid,)).fetchone()
         return row[0] if row else None
 
+    def streak_days(self):
+        return {r[0] for r in self.db.execute(
+            'SELECT day FROM daily_completions UNION SELECT day FROM streak_repairs')}
+
+    def streak_recovery(self):
+        """A gap is repairable only on the first return day, within two missed days."""
+        today = datetime.fromtimestamp(self.clock()).date()
+        days = self.streak_days()
+        previous = max((day for day in days if day < today.isoformat()), default=None)
+        missing = (today - datetime.fromisoformat(previous).date()).days - 1 if previous else 0
+        eligible = previous is not None and 1 <= missing <= 2
+        start = datetime.combine(today, datetime.min.time()).timestamp()
+        lessons = self.db.execute("""SELECT COUNT(*) FROM (
+            SELECT activity FROM daily_completions WHERE day=? AND kind='lesson'
+            UNION ALL
+            SELECT e.course || ':' || e.section FROM daily_completions d
+            JOIN exams e ON CAST(e.id AS TEXT)=d.activity
+            WHERE d.day=? AND d.kind='exam' AND e.state IN ('passed','failed')
+            GROUP BY e.course,e.section)""", (today.isoformat(),today.isoformat())).fetchone()[0]
+        reviews = self.db.execute("""SELECT COUNT(DISTINCT qid) FROM attempts
+            WHERE mode='review' AND correct=1 AND at>=? AND at<=?""",
+            (start,self.clock())).fetchone()[0]
+        target_lessons = 2 * missing if eligible else 0
+        target_reviews = 10 * missing if eligible else 0
+        return dict(eligible=eligible, missed=missing, lessons=lessons, reviews=reviews,
+                    target_lessons=target_lessons, target_reviews=target_reviews,
+                    ready=eligible and lessons>=target_lessons and reviews>=target_reviews,
+                    dates=[(today-timedelta(days=i)).isoformat() for i in range(1,missing+1)] if eligible else [])
+
+    def restore_streak(self):
+        # Serialize claims with other processes and recalculate from saved evidence.
+        with self.db:
+            self.db.execute('UPDATE player SET id=id WHERE id=1')
+            progress = self.streak_recovery()
+            if not progress['ready']:
+                return False
+            self.db.executemany('INSERT OR IGNORE INTO streak_repairs VALUES(?,?)',
+                                [(day,self.clock()) for day in progress['dates']])
+        return True
+
     def stats(self):
         p = self.player()
-        days = {r[0] for r in self.db.execute('SELECT DISTINCT day FROM daily_completions')}
+        days = self.streak_days()
         today = datetime.fromtimestamp(self.clock()).date()
         cursor = today if today.isoformat() in days else today - timedelta(days=1)
         streak = 0

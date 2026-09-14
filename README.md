@@ -1,11 +1,11 @@
-# Code Lingo 1.5.1
+# Code Lingo 1.6.0
 
 **Read code. Build fluency. A little every day.**
 
 A programming language tutor with an arrow-key terminal interface, daily progress,
 randomized exercises, spaced review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](docs/RELEASE_NOTES.md) for the prepared v1.5.1 update and
+See [RELEASE_NOTES.md](docs/RELEASE_NOTES.md) for the prepared v1.6.0 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
 Browse the [documentation index](docs/README.md) for course guides and authoring references.
 
@@ -427,3 +427,37 @@ Every **five correct practice answers** restore one heart. Partial progress save
 across sessions and courses, and feedback shows your progress out of five. Wrong
 answers still cost a heart, but do not reset earned progress. Correct answers
 while hearts are full are not banked for future rewards.
+
+### Streak recovery
+
+Missed one or two days? Open **Streak recovery** from the main menu on the day
+you return. Recovery uses the extra-work approach: 1.5 times the daily lesson
+goal, rounded up to two completed lessons/exams, plus ten distinct correctly
+reviewed questions **per missed day**.
+
+| Gap | Complete today | Correctly review today |
+| --- | --- | --- |
+| 1 missed day | 2 different lessons/exams | 10 distinct questions |
+| 2 missed days | 4 different lessons/exams | 20 distinct questions |
+
+Work counts across all courses. Full lesson replays and upcoming reviews count.
+A lesson counts once per day; a finished section exam counts once per course and
+section, whether passed or failed. Exam-unlocked lessons do not supply extra
+completion credit. Only correct answers in review mode count toward the review
+target; repeated answers to the same question count once.
+
+Return to **Streak recovery → Restore streak** after reaching both targets.
+The TUI provides shortcuts to lessons and a review batch of up to 20 questions;
+switch courses if you need more learned questions. Progress survives restarts,
+but both targets and the claim must be completed on the return day. Gaps longer
+than two days cannot be repaired. The normal daily goal remains one lesson/exam.
+
+```bash
+uv run python -m codelingo recover-streak
+uv run python -m codelingo review --all --limit 20
+```
+
+`recover-streak` shows remaining targets, or claims the repair when ready.
+Repaired dates bridge the streak and count toward its displayed length. They
+are stored separately from actual completions and do not award EXP or unlock
+lessons. Your existing learning history is preserved.

@@ -218,6 +218,28 @@ class App:
             else:
                 print("Choose a listed number or b.")
 
+    def streak_recovery_text(self):
+        progress = self.store.streak_recovery()
+        if not progress['eligible']:
+            if progress['missed'] > 2:
+                return 'This gap is longer than two days. Finish a lesson to start a new streak.'
+            return 'No missed days to repair. Finish one lesson or exam each day to keep your streak.'
+        return (f"Repair {progress['missed']} missed day(s) today.\n"
+                f"Lessons/exams: {progress['lessons']}/{progress['target_lessons']}\n"
+                f"Correctly reviewed questions: {progress['reviews']}/{progress['target_reviews']}\n\n"
+                'Complete two different lessons or exams and correctly review ten distinct questions '
+                'per missed day. All courses count. Finished lesson replays and upcoming reviews count. '
+                'Repeating the same lesson, section exam, or review question does not add credit.\n\n'
+                'Return here to restore your streak when both targets are met. '
+                'Recovery must be completed today.')
+
+    def recover_streak(self):
+        self.ui.heading('Streak recovery')
+        if self.store.restore_streak():
+            print(f"Streak restored! {self.store.stats()['streak']} days.")
+        else:
+            print(self.streak_recovery_text())
+
     def stats(self):
         self.ui.heading("Your progress")
         s = self.status()
@@ -507,7 +529,7 @@ class App:
             self.ui.heading("CODE LINGO  /  Read code. Build fluency.  /  " + self.course.title)
             self.status()
             print(f"Due for review: {len(self.store.due(self.keys, limit=len(self.keys)))} questions")
-            print("\n  1  Continue learning\n  2  Review due questions\n  3  Practice / restore hearts\n  4  Choose section / lesson\n  5  Mistake notebook\n  6  Progress\n  7  Sources\n  8  Section exam / skip section\n  9  Shop / restore heart (10 gems)\n  10 Change language / library\n  11 Overall analytics\n  q  Quit")
+            print("\n  1  Continue learning\n  2  Review due questions\n  3  Practice / restore hearts\n  4  Choose section / lesson\n  5  Mistake notebook\n  6  Progress\n  7  Sources\n  8  Section exam / skip section\n  9  Shop / restore heart (10 gems)\n  10 Change language / library\n  11 Overall analytics\n  12 Streak recovery\n  q  Quit")
             try:
                 choice = input("\nChoose > ").strip().lower()
             except (EOFError, KeyboardInterrupt):
@@ -515,10 +537,10 @@ class App:
                 return
             if choice in {"q", ":q"}:
                 return
-            actions = {"1": self.learn, "2": self.review, "3": self.practice, "4": self.pick_lesson, "5": self.mistakes, "6": self.stats, "7": self.sources, "8": self.exam, "9": lambda: print(self.store.buy_heart()), "10": self.pick_course, "11": self.pick_analytics}
+            actions = {"1": self.learn, "2": self.review, "3": self.practice, "4": self.pick_lesson, "5": self.mistakes, "6": self.stats, "7": self.sources, "8": self.exam, "9": lambda: print(self.store.buy_heart()), "10": self.pick_course, "11": self.pick_analytics, "12": self.recover_streak}
             action = actions.get(choice)
             if not action:
-                print("Choose 1–11 or q.")
+                print("Choose 1–12 or q.")
                 continue
             try:
                 action()
@@ -562,6 +584,7 @@ def main(argv=None):
     practice.add_argument("--limit", type=positive_int, default=5)
     for command, help_text in [("course", "show the curriculum and unlocks"), ("stats", "show daily progress"), ("mistakes", "show your mistake notebook"), ("sources", "show curriculum references"), ("demo", "watch a demo with temporary progress"), ("validate", "validate the course file")]:
         sub.add_parser(command, help=help_text)
+    sub.add_parser('recover-streak', help='show recovery targets or restore an earned streak')
     analytics = sub.add_parser('analytics', help='show analytics across all courses')
     analytics.add_argument('--filter', metavar='COURSE_ID', help='limit analytics to a course ID')
     args = parser.parse_args(argv)
@@ -597,6 +620,8 @@ def main(argv=None):
             app.review(args.limit, args.all)
         elif args.command == "practice":
             app.practice(args.limit)
+        elif args.command == "recover-streak":
+            app.recover_streak()
         elif args.command == "analytics":
             app.analytics(args.filter)
         elif args.command == "course":

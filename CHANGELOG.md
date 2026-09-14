@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.6.0 — prepared, not published
+
+- Add streak recovery for gaps of one or two missed local calendar days.
+- Require two distinct finished lessons/exams and ten distinct correctly reviewed
+  questions per missed day, completed on the return day across any courses.
+- Add a recovery menu with lesson/review shortcuts and progress, plus the
+  `recover-streak` command to inspect targets or claim a completed repair.
+- Persist repaired dates separately: no fabricated lesson completions, EXP,
+  daily-goal credit, or curriculum unlocks. Claims are transactional and idempotent.
+- 122 regression tests pass, including one/two-day gaps, target deduplication,
+  invalid gaps, restart persistence, and continuation after recovery.
+
 ## Unreleased
 
 - Organize detailed guides under `docs/`, add a documentation index, and update

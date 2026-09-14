@@ -317,7 +317,7 @@ class App:
                 'c_tokens':'Enter only the requested fragment. Whitespace between tokens may vary; preserve literals, spelling, and punctuation.',
             }.get(q.get('checker'),'Enter only the requested fragment. Spaces and quote style may vary; use the named construction.')
             self.ui.prose(instruction)
-        print(self.ui.style("? hint   :skip reveal & lose a heart   :q save & leave", "2"))
+        print(self.ui.style(("? or :hint" if options else ":hint") + " hint   :skip reveal & lose a heart   :q save & leave", "2"))
         revealed = False
         while True:
             try:
@@ -330,7 +330,7 @@ class App:
                 raise LeaveSession from None
             if raw.lower() == ":q":
                 raise LeaveSession
-            if raw == "?":
+            if raw == ":hint" or (raw == "?" and options):
                 self.ui.prose("Hint: " + q["hint"])
                 continue
             if raw.lower() == ":skip":

@@ -237,7 +237,7 @@ class Screen:
                     self.put(h-3, 2, '> ' + ''.join(chars[start:start+w-6]))
                     if len(lines)>h-9:
                         self.put(h-2,2,'More text · PgUp/PgDn',self.muted())
-                    self.put(h-1, 1, 'Enter submit · ←→ edit · Esc leave · :skip / ?',self.muted())
+                    self.put(h-1, 1, 'Enter submit · ←→ edit · Esc leave · :skip / :hint',self.muted())
                     try:
                         self.win.move(h-3, min(w-2, 4+cursor-start))
                     except self.c.error:
@@ -346,7 +346,7 @@ class TuiApp(App):
             answer = self.screen.edit(title, body)
             if answer is None or answer == ':q':
                 raise LeaveSession
-            if answer == '?':
+            if answer == ':hint':
                 if not exam:
                     body = self.question_body(q) + '\n\nHint: ' + q['hint']
                 else:

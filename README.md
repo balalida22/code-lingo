@@ -1,11 +1,11 @@
-# Code Lingo 1.6.0
+# Code Lingo 1.6.1
 
 **Read code. Build fluency. A little every day.**
 
 A programming language tutor with an arrow-key terminal interface, daily progress,
 randomized exercises, spaced review, and exams for skipping sections.
 
-See [RELEASE_NOTES.md](docs/RELEASE_NOTES.md) for the prepared v1.6.0 update and
+See [RELEASE_NOTES.md](docs/RELEASE_NOTES.md) for the prepared v1.6.1 update and
 [CHANGELOG.md](CHANGELOG.md) for the project history.
 Browse the [documentation index](docs/README.md) for course guides and authoring references.
 
@@ -43,7 +43,7 @@ terminal. Use **↑/↓** to select, **Enter** to confirm, and **Esc** to go bac
   explanations use bold cyan, with green/red feedback titles retained.
 - **Scrolling:** “More text · PgUp/PgDn” appears only when text overflows.
   The old “text line” counter is removed.
-- **Hints:** `?` in reading; enter `?` in writing.
+- **Hints:** `?` in reading; enter `:hint` in writing. A bare `?` submits the literal code operator.
 - **Skip a question:** `s` in reading; enter `:skip` in writing.
 
 The TUI uses Python's standard `curses` module, included in most Linux/macOS

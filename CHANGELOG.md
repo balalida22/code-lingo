@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.1 — prepared, not published
+
+- Fix Rust writing answers containing the standalone `?` operator: submit it
+  as code in both CLI and TUI, including placement exams.
+- Use `:hint` for writing hints and update input help. Multiple-choice questions
+  retain their `?` shortcut; exams continue to prohibit hints.
+- 127 regression tests pass, including real Rust operator answers and hint flows.
+
 ## 1.6.0 — prepared, not published
 
 - Add streak recovery for gaps of one or two missed local calendar days.
